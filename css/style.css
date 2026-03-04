@@ -308,7 +308,7 @@ a:hover {
     padding: var(--spacing-4xl) var(--spacing-2xl);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-3xl);
+    gap: var(--spacing-2xl);
     align-items: center;
 }
 
