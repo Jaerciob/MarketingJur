@@ -987,6 +987,53 @@
                     });
                 }
             });
+
+            var formConfigs = [
+                { formId: 'curso-online-form', formType: 'curso-online' },
+                { formId: 'mentoria-form', formType: 'mentoria' },
+                { formId: 'corporate-form', formType: 'corporate' }
+            ];
+
+            formConfigs.forEach(function (cfg) {
+                var form = document.getElementById(cfg.formId);
+                if (!form) return;
+
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    var submitBtn = form.querySelector('button[type="submit"]');
+                    var originalText = submitBtn.textContent;
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Enviando...';
+
+                    var data = {
+                        form_type: cfg.formType,
+                        nome: form.querySelector('input[name="nome"]').value,
+                        whatsapp: form.querySelector('input[name="whatsapp"]').value,
+                        email: form.querySelector('input[name="email"]').value
+                    };
+
+                    fetch('/api/submissions', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    })
+                    .then(function (res) { return res.json(); })
+                    .then(function (result) {
+                        if (result.success) {
+                            form.innerHTML = '<div class="form-success"><i class="fas fa-check-circle"></i><h4>Inscrição realizada!</h4><p>Obrigado, ' + data.nome.split(' ')[0] + '! Entraremos em contato em breve.</p></div>';
+                        } else {
+                            alert(result.error || 'Ocorreu um erro. Tente novamente.');
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = originalText;
+                        }
+                    })
+                    .catch(function () {
+                        alert('Erro de conexão. Tente novamente.');
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    });
+                });
+            });
         });
     })();
     </script>
