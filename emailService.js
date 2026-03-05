@@ -124,9 +124,12 @@ function buildEmailHtml(nome, formType) {
 }
 
 async function sendWelcomeEmail(nome, email, formType) {
-  const { client, fromEmail } = await getUncachableResendClient();
+  console.log(`[Email] Iniciando envio para ${email}...`);
 
+  const { client, fromEmail } = await getUncachableResendClient();
   const senderEmail = fromEmail || 'onboarding@resend.dev';
+
+  console.log(`[Email] Remetente: ${senderEmail}`);
 
   const result = await client.emails.send({
     from: `Marketing Jur <${senderEmail}>`,
@@ -135,6 +138,7 @@ async function sendWelcomeEmail(nome, email, formType) {
     html: buildEmailHtml(nome, formType)
   });
 
+  console.log('[Email] Resultado do envio:', JSON.stringify(result));
   return result;
 }
 
