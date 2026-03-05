@@ -43,3 +43,4 @@ run = ["node", "server.js"]
 
 [userenv.shared]
 ADMIN_KEY = "d7a090aa80cc8fdc3a3e562ce5968202de8697e203b4989cd4633ec3cff1f867"
+FROM_EMAIL = "atendimento@marketingjur.com.br"

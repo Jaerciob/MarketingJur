@@ -21,9 +21,10 @@ Institutional website for the Marketing Jur course (marketing jurídico). Node.j
 - `GET /api/submissions` — List submissions (optional query: ?form_type=curso-online|mentoria|corporate)
 
 ## Email Service
-- **Provider**: Resend (via Replit integration)
+- **Provider**: Resend (via RESEND_API_KEY env secret)
 - **Module**: `emailService.js` — handles welcome/confirmation emails
 - **Trigger**: Automatic on form submission (async, non-blocking)
+- **From**: configurable via FROM_EMAIL env var (default: onboarding@resend.dev, production: atendimento@marketingjur.com.br)
 - **Template**: Professional HTML email with course branding, personalized greeting, and next steps info
 
 ## Database Schema
