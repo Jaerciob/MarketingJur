@@ -17,8 +17,14 @@ Institutional website for the Marketing Jur course (marketing jurídico). Node.j
 - **Port**: 5000
 
 ## API Endpoints
-- `POST /api/submissions` — Save form submission (body: form_type, nome, whatsapp, email)
+- `POST /api/submissions` — Save form submission (body: form_type, nome, whatsapp, email). Sends welcome email via Resend after saving.
 - `GET /api/submissions` — List submissions (optional query: ?form_type=curso-online|mentoria|corporate)
+
+## Email Service
+- **Provider**: Resend (via Replit integration)
+- **Module**: `emailService.js` — handles welcome/confirmation emails
+- **Trigger**: Automatic on form submission (async, non-blocking)
+- **Template**: Professional HTML email with course branding, personalized greeting, and next steps info
 
 ## Database Schema
 - **form_submissions** table: id (serial PK), form_type (varchar), nome (varchar), whatsapp (varchar), email (varchar), created_at (timestamp)

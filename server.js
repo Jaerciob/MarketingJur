@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { Pool } = require('pg');
+const { sendWelcomeEmail } = require('./emailService');
 
 const app = express();
 const PORT = 5000;
@@ -61,6 +62,10 @@ app.post('/api/submissions', async (req, res) => {
       message: 'Inscrição realizada com sucesso!',
       id: result.rows[0].id,
       created_at: result.rows[0].created_at
+    });
+
+    sendWelcomeEmail(nome, email, form_type).catch(err => {
+      console.error('Erro ao enviar email de boas-vindas:', err);
     });
   } catch (err) {
     console.error('Erro ao salvar submissão:', err);
