@@ -299,6 +299,7 @@ a:hover {
     display: flex;
     align-items: center;
     overflow: hidden;
+    padding-top: 80px;
 }
 
 .hero-container {
