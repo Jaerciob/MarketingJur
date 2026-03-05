@@ -1,45 +1,13 @@
 const { Resend } = require('resend');
 
-let connectionSettings = null;
+const FROM_EMAIL = process.env.FROM_EMAIL || 'onboarding@resend.dev';
 
-async function getCredentials() {
-  const hostname = process.env.REPLIT_CONNECTORS_HOSTNAME;
-  const xReplitToken = process.env.REPL_IDENTITY
-    ? 'repl ' + process.env.REPL_IDENTITY
-    : process.env.WEB_REPL_RENEWAL
-    ? 'depl ' + process.env.WEB_REPL_RENEWAL
-    : null;
-
-  if (!xReplitToken) {
-    throw new Error('X-Replit-Token not found for repl/depl');
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    throw new Error('RESEND_API_KEY não configurada');
   }
-
-  connectionSettings = await fetch(
-    'https://' + hostname + '/api/v2/connection?include_secrets=true&connector_names=resend',
-    {
-      headers: {
-        'Accept': 'application/json',
-        'X-Replit-Token': xReplitToken
-      }
-    }
-  ).then(res => res.json()).then(data => data.items?.[0]);
-
-  if (!connectionSettings || !connectionSettings.settings.api_key) {
-    throw new Error('Resend not connected');
-  }
-
-  return {
-    apiKey: connectionSettings.settings.api_key,
-    fromEmail: connectionSettings.settings.from_email
-  };
-}
-
-async function getUncachableResendClient() {
-  const { apiKey, fromEmail } = await getCredentials();
-  return {
-    client: new Resend(apiKey),
-    fromEmail
-  };
+  return new Resend(apiKey);
 }
 
 function escapeHtml(text) {
@@ -126,13 +94,12 @@ function buildEmailHtml(nome, formType) {
 async function sendWelcomeEmail(nome, email, formType) {
   console.log(`[Email] Iniciando envio para ${email}...`);
 
-  const { client, fromEmail } = await getUncachableResendClient();
-  const senderEmail = fromEmail || 'onboarding@resend.dev';
+  const client = getResendClient();
 
-  console.log(`[Email] Remetente: ${senderEmail}`);
+  console.log(`[Email] Remetente: ${FROM_EMAIL}`);
 
   const result = await client.emails.send({
-    from: `Marketing Jur <${senderEmail}>`,
+    from: `Marketing Jur <${FROM_EMAIL}>`,
     to: [email],
     subject: 'Inscrição confirmada — Marketing Jur',
     html: buildEmailHtml(nome, formType)
