@@ -29,8 +29,7 @@ async function initDatabase() {
     await pool.query('CREATE INDEX IF NOT EXISTS idx_form_submissions_created_at ON form_submissions(created_at DESC)');
     console.log('Banco de dados inicializado com sucesso.');
   } catch (err) {
-    console.error('Erro ao inicializar banco de dados:', err);
-    process.exit(1);
+    console.error('Aviso: banco de dados indisponível, servidor continua sem DB:', err.message);
   }
 }
 
