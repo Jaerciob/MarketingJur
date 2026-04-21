@@ -4,7 +4,7 @@ const { Pool } = require('pg');
 const { sendWelcomeEmail } = require('./emailService');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
