@@ -1,39 +1,12 @@
 const express = require('express');
 const path = require('path');
-const { Pool } = require('pg');
 const { sendWelcomeEmail } = require('./emailService');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-async function initDatabase() {
-  try {
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS form_submissions (
-        id SERIAL PRIMARY KEY,
-        form_type VARCHAR(50) NOT NULL,
-        nome VARCHAR(255) NOT NULL,
-        whatsapp VARCHAR(30) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        created_at TIMESTAMP DEFAULT NOW()
-      )
-    `);
-    await pool.query('CREATE INDEX IF NOT EXISTS idx_form_submissions_form_type ON form_submissions(form_type)');
-    await pool.query('CREATE INDEX IF NOT EXISTS idx_form_submissions_created_at ON form_submissions(created_at DESC)');
-    console.log('Banco de dados inicializado com sucesso.');
-  } catch (err) {
-    console.error('Aviso: banco de dados indisponível, servidor continua sem DB:', err.message);
-  }
-}
-
-initDatabase();
 
 app.use(express.static(path.join(__dirname), {
   index: 'index.html'
@@ -51,47 +24,14 @@ app.post('/api/submissions', async (req, res) => {
     return res.status(400).json({ error: 'Tipo de formulário inválido.' });
   }
 
-  try {
-    const result = await pool.query(
-      'INSERT INTO form_submissions (form_type, nome, whatsapp, email) VALUES ($1, $2, $3, $4) RETURNING id, created_at',
-      [form_type, nome, whatsapp, email]
-    );
-    res.status(201).json({
-      success: true,
-      message: 'Inscrição realizada com sucesso!',
-      id: result.rows[0].id,
-      created_at: result.rows[0].created_at
-    });
+  sendWelcomeEmail(nome, email, form_type).catch(err => {
+    console.error('Erro ao enviar email de boas-vindas:', err);
+  });
 
-    sendWelcomeEmail(nome, email, form_type).catch(err => {
-      console.error('Erro ao enviar email de boas-vindas:', err);
-    });
-  } catch (err) {
-    console.error('Erro ao salvar submissão:', err);
-    res.status(500).json({ error: 'Erro interno do servidor.' });
-  }
-});
-
-app.get('/api/submissions', async (req, res) => {
-  const adminKey = req.headers['x-admin-key'];
-  if (adminKey !== process.env.ADMIN_KEY) {
-    return res.status(401).json({ error: 'Não autorizado.' });
-  }
-  const { form_type } = req.query;
-  try {
-    let query = 'SELECT * FROM form_submissions';
-    const params = [];
-    if (form_type) {
-      query += ' WHERE form_type = $1';
-      params.push(form_type);
-    }
-    query += ' ORDER BY created_at DESC';
-    const result = await pool.query(query, params);
-    res.json(result.rows);
-  } catch (err) {
-    console.error('Erro ao buscar submissões:', err);
-    res.status(500).json({ error: 'Erro interno do servidor.' });
-  }
+  res.status(201).json({
+    success: true,
+    message: 'Inscrição realizada com sucesso!'
+  });
 });
 
 app.use((req, res) => {
