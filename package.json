@@ -2,17 +2,21 @@
   "name": "workspace",
   "version": "1.0.0",
   "description": "## 📋 Visão Geral",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "22.x",
+    "npm": ">=8.0.0"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
-    "pg": "^8.19.0",
     "resend": "^6.9.3"
   }
 }
