@@ -2145,19 +2145,20 @@ a.hotmart-fb.btn-secondary:visited {
     padding: var(--spacing-md) var(--spacing-xl) !important;
     font-family: var(--font-primary) !important;
     font-size: 1rem !important;
-    font-weight: 600 !important;
+    font-weight: 700 !important;
     text-align: center !important;
     color: var(--primary-color) !important;
-    background: transparent !important;
-    border: 2px solid var(--primary-color) !important;
+    background: var(--secondary-color) !important;
+    border: 2px solid var(--secondary-color) !important;
     border-radius: var(--border-radius) !important;
     box-shadow: none !important;
     transition: var(--transition-normal) !important;
 }
 
 a.hotmart-fb.btn-secondary:hover {
-    background: var(--primary-color) !important;
-    color: var(--white) !important;
+    background: var(--secondary-dark) !important;
+    border-color: var(--secondary-dark) !important;
+    color: var(--primary-color) !important;
 }
 
 a.hotmart-fb.btn-primary,
