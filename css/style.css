@@ -2114,3 +2114,96 @@ a:hover {
 .pricing-card.recommended .pricing-title {
     color: var(--secondary-color);
 }
+
+/* ===================================
+   Hotmart Widget Override
+   Garante que os botões de compra
+   sigam o visual do site
+   =================================== */
+a.hotmart-fb,
+a.hotmart-fb:link,
+a.hotmart-fb:visited {
+    background-image: none !important;
+    box-sizing: border-box !important;
+    width: auto !important;
+    height: auto !important;
+    line-height: normal !important;
+    letter-spacing: normal !important;
+    font-family: var(--font-primary) !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+a.hotmart-fb.btn-secondary,
+a.hotmart-fb.btn-secondary:link,
+a.hotmart-fb.btn-secondary:visited {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: var(--spacing-sm) !important;
+    padding: var(--spacing-md) var(--spacing-xl) !important;
+    font-family: var(--font-primary) !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    color: var(--primary-color) !important;
+    background: transparent !important;
+    border: 2px solid var(--primary-color) !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: none !important;
+    transition: var(--transition-normal) !important;
+}
+
+a.hotmart-fb.btn-secondary:hover {
+    background: var(--primary-color) !important;
+    color: var(--white) !important;
+}
+
+a.hotmart-fb.btn-primary,
+a.hotmart-fb.btn-primary:link,
+a.hotmart-fb.btn-primary:visited {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: var(--spacing-sm) !important;
+    padding: var(--spacing-lg) var(--spacing-2xl) !important;
+    font-family: var(--font-primary) !important;
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    color: var(--white) !important;
+    background: var(--gradient-primary) !important;
+    border: none !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: var(--shadow-md) !important;
+    transition: var(--transition-normal) !important;
+}
+
+a.hotmart-fb.btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+a.hotmart-fb.pricing-btn-primary,
+a.hotmart-fb.pricing-btn-primary:link,
+a.hotmart-fb.pricing-btn-primary:visited {
+    display: inline-block !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding: var(--spacing-md) var(--spacing-xl) !important;
+    font-family: var(--font-primary) !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: var(--white) !important;
+    background: var(--gradient-primary) !important;
+    border: none !important;
+    border-radius: var(--border-radius-md) !important;
+    box-shadow: none !important;
+    transition: var(--transition-normal) !important;
+}
+
+a.hotmart-fb.pricing-btn-primary:hover {
+    opacity: 0.9 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-md) !important;
+}
