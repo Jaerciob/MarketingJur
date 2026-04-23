@@ -26,6 +26,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Hotmart Checkout Widget -->
+    <script src="https://static.hotmart.com/checkout/widget.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -69,10 +72,10 @@
                         <i class="fas fa-play"></i>
                         Ver Estrutura do Curso
                     </a>
-                    <button class="btn btn-secondary hero-reserve-btn">
+                    <a href="SEU_HOTLINK_AQUI" class="btn btn-secondary hotmart-fb">
                         <i class="fas fa-rocket"></i>
                         Reserve sua Vaga
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -405,10 +408,10 @@
             </div>
 
             <div class="modules-cta">
-                <button class="btn btn-primary btn-large hero-reserve-btn">
+                <a href="SEU_HOTLINK_AQUI" class="btn btn-primary btn-large hotmart-fb">
                     <i class="fas fa-rocket"></i>
                     Reserve sua Vaga
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -650,7 +653,7 @@
                         <li><i class="fas fa-check"></i> Aulas práticas e aplicáveis</li>
                         <li><i class="fas fa-check"></i> Tire dúvidas com especialistas</li>
                     </ul>
-                    <button type="button" class="pricing-btn pricing-btn-primary pricing-btn-open-form">Quero me inscrever</button>
+                    <a href="SEU_HOTLINK_AQUI" class="pricing-btn pricing-btn-primary hotmart-fb">Quero me inscrever</a>
                 </div>
                 <!-- Card 2 - Destaque -->
                 <div class="pricing-card pricing-card-featured pricing-card-mentoria">
@@ -840,9 +843,8 @@
     <script>
     (function () {
         var modalMap = [
-            { triggers: ['.pricing-btn-open-form', '.hero-reserve-btn'], modalId: 'curso-online-modal' },
-            { triggers: ['.pricing-btn-open-mentoria'],                   modalId: 'mentoria-modal'     },
-            { triggers: ['.pricing-btn-open-corporate'],                  modalId: 'corporate-modal'    }
+            { triggers: ['.pricing-btn-open-mentoria'],  modalId: 'mentoria-modal'  },
+            { triggers: ['.pricing-btn-open-corporate'], modalId: 'corporate-modal' }
         ];
 
         function openModal(modal) {
@@ -946,6 +948,15 @@
             });
         });
     })();
+    </script>
+
+    <!-- Hotmart Widget Initialization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.hotmart && typeof window.hotmart.init === 'function') {
+                window.hotmart.init();
+            }
+        });
     </script>
 </body>
 </html>
