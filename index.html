@@ -28,7 +28,19 @@
     <link rel="stylesheet" href="css/responsive.css">
 
     <!-- Hotmart Checkout Widget -->
-    <script src="https://static.hotmart.com/checkout/widget.js"></script>
+    <script type="text/javascript">
+        function importHotmart() {
+            var imported = document.createElement('script');
+            imported.src = 'https://static.hotmart.com/checkout/widget.min.js';
+            document.head.appendChild(imported);
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
+            document.head.appendChild(link);
+        }
+        importHotmart();
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -72,7 +84,7 @@
                         <i class="fas fa-play"></i>
                         Ver Estrutura do Curso
                     </a>
-                    <a href="SEU_HOTLINK_AQUI" class="btn btn-secondary hotmart-fb">
+                    <a href="https://pay.hotmart.com/Q105515103V?checkoutMode=2" onclick="return false;" class="btn btn-secondary hotmart-fb hotmart__button-checkout">
                         <i class="fas fa-rocket"></i>
                         Reserve sua Vaga
                     </a>
@@ -408,7 +420,7 @@
             </div>
 
             <div class="modules-cta">
-                <a href="SEU_HOTLINK_AQUI" class="btn btn-primary btn-large hotmart-fb">
+                <a href="https://pay.hotmart.com/Q105515103V?checkoutMode=2" onclick="return false;" class="btn btn-primary btn-large hotmart-fb hotmart__button-checkout">
                     <i class="fas fa-rocket"></i>
                     Reserve sua Vaga
                 </a>
@@ -653,7 +665,7 @@
                         <li><i class="fas fa-check"></i> Aulas práticas e aplicáveis</li>
                         <li><i class="fas fa-check"></i> Tire dúvidas com especialistas</li>
                     </ul>
-                    <a href="SEU_HOTLINK_AQUI" class="pricing-btn pricing-btn-primary hotmart-fb">Quero me inscrever</a>
+                    <a href="https://pay.hotmart.com/Q105515103V?checkoutMode=2" onclick="return false;" class="pricing-btn pricing-btn-primary hotmart-fb hotmart__button-checkout">Quero me inscrever</a>
                 </div>
                 <!-- Card 2 - Destaque -->
                 <div class="pricing-card pricing-card-featured pricing-card-mentoria">
