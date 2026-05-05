@@ -215,11 +215,65 @@ a:hover {
 }
 
 /* ===================================
+   Announcement Bar
+   =================================== */
+.announcement-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--gradient-primary);
+    z-index: 1100;
+    padding: 10px var(--spacing-lg);
+}
+
+.announcement-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    color: var(--white);
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+}
+
+.announcement-content i {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.announcement-cta {
+    background: var(--secondary-color) !important;
+    color: var(--primary-color) !important;
+    padding: 4px 16px !important;
+    border-radius: 999px !important;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+    white-space: nowrap !important;
+    text-decoration: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: opacity 0.2s ease !important;
+    display: inline-block !important;
+    width: auto !important;
+    height: auto !important;
+    line-height: normal !important;
+    background-image: none !important;
+}
+
+.announcement-cta:hover {
+    opacity: 0.85 !important;
+}
+
+/* ===================================
    Navegação
    =================================== */
 .navbar {
     position: fixed;
-    top: 0;
+    top: 44px;
     left: 0;
     right: 0;
     background: rgba(255, 255, 255, 0.95);
@@ -308,7 +362,7 @@ a:hover {
     display: flex;
     align-items: center;
     overflow: hidden;
-    padding-top: 80px;
+    padding-top: 124px;
 }
 
 .hero-container {

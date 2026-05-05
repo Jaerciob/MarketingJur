@@ -85,6 +85,30 @@
         --spacing-4xl: 3rem;
     }
 
+    /* Announcement Bar Mobile */
+    .announcement-bar {
+        padding: 8px var(--spacing-md);
+    }
+
+    .announcement-content {
+        font-size: 0.78rem;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+
+    .announcement-cta {
+        font-size: 0.75rem !important;
+        padding: 3px 12px !important;
+    }
+
+    .navbar {
+        top: 56px !important;
+    }
+
+    .hero {
+        padding-top: 136px !important;
+    }
+
     /* Navegação Mobile */
     .navbar {
         padding: 0;
