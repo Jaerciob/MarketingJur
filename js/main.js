@@ -139,6 +139,12 @@ const navigation = {
                 e.preventDefault();
                 const target = link.getAttribute('href');
                 if (target !== '#') {
+                    const targetElement = document.querySelector(target);
+                    if (targetElement?.classList.contains('module-card')) {
+                        modules.activateModule(targetElement, false);
+                        modules.highlightModule(targetElement);
+                    }
+
                     utils.smoothScroll(target);
                 }
             });
@@ -231,6 +237,35 @@ const modules = {
         modules.setupProgressBars();
     },
 
+    activateModule: (moduleCard, shouldScroll = true) => {
+        if (!moduleCard) return;
+
+        document.querySelectorAll('.module-card').forEach(card => {
+            card.classList.remove('active');
+        });
+
+        moduleCard.classList.add('active');
+        state.currentModule = moduleCard.dataset.module;
+
+        if (shouldScroll) {
+            utils.smoothScroll(moduleCard, 400);
+        }
+    },
+
+    highlightModule: (moduleCard) => {
+        if (!moduleCard) return;
+
+        moduleCard.classList.remove('module-card-highlight');
+
+        requestAnimationFrame(() => {
+            moduleCard.classList.add('module-card-highlight');
+        });
+
+        setTimeout(() => {
+            moduleCard.classList.remove('module-card-highlight');
+        }, 1800);
+    },
+
     setupModuleToggle: () => {
         const moduleHeaders = document.querySelectorAll('.module-header');
         
@@ -240,18 +275,14 @@ const modules = {
                 const isActive = moduleCard.classList.contains('active');
                 
                 // Fechar todos os módulos
-                document.querySelectorAll('.module-card').forEach(card => {
-                    card.classList.remove('active');
-                });
-                
+
                 // Abrir o módulo clicado se não estiver ativo
                 if (!isActive) {
-                    moduleCard.classList.add('active');
-                    state.currentModule = moduleCard.dataset.module;
-                    
-                    // Scroll suave para o módulo
-                    utils.smoothScroll(moduleCard, 400);
+                    modules.activateModule(moduleCard);
                 } else {
+                    document.querySelectorAll('.module-card').forEach(card => {
+                        card.classList.remove('active');
+                    });
                     state.currentModule = null;
                 }
             });
@@ -260,8 +291,7 @@ const modules = {
         // Abrir primeiro módulo por padrão
         const firstModule = document.querySelector('.module-card');
         if (firstModule) {
-            firstModule.classList.add('active');
-            state.currentModule = firstModule.dataset.module;
+            modules.activateModule(firstModule, false);
         }
     },
 
