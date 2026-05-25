@@ -1322,6 +1322,10 @@ a:hover {
     flex-shrink: 0;
 }
 
+.module-goals {
+    margin-bottom: var(--spacing-2xl);
+}
+
 .module-goals h4 {
     display: flex;
     align-items: center;
@@ -1343,6 +1347,94 @@ a:hover {
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+/* Journey timeline list */
+.journey-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: journey-counter;
+}
+
+.journey-list > li {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 2.8rem;
+    padding-bottom: var(--spacing-lg);
+    counter-increment: journey-counter;
+}
+
+.journey-list > li:last-child {
+    padding-bottom: 0;
+}
+
+.journey-list > li::before {
+    content: counter(journey-counter);
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.journey-list > li::after {
+    content: '';
+    position: absolute;
+    left: 0.87rem;
+    top: 2rem;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--primary-color), transparent);
+    opacity: 0.3;
+}
+
+.journey-list > li:last-child::after {
+    display: none;
+}
+
+.journey-step-title {
+    font-weight: 600;
+    color: var(--gray-700);
+    line-height: 1.5;
+}
+
+.journey-step-sub {
+    color: var(--gray-500);
+    font-size: 0.9rem;
+}
+
+.journey-sub-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-sm) 0 0 0;
+}
+
+.journey-sub-list li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: var(--spacing-xs, 0.4rem);
+    color: var(--gray-600);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.journey-sub-list li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 .goals-list li {
