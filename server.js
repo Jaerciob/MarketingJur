@@ -34,6 +34,10 @@ app.post('/api/submissions', async (req, res) => {
   });
 });
 
+app.get('/ferramentas', (req, res) => {
+  res.sendFile(path.join(__dirname, 'ferramentas.html'));
+});
+
 app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });

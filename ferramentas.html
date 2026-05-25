@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferramentas de Planejamento — Marketing Jur</title>
+    <meta name="description" content="Ferramentas interativas de planejamento de marketing jurídico: Canvas, Plano de Trabalho e Gestão do Funil de Vendas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/ferramentas.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="tools-header">
+    <div class="header-inner">
+        <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Voltar ao site</a>
+        <div class="header-title">
+            <h1>Ferramentas de Planejamento</h1>
+            <p>Curso: Primeiros Passos em Marketing Jurídico</p>
+        </div>
+        <span class="header-badge">Marketing Jur</span>
+    </div>
+</header>
+
+<!-- Tabs -->
+<nav class="tools-tabs">
+    <div class="tabs-inner">
+        <button class="tab-btn active" data-tab="canvas-panel">
+            <i class="fas fa-th-large"></i> Canvas de Marketing Jurídico
+        </button>
+        <button class="tab-btn" data-tab="kanban-panel">
+            <i class="fas fa-columns"></i> Plano de Trabalho
+        </button>
+        <button class="tab-btn" data-tab="funil-panel">
+            <i class="fas fa-filter"></i> Gestão do Funil de Vendas
+        </button>
+    </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FERRAMENTA 1: CANVAS DE MARKETING JURÍDICO
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="canvas-panel" class="tool-panel active">
+    <div class="tool-container">
+        <div class="section-title">
+            <h2>Canvas de Marketing Jurídico</h2>
+            <p>Visualize toda a sua estratégia de marketing em uma única página. Preencha os campos e salve seu progresso.</p>
+        </div>
+
+        <!-- Actions Bar -->
+        <div class="canvas-actions">
+            <div class="canvas-actions-left">
+                <div class="canvas-example-select">
+                    <label>Exemplos práticos:</label>
+                    <select id="canvas-example">
+                        <option value="">— Selecione um exemplo —</option>
+                        <option value="trabalhista">Direito Trabalhista</option>
+                        <option value="familia">Direito de Família</option>
+                        <option value="empresarial">Direito Empresarial</option>
+                    </select>
+                </div>
+                <button class="btn-clear" id="btn-clear-canvas"><i class="fas fa-eraser"></i> Limpar Canvas</button>
+                <button class="btn-print" id="btn-print-canvas"><i class="fas fa-print"></i> Imprimir</button>
+            </div>
+            <button class="btn-save" id="btn-save-canvas"><i class="fas fa-save"></i> Salvar Canvas</button>
+        </div>
+
+        <!-- Canvas Board -->
+        <div class="canvas-board">
+
+            <!-- ROW 1: Mercado | Objetivos | Estratégia de Posicionamento -->
+            <div class="canvas-row cols-3">
+                <!-- Mercado -->
+                <div class="canvas-cell">
+                    <div class="canvas-cell-header blue">
+                        <span>Mercado</span>
+                        <span class="canvas-cell-subtitle">Análise do Contexto Jurídico</span>
+                    </div>
+                    <div class="canvas-fields">
+                        <div class="canvas-field">
+                            <label><i class="fas fa-balance-scale"></i> Especialidade e Imagem de Mercado</label>
+                            <textarea data-field="mercado_imagem" rows="3" placeholder="Ex.: Especialista em Direito Trabalhista com foco em empresas de médio porte..."></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-chart-line"></i> Oportunidades do Mercado</label>
+                            <textarea data-field="mercado_oportunidades" rows="3" placeholder="Ex.: Alta litigiosidade, crescimento de consultas online..."></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-chess"></i> Concorrentes e Diferenciais</label>
+                            <textarea data-field="mercado_concorrentes" rows="3" placeholder="Ex.: Escritórios generalistas da região, LegalTechs de baixo custo..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Objetivos -->
+                <div class="canvas-cell">
+                    <div class="canvas-cell-header red">
+                        <span>Objetivos</span>
+                        <span class="canvas-cell-subtitle">Defina Onde Quer Chegar</span>
+                    </div>
+                    <div class="canvas-fields">
+                        <div class="canvas-field">
+                            <label><i class="fas fa-bullseye"></i> Objetivo Principal de Marketing</label>
+                            <textarea data-field="obj_principal" rows="3" placeholder="Ex.: Tornar-me referência em Direito de Família na cidade em 6 meses..."></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-flag-checkered"></i> Metas Mensuráveis (SMART)</label>
+                            <textarea data-field="obj_metas" rows="3" placeholder="Ex.: 500 seguidores no LinkedIn, 3 posts/semana, 2 novos clientes/mês..."></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-users"></i> Audiência e Tráfego-Alvo</label>
+                            <textarea data-field="obj_audiencia" rows="2" placeholder="Ex.: Empresários e gestores de RH na região metropolitana..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estratégia de Posicionamento -->
+                <div class="canvas-cell">
+                    <div class="canvas-cell-header green">
+                        <span>Estratégia de Posicionamento</span>
+                        <span class="canvas-cell-subtitle">Como Você Quer Ser Reconhecido</span>
+                    </div>
+                    <div class="canvas-fields">
+                        <div class="canvas-field">
+                            <label><i class="fas fa-star"></i> Posicionamento</label>
+                            <textarea data-field="brand_posicionamento" rows="3" placeholder="Ex.: O advogado trabalhista que resolve sem complicar — clareza e resultado..."></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-comment-dots"></i> Mensagem Central</label>
+                            <textarea data-field="brand_mensagem" rows="2" placeholder="Ex.: &quot;Seus direitos merecem quem entende o que está em jogo.&quot;"></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-theater-masks"></i> Voz e Arquétipo da Marca</label>
+                            <textarea data-field="brand_voz" rows="3" placeholder="Ex.: Arquétipo do Sábio. Tom: técnico mas acessível, confiante, empático..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 2: Persona | Jornada do Cliente -->
+            <div class="canvas-row cols-2">
+                <!-- Persona -->
+                <div class="canvas-cell">
+                    <div class="canvas-cell-header purple">
+                        <span>Persona</span>
+                        <span class="canvas-cell-subtitle">Cliente Ideal Bem Definido</span>
+                    </div>
+                    <div class="canvas-fields">
+                        <div class="canvas-field">
+                            <label><i class="fas fa-user-circle"></i> Perfil do Cliente Ideal</label>
+                            <textarea data-field="persona_perfil" rows="6" placeholder="Nome fictício, idade, profissão, dores principais, objetivos, onde busca informação, o que impede de contratar um advogado, qual a sua maior dúvida jurídica..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jornada do Cliente -->
+                <div class="canvas-cell">
+                    <div class="canvas-cell-header teal">
+                        <span>Jornada do Cliente Jurídico</span>
+                        <span class="canvas-cell-subtitle">Do Desconhecido ao Fidelizado</span>
+                    </div>
+                    <div class="canvas-fields">
+                        <div class="canvas-field">
+                            <label><i class="fas fa-route"></i> Etapas da Jornada</label>
+                            <textarea data-field="jornada" rows="6" placeholder="Atração: como o cliente te encontra&#10;Consideração: o que o convence&#10;Decisão: o que fecha a contratação&#10;Pós-venda: como você fideliza e gera indicações"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 3: Estratégia de Canais -->
+            <div class="canvas-row cols-1">
+                <div class="canvas-cell">
+                    <div class="canvas-cell-header navy">
+                        <span>Estratégia de Canais de Marketing Jurídico</span>
+                        <span class="canvas-cell-subtitle">Canais Permitidos pela OAB — Objetivo e Estratégia por Canal</span>
+                    </div>
+                    <div class="canvas-fields">
+                        <div class="canal-row">
+                            <label style="font-size:0.8rem;font-weight:600;color:#475569;">Adicionar canal:</label>
+                            <select id="canal-select" class="canal-select">
+                                <option value="">— Selecione uma rede social ou canal —</option>
+                                <option>LinkedIn</option>
+                                <option>Instagram</option>
+                                <option>Site/Blog</option>
+                                <option>YouTube</option>
+                                <option>WhatsApp</option>
+                                <option>Google Meu Negócio</option>
+                                <option>E-mail Marketing</option>
+                                <option>Palestras/Eventos</option>
+                            </select>
+                            <button id="btn-add-canal" class="btn-add-canal"><i class="fas fa-plus"></i> Adicionar</button>
+                        </div>
+                        <div id="canais-list" class="canais-list"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /canvas-board -->
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FERRAMENTA 2: PLANO DE TRABALHO (KANBAN)
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="kanban-panel" class="tool-panel">
+    <div class="tool-container">
+        <div class="section-title">
+            <h2>Plano de Trabalho</h2>
+            <p>Organize suas tarefas de marketing em blocos de <strong>Planejamento</strong> e <strong>Execução</strong> com o quadro Kanban interativo.</p>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="kanban-toolbar">
+            <div class="kanban-board-select">
+                <label>Quadro Ativo:</label>
+                <select id="kanban-board-select"></select>
+            </div>
+            <div class="kanban-toolbar-btns">
+                <button id="btn-new-board" class="btn-kanban btn-kanban-primary"><i class="fas fa-plus"></i> Novo Quadro</button>
+                <button id="btn-delete-board" class="btn-kanban btn-kanban-danger"><i class="fas fa-trash"></i> Excluir</button>
+                <button id="btn-reset-boards" class="btn-kanban btn-kanban-outline"><i class="fas fa-undo"></i> Resetar Quadros</button>
+            </div>
+        </div>
+
+        <!-- Kanban Board -->
+        <div class="kanban-board">
+            <!-- A Fazer -->
+            <div class="kanban-column col-todo">
+                <div class="kanban-column-header">
+                    <div class="kanban-col-title">
+                        <i class="fas fa-clock"></i> A Fazer
+                    </div>
+                    <span class="kanban-count" id="count-todo">0</span>
+                </div>
+                <div class="kanban-cards" id="col-todo"></div>
+            </div>
+            <!-- Em Progresso -->
+            <div class="kanban-column col-doing">
+                <div class="kanban-column-header">
+                    <div class="kanban-col-title">
+                        <i class="fas fa-play-circle"></i> Em Progresso
+                    </div>
+                    <span class="kanban-count" id="count-doing">0</span>
+                </div>
+                <div class="kanban-cards" id="col-doing"></div>
+            </div>
+            <!-- Revisão -->
+            <div class="kanban-column col-review">
+                <div class="kanban-column-header">
+                    <div class="kanban-col-title">
+                        <i class="fas fa-eye"></i> Revisão
+                    </div>
+                    <span class="kanban-count" id="count-review">0</span>
+                </div>
+                <div class="kanban-cards" id="col-review"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FERRAMENTA 3: FUNIL DE VENDAS
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="funil-panel" class="tool-panel">
+    <div class="tool-container">
+        <div class="section-title">
+            <h2>Gestão do Funil de Vendas Jurídico</h2>
+            <p>Acompanhe cada lead desde o primeiro contato até a fidelização. Mova os prospects entre as etapas conforme avançam.</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="funil-stats">
+            <div class="funil-stat-card">
+                <div class="stat-number" id="stat-total">0</div>
+                <div class="stat-label">Total de Leads</div>
+            </div>
+            <div class="funil-stat-card">
+                <div class="stat-number" id="stat-negociacao">0</div>
+                <div class="stat-label">Em Negociação</div>
+            </div>
+            <div class="funil-stat-card highlight">
+                <div class="stat-number" id="stat-convertidos">0</div>
+                <div class="stat-label">Contratos Fechados</div>
+            </div>
+            <div class="funil-stat-card">
+                <div class="stat-number" id="stat-taxa">0%</div>
+                <div class="stat-label">Taxa de Conversão</div>
+            </div>
+        </div>
+
+        <!-- Add Prospect -->
+        <div class="funil-add-bar">
+            <div class="form-field">
+                <label>Nome do Prospect</label>
+                <input type="text" id="prospect_name" name="prospect_name" placeholder="Ex.: Dr. João Silva">
+            </div>
+            <div class="form-field">
+                <label>Área / Assunto</label>
+                <input type="text" id="prospect_area" name="prospect_area" placeholder="Ex.: Consultoria Trabalhista">
+            </div>
+            <div class="form-field">
+                <label>Etapa Inicial</label>
+                <select id="prospect_stage" name="prospect_stage">
+                    <option value="atracao">Atração</option>
+                    <option value="qualif">Qualificação</option>
+                    <option value="consulta">Consulta Inicial</option>
+                    <option value="proposta">Proposta</option>
+                    <option value="contrato">Contratação</option>
+                    <option value="fidelizacao">Fidelização</option>
+                </select>
+            </div>
+            <button id="btn-add-prospect" class="btn-add-prospect"><i class="fas fa-user-plus"></i> Adicionar Lead</button>
+        </div>
+
+        <!-- Funil Board -->
+        <div class="funil-board">
+            <div class="funil-column">
+                <div class="funil-col-header stage-0">
+                    <div><i class="fas fa-magnet"></i> Atração</div>
+                    <div class="funil-col-count" id="funil-count-atracao">0 leads</div>
+                </div>
+                <div class="funil-cards" id="funil-col-atracao"></div>
+            </div>
+            <div class="funil-column">
+                <div class="funil-col-header stage-1">
+                    <div><i class="fas fa-filter"></i> Qualificação</div>
+                    <div class="funil-col-count" id="funil-count-qualif">0 leads</div>
+                </div>
+                <div class="funil-cards" id="funil-col-qualif"></div>
+            </div>
+            <div class="funil-column">
+                <div class="funil-col-header stage-2">
+                    <div><i class="fas fa-comments"></i> Consulta Inicial</div>
+                    <div class="funil-col-count" id="funil-count-consulta">0 leads</div>
+                </div>
+                <div class="funil-cards" id="funil-col-consulta"></div>
+            </div>
+            <div class="funil-column">
+                <div class="funil-col-header stage-3">
+                    <div><i class="fas fa-file-signature"></i> Proposta</div>
+                    <div class="funil-col-count" id="funil-count-proposta">0 leads</div>
+                </div>
+                <div class="funil-cards" id="funil-col-proposta"></div>
+            </div>
+            <div class="funil-column">
+                <div class="funil-col-header stage-4">
+                    <div><i class="fas fa-handshake"></i> Contratação</div>
+                    <div class="funil-col-count" id="funil-count-contrato">0 leads</div>
+                </div>
+                <div class="funil-cards" id="funil-col-contrato"></div>
+            </div>
+            <div class="funil-column">
+                <div class="funil-col-header stage-5">
+                    <div><i class="fas fa-heart"></i> Fidelização</div>
+                    <div class="funil-col-count" id="funil-count-fidelizacao">0 leads</div>
+                </div>
+                <div class="funil-cards" id="funil-col-fidelizacao"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Add Task Modal -->
+<div id="add-task-modal" class="modal-overlay">
+    <div class="modal-box">
+        <div class="modal-title"><i class="fas fa-plus-circle"></i> Nova Tarefa</div>
+        <form id="task-form" class="modal-form" onsubmit="return false;">
+            <div>
+                <label>Título da Tarefa *</label>
+                <input type="text" id="task-title" placeholder="Ex.: Publicar artigo sobre direitos trabalhistas">
+            </div>
+            <div>
+                <label>Descrição</label>
+                <textarea id="task-desc" placeholder="Detalhes, contexto ou próximos passos..."></textarea>
+            </div>
+            <div>
+                <label>Prioridade</label>
+                <select id="task-priority">
+                    <option value="media">Média</option>
+                    <option value="alta">Alta</option>
+                    <option value="baixa">Baixa</option>
+                </select>
+            </div>
+            <div class="modal-btns">
+                <button type="button" class="btn-modal-cancel" id="btn-modal-cancel">Cancelar</button>
+                <button type="button" class="btn-modal-confirm" id="btn-modal-confirm">Adicionar Tarefa</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<script src="js/ferramentas.js"></script>
+</body>
+</html>
