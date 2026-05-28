@@ -232,6 +232,112 @@ body {
 .btn-print:hover { background: var(--primary-color); color: var(--white); }
 
 /* ===================================
+   Objetivos de Longo Prazo
+   =================================== */
+.obj-lp-block {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-200);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.obj-lp-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: var(--white);
+}
+.obj-lp-header > i {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    flex-shrink: 0;
+}
+.obj-lp-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+.obj-lp-subtitle {
+    display: block;
+    font-size: 0.72rem;
+    opacity: 0.75;
+    margin-top: 1px;
+}
+
+.obj-lp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+}
+
+.obj-lp-card {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--gray-200);
+}
+.obj-lp-card:last-child { border-right: none; }
+
+.obj-lp-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.obj-lp-card-header i { font-size: 0.85rem; }
+
+.obj-lp-prazo {
+    margin-left: auto;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: rgba(255,255,255,0.25);
+    padding: 2px 8px;
+    border-radius: 999px;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.obj-trimestral { background: #d97706; }
+.obj-semestral  { background: #2563eb; }
+.obj-anual      { background: #059669; }
+
+.obj-lp-textarea {
+    flex: 1;
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    border-top: 1px solid var(--gray-100);
+    font-size: 0.85rem;
+    font-family: var(--font-primary);
+    color: var(--gray-700);
+    background: var(--gray-50);
+    resize: none;
+    min-height: 110px;
+    line-height: 1.6;
+    transition: background 0.2s;
+}
+.obj-lp-textarea:focus {
+    outline: none;
+    background: var(--white);
+}
+
+@media (max-width: 768px) {
+    .obj-lp-grid { grid-template-columns: 1fr; }
+    .obj-lp-card { border-right: none; border-bottom: 1px solid var(--gray-200); }
+    .obj-lp-card:last-child { border-bottom: none; }
+}
+
+/* ===================================
    Canvas Grid — Business Model Canvas
    =================================== */
 .canvas-board {
