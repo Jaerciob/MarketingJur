@@ -272,7 +272,7 @@ body {
 
 .obj-lp-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0;
 }
 
@@ -310,6 +310,7 @@ body {
 .obj-trimestral { background: #d97706; }
 .obj-semestral  { background: #2563eb; }
 .obj-anual      { background: #059669; }
+.obj-bienal     { background: #7c3aed; }
 
 .obj-lp-textarea {
     flex: 1;
