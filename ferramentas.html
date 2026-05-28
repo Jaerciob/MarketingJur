@@ -68,121 +68,146 @@
             <button class="btn-save" id="btn-save-canvas"><i class="fas fa-save"></i> Salvar Canvas</button>
         </div>
 
-        <!-- Canvas Board -->
-        <div class="canvas-board">
+        <!-- Canvas Board — Business Model Canvas Layout -->
+        <div class="canvas-board bmc-board">
 
-            <!-- ROW 1: Mercado | Objetivos | Estratégia de Posicionamento -->
-            <div class="canvas-row cols-3">
-                <!-- Mercado -->
-                <div class="canvas-cell">
-                    <div class="canvas-cell-header blue">
-                        <span>Mercado</span>
-                        <span class="canvas-cell-subtitle">Análise do Contexto Jurídico</span>
+            <!-- MAIN GRID: 5 colunas × 2 linhas -->
+            <div class="bmc-main">
+
+                <!-- COL 1 (span 2 linhas): Parceiros Estratégicos -->
+                <div class="canvas-cell bmc-partners">
+                    <div class="canvas-cell-header bmc-blue">
+                        <span>Parceiros Estratégicos</span>
+                        <span class="canvas-cell-subtitle">Quem apoia seu crescimento</span>
                     </div>
                     <div class="canvas-fields">
                         <div class="canvas-field">
-                            <label><i class="fas fa-balance-scale"></i> Especialidade e Imagem de Mercado</label>
-                            <textarea data-field="mercado_imagem" rows="3" placeholder="Ex.: Especialista em Direito Trabalhista com foco em empresas de médio porte..."></textarea>
+                            <label><i class="fas fa-handshake"></i> Parceiros de Indicação</label>
+                            <textarea data-field="bmc_partners_indicacao" rows="3" placeholder="Ex.: Contadores, psicólogos, consultores de RH que indicam clientes..."></textarea>
                         </div>
                         <div class="canvas-field">
-                            <label><i class="fas fa-chart-line"></i> Oportunidades do Mercado</label>
-                            <textarea data-field="mercado_oportunidades" rows="3" placeholder="Ex.: Alta litigiosidade, crescimento de consultas online..."></textarea>
+                            <label><i class="fas fa-building"></i> Associações e Redes</label>
+                            <textarea data-field="bmc_partners_assoc" rows="3" placeholder="Ex.: OAB, associações comerciais, grupos de networking..."></textarea>
                         </div>
                         <div class="canvas-field">
-                            <label><i class="fas fa-chess"></i> Concorrentes e Diferenciais</label>
-                            <textarea data-field="mercado_concorrentes" rows="3" placeholder="Ex.: Escritórios generalistas da região, LegalTechs de baixo custo..."></textarea>
+                            <label><i class="fas fa-tools"></i> Fornecedores e Tecnologia</label>
+                            <textarea data-field="bmc_partners_tech" rows="3" placeholder="Ex.: Software jurídico, agência de marketing, plataformas de conteúdo..."></textarea>
                         </div>
                     </div>
                 </div>
 
-                <!-- Objetivos -->
-                <div class="canvas-cell">
-                    <div class="canvas-cell-header red">
-                        <span>Objetivos</span>
-                        <span class="canvas-cell-subtitle">Defina Onde Quer Chegar</span>
+                <!-- COL 2, LINHA 1: Processos do Escritório -->
+                <div class="canvas-cell bmc-activities">
+                    <div class="canvas-cell-header bmc-light-blue">
+                        <span>Processos do Escritório</span>
+                        <span class="canvas-cell-subtitle">O que você faz para entregar valor</span>
                     </div>
                     <div class="canvas-fields">
                         <div class="canvas-field">
-                            <label><i class="fas fa-bullseye"></i> Objetivo Principal de Marketing</label>
-                            <textarea data-field="obj_principal" rows="3" placeholder="Ex.: Tornar-me referência em Direito de Família na cidade em 6 meses..."></textarea>
+                            <label><i class="fas fa-cogs"></i> Processos de Atendimento</label>
+                            <textarea data-field="bmc_activities_atend" rows="3" placeholder="Ex.: Triagem de leads, consulta inicial, acompanhamento de casos..."></textarea>
                         </div>
                         <div class="canvas-field">
-                            <label><i class="fas fa-flag-checkered"></i> Metas Mensuráveis (SMART)</label>
-                            <textarea data-field="obj_metas" rows="3" placeholder="Ex.: 500 seguidores no LinkedIn, 3 posts/semana, 2 novos clientes/mês..."></textarea>
-                        </div>
-                        <div class="canvas-field">
-                            <label><i class="fas fa-users"></i> Audiência e Tráfego-Alvo</label>
-                            <textarea data-field="obj_audiencia" rows="2" placeholder="Ex.: Empresários e gestores de RH na região metropolitana..."></textarea>
+                            <label><i class="fas fa-pencil-alt"></i> Produção de Conteúdo</label>
+                            <textarea data-field="bmc_activities_content" rows="3" placeholder="Ex.: Artigos semanais, posts no LinkedIn, vídeos educativos..."></textarea>
                         </div>
                     </div>
                 </div>
 
-                <!-- Estratégia de Posicionamento -->
-                <div class="canvas-cell">
-                    <div class="canvas-cell-header green">
-                        <span>Estratégia de Posicionamento</span>
-                        <span class="canvas-cell-subtitle">Como Você Quer Ser Reconhecido</span>
+                <!-- COL 3 (span 2 linhas): Serviços e Diferenciais -->
+                <div class="canvas-cell bmc-value">
+                    <div class="canvas-cell-header bmc-orange">
+                        <span>Serviços e Diferenciais</span>
+                        <span class="canvas-cell-subtitle">Por que o cliente escolhe você</span>
                     </div>
                     <div class="canvas-fields">
                         <div class="canvas-field">
-                            <label><i class="fas fa-star"></i> Posicionamento</label>
-                            <textarea data-field="brand_posicionamento" rows="3" placeholder="Ex.: O advogado trabalhista que resolve sem complicar — clareza e resultado..."></textarea>
+                            <label><i class="fas fa-balance-scale"></i> Serviços Oferecidos</label>
+                            <textarea data-field="bmc_value_servicos" rows="3" placeholder="Ex.: Consultoria trabalhista, assessoria preventiva, defesa judicial..."></textarea>
                         </div>
                         <div class="canvas-field">
-                            <label><i class="fas fa-comment-dots"></i> Mensagem Central</label>
-                            <textarea data-field="brand_mensagem" rows="2" placeholder="Ex.: &quot;Seus direitos merecem quem entende o que está em jogo.&quot;"></textarea>
+                            <label><i class="fas fa-star"></i> Diferenciais Únicos</label>
+                            <textarea data-field="bmc_value_diferenciais" rows="3" placeholder="Ex.: Atendimento humanizado, resposta em 24h, especialização certificada..."></textarea>
                         </div>
                         <div class="canvas-field">
-                            <label><i class="fas fa-theater-masks"></i> Voz e Arquétipo da Marca</label>
-                            <textarea data-field="brand_voz" rows="3" placeholder="Ex.: Arquétipo do Sábio. Tom: técnico mas acessível, confiante, empático..."></textarea>
+                            <label><i class="fas fa-comment-dots"></i> Mensagem de Posicionamento</label>
+                            <textarea data-field="bmc_value_posicionamento" rows="3" placeholder="Ex.: &quot;O advogado que resolve sem complicar — clareza e resultado.&quot;"></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-theater-masks"></i> Arquétipo e Tom de Voz</label>
+                            <textarea data-field="bmc_value_voz" rows="2" placeholder="Ex.: Arquétipo do Sábio. Tom: técnico mas acessível, confiante, empático..."></textarea>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- ROW 2: Persona | Jornada do Cliente -->
-            <div class="canvas-row cols-2">
-                <!-- Persona -->
-                <div class="canvas-cell">
-                    <div class="canvas-cell-header purple">
-                        <span>Persona</span>
-                        <span class="canvas-cell-subtitle">Cliente Ideal Bem Definido</span>
+                <!-- COL 4, LINHA 1: Relacionamento com Clientes -->
+                <div class="canvas-cell bmc-relationships">
+                    <div class="canvas-cell-header bmc-gold">
+                        <span>Relacionamento com Clientes</span>
+                        <span class="canvas-cell-subtitle">Como você conquista e retém</span>
+                    </div>
+                    <div class="canvas-fields">
+                        <div class="canvas-field">
+                            <label><i class="fas fa-heart"></i> Como Conquista Confiança</label>
+                            <textarea data-field="bmc_rel_conquista" rows="3" placeholder="Ex.: Consulta inicial gratuita, e-book educativo, depoimentos de clientes..."></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-redo"></i> Como Fideliza e Gera Indicações</label>
+                            <textarea data-field="bmc_rel_fideliza" rows="3" placeholder="Ex.: Newsletter mensal, acompanhamento pós-caso, programa de indicação..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COL 5 (span 2 linhas): Público-Alvo -->
+                <div class="canvas-cell bmc-segments">
+                    <div class="canvas-cell-header bmc-gold">
+                        <span>Público-Alvo</span>
+                        <span class="canvas-cell-subtitle">Para quem você cria valor</span>
                     </div>
                     <div class="canvas-fields">
                         <div class="canvas-field">
                             <label><i class="fas fa-user-circle"></i> Perfil do Cliente Ideal</label>
-                            <textarea data-field="persona_perfil" rows="6" placeholder="Nome fictício, idade, profissão, dores principais, objetivos, onde busca informação, o que impede de contratar um advogado, qual a sua maior dúvida jurídica..."></textarea>
+                            <textarea data-field="bmc_seg_perfil" rows="4" placeholder="Nome fictício, idade, profissão, renda, localização..."></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-exclamation-circle"></i> Dores e Necessidades</label>
+                            <textarea data-field="bmc_seg_dores" rows="3" placeholder="Ex.: Medo de passivo trabalhista, insegurança em contratos, divórcio litigioso..."></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-search"></i> Onde Busca Informação</label>
+                            <textarea data-field="bmc_seg_canais" rows="3" placeholder="Ex.: LinkedIn, Google, indicação de amigos, eventos da área..."></textarea>
                         </div>
                     </div>
                 </div>
 
-                <!-- Jornada do Cliente -->
-                <div class="canvas-cell">
-                    <div class="canvas-cell-header teal">
-                        <span>Jornada do Cliente Jurídico</span>
-                        <span class="canvas-cell-subtitle">Do Desconhecido ao Fidelizado</span>
+                <!-- COL 2, LINHA 2: Recursos-Chave -->
+                <div class="canvas-cell bmc-resources">
+                    <div class="canvas-cell-header bmc-light-blue">
+                        <span>Recursos-Chave</span>
+                        <span class="canvas-cell-subtitle">O que você precisa ter</span>
                     </div>
                     <div class="canvas-fields">
                         <div class="canvas-field">
-                            <label><i class="fas fa-route"></i> Etapas da Jornada</label>
-                            <textarea data-field="jornada" rows="6" placeholder="Atração: como o cliente te encontra&#10;Consideração: o que o convence&#10;Decisão: o que fecha a contratação&#10;Pós-venda: como você fideliza e gera indicações"></textarea>
+                            <label><i class="fas fa-brain"></i> Conhecimento e Expertise</label>
+                            <textarea data-field="bmc_res_conhecimento" rows="3" placeholder="Ex.: Especialização em Direito Trabalhista, certificações, MBA..."></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-laptop"></i> Infraestrutura e Tecnologia</label>
+                            <textarea data-field="bmc_res_infra" rows="2" placeholder="Ex.: Software jurídico, site profissional, estúdio para vídeos..."></textarea>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- ROW 3: Estratégia de Canais -->
-            <div class="canvas-row cols-1">
-                <div class="canvas-cell">
-                    <div class="canvas-cell-header navy">
-                        <span>Estratégia de Canais de Marketing Jurídico</span>
-                        <span class="canvas-cell-subtitle">Canais Permitidos pela OAB — Objetivo e Estratégia por Canal</span>
+                <!-- COL 4, LINHA 2: Canais -->
+                <div class="canvas-cell bmc-channels">
+                    <div class="canvas-cell-header bmc-gold">
+                        <span>Canais</span>
+                        <span class="canvas-cell-subtitle">Canais permitidos pela OAB</span>
                     </div>
                     <div class="canvas-fields">
                         <div class="canal-row">
-                            <label style="font-size:0.8rem;font-weight:600;color:#475569;">Adicionar canal:</label>
                             <select id="canal-select" class="canal-select">
-                                <option value="">— Selecione uma rede social ou canal —</option>
+                                <option value="">— Adicionar canal —</option>
                                 <option>LinkedIn</option>
                                 <option>Instagram</option>
                                 <option>Site/Blog</option>
@@ -197,7 +222,44 @@
                         <div id="canais-list" class="canais-list"></div>
                     </div>
                 </div>
-            </div>
+
+            </div><!-- /bmc-main -->
+
+            <!-- BOTTOM ROW: Orçamento de Marketing | ROI das Campanhas -->
+            <div class="bmc-bottom">
+                <div class="canvas-cell bmc-costs">
+                    <div class="canvas-cell-header bmc-teal">
+                        <span>Orçamento de Marketing</span>
+                        <span class="canvas-cell-subtitle">Investimentos e custos por ação</span>
+                    </div>
+                    <div class="canvas-fields">
+                        <div class="canvas-field">
+                            <label><i class="fas fa-wallet"></i> Investimentos Mensais</label>
+                            <textarea data-field="bmc_costs_invest" rows="2" placeholder="Ex.: Impulsionamento: R$300/mês, Designer: R$500/mês, Software: R$150/mês..."></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-chart-pie"></i> Distribuição do Budget por Canal</label>
+                            <textarea data-field="bmc_costs_dist" rows="2" placeholder="Ex.: 40% LinkedIn Ads, 30% Google, 20% produção de conteúdo, 10% eventos..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="canvas-cell bmc-revenue">
+                    <div class="canvas-cell-header bmc-teal">
+                        <span>ROI das Campanhas</span>
+                        <span class="canvas-cell-subtitle">Retorno e métricas de resultado</span>
+                    </div>
+                    <div class="canvas-fields">
+                        <div class="canvas-field">
+                            <label><i class="fas fa-chart-line"></i> Métricas de Marketing</label>
+                            <textarea data-field="bmc_rev_metricas" rows="2" placeholder="Ex.: Leads/mês, custo por lead, taxa de conversão, alcance orgânico..."></textarea>
+                        </div>
+                        <div class="canvas-field">
+                            <label><i class="fas fa-dollar-sign"></i> Retorno Esperado (ROI)</label>
+                            <textarea data-field="bmc_rev_roi" rows="2" placeholder="Ex.: Cada R$1.000 investidos geram 3 novos clientes = R$9.000 em honorários..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /bmc-bottom -->
 
         </div><!-- /canvas-board -->
     </div>
