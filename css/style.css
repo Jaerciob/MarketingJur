@@ -1321,6 +1321,32 @@ a:hover {
     color: var(--white);
 }
 
+.module-cta {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(26, 54, 93, 0.12);
+    display: flex;
+    justify-content: center;
+}
+
+.module-buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 2.2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.25);
+    transition: var(--transition-normal);
+}
+
+.module-buy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(212, 175, 55, 0.4);
+}
+
 .module-feature-list {
     list-style: none;
     padding: 0;
