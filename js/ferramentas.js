@@ -35,7 +35,7 @@ const EXAMPLES = {
         bmc_value_diferenciais: '• Resposta em até 24h úteis\n• Especialização certificada em Direito Trabalhista\n• Atendimento online para todo o Brasil\n• Relatório mensal de acompanhamento do caso',
         bmc_value_posicionamento: '"O advogado trabalhista que resolve sem complicar — clareza, segurança e resultado."',
         bmc_value_voz: 'Arquétipo do Herói/Sábio. Tom: direto, empático, seguro e acessível. Evita juridiquês.',
-        bmc_rel_conquista: '• Consulta inicial gratuita de 30 min\n• E-book: "Guia dos Direitos Trabalhistas"\n• Depoimentos de clientes no Google Meu Negócio\n• Artigos educativos que demonstram expertise',
+        bmc_rel_conquista: '• E-book: "Guia dos Direitos Trabalhistas"\n• Depoimentos de clientes no Google Meu Negócio\n• Artigos educativos que demonstram expertise',
         bmc_rel_fideliza: '• Newsletter mensal com atualizações trabalhistas\n• Acompanhamento pós-caso por 90 dias\n• Programa de indicação: desconto para quem indica\n• Check-in semestral com empresas assessoradas',
         bmc_seg_perfil: 'Persona 1: Carlos, 42 anos, dono de PME com 15 funcionários. Medo de passivo trabalhista.\nPersona 2: Marina, 35 anos, trabalhadora CLT demitida sem justa causa. Quer saber seus direitos.',
         bmc_seg_dores: '• Medo de ações trabalhistas custosas\n• Insegurança sobre o que é legal no contrato\n• Falta de acesso a orientação jurídica confiável\n• Processo demorado e linguagem inacessível',
