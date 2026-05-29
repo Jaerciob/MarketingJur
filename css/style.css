@@ -1324,27 +1324,35 @@ a:hover {
 .module-cta {
     margin-top: var(--spacing-xl);
     padding-top: var(--spacing-lg);
-    border-top: 1px solid rgba(26, 54, 93, 0.12);
+    border-top: 1px solid rgba(26, 54, 93, 0.10);
     display: flex;
     justify-content: center;
 }
 
-.module-buy-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.85rem 2.2rem;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+.btn-module-acesse {
+    background: transparent;
+    border: 1.5px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.5rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.25);
-    transition: var(--transition-normal);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
 }
 
-.module-buy-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(212, 175, 55, 0.4);
+.btn-module-acesse:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.waitlist-icon {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
 }
 
 .module-feature-list {

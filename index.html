@@ -407,9 +407,7 @@
                             <p>Ao se inscrever neste curso você ganha o curso <strong>Conformidade Total: O Que Pode e Não Pode?</strong> Com análise completa e atualizada das normas da OAB com casos reais, punições e um guia definitivo para manter seu marketing 100% conforme às regras éticas da advocacia.</p>
                         </div>
                         <div class="module-cta">
-                            <a href="https://pay.hotmart.com/Q105515103V?checkoutMode=2" onclick="return false;" class="btn btn-primary module-buy-btn hotmart-fb hotmart__button-checkout">
-                                <i class="fas fa-shopping-cart"></i> Quero este curso — R$&nbsp;199
-                            </a>
+                            <button type="button" class="btn-module-acesse" data-open-modal="waitlist-modal">Acesse</button>
                         </div>
                     </div>
                 </div>
@@ -455,9 +453,7 @@
                             </ul>
                         </div>
                         <div class="module-cta">
-                            <a href="https://pay.hotmart.com/Q105515103V?checkoutMode=2" onclick="return false;" class="btn btn-primary module-buy-btn hotmart-fb hotmart__button-checkout">
-                                <i class="fas fa-shopping-cart"></i> Quero este curso — R$&nbsp;99
-                            </a>
+                            <button type="button" class="btn-module-acesse" data-open-modal="waitlist-modal">Acesse</button>
                         </div>
                     </div>
                 </div>
@@ -502,9 +498,7 @@
                             </ul>
                         </div>
                         <div class="module-cta">
-                            <a href="https://pay.hotmart.com/Q105515103V?checkoutMode=2" onclick="return false;" class="btn btn-primary module-buy-btn hotmart-fb hotmart__button-checkout">
-                                <i class="fas fa-shopping-cart"></i> Quero este curso — R$&nbsp;199
-                            </a>
+                            <button type="button" class="btn-module-acesse" data-open-modal="waitlist-modal">Acesse</button>
                         </div>
                     </div>
                 </div>
@@ -549,9 +543,7 @@
                             </ul>
                         </div>
                         <div class="module-cta">
-                            <a href="https://pay.hotmart.com/Q105515103V?checkoutMode=2" onclick="return false;" class="btn btn-primary module-buy-btn hotmart-fb hotmart__button-checkout">
-                                <i class="fas fa-shopping-cart"></i> Quero este curso — R$&nbsp;299
-                            </a>
+                            <button type="button" class="btn-module-acesse" data-open-modal="waitlist-modal">Acesse</button>
                         </div>
                     </div>
                 </div>
@@ -584,9 +576,7 @@
                             </ul>
                         </div>
                         <div class="module-cta">
-                            <a href="https://pay.hotmart.com/Q105515103V?checkoutMode=2" onclick="return false;" class="btn btn-primary module-buy-btn hotmart-fb hotmart__button-checkout">
-                                <i class="fas fa-shopping-cart"></i> Quero este curso — R$&nbsp;49
-                            </a>
+                            <button type="button" class="btn-module-acesse" data-open-modal="waitlist-modal">Acesse</button>
                         </div>
                     </div>
                 </div>
@@ -1135,6 +1125,101 @@
                         submitBtn.disabled = false;
                         submitBtn.textContent = originalText;
                     });
+                });
+            });
+        });
+    })();
+    </script>
+
+    <!-- Modal Lista de Espera -->
+    <div class="pricing-modal-overlay" id="waitlist-modal" aria-hidden="true">
+        <div class="pricing-modal" role="dialog" aria-modal="true" aria-labelledby="waitlist-modal-title">
+            <button type="button" class="pricing-modal-close" aria-label="Fechar">&times;</button>
+            <div class="waitlist-icon"><i class="fas fa-hourglass-half"></i></div>
+            <h3 id="waitlist-modal-title" class="pricing-modal-title">Vagas Esgotadas</h3>
+            <p class="pricing-modal-subtitle">Dê o seu e-mail para entrar na lista de espera. Assim que tivermos disponibilidade entraremos em contato.</p>
+            <form class="pricing-form" id="waitlist-form">
+                <div class="pricing-form-grid">
+                    <div class="pricing-form-group">
+                        <label for="waitlist-nome">Nome</label>
+                        <input type="text" id="waitlist-nome" name="nome" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="pricing-form-group">
+                        <label for="waitlist-email">E-mail</label>
+                        <input type="email" id="waitlist-email" name="email" placeholder="seuemail@exemplo.com" required>
+                    </div>
+                </div>
+                <button type="submit" class="pricing-btn pricing-btn-primary">Entrar na lista de espera</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lista de Espera — Modal + Form -->
+    <script>
+    (function () {
+        document.addEventListener('DOMContentLoaded', function () {
+            var overlay = document.getElementById('waitlist-modal');
+            if (!overlay) return;
+
+            function openModal() {
+                overlay.classList.add('is-open');
+                overlay.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeModal() {
+                overlay.classList.remove('is-open');
+                overlay.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            document.querySelectorAll('[data-open-modal="waitlist-modal"]').forEach(function (btn) {
+                btn.addEventListener('click', openModal);
+            });
+
+            var closeBtn = overlay.querySelector('.pricing-modal-close');
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) closeModal();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            var form = document.getElementById('waitlist-form');
+            if (!form) return;
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var submitBtn = form.querySelector('button[type="submit"]');
+                var originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
+
+                var data = {
+                    form_type: 'lista_espera',
+                    nome: form.querySelector('input[name="nome"]').value,
+                    whatsapp: '',
+                    email: form.querySelector('input[name="email"]').value
+                };
+
+                fetch('/api/submissions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                .then(function (res) { return res.json(); })
+                .then(function (result) {
+                    if (result.success) {
+                        form.innerHTML = '<div class="form-success"><i class="fas fa-check-circle"></i><h4>Você está na lista!</h4><p>Obrigado, ' + data.nome.split(' ')[0] + '! Entraremos em contato assim que houver vagas disponíveis.</p></div>';
+                    } else {
+                        alert(result.error || 'Ocorreu um erro. Tente novamente.');
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    }
+                })
+                .catch(function () {
+                    alert('Erro de conexão. Tente novamente.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
                 });
             });
         });
