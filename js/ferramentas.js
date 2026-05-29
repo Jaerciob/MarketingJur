@@ -46,6 +46,9 @@ const EXAMPLES = {
         bmc_costs_dist: '34% — LinkedIn Ads\n50% — Produção de conteúdo (designer/redator)\n16% — Ferramentas e software',
         bmc_rev_metricas: 'Meta: 8 leads/mês via LinkedIn\nTaxa de conversão: 37% (3 clientes novos/mês)\nCusto por lead: R$ 150\nTicket médio: R$ 3.000/caso',
         bmc_rev_roi: 'Investimento: R$ 1.200/mês\nRetorno esperado: 3 casos × R$ 3.000 = R$ 9.000\nROI: 650% | Payback: menos de 1 semana',
+        obj_lp_trimestral: '• Atingir 8 leads qualificados/mês via LinkedIn\n• Publicar 1 artigo técnico por semana no blog\n• Fechar parceria formal com 2 escritórios de contabilidade\n• Implementar CRM para gestão de casos e follow-up',
+        obj_lp_semestral: '• Consolidar carteira com 20 empresas em assessoria preventiva\n• Lançar curso online: "Prevenção de Passivos Trabalhistas"\n• Alcançar nota 4,8+ no Google Meu Negócio com 50 avaliações\n• Gerar R$ 18.000/mês de receita recorrente',
+        obj_lp_anual: '• Tornar-se referência regional em Direito Trabalhista preventivo\n• Produzir e lançar e-book completo sobre compliance trabalhista\n• Expandir atuação para 2 novos estados via atendimento 100% online\n• Faturar R$ 300.000 no ano com mix de consultoria e contencioso',
     },
     familia: {
         bmc_partners_indicacao: 'Psicólogos e terapeutas de casal\nAssistentes sociais e mediadores\nCartórios de notas para inventários',
@@ -68,6 +71,9 @@ const EXAMPLES = {
         bmc_costs_dist: '33% — Instagram Ads\n48% — Produção de conteúdo\n19% — Materiais e ferramentas',
         bmc_rev_metricas: 'Meta: 6 leads qualificados/mês\nTaxa de conversão: 50% (3 clientes/mês)\nCusto por cliente: R$ 350\nTicket médio: R$ 4.500/caso',
         bmc_rev_roi: 'Investimento: R$ 1.050/mês\nRetorno esperado: 3 casos × R$ 4.500 = R$ 13.500\nROI: 1.186% | Payback: menos de 3 dias',
+        obj_lp_trimestral: '• Atingir 6 leads qualificados/mês via Instagram e indicações\n• Publicar 3 Reels educativos por semana com 500+ visualizações\n• Fechar parceria ativa com 3 psicólogos e 2 mediadores\n• Lançar e-book "Guia do Divórcio sem Trauma" e capturar 200 e-mails',
+        obj_lp_semestral: '• Consolidar 15 casos ativos com ticket médio de R$ 4.500\n• Atingir 1.000 seguidores engajados no Instagram\n• Alcançar nota 4,9+ no Google com 30 avaliações verificadas\n• Gerar R$ 13.500/mês de receita e reduzir custo por lead para R$ 175',
+        obj_lp_anual: '• Tornar-se referência em advocacia familiar humanizada na região\n• Lançar programa de mediação pré-judicial com psicólogo parceiro\n• Expandir atendimento online para todo o Brasil com pacote digital\n• Faturar R$ 200.000 no ano com foco em casos consensuais e inventários',
     },
     empresarial: {
         bmc_partners_indicacao: 'Contadores e escritórios de contabilidade\nConsultores financeiros e de gestão\nAceleradoras e hubs de startups',
@@ -90,6 +96,9 @@ const EXAMPLES = {
         bmc_costs_dist: '33% — LinkedIn Ads\n47% — Produção de conteúdo\n20% — Eventos e networking',
         bmc_rev_metricas: 'Meta: 5 leads qualificados/mês\nConversão para pacote mensal: 40% (2 clientes)\nTicket do pacote: R$ 2.500/mês\nRecorrência média: 12 meses',
         bmc_rev_roi: 'Investimento: R$ 1.500/mês\nRetorno esperado: 2 clientes × R$ 2.500 = R$ 5.000/mês\nROI: 233% ao mês | LTV médio: R$ 30.000/cliente',
+        obj_lp_trimestral: '• Fechar 2 contratos de assessoria jurídica recorrente (R$ 2.500/mês)\n• Publicar guia: "10 Riscos Jurídicos para Startups" e gerar 150 leads\n• Participar de 2 eventos do ecossistema de startups como palestrante\n• Implementar onboarding digital com contrato e assinatura eletrônica',
+        obj_lp_semestral: '• Atingir 8 clientes em pacote mensal recorrente (R$ 20.000 MRR)\n• Consolidar presença no LinkedIn com 2.000 seguidores e 5% de engajamento\n• Fechar parcerias com 3 contadores e 2 aceleradoras como fonte de indicação\n• Publicar 2 cases de sucesso com autorização dos clientes',
+        obj_lp_anual: '• Tornar-se o advogado empresarial de referência para startups e PMEs da região\n• Atingir R$ 30.000/mês em receita recorrente com 12 clientes de pacote\n• Lançar programa "Startup Legal Kit" com contratos e compliance incluídos\n• Faturar R$ 360.000 no ano com 70% de receita previsível via assinaturas',
     }
 };
 
