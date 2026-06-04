@@ -533,6 +533,86 @@ const loading = {
 };
 
 // ===================================
+// Pain Points — Modal de Cursos
+// ===================================
+const painPoints = {
+    courses: {
+        'primeiros-passos': {
+            title: 'Primeiros Passos em Marketing',
+            desc: 'Desenvolva uma estratégia completa de Marketing para o seu escritório, do zero ao resultado.',
+            href: '#curso-1'
+        },
+        'melhores-mercado': {
+            title: 'Aprenda com os Melhores do Mercado Jurídico',
+            desc: 'Mercado, Tendências e Concorrência — entenda o cenário e se posicione à frente.',
+            href: '#curso-2'
+        },
+        'branding': {
+            title: 'Branding e Posicionamento',
+            desc: 'Construa sua marca e uma posição diferenciada que atrai os clientes certos.',
+            href: '#curso-3'
+        },
+        'redes-sociais': {
+            title: 'Cresça nas Redes Sociais',
+            desc: '5 passos para crescer com consistência e gerar autoridade nas redes sociais.',
+            href: '#curso-4'
+        },
+        'pode-nao-pode': {
+            title: 'Pode e Não Pode',
+            desc: 'Riscos e Oportunidades do Provimento Nº 205/2021 — marketing ético e sem infrações.',
+            href: '#curso-5'
+        }
+    },
+
+    init: () => {
+        const overlay = document.getElementById('painModal');
+        if (!overlay) return;
+
+        const cards = document.querySelectorAll('.pain-point-card[data-course]');
+        cards.forEach(card => {
+            card.addEventListener('click', () => painPoints.open(card.dataset.course));
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    painPoints.open(card.dataset.course);
+                }
+            });
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) painPoints.close();
+        });
+
+        overlay.querySelector('.pain-modal-close').addEventListener('click', painPoints.close);
+        overlay.querySelector('.pain-modal-close-btn').addEventListener('click', painPoints.close);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') painPoints.close();
+        });
+    },
+
+    open: (key) => {
+        const overlay = document.getElementById('painModal');
+        const course = painPoints.courses[key];
+        if (!overlay || !course) return;
+
+        overlay.querySelector('.pain-modal-title').textContent = course.title;
+        overlay.querySelector('.pain-modal-desc').textContent = course.desc;
+        overlay.querySelector('.pain-modal-cta').href = course.href;
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        overlay.querySelector('.pain-modal-close').focus();
+    },
+
+    close: () => {
+        const overlay = document.getElementById('painModal');
+        if (!overlay) return;
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+};
+
+// ===================================
 // Inicialização Principal
 // ===================================
 const app = {
@@ -547,6 +627,7 @@ const app = {
         modules.init();
         buttons.init();
         stats.init();
+        painPoints.init();
         
         console.log('Marketing Jur - Site inicializado com sucesso!');
     }

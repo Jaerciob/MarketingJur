@@ -68,47 +68,67 @@
             <button class="btn-save" id="btn-save-canvas"><i class="fas fa-save"></i> Salvar Canvas</button>
         </div>
 
-        <!-- Objetivos de Longo Prazo -->
+        <!-- Defina os seus objetivos -->
         <div class="obj-lp-block">
             <div class="obj-lp-header">
                 <i class="fas fa-crosshairs"></i>
                 <div>
-                    <span class="obj-lp-title">Objetivos de Longo Prazo</span>
-                    <span class="obj-lp-subtitle">Do curto ao longo prazo — onde você quer chegar em cada etapa</span>
+                    <span class="obj-lp-title">Defina os seus objetivos</span>
+                    <span class="obj-lp-subtitle">Da visão de futuro ao planejamento trimestral</span>
                 </div>
             </div>
+
+            <!-- Visão 2 anos — bloco único -->
+            <div class="obj-lp-card obj-lp-card--full">
+                <div class="obj-lp-card-header obj-bienal">
+                    <i class="fas fa-rocket"></i>
+                    <span>Onde seu escritório estará em dois anos?</span>
+                </div>
+                <textarea data-field="obj_lp_bienal" class="obj-lp-textarea obj-lp-textarea--full" placeholder="Ex.: Em 2 anos, ter uma carteira de 40 clientes ativos, faturamento de R$ 30.000/mês, 1 sócio contratado, ser palestrante reconhecido na área e ter lançado um produto digital com receita passiva."></textarea>
+            </div>
+
+            <!-- Objetivos Anuais — bloco único -->
+            <div class="obj-lp-card obj-lp-card--full">
+                <div class="obj-lp-card-header obj-anual">
+                    <i class="fas fa-trophy"></i>
+                    <span>Objetivos Anuais</span>
+                </div>
+                <textarea data-field="obj_lp_anual" class="obj-lp-textarea obj-lp-textarea--full" placeholder="Ex.: Dobrar o faturamento do escritório, consolidar a marca pessoal e lançar um evento presencial na área de atuação."></textarea>
+            </div>
+
+            <!-- 4 Trimestres — paralelos -->
             <div class="obj-lp-grid">
                 <div class="obj-lp-card">
-                    <div class="obj-lp-card-header obj-trimestral">
+                    <div class="obj-lp-card-header obj-t1">
                         <i class="fas fa-seedling"></i>
-                        <span>Objetivo Trimestral</span>
-                        <span class="obj-lp-prazo">3 meses</span>
+                        <span>1º Trimestre</span>
+                        <span class="obj-lp-prazo">Jan–Mar</span>
                     </div>
-                    <textarea data-field="obj_lp_trimestral" class="obj-lp-textarea" placeholder="Ex.: Criar presença profissional no LinkedIn e publicar 3 artigos jurídicos por semana, alcançando 300 seguidores qualificados até o fim do trimestre."></textarea>
+                    <textarea data-field="obj_lp_t1" class="obj-lp-textarea" placeholder="Ex.: Criar presença profissional no LinkedIn e publicar 3 artigos jurídicos por semana..."></textarea>
                 </div>
                 <div class="obj-lp-card">
-                    <div class="obj-lp-card-header obj-semestral">
+                    <div class="obj-lp-card-header obj-t2">
                         <i class="fas fa-chart-line"></i>
-                        <span>Objetivo Semestral</span>
-                        <span class="obj-lp-prazo">6 meses</span>
+                        <span>2º Trimestre</span>
+                        <span class="obj-lp-prazo">Abr–Jun</span>
                     </div>
-                    <textarea data-field="obj_lp_semestral" class="obj-lp-textarea" placeholder="Ex.: Ser reconhecido como referência em Direito Trabalhista na região, com pelo menos 5 novos clientes captados por mês via marketing digital e indicações."></textarea>
+                    <textarea data-field="obj_lp_t2" class="obj-lp-textarea" placeholder="Ex.: Lançar campanha de captação e atingir 5 novos clientes via marketing digital..."></textarea>
                 </div>
                 <div class="obj-lp-card">
-                    <div class="obj-lp-card-header obj-anual">
-                        <i class="fas fa-trophy"></i>
-                        <span>Objetivo Anual</span>
-                        <span class="obj-lp-prazo">12 meses</span>
+                    <div class="obj-lp-card-header obj-t3">
+                        <i class="fas fa-bullseye"></i>
+                        <span>3º Trimestre</span>
+                        <span class="obj-lp-prazo">Jul–Set</span>
                     </div>
-                    <textarea data-field="obj_lp_anual" class="obj-lp-textarea" placeholder="Ex.: Dobrar o faturamento do escritório com uma carteira de clientes recorrentes, consolidar a marca pessoal e lançar um curso ou evento presencial na área de atuação."></textarea>
+                    <textarea data-field="obj_lp_t3" class="obj-lp-textarea" placeholder="Ex.: Consolidar autoridade na área e iniciar parcerias estratégicas..."></textarea>
                 </div>
                 <div class="obj-lp-card">
-                    <div class="obj-lp-card-header obj-bienal">
-                        <i class="fas fa-rocket"></i>
-                        <span>Visão de Longo Prazo</span>
-                        <span class="obj-lp-prazo">2 anos</span>
+                    <div class="obj-lp-card-header obj-t4">
+                        <i class="fas fa-flag-checkered"></i>
+                        <span>4º Trimestre</span>
+                        <span class="obj-lp-prazo">Out–Dez</span>
                     </div>
-                    <textarea data-field="obj_lp_bienal" class="obj-lp-textarea" placeholder="Ex.: Em 2 anos, ter uma carteira de 40 clientes ativos, faturamento de R$ 30.000/mês, 1 sócio contratado, ser palestrante reconhecido na área e ter lançado um produto digital (curso ou e-book) com receita passiva."></textarea>
+                    <textarea data-field="obj_lp_t4" class="obj-lp-textarea" placeholder="Ex.: Avaliar resultados do ano, planejar o próximo ciclo e escalar o escritório..."></textarea>
                 </div>
             </div>
         </div>
@@ -168,20 +188,17 @@
                     <div class="canvas-fields">
                         <div class="canvas-field">
                             <label><i class="fas fa-balance-scale"></i> Serviços Oferecidos</label>
-                            <textarea data-field="bmc_value_servicos" rows="3" placeholder="Ex.: Consultoria trabalhista, assessoria preventiva, defesa judicial..."></textarea>
+                            <textarea data-field="bmc_value_servicos" rows="5" placeholder="Ex.: Consultoria trabalhista, assessoria preventiva, defesa judicial..."></textarea>
                         </div>
                         <div class="canvas-field">
                             <label><i class="fas fa-star"></i> Diferenciais Únicos</label>
-                            <textarea data-field="bmc_value_diferenciais" rows="3" placeholder="Ex.: Atendimento humanizado, resposta em 24h, especialização certificada..."></textarea>
+                            <textarea data-field="bmc_value_diferenciais" rows="5" placeholder="Ex.: Atendimento humanizado, resposta em 24h, especialização certificada..."></textarea>
                         </div>
                         <div class="canvas-field">
                             <label><i class="fas fa-comment-dots"></i> Mensagem de Posicionamento</label>
-                            <textarea data-field="bmc_value_posicionamento" rows="3" placeholder="Ex.: &quot;O advogado que resolve sem complicar — clareza e resultado.&quot;"></textarea>
+                            <textarea data-field="bmc_value_posicionamento" rows="3" placeholder="Para [Mercado-alvo], a [Sua Marca/Produto] é a [Categoria do Mercado] que oferece [Benefício Principal ou Proposta de Valor], diferente de [Concorrente Principal], porque [Motivo principal/Diferencial competitivo]."></textarea>
                         </div>
-                        <div class="canvas-field">
-                            <label><i class="fas fa-theater-masks"></i> Arquétipo e Tom de Voz</label>
-                            <textarea data-field="bmc_value_voz" rows="2" placeholder="Ex.: Arquétipo do Sábio. Tom: técnico mas acessível, confiante, empático..."></textarea>
-                        </div>
+
                     </div>
                 </div>
 
@@ -194,7 +211,7 @@
                     <div class="canvas-fields">
                         <div class="canvas-field">
                             <label><i class="fas fa-heart"></i> Como Conquista Confiança</label>
-                            <textarea data-field="bmc_rel_conquista" rows="3" placeholder="Ex.: Consulta inicial gratuita, e-book educativo, depoimentos de clientes..."></textarea>
+                            <textarea data-field="bmc_rel_conquista" rows="3" placeholder="Ex.: E-book educativo, depoimentos de clientes, artigos que demonstram expertise..."></textarea>
                         </div>
                         <div class="canvas-field">
                             <label><i class="fas fa-redo"></i> Como Fideliza e Gera Indicações</label>
@@ -290,7 +307,7 @@
                 </div>
                 <div class="canvas-cell bmc-revenue">
                     <div class="canvas-cell-header bmc-teal">
-                        <span>ROI das Campanhas</span>
+                        <span>Métricas de resultado</span>
                         <span class="canvas-cell-subtitle">Retorno e métricas de resultado</span>
                     </div>
                     <div class="canvas-fields">
