@@ -1326,7 +1326,9 @@ a:hover {
     padding-top: var(--spacing-lg);
     border-top: 1px solid rgba(26, 54, 93, 0.10);
     display: flex;
+    align-items: center;
     justify-content: center;
+    gap: var(--spacing-lg);
 }
 
 .btn-module-acesse {
