@@ -609,6 +609,8 @@ const painPoints = {
         const fillEl = document.getElementById('scoreFill');
         const gradeEl = document.getElementById('scoreGrade');
         const messageEl = document.getElementById('scoreMessage');
+        const tipsEl = document.getElementById('scoreTips');
+        const tipsListEl = document.getElementById('scoreTipsList');
 
         if (numberEl) numberEl.textContent = score;
         if (fillEl) fillEl.style.width = score + '%';
@@ -618,7 +620,28 @@ const painPoints = {
         if (selected === 0) {
             if (gradeEl) gradeEl.textContent = 'Selecione suas dificuldades';
             if (messageEl) messageEl.textContent = 'Marque acima as dificuldades que você enfrenta hoje para calcular a nota da sua estratégia digital.';
+            if (tipsListEl) tipsListEl.innerHTML = '';
+            if (tipsEl) tipsEl.hidden = true;
             return;
+        }
+
+        if (tipsListEl && tipsEl) {
+            tipsListEl.innerHTML = '';
+            cards
+                .filter(c => c.classList.contains('selected'))
+                .forEach(c => {
+                    const titleEl = c.querySelector('p');
+                    const title = titleEl ? titleEl.textContent.trim() : '';
+                    const tip = c.getAttribute('data-tip') || '';
+                    if (!tip) return;
+                    const li = document.createElement('li');
+                    const strong = document.createElement('strong');
+                    strong.textContent = `${title}:`;
+                    li.appendChild(strong);
+                    li.appendChild(document.createTextNode(' ' + tip));
+                    tipsListEl.appendChild(li);
+                });
+            tipsEl.hidden = tipsListEl.children.length === 0;
         }
 
         const grade = painPoints.grades.find(g => score >= g.min) || painPoints.grades[painPoints.grades.length - 1];

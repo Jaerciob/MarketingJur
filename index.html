@@ -148,42 +148,42 @@
                 <p>Marque as dificuldades que você enfrenta hoje e descubra, na hora, a nota da sua estratégia digital.</p>
             </div>
             <div class="pain-points-grid">
-                <div class="pain-point-card" data-course="primeiros-passos" role="checkbox" tabindex="0" aria-checked="false">
+                <div class="pain-point-card" data-course="primeiros-passos" data-tip="Você precisa analisar os seus Pontos Fortes e Fracos e descobrir as Ameaças e Oportunidades do seu mercado." role="checkbox" tabindex="0" aria-checked="false">
                     <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-compass"></i></span>
                     <p>Escolher o melhor caminho para começar</p>
                 </div>
-                <div class="pain-point-card" data-course="primeiros-passos" role="checkbox" tabindex="0" aria-checked="false">
+                <div class="pain-point-card" data-course="primeiros-passos" data-tip="Aprenda a gerenciar o seu Funil de Vendas: Atrair, Criar relacionamento e Fechar contrato." role="checkbox" tabindex="0" aria-checked="false">
                     <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-user-check"></i></span>
                     <p>Conseguir clientes qualificados</p>
                 </div>
-                <div class="pain-point-card" data-course="redes-sociais" role="checkbox" tabindex="0" aria-checked="false">
+                <div class="pain-point-card" data-course="redes-sociais" data-tip="Foque na rede social que mais se adeque às suas habilidades." role="checkbox" tabindex="0" aria-checked="false">
                     <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-share-nodes"></i></span>
                     <p>Desenvolver estratégias nas redes sociais</p>
                 </div>
-                <div class="pain-point-card" data-course="melhores-mercado" role="checkbox" tabindex="0" aria-checked="false">
+                <div class="pain-point-card" data-course="melhores-mercado" data-tip="Encontre nichos pouco explorados." role="checkbox" tabindex="0" aria-checked="false">
                     <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-magnifying-glass-chart"></i></span>
                     <p>Identificar Oportunidades de Mercado</p>
                 </div>
-                <div class="pain-point-card" data-course="pode-nao-pode" role="checkbox" tabindex="0" aria-checked="false">
+                <div class="pain-point-card" data-course="pode-nao-pode" data-tip="Entenda como a gestão de Conteúdo pode ser a resposta." role="checkbox" tabindex="0" aria-checked="false">
                     <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-scale-balanced"></i></span>
                     <p>Respeitar as normas da OAB</p>
                 </div>
-                <div class="pain-point-card" data-course="redes-sociais" role="checkbox" tabindex="0" aria-checked="false">
+                <div class="pain-point-card" data-course="redes-sociais" data-tip="Aprenda como usar a Inteligência Artificial para gerar resultados." role="checkbox" tabindex="0" aria-checked="false">
                     <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-pen-to-square"></i></span>
                     <p>Produzir conteúdo com frequência</p>
                 </div>
-                <div class="pain-point-card" data-course="branding" role="checkbox" tabindex="0" aria-checked="false">
+                <div class="pain-point-card" data-course="branding" data-tip="Construa uma marca e um posicionamento diferenciado." role="checkbox" tabindex="0" aria-checked="false">
                     <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-trophy"></i></span>
                     <p>Diferenciar-se da concorrência</p>
                 </div>
-                <div class="pain-point-card" data-course="primeiros-passos" role="checkbox" tabindex="0" aria-checked="false">
+                <div class="pain-point-card" data-course="primeiros-passos" data-tip="Entenda o que faz seu cliente tomar decisões." role="checkbox" tabindex="0" aria-checked="false">
                     <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-file-signature"></i></span>
                     <p>Transformar visibilidade em contratos assinados</p>
@@ -204,6 +204,10 @@
                     <div class="strategy-score-fill" id="scoreFill"></div>
                 </div>
                 <p class="strategy-score-message" id="scoreMessage">Marque acima as dificuldades que você enfrenta hoje para calcular a nota da sua estratégia digital.</p>
+                <div class="strategy-score-tips" id="scoreTips" hidden>
+                    <h3 class="strategy-score-tips-title"><i class="fas fa-lightbulb"></i> Dica de Como Melhorar:</h3>
+                    <ul class="strategy-score-tips-list" id="scoreTipsList"></ul>
+                </div>
                 <div class="strategy-score-actions">
                     <a class="btn btn-primary" href="#precos"><i class="fas fa-rocket"></i> Quero melhorar minha estratégia</a>
                     <button type="button" class="strategy-score-reset" id="scoreReset">Limpar seleção</button>

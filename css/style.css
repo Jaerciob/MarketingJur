@@ -2393,6 +2393,60 @@ a:hover {
     margin: var(--spacing-lg) 0;
 }
 
+.strategy-score-tips {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 4px solid var(--secondary-color);
+    border-radius: 12px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin: 0 0 var(--spacing-lg);
+}
+
+.strategy-score-tips-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.05rem;
+    color: var(--white);
+    margin: 0 0 var(--spacing-md);
+}
+
+.strategy-score-tips-title i {
+    color: var(--secondary-color);
+}
+
+.strategy-score-tips-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.strategy-score-tips-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--gray-300);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.strategy-score-tips-list li::before {
+    content: '\f0eb';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    color: var(--secondary-color);
+    font-size: 0.85rem;
+}
+
+.strategy-score-tips-list li strong {
+    color: var(--white);
+}
+
 .strategy-score-actions {
     display: flex;
     align-items: center;
