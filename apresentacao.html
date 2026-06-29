@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Jurídico Ético — Apresentação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0d1b2e;
+      --navy2:  #112240;
+      --gold:   #c9a84c;
+      --gold2:  #e2c47e;
+      --white:  #f5f5f0;
+      --muted:  #8892a4;
+      --accent: #1e6fa8;
+      --green:  #2ecc71;
+      --slide-w: 100vw;
+      --slide-h: 100vh;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    /* ── Slides container ───────────────────────── */
+    .deck { width: 100vw; height: 100vh; position: relative; }
+
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 60px 80px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .5s ease, transform .5s ease;
+      transform: translateX(60px);
+      overflow: hidden;
+    }
+    .slide.active {
+      opacity: 1; pointer-events: all; transform: translateX(0);
+    }
+    .slide.exit-left {
+      opacity: 0; transform: translateX(-60px);
+    }
+
+    /* ── Backgrounds ────────────────────────────── */
+    .bg-dark   { background: var(--navy); }
+    .bg-dark2  { background: var(--navy2); }
+    .bg-gradient {
+      background: linear-gradient(135deg, var(--navy) 0%, #0a2744 60%, #071a30 100%);
+    }
+    .bg-gold {
+      background: linear-gradient(135deg, #1a1200 0%, #2a1d00 60%, var(--navy) 100%);
+    }
+
+    .slide::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 80% 20%, rgba(201,168,76,.07) 0%, transparent 60%);
+    }
+
+    /* ── Decorative line ────────────────────────── */
+    .deco-line {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .deco-line.center { align-self: center; }
+
+    /* ── Typography ─────────────────────────────── */
+    .label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    h1.hero {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+      font-weight: 700; line-height: 1.1;
+      text-align: center;
+    }
+    h1.hero em { font-style: italic; color: var(--gold2); }
+    h2.title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      font-weight: 600; line-height: 1.2;
+    }
+    h2.title span { color: var(--gold); }
+    h3.sub-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.2vw, 2rem);
+      font-weight: 600; color: var(--gold2);
+    }
+    p.body-text {
+      font-size: clamp(.88rem, 1.4vw, 1.08rem);
+      line-height: 1.75; color: rgba(245,245,240,.82);
+      max-width: 780px;
+    }
+    .center-text { text-align: center; }
+
+    /* ── Slide number ───────────────────────────── */
+    .slide-num {
+      position: fixed; bottom: 28px; right: 36px;
+      font-size: .72rem; color: var(--muted); letter-spacing: .08em;
+      z-index: 100;
+    }
+
+    /* ── Navigation ─────────────────────────────── */
+    .nav-btns {
+      position: fixed; bottom: 22px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 12px; z-index: 100;
+    }
+    .nav-btns button {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      color: var(--white); width: 44px; height: 44px;
+      border-radius: 50%; cursor: pointer; font-size: 1rem;
+      transition: background .2s, transform .15s;
+    }
+    .nav-btns button:hover { background: rgba(201,168,76,.25); transform: scale(1.1); }
+    .nav-btns button:disabled { opacity: .25; cursor: default; transform: none; }
+
+    /* ── Progress dots ──────────────────────────── */
+    .dots {
+      position: fixed; bottom: 30px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 99;
+      margin-bottom: 56px;
+    }
+    .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,.2); cursor: pointer;
+      transition: background .3s, transform .3s;
+    }
+    .dot.active { background: var(--gold); transform: scale(1.5); }
+
+    /* ── Logo ───────────────────────────────────── */
+    .logo-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,.12);
+      border: 1px solid rgba(201,168,76,.3);
+      padding: 6px 16px; border-radius: 100px;
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    /* ── SLIDE 1: Hero ──────────────────────────── */
+    #s1 { gap: 12px; }
+    #s1 .tagline {
+      font-size: clamp(.85rem, 1.3vw, 1rem);
+      color: rgba(245,245,240,.65); letter-spacing: .05em;
+      text-align: center; max-width: 600px;
+    }
+    #s1 .hero-badges {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      justify-content: center; margin-top: 20px;
+    }
+    #s1 .badge {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.13);
+      padding: 7px 16px; border-radius: 100px;
+      font-size: .78rem; color: rgba(245,245,240,.75);
+      display: flex; align-items: center; gap: 7px;
+    }
+    #s1 .badge i { color: var(--gold); font-size: .8rem; }
+    .bar { width: 100%; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold2), transparent); margin: 18px 0; max-width: 340px; border-radius: 2px; }
+
+    /* ── Pain points ────────────────────────────── */
+    .pain-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 14px; width: 100%; max-width: 1100px; margin-top: 28px;
+    }
+    .pain-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 12px; padding: 20px 16px;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: border-color .25s;
+    }
+    .pain-card:hover { border-color: rgba(201,168,76,.35); }
+    .pain-card i { font-size: 1.4rem; color: var(--gold); }
+    .pain-card p { font-size: .82rem; color: rgba(245,245,240,.78); line-height: 1.5; }
+
+    /* ── Two-col layout ─────────────────────────── */
+    .two-col {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; width: 100%; max-width: 1100px; align-items: start;
+    }
+    .two-col.wide { grid-template-columns: 55% 1fr; }
+
+    /* ── Icon list ──────────────────────────────── */
+    .icon-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .icon-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: clamp(.82rem, 1.2vw, .96rem);
+      color: rgba(245,245,240,.82); line-height: 1.55;
+    }
+    .icon-list li .ic {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: rgba(201,168,76,.12);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--gold); font-size: .9rem;
+    }
+
+    /* ── Canvas block ───────────────────────────── */
+    .canvas-block {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(201,168,76,.22);
+      border-radius: 16px; padding: 28px;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    .cb-col { display: flex; flex-direction: column; gap: 8px; }
+    .cb-col-header {
+      font-size: .65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: var(--gold); margin-bottom: 4px;
+    }
+    .cb-item {
+      background: rgba(255,255,255,.05);
+      border-radius: 6px; padding: 8px 10px;
+      font-size: .76rem; color: rgba(245,245,240,.8);
+    }
+
+    /* ── Module cards ───────────────────────────── */
+    .module-row {
+      width: 100%; max-width: 1100px;
+      display: flex; flex-direction: column; gap: 14px;
+      margin-top: 24px;
+    }
+    .module-item {
+      display: grid; grid-template-columns: 220px 1fr auto;
+      align-items: center; gap: 24px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 12px; padding: 18px 24px;
+      transition: border-color .25s;
+    }
+    .module-item:hover { border-color: rgba(201,168,76,.35); }
+    .module-item .num {
+      font-size: .65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: var(--gold);
+    }
+    .module-item h4 {
+      font-size: .92rem; font-weight: 600; color: var(--white); margin-bottom: 4px;
+    }
+    .module-item p {
+      font-size: .78rem; color: var(--muted); line-height: 1.5;
+    }
+    .price-tag {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700; color: var(--gold2);
+      white-space: nowrap;
+    }
+    .price-tag small { font-size: .65rem; font-family: 'Inter', sans-serif; display: block; color: var(--muted); text-align: right; }
+
+    /* ── Differential grid ──────────────────────── */
+    .diff-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; width: 100%; max-width: 1100px; margin-top: 24px;
+    }
+    .diff-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 12px; padding: 22px 18px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .diff-card i {
+      font-size: 1.5rem; color: var(--gold);
+      background: rgba(201,168,76,.1);
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .diff-card h4 { font-size: .9rem; font-weight: 600; color: var(--white); }
+    .diff-card p { font-size: .79rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── Tools grid ─────────────────────────────── */
+    .tools-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 12px; width: 100%; max-width: 1100px; margin-top: 24px;
+    }
+    .tool-pill {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px; padding: 14px 12px;
+      text-align: center; font-size: .76rem; color: rgba(245,245,240,.8);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .tool-pill i { font-size: 1.3rem; color: var(--gold); }
+
+    /* ── Compliance table ───────────────────────── */
+    .compliance-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; width: 100%; max-width: 1000px; margin-top: 24px;
+    }
+    .comp-col { border-radius: 12px; overflow: hidden; }
+    .comp-col-head {
+      padding: 12px 20px; font-size: .72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .12em;
+    }
+    .comp-col-head.can { background: rgba(46,204,113,.15); color: #2ecc71; }
+    .comp-col-head.cant { background: rgba(231,76,60,.15); color: #e74c3c; }
+    .comp-col-body { display: flex; flex-direction: column; }
+    .comp-item {
+      padding: 11px 20px; font-size: .82rem;
+      color: rgba(245,245,240,.8);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .comp-item:last-child { border-bottom: none; }
+    .comp-item i.ok { color: #2ecc71; font-size: .85rem; }
+    .comp-item i.no { color: #e74c3c; font-size: .85rem; }
+
+    /* ── Mentor card ────────────────────────────── */
+    .mentor-block {
+      display: grid; grid-template-columns: 280px 1fr;
+      gap: 52px; align-items: center;
+      max-width: 980px; width: 100%;
+    }
+    .mentor-photo-wrap {
+      position: relative;
+    }
+    .mentor-photo-wrap::before {
+      content: '';
+      position: absolute; inset: -6px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--gold), transparent 60%);
+      z-index: 0;
+    }
+    .mentor-photo-wrap img {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; border-radius: 16px;
+      position: relative; z-index: 1;
+      display: block;
+    }
+    .mentor-photo-placeholder {
+      width: 100%; aspect-ratio: 3/4;
+      border-radius: 16px; position: relative; z-index: 1;
+      background: linear-gradient(135deg, #1a3050, #0d1b2e);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 14px;
+    }
+    .mentor-photo-placeholder i { font-size: 4rem; color: var(--gold); }
+    .mentor-info { display: flex; flex-direction: column; gap: 14px; }
+    .mentor-info .credentials { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+    .cred-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: .83rem; color: rgba(245,245,240,.78); line-height: 1.5;
+    }
+    .cred-item i { color: var(--gold); flex-shrink: 0; margin-top: 2px; font-size: .8rem; }
+
+    /* ── Quote ──────────────────────────────────── */
+    .quote-slide { flex-direction: column; gap: 24px; }
+    blockquote.big-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.6rem);
+      font-style: italic; font-weight: 400;
+      line-height: 1.4; text-align: center;
+      color: var(--white); max-width: 860px;
+    }
+    blockquote.big-quote::before { content: '"'; color: var(--gold); }
+    blockquote.big-quote::after  { content: '"'; color: var(--gold); }
+    cite.big-cite {
+      font-size: .9rem; color: var(--muted); letter-spacing: .06em;
+    }
+
+    /* ── Final CTA ──────────────────────────────── */
+    .cta-boxes {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; width: 100%; max-width: 900px; margin-top: 28px;
+    }
+    .cta-box {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(201,168,76,.2);
+      border-radius: 14px; padding: 26px 20px;
+      text-align: center; display: flex; flex-direction: column;
+      align-items: center; gap: 12px;
+    }
+    .cta-box i { font-size: 1.8rem; color: var(--gold); }
+    .cta-box h4 { font-size: .92rem; font-weight: 700; }
+    .cta-box p { font-size: .79rem; color: var(--muted); line-height: 1.5; }
+
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #1a1200; font-weight: 700;
+      padding: 14px 34px; border-radius: 8px;
+      font-size: .95rem; text-decoration: none;
+      margin-top: 28px; border: none; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,.35);
+    }
+
+    /* ── Funnel ─────────────────────────────────── */
+    .funnel {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0; margin-top: 16px; width: 100%; max-width: 560px;
+    }
+    .funnel-step {
+      width: 100%; padding: 16px 24px;
+      display: flex; align-items: center; gap: 16px;
+      font-size: .88rem; font-weight: 500;
+    }
+    .funnel-step:nth-child(1) { border-radius: 12px 12px 0 0; background: rgba(201,168,76,.18); width: 100%; }
+    .funnel-step:nth-child(2) { background: rgba(201,168,76,.12); width: 88%; }
+    .funnel-step:nth-child(3) { border-radius: 0 0 12px 12px; background: rgba(201,168,76,.07); width: 72%; }
+    .funnel-step i { font-size: 1.1rem; color: var(--gold); }
+    .funnel-arrow { font-size: 1.2rem; color: var(--muted); margin: 2px 0; }
+
+    /* ── Responsive ─────────────────────────────── */
+    @media (max-width: 900px) {
+      .slide { padding: 40px 28px; }
+      .pain-grid { grid-template-columns: repeat(2, 1fr); }
+      .two-col, .two-col.wide { grid-template-columns: 1fr; gap: 30px; }
+      .module-item { grid-template-columns: 1fr; }
+      .diff-grid { grid-template-columns: repeat(2, 1fr); }
+      .tools-grid { grid-template-columns: repeat(3, 1fr); }
+      .compliance-grid { grid-template-columns: 1fr; }
+      .cta-boxes { grid-template-columns: 1fr; }
+      .mentor-block { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 1 — HERO                            -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide bg-gradient active" id="s1">
+    <div class="logo-pill"><i class="fas fa-balance-scale"></i> Marketing Jur</div>
+    <h1 class="hero">Marketing Jurídico<br><em>Ético, Estratégico</em> e com<br>Resultado</h1>
+    <div class="bar"></div>
+    <p class="tagline">Construa uma estratégia digital consistente para seu escritório,<br>respeitando as normas da OAB e usando IA como aliada.</p>
+    <div class="hero-badges">
+      <span class="badge"><i class="fas fa-check-circle"></i> Conformidade OAB</span>
+      <span class="badge"><i class="fas fa-brain"></i> Inteligência Artificial</span>
+      <span class="badge"><i class="fas fa-chart-line"></i> Método Aplicado</span>
+      <span class="badge"><i class="fas fa-graduation-cap"></i> Doutor USP · Mestre FGV</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 2 — DIAGNÓSTICO                     -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide bg-dark2" id="s2">
+    <div class="deco-line"></div>
+    <span class="label">O Problema</span>
+    <h2 class="title" style="margin-top:10px;margin-bottom:6px;">
+      Suas Maiores <span>Dificuldades</span> com<br>Marketing Digital
+    </h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <i class="fas fa-compass"></i>
+        <p>Não saber por onde começar</p>
+      </div>
+      <div class="pain-card">
+        <i class="fas fa-user-check"></i>
+        <p>Conseguir clientes qualificados</p>
+      </div>
+      <div class="pain-card">
+        <i class="fas fa-share-nodes"></i>
+        <p>Estratégias nas redes sociais</p>
+      </div>
+      <div class="pain-card">
+        <i class="fas fa-magnifying-glass-chart"></i>
+        <p>Identificar oportunidades de mercado</p>
+      </div>
+      <div class="pain-card">
+        <i class="fas fa-scale-balanced"></i>
+        <p>Respeitar as normas da OAB</p>
+      </div>
+      <div class="pain-card">
+        <i class="fas fa-pen-to-square"></i>
+        <p>Produzir conteúdo com frequência</p>
+      </div>
+      <div class="pain-card">
+        <i class="fas fa-trophy"></i>
+        <p>Diferenciar-se da concorrência</p>
+      </div>
+      <div class="pain-card">
+        <i class="fas fa-file-signature"></i>
+        <p>Transformar visibilidade em contratos</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 3 — PARA QUEM                       -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide bg-gradient" id="s3">
+    <div class="deco-line"></div>
+    <span class="label">Público-Alvo</span>
+    <h2 class="title" style="margin-top:10px;margin-bottom:6px;">
+      Para Quem é o <span>Marketing Jur</span>?
+    </h2>
+    <div class="pain-grid" style="grid-template-columns:repeat(3,1fr);max-width:1000px;margin-top:20px;">
+      <div class="pain-card">
+        <i class="fas fa-chess-king"></i>
+        <p><strong>Querem controlar</strong> sua estratégia de marketing sem depender totalmente de terceiros</p>
+      </div>
+      <div class="pain-card">
+        <i class="fas fa-clipboard-list"></i>
+        <p><strong>Precisam de um plano</strong> estruturado com metas, canais e ações definidas</p>
+      </div>
+      <div class="pain-card">
+        <i class="fas fa-question-circle"></i>
+        <p><strong>Não sabem por onde</strong> começar no marketing digital</p>
+      </div>
+      <div class="pain-card">
+        <i class="fas fa-chart-line"></i>
+        <p><strong>Investiram e não</strong> viram retorno consistente</p>
+      </div>
+      <div class="pain-card">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p><strong>Têm medo de infringir</strong> regras éticas da OAB</p>
+      </div>
+      <div class="pain-card">
+        <i class="fas fa-bullseye"></i>
+        <p><strong>Querem previsibilidade</strong> e posicionamento sólido</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 4 — 3 CONCEITOS CHAVE               -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide bg-dark2" id="s4">
+    <div class="two-col wide" style="gap:48px;max-width:1100px;">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="deco-line"></div>
+        <span class="label">Base Conceitual</span>
+        <h2 class="title">3 Conceitos que<br><span>Fazem Diferença</span></h2>
+        <p class="body-text">A metodologia parte de conceitos fundamentais que reorganizam o modo como advogados e escritórios entendem e executam marketing.</p>
+        <ul class="icon-list" style="margin-top:8px;">
+          <li>
+            <span class="ic"><i class="fas fa-sitemap"></i></span>
+            <span><strong>Estratégico · Tático · Operacional</strong> — O que você pode e o que não pode terceirizar no seu marketing.</span>
+          </li>
+          <li>
+            <span class="ic"><i class="fas fa-drafting-compass"></i></span>
+            <span><strong>Canvas do Marketing Jurídico</strong> — Plano de marketing completo em uma única página.</span>
+          </li>
+          <li>
+            <span class="ic"><i class="fas fa-cubes"></i></span>
+            <span><strong>4Ps Jurídicos</strong> — Posicionamento, Parcerias, Processo e Publicidade, substituindo os 4Ps tradicionais.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="canvas-block">
+        <div class="cb-col">
+          <div class="cb-col-header">Mercado</div>
+          <div class="cb-item">Tendências Jurídicas</div>
+          <div class="cb-item">Concorrência Local</div>
+          <div class="cb-item">Cliente Ideal</div>
+        </div>
+        <div class="cb-col">
+          <div class="cb-col-header">Objetivos</div>
+          <div class="cb-item">Metas de Captação</div>
+          <div class="cb-item">Jornada do Cliente</div>
+          <div class="cb-item">KPIs Jurídicos</div>
+        </div>
+        <div class="cb-col">
+          <div class="cb-col-header">Estratégia</div>
+          <div class="cb-item">Posicionamento</div>
+          <div class="cb-item">Comunicação Ética</div>
+          <div class="cb-item">Autoridade Jurídica</div>
+        </div>
+        <div class="cb-col" style="grid-column:1/-1;border-top:1px solid rgba(201,168,76,.2);padding-top:12px;">
+          <div class="cb-col-header">Canais Permitidos pela OAB</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <div class="cb-item">LinkedIn</div>
+            <div class="cb-item">Instagram</div>
+            <div class="cb-item">Site / Blog</div>
+            <div class="cb-item">Palestras</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 5 — FUNIL                           -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide bg-gradient" id="s5">
+    <div class="two-col" style="max-width:1000px;align-items:center;">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="deco-line"></div>
+        <span class="label">Metodologia</span>
+        <h2 class="title">O Funil de Vendas<br><span>Jurídico</span></h2>
+        <p class="body-text">Três etapas fundamentais para transformar visibilidade em contratos assinados, com cada ação orientada a resultados mensuráveis.</p>
+        <ul class="icon-list" style="margin-top:8px;">
+          <li>
+            <span class="ic"><i class="fas fa-bullhorn"></i></span>
+            <span><strong>Atrair</strong> o cliente certo — Google ou Redes Sociais? Tráfego Pago ou Orgânico?</span>
+          </li>
+          <li>
+            <span class="ic"><i class="fas fa-handshake"></i></span>
+            <span><strong>Construir relacionamentos</strong> que levem à venda de forma natural e ética.</span>
+          </li>
+          <li>
+            <span class="ic"><i class="fas fa-chart-pie"></i></span>
+            <span><strong>Vender e avaliar</strong> resultados usando ROI — Retorno sobre Investimentos.</span>
+          </li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div class="funnel">
+          <div class="funnel-step"><i class="fas fa-bullhorn"></i> Atração — Topo de Funil</div>
+          <div class="funnel-arrow"><i class="fas fa-chevron-down"></i></div>
+          <div class="funnel-step"><i class="fas fa-handshake"></i> Relacionamento — Meio de Funil</div>
+          <div class="funnel-arrow"><i class="fas fa-chevron-down"></i></div>
+          <div class="funnel-step"><i class="fas fa-file-signature"></i> Conversão — Fundo de Funil</div>
+        </div>
+        <div style="margin-top:22px;text-align:center;">
+          <span style="font-size:.75rem;color:var(--muted);">ROI medido em cada etapa</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 6 — CURSOS                          -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide bg-dark2" id="s6">
+    <div class="deco-line"></div>
+    <span class="label">Estrutura do Programa</span>
+    <h2 class="title" style="margin-top:10px;margin-bottom:4px;">5 Cursos para<br><span>Resultados Reais</span></h2>
+    <div class="module-row">
+      <div class="module-item">
+        <div><span class="num">Curso 1</span><h4>Primeiros Passos em Marketing</h4><p>Estratégia completa, público-alvo, funil de vendas e plano com IA</p></div>
+        <div></div>
+        <div class="price-tag">R$ 199<small>+ bônus</small></div>
+      </div>
+      <div class="module-item">
+        <div><span class="num">Curso 2</span><h4>Aprenda com os Melhores do Mercado</h4><p>Análise de mercado, tendências, benchmark e diferenciação</p></div>
+        <div></div>
+        <div class="price-tag">R$ 99</div>
+      </div>
+      <div class="module-item">
+        <div><span class="num">Curso 3</span><h4>Branding e Posicionamento</h4><p>Identidade de marca, proposta de valor e autoridade jurídica</p></div>
+        <div></div>
+        <div class="price-tag">R$ 199</div>
+      </div>
+      <div class="module-item">
+        <div><span class="num">Curso 4</span><h4>Cresça nas Redes Sociais</h4><p>Instagram, TikTok, LinkedIn, YouTube e Google Perfil de Empresas</p></div>
+        <div></div>
+        <div class="price-tag">R$ 299</div>
+      </div>
+      <div class="module-item">
+        <div><span class="num">Curso 5</span><h4>Pode e Não Pode — Conformidade Total</h4><p>Normas OAB, punições reais, checklist e compliance por canal</p></div>
+        <div></div>
+        <div class="price-tag">R$ 49</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 7 — COMPLIANCE                      -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide bg-gradient" id="s7">
+    <div class="deco-line"></div>
+    <span class="label">Conformidade OAB — Provimento Nº 205/2021</span>
+    <h2 class="title" style="margin-top:10px;margin-bottom:6px;">O Que <span>Pode</span> e Não Pode<br>no Marketing Jurídico</h2>
+    <div class="compliance-grid">
+      <div class="comp-col">
+        <div class="comp-col-head can"><i class="fas fa-check-circle"></i> &nbsp;Permitido</div>
+        <div class="comp-col-body">
+          <div class="comp-item"><i class="fas fa-check ok"></i> Publicar artigos e conteúdo educativo</div>
+          <div class="comp-item"><i class="fas fa-check ok"></i> Ter perfil profissional nas redes sociais</div>
+          <div class="comp-item"><i class="fas fa-check ok"></i> Anunciar tráfego pago de forma informativa</div>
+          <div class="comp-item"><i class="fas fa-check ok"></i> Participar de palestras e eventos</div>
+          <div class="comp-item"><i class="fas fa-check ok"></i> Ter site institucional com blog jurídico</div>
+          <div class="comp-item"><i class="fas fa-check ok"></i> Divulgar áreas de atuação e currículo</div>
+        </div>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-head cant"><i class="fas fa-times-circle"></i> &nbsp;Proibido</div>
+        <div class="comp-col-body">
+          <div class="comp-item"><i class="fas fa-times no"></i> Captar clientes com promessa de resultado</div>
+          <div class="comp-item"><i class="fas fa-times no"></i> Publicidade sensacionalista ou mercantil</div>
+          <div class="comp-item"><i class="fas fa-times no"></i> Divulgar honorários ou tabela de preços</div>
+          <div class="comp-item"><i class="fas fa-times no"></i> Usar imagens de tribunais ou togas</div>
+          <div class="comp-item"><i class="fas fa-times no"></i> Comparar-se a colegas de profissão</div>
+          <div class="comp-item"><i class="fas fa-times no"></i> Fazer impulsionamento indevido de conteúdo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 8 — DIFERENCIAIS                    -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide bg-dark2" id="s8">
+    <div class="deco-line"></div>
+    <span class="label">Diferenciais</span>
+    <h2 class="title" style="margin-top:10px;margin-bottom:6px;">Por Que o Marketing Jur<br><span>É Diferente?</span></h2>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <i class="fas fa-brain"></i>
+        <h4>Metodologia PBL</h4>
+        <p>Problem Based Learning — resolva casos reais de pequenos, médios e grandes escritórios</p>
+      </div>
+      <div class="diff-card">
+        <i class="fas fa-robot"></i>
+        <h4>Inteligência Artificial</h4>
+        <p>Use IA como aliada estratégica para otimizar processos e tomar decisões baseadas em dados</p>
+      </div>
+      <div class="diff-card">
+        <i class="fas fa-balance-scale"></i>
+        <h4>Conformidade Total</h4>
+        <p>Análise detalhada do que pode e não pode, com base nas normas atualizadas da OAB</p>
+      </div>
+      <div class="diff-card">
+        <i class="fas fa-chart-bar"></i>
+        <h4>Ferramentas de Diagnóstico</h4>
+        <p>Templates e frameworks exclusivos para análise estratégica do seu escritório</p>
+      </div>
+      <div class="diff-card">
+        <i class="fas fa-book-open"></i>
+        <h4>Biblioteca de Prompts</h4>
+        <p>10 prompts de marketing exclusivos para advogados, prontos para usar em cada etapa</p>
+      </div>
+      <div class="diff-card">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <h4>Conteúdo Prático</h4>
+        <p>Você sai aplicando novas ferramentas e conceitos em cada aula — sem teoria vazia</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 9 — FERRAMENTAS                     -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide bg-gradient" id="s9">
+    <div class="deco-line"></div>
+    <span class="label">Ferramentas</span>
+    <h2 class="title" style="margin-top:10px;margin-bottom:4px;">Ferramentas que Você<br><span>Vai Dominar</span></h2>
+    <p class="body-text center-text" style="margin-top:6px;">Todas gratuitas — usadas para maximizar resultados no marketing jurídico.</p>
+    <div class="tools-grid">
+      <div class="tool-pill"><i class="fab fa-google"></i>Google Analytics 4</div>
+      <div class="tool-pill"><i class="fas fa-chart-line"></i>Google Trends</div>
+      <div class="tool-pill"><i class="fab fa-tiktok"></i>TikTok Creative Center</div>
+      <div class="tool-pill"><i class="fas fa-rocket"></i>Exploding Topics</div>
+      <div class="tool-pill"><i class="fas fa-brain"></i>GensparkIA</div>
+      <div class="tool-pill"><i class="fas fa-robot"></i>Manus IA</div>
+      <div class="tool-pill"><i class="fab fa-facebook"></i>Meta Ads Library</div>
+      <div class="tool-pill"><i class="fas fa-search"></i>Surfer SEO</div>
+      <div class="tool-pill"><i class="fas fa-clipboard-list"></i>Typeform + IA</div>
+      <div class="tool-pill"><i class="fas fa-tag"></i>SEMrush / Ubersuggest</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 10 — MENTOR                         -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide bg-dark2" id="s10">
+    <div class="mentor-block">
+      <div class="mentor-photo-wrap">
+        <div class="mentor-photo-placeholder">
+          <i class="fas fa-user-tie"></i>
+          <span style="font-size:.75rem;color:var(--muted);">Mentor</span>
+        </div>
+      </div>
+      <div class="mentor-info">
+        <div class="deco-line"></div>
+        <span class="label">Seu Mentor</span>
+        <h2 class="title" style="font-size:clamp(1.5rem,2.5vw,2.4rem);">Um dos Maiores<br><span>Especialistas em<br>Marketing Jurídico</span><br>do País</h2>
+        <div class="credentials">
+          <div class="cred-item"><i class="fas fa-graduation-cap"></i> Doutor em Marketing pela USP e Mestre pela FGV</div>
+          <div class="cred-item"><i class="fas fa-balance-scale"></i> Coordenador do Módulo Marketing — Aceleradora OABSP</div>
+          <div class="cred-item"><i class="fas fa-chalkboard-teacher"></i> Professor de Marketing na ESPM (Escola Superior de Propaganda e Marketing)</div>
+          <div class="cred-item"><i class="fas fa-lightbulb"></i> Head da BASE Incubadora de Negócios da ESPM</div>
+          <div class="cred-item"><i class="fas fa-briefcase"></i> Consultor: OAB SP, Uber, SEBRAE, Albert Einstein, Novartis, Bradesco, Vivo e outras</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 11 — QUOTE                          -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide bg-gold quote-slide" id="s11">
+    <blockquote class="big-quote">
+      Marketing jurídico não é sobre aparecer mais.<br>É sobre posicionar-se melhor.
+    </blockquote>
+    <cite class="big-cite">— Marketing Jur</cite>
+    <div style="margin-top:32px;display:flex;gap:40px;text-align:center;">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--gold2);font-weight:700;">5</div>
+        <div style="font-size:.78rem;color:var(--muted);">Cursos Completos</div>
+      </div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--gold2);font-weight:700;">10+</div>
+        <div style="font-size:.78rem;color:var(--muted);">Ferramentas Gratuitas</div>
+      </div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--gold2);font-weight:700;">10</div>
+        <div style="font-size:.78rem;color:var(--muted);">Prompts de IA para Advogados</div>
+      </div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--gold2);font-weight:700;">100%</div>
+        <div style="font-size:.78rem;color:var(--muted);">Conformidade OAB</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- SLIDE 12 — CTA FINAL                      -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="slide bg-gradient" id="s12">
+    <div class="deco-line center"></div>
+    <span class="label" style="text-align:center;">Próximo Passo</span>
+    <h2 class="title center-text" style="margin-top:10px;">Comece a Construir<br>Seu <span>Plano de Marketing</span><br>Jurídico Hoje</h2>
+    <div class="cta-boxes">
+      <div class="cta-box">
+        <i class="fas fa-drafting-compass"></i>
+        <h4>Plano em 1 Página</h4>
+        <p>Canvas do Marketing Jurídico pronto para você preencher e executar</p>
+      </div>
+      <div class="cta-box">
+        <i class="fas fa-robot"></i>
+        <h4>IA como Aliada</h4>
+        <p>10 prompts exclusivos para cada etapa do seu marketing jurídico</p>
+      </div>
+      <div class="cta-box">
+        <i class="fas fa-shield-alt"></i>
+        <h4>Segurança Ética</h4>
+        <p>Checklist de conformidade OAB para validar cada ação de marketing</p>
+      </div>
+    </div>
+    <a href="https://pay.hotmart.com/Q105515103V?checkoutMode=2" class="btn-gold" target="_blank">
+      <i class="fas fa-rocket"></i> Reserve sua Vaga Agora
+    </a>
+  </section>
+
+</div><!-- /deck -->
+
+<!-- Navigation -->
+<div class="nav-btns">
+  <button id="prevBtn" onclick="navigate(-1)" disabled title="Anterior">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+  <button id="nextBtn" onclick="navigate(1)" title="Próximo">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+</div>
+
+<!-- Dots -->
+<div class="dots" id="dots"></div>
+
+<!-- Slide number -->
+<div class="slide-num" id="slideNum">1 / 12</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total  = slides.length;
+  let   current = 0;
+
+  // Build dots
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const d = document.createElement('span');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= total) return;
+    slides[current].classList.remove('active');
+    slides[current].classList.add('exit-left');
+    setTimeout(() => slides[current].classList.remove('exit-left'), 500);
+
+    current = idx;
+    slides[current].classList.add('active');
+
+    document.querySelectorAll('.dot').forEach((d, i) =>
+      d.classList.toggle('active', i === current));
+    document.getElementById('slideNum').textContent = `${current + 1} / ${total}`;
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').disabled = current === total - 1;
+  }
+
+  function navigate(dir) { goTo(current + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ')  navigate(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   navigate(-1);
+  });
+
+  // Touch swipe
+  let touchX = 0;
+  document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+  });
+</script>
+</body>
+</html>
