@@ -533,82 +533,101 @@ const loading = {
 };
 
 // ===================================
-// Pain Points — Modal de Cursos
+// Pain Points — Diagnóstico de Estratégia Digital
 // ===================================
 const painPoints = {
-    courses: {
-        'primeiros-passos': {
-            title: 'Primeiros Passos em Marketing',
-            desc: 'Desenvolva uma estratégia completa de Marketing para o seu escritório, do zero ao resultado.',
-            href: '#curso-1'
+    grades: [
+        {
+            min: 70,
+            cls: 'good',
+            label: 'Estratégia Sólida',
+            msg: 'Sua estrutura de marketing já está madura. Refine os detalhes e mantenha a consistência para acelerar ainda mais os resultados.'
         },
-        'melhores-mercado': {
-            title: 'Aprenda com os Melhores do Mercado Jurídico',
-            desc: 'Mercado, Tendências e Concorrência — entenda o cenário e se posicione à frente.',
-            href: '#curso-2'
+        {
+            min: 40,
+            cls: 'mid',
+            label: 'Estratégia em Desenvolvimento',
+            msg: 'Você já tem uma base, mas existem lacunas importantes que estão segurando seus resultados. Um método claro vai destravar seu crescimento.'
         },
-        'branding': {
-            title: 'Branding e Posicionamento',
-            desc: 'Construa sua marca e uma posição diferenciada que atrai os clientes certos.',
-            href: '#curso-3'
-        },
-        'redes-sociais': {
-            title: 'Cresça nas Redes Sociais',
-            desc: '5 passos para crescer com consistência e gerar autoridade nas redes sociais.',
-            href: '#curso-4'
-        },
-        'pode-nao-pode': {
-            title: 'Pode e Não Pode',
-            desc: 'Riscos e Oportunidades do Provimento Nº 205/2021 — marketing ético e sem infrações.',
-            href: '#curso-5'
+        {
+            min: 0,
+            cls: 'low',
+            label: 'Estratégia Precisa de Atenção',
+            msg: 'Há muitos pontos críticos em aberto. Com um plano estruturado, dá para virar esse jogo e construir uma presença digital que gera clientes.'
         }
-    },
+    ],
 
     init: () => {
-        const overlay = document.getElementById('painModal');
-        if (!overlay) return;
+        const panel = document.getElementById('strategyScore');
+        if (!panel) return;
 
-        const cards = document.querySelectorAll('.pain-point-card[data-course]');
+        const cards = Array.from(document.querySelectorAll('.pain-point-card'));
+        if (!cards.length) return;
+
         cards.forEach(card => {
-            card.addEventListener('click', () => painPoints.open(card.dataset.course));
+            card.addEventListener('click', () => painPoints.toggle(card));
             card.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    painPoints.open(card.dataset.course);
+                    painPoints.toggle(card);
                 }
             });
         });
 
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) painPoints.close();
-        });
+        const reset = document.getElementById('scoreReset');
+        if (reset) {
+            reset.addEventListener('click', () => {
+                cards.forEach(card => {
+                    card.classList.remove('selected');
+                    card.setAttribute('aria-checked', 'false');
+                });
+                painPoints.update();
+            });
+        }
 
-        overlay.querySelector('.pain-modal-close').addEventListener('click', painPoints.close);
-        overlay.querySelector('.pain-modal-close-btn').addEventListener('click', painPoints.close);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') painPoints.close();
-        });
+        painPoints.cards = cards;
+        painPoints.panel = panel;
+        painPoints.update();
     },
 
-    open: (key) => {
-        const overlay = document.getElementById('painModal');
-        const course = painPoints.courses[key];
-        if (!overlay || !course) return;
-
-        overlay.querySelector('.pain-modal-title').textContent = course.title;
-        overlay.querySelector('.pain-modal-desc').textContent = course.desc;
-        overlay.querySelector('.pain-modal-cta').href = course.href;
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        overlay.querySelector('.pain-modal-close').focus();
+    toggle: (card) => {
+        const isSelected = card.classList.toggle('selected');
+        card.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+        painPoints.update();
     },
 
-    close: () => {
-        const overlay = document.getElementById('painModal');
-        if (!overlay) return;
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
+    update: () => {
+        const cards = painPoints.cards || [];
+        const panel = painPoints.panel;
+        if (!panel) return;
+
+        const total = cards.length;
+        const selected = cards.filter(c => c.classList.contains('selected')).length;
+        const score = total ? Math.round(100 - (selected / total) * 100) : 100;
+
+        const numberEl = document.getElementById('scoreNumber');
+        const fillEl = document.getElementById('scoreFill');
+        const gradeEl = document.getElementById('scoreGrade');
+        const messageEl = document.getElementById('scoreMessage');
+
+        if (numberEl) numberEl.textContent = score;
+        if (fillEl) fillEl.style.width = score + '%';
+
+        panel.classList.remove('good', 'mid', 'low');
+
+        if (selected === 0) {
+            if (gradeEl) gradeEl.textContent = 'Selecione suas dificuldades';
+            if (messageEl) messageEl.textContent = 'Marque acima as dificuldades que você enfrenta hoje para calcular a nota da sua estratégia digital.';
+            return;
+        }
+
+        const grade = painPoints.grades.find(g => score >= g.min) || painPoints.grades[painPoints.grades.length - 1];
+        panel.classList.add(grade.cls);
+        if (gradeEl) gradeEl.textContent = grade.label;
+        if (messageEl) {
+            const noun = selected === 1 ? 'dificuldade marcada' : 'dificuldades marcadas';
+            messageEl.textContent = `${selected} ${noun}. ${grade.msg}`;
+        }
     }
 };
 

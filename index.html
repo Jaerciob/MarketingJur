@@ -141,51 +141,72 @@
     </section>
 
     <!-- Dificuldades Section -->
-    <section class="pain-points-section">
+    <section id="diagnostico" class="pain-points-section">
         <div class="container">
             <div class="section-header">
                 <h2>Quais são as suas maiores dificuldades com marketing digital?</h2>
+                <p>Marque as dificuldades que você enfrenta hoje e descubra, na hora, a nota da sua estratégia digital.</p>
             </div>
             <div class="pain-points-grid">
-                <div class="pain-point-card" data-course="primeiros-passos" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="pain-point-card" data-course="primeiros-passos" role="checkbox" tabindex="0" aria-checked="false">
+                    <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-compass"></i></span>
                     <p>Escolher o melhor caminho para começar</p>
-                    <span class="pain-point-hint"><i class="fas fa-circle-info"></i> Ver solução</span>
                 </div>
-                <div class="pain-point-card" data-course="primeiros-passos" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="pain-point-card" data-course="primeiros-passos" role="checkbox" tabindex="0" aria-checked="false">
+                    <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-user-check"></i></span>
                     <p>Conseguir clientes qualificados</p>
-                    <span class="pain-point-hint"><i class="fas fa-circle-info"></i> Ver solução</span>
                 </div>
-                <div class="pain-point-card" data-course="redes-sociais" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="pain-point-card" data-course="redes-sociais" role="checkbox" tabindex="0" aria-checked="false">
+                    <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-share-nodes"></i></span>
                     <p>Desenvolver estratégias nas redes sociais</p>
-                    <span class="pain-point-hint"><i class="fas fa-circle-info"></i> Ver solução</span>
                 </div>
-                <div class="pain-point-card" data-course="melhores-mercado" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="pain-point-card" data-course="melhores-mercado" role="checkbox" tabindex="0" aria-checked="false">
+                    <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-magnifying-glass-chart"></i></span>
                     <p>Identificar Oportunidades de Mercado</p>
-                    <span class="pain-point-hint"><i class="fas fa-circle-info"></i> Ver solução</span>
                 </div>
-                <div class="pain-point-card" data-course="pode-nao-pode" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="pain-point-card" data-course="pode-nao-pode" role="checkbox" tabindex="0" aria-checked="false">
+                    <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-scale-balanced"></i></span>
                     <p>Respeitar as normas da OAB</p>
-                    <span class="pain-point-hint"><i class="fas fa-circle-info"></i> Ver solução</span>
                 </div>
-                <div class="pain-point-card" data-course="redes-sociais" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="pain-point-card" data-course="redes-sociais" role="checkbox" tabindex="0" aria-checked="false">
+                    <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-pen-to-square"></i></span>
                     <p>Produzir conteúdo com frequência</p>
-                    <span class="pain-point-hint"><i class="fas fa-circle-info"></i> Ver solução</span>
                 </div>
-                <div class="pain-point-card" data-course="branding" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="pain-point-card" data-course="branding" role="checkbox" tabindex="0" aria-checked="false">
+                    <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-trophy"></i></span>
                     <p>Diferenciar-se da concorrência</p>
-                    <span class="pain-point-hint"><i class="fas fa-circle-info"></i> Ver solução</span>
                 </div>
-                <div class="pain-point-card" data-course="primeiros-passos" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="pain-point-card" data-course="primeiros-passos" role="checkbox" tabindex="0" aria-checked="false">
+                    <span class="pain-point-check" aria-hidden="true"><i class="fas fa-check"></i></span>
                     <span class="pain-point-icon"><i class="fas fa-file-signature"></i></span>
                     <p>Transformar visibilidade em contratos assinados</p>
-                    <span class="pain-point-hint"><i class="fas fa-circle-info"></i> Ver solução</span>
+                </div>
+            </div>
+
+            <div class="strategy-score" id="strategyScore" aria-live="polite">
+                <div class="strategy-score-head">
+                    <div class="strategy-score-titles">
+                        <span class="strategy-score-label">Nota da sua estratégia digital</span>
+                        <span class="strategy-score-grade" id="scoreGrade">Selecione suas dificuldades</span>
+                    </div>
+                    <div class="strategy-score-value">
+                        <span id="scoreNumber">100</span><small>/100</small>
+                    </div>
+                </div>
+                <div class="strategy-score-bar">
+                    <div class="strategy-score-fill" id="scoreFill"></div>
+                </div>
+                <p class="strategy-score-message" id="scoreMessage">Marque acima as dificuldades que você enfrenta hoje para calcular a nota da sua estratégia digital.</p>
+                <div class="strategy-score-actions">
+                    <a class="btn btn-primary" href="#precos"><i class="fas fa-rocket"></i> Quero melhorar minha estratégia</a>
+                    <button type="button" class="strategy-score-reset" id="scoreReset">Limpar seleção</button>
                 </div>
             </div>
         </div>
@@ -1362,21 +1383,5 @@
             }
         });
     </script>
-
-    <!-- Pain Points Modal -->
-    <div id="painModal" class="pain-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="painModalTitle">
-        <div class="pain-modal">
-            <button class="pain-modal-close" aria-label="Fechar">&times;</button>
-            <span class="pain-modal-badge"><i class="fas fa-lightbulb"></i> Curso Indicado para Você</span>
-            <h3 class="pain-modal-title" id="painModalTitle"></h3>
-            <p class="pain-modal-desc"></p>
-            <div class="pain-modal-actions">
-                <a class="pain-modal-cta btn btn-primary" href="#">
-                    <i class="fas fa-play"></i> Ver Curso
-                </a>
-                <button class="pain-modal-secondary pain-modal-close-btn">Fechar</button>
-            </div>
-        </div>
-    </div>
 </body>
 </html>

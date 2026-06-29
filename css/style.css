@@ -2212,22 +2212,19 @@ a:hover {
 }
 
 .pain-point-card {
+    position: relative;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-left: 3px solid var(--secondary-color);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-xl);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    transition: var(--transition-normal);
-    cursor: pointer;
-}
-
-.pain-point-card-top {
+    padding-right: 3rem;
     display: flex;
     align-items: flex-start;
     gap: var(--spacing-md);
+    transition: var(--transition-normal);
+    cursor: pointer;
+    user-select: none;
 }
 
 .pain-point-card:hover {
@@ -2235,6 +2232,50 @@ a:hover {
     transform: translateY(-3px);
     border-left-color: var(--primary-light);
     box-shadow: var(--shadow-lg);
+}
+
+.pain-point-card:focus-visible {
+    outline: 3px solid rgba(212, 175, 55, 0.5);
+    outline-offset: 2px;
+}
+
+.pain-point-card.selected {
+    background: rgba(212, 175, 55, 0.14);
+    border-color: var(--secondary-color);
+    border-left-color: var(--secondary-color);
+}
+
+.pain-point-check {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-900);
+    font-size: 0.7rem;
+    background: transparent;
+    transition: var(--transition-fast);
+}
+
+.pain-point-check i {
+    opacity: 0;
+    transform: scale(0.4);
+    transition: var(--transition-fast);
+}
+
+.pain-point-card.selected .pain-point-check {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.pain-point-card.selected .pain-point-check i {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .pain-point-icon {
@@ -2256,141 +2297,123 @@ a:hover {
     line-height: 1.5;
     font-weight: 400;
     margin: 0;
-    padding-top: 0.2rem;
+    padding-top: 0.25rem;
 }
 
-.pain-point-hint {
-    align-self: flex-end;
-    font-size: 0.75rem;
-    color: var(--secondary-color);
-    opacity: 0.7;
-    transition: opacity var(--transition-fast);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    margin-top: auto;
-}
-
-.pain-point-card:hover .pain-point-hint {
-    opacity: 1;
+.pain-point-card.selected p {
+    color: var(--white);
 }
 
 /* ===================================
-   Pain Points Modal
+   Diagnóstico — Nota da Estratégia
    =================================== */
-.pain-modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.75);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-lg);
-    z-index: 9000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity var(--transition-normal), visibility var(--transition-normal);
-}
-
-.pain-modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.pain-modal {
-    background: var(--white);
+.strategy-score {
+    margin-top: var(--spacing-2xl);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius-xl);
     padding: var(--spacing-2xl);
-    max-width: 460px;
-    width: 100%;
-    position: relative;
-    box-shadow: var(--shadow-2xl);
-    border-top: 4px solid var(--secondary-color);
-    transform: translateY(20px) scale(0.97);
-    transition: transform var(--transition-normal);
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.pain-modal-overlay.active .pain-modal {
-    transform: translateY(0) scale(1);
-}
-
-.pain-modal-close {
-    position: absolute;
-    top: var(--spacing-md);
-    right: var(--spacing-md);
-    background: var(--gray-100);
-    border: none;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.2rem;
-    line-height: 1;
-    cursor: pointer;
-    color: var(--gray-600);
+.strategy-score-head {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background var(--transition-fast), color var(--transition-fast);
-}
-
-.pain-modal-close:hover {
-    background: var(--gray-200);
-    color: var(--gray-900);
-}
-
-.pain-modal-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--secondary-dark);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    background: rgba(212, 175, 55, 0.1);
-    padding: 0.3rem 0.75rem;
-    border-radius: 999px;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
     margin-bottom: var(--spacing-lg);
 }
 
-.pain-modal-title {
+.strategy-score-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.strategy-score-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-400);
+    font-weight: 600;
+}
+
+.strategy-score-grade {
     font-family: var(--font-display);
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: var(--spacing-md);
-    line-height: 1.3;
+    color: var(--white);
+    line-height: 1.2;
 }
 
-.pain-modal-desc {
+.strategy-score-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--white);
+    font-size: 2.6rem;
+    line-height: 1;
+}
+
+.strategy-score-value small {
     font-size: 1rem;
-    color: var(--gray-600);
-    line-height: 1.65;
-    margin-bottom: var(--spacing-xl);
+    color: var(--gray-400);
+    font-weight: 600;
 }
 
-.pain-modal-actions {
+.strategy-score-bar {
+    height: 12px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.strategy-score-fill {
+    height: 100%;
+    width: 100%;
+    border-radius: 999px;
+    background: var(--secondary-color);
+    transition: width 0.5s ease, background-color 0.4s ease;
+}
+
+.strategy-score.good .strategy-score-fill { background: #22c55e; }
+.strategy-score.good .strategy-score-grade { color: #4ade80; }
+.strategy-score.mid .strategy-score-fill { background: var(--secondary-color); }
+.strategy-score.mid .strategy-score-grade { color: var(--secondary-color); }
+.strategy-score.low .strategy-score-fill { background: #ef4444; }
+.strategy-score.low .strategy-score-grade { color: #f87171; }
+
+.strategy-score-message {
+    color: var(--gray-300);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: var(--spacing-lg) 0;
+}
+
+.strategy-score-actions {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
     flex-wrap: wrap;
 }
 
-.pain-modal-secondary {
+.strategy-score-reset {
     background: none;
     border: none;
+    color: var(--gray-400);
     font-size: 0.9rem;
-    color: var(--gray-500);
     cursor: pointer;
     padding: 0.4rem;
-    transition: color var(--transition-fast);
     text-decoration: underline;
     text-underline-offset: 3px;
+    transition: color var(--transition-fast);
 }
 
-.pain-modal-secondary:hover {
-    color: var(--gray-800);
+.strategy-score-reset:hover {
+    color: var(--white);
 }
 
 /* ===================================
