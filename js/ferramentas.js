@@ -216,18 +216,166 @@ document.getElementById('canvas-example').addEventListener('change', e => loadEx
 loadCanvas();
 
 
+// ─── CANVAS DE DIAGNÓSTICO ESTRATÉGICO ───────────────────────────────────────
+const DIAG_KEY = 'mktjur_diagnostico';
+
+const DIAG_EXAMPLES = {
+    trabalhista: {
+        mercado_oportunidade1: '6 milhões de PMEs sem assessoria trabalhista preventiva — mercado de R$ 500M/ano no Brasil totalmente subatendido localmente.',
+        mercado_oportunidade2: 'Crescimento de consultas preventivas pós-Reforma Trabalhista: teletrabalho, IA no RH e nova jurisprudência gerando demanda especializada crescente.',
+        mercado_ameaca1: 'LegalTechs automatizando cálculos de rescisão e triagem — reduzindo demanda por serviços básicos e pressionando honorários para baixo.',
+        mercado_ameaca2: 'Advogados generalistas com preços 40% menores competindo pelos clientes que ainda não percebem o valor da especialização certificada.',
+        obj_visao5: 'Ser o escritório de referência nacional em compliance trabalhista para PMEs, com plataforma digital própria, equipe de 5 advogados e MRR de R$ 100.000/mês.',
+        obj_1ano: '• 15 clientes PMEs com contrato de assessoria recorrente (MRR R$ 13.500)\n• Ser palestrante em 2 eventos de RH da região\n• Site com blog ativo e 500 visitas/mês orgânicas',
+        obj_trimestre: '• Publicar 2 artigos/semana no LinkedIn sobre riscos trabalhistas para PMEs\n• Fechar 2 contratos de assessoria preventiva mensais\n• Atingir nota 4.8 no Google com 30 avaliações\n• Lançar e-book "Guia do Compliance Trabalhista para PMEs"',
+        forcas_forte1: 'Especialização certificada em Direito do Trabalho com taxa de sucesso de 78% nos casos contenciosos e rede de 8 contadores que indicam regularmente.',
+        forcas_forte2: 'Atendimento 100% online para todo o Brasil com nota 4.9 no Google e 45 avaliações — reputação consolidada e diferencial percebido pelo mercado.',
+        forcas_fraca1: 'Escritório solo sem equipe de apoio — capacidade limitada de atender mais clientes simultaneamente, criando gargalo de crescimento.',
+        forcas_fraca2: 'LinkedIn com apenas 450 seguidores e sem budget de marketing definido — baixa visibilidade digital e dependência de 2 grandes clientes (60% da receita).',
+        matriz_fo1: 'Usar especialização certificada (força) + mercado de PMEs sem assessoria (oportunidade) → lançar "Pacote Preventivo PME" a R$ 900/mês com meta de 15 contratos em 12 meses.',
+        matriz_fo2: 'Usar rede de 8 contadores indicadores (força) + demanda pós-Reforma (oportunidade) → programa de indicação formalizado com bônus por cliente fechado.',
+        matriz_fa1: 'Usar certificação (força) para se diferenciar de generalistas baratos (ameaça) — publicar cases com resultados reais no LinkedIn e no Google para justificar o valor do especialista.',
+        matriz_fa2: 'Usar atendimento personalizado (força) para criar fidelidade e barreira contra LegalTechs (ameaça) — check-in mensal obrigatório incluso no pacote preventivo.',
+        matriz_fraqo1: 'Superar capacidade limitada (fraqueza) para aproveitar o mercado crescente (oportunidade) — contratar estagiário por R$ 600/mês e freelancer de conteúdo para dobrar capacidade.',
+        matriz_fraqo2: 'Superar o LinkedIn fraco (fraqueza) para capturar demanda digital (oportunidade) — comprometer-se a publicar 3x/semana por 90 dias e investir R$ 300/mês em LinkedIn Ads.',
+        obj_lp_bienal: '• Tornar-se referência nacional em Direito Trabalhista preventivo\n• Faturar R$ 600.000/ano com consultoria, cursos e contencioso\n• Ter 1 sócio e 1 colaborador contratados\n• Lançar plataforma de gestão trabalhista para PMEs',
+        obj_lp_anual: '• Tornar-se referência regional em Direito Trabalhista preventivo\n• Produzir e lançar e-book completo sobre compliance trabalhista\n• Expandir atuação para 2 novos estados via atendimento 100% online\n• Faturar R$ 300.000 no ano com mix de consultoria e contencioso',
+        obj_lp_t1: '• Atingir 8 leads qualificados/mês via LinkedIn\n• Publicar 1 artigo técnico por semana no blog\n• Fechar parceria formal com 2 escritórios de contabilidade\n• Implementar CRM para gestão de casos e follow-up',
+        obj_lp_t2: '• Consolidar carteira com 20 empresas em assessoria preventiva\n• Lançar curso online: "Prevenção de Passivos Trabalhistas"\n• Alcançar nota 4,8+ no Google Meu Negócio com 50 avaliações\n• Gerar R$ 18.000/mês de receita recorrente',
+        obj_lp_t3: '• Consolidar autoridade no LinkedIn: atingir 2.000 seguidores qualificados\n• Lançar webinar gratuito "Gestão Trabalhista para PMEs" (meta: 150 participantes)\n• Fechar 5 novos contratos de assessoria preventiva\n• Atingir MRR de R$ 9.000 com carteira de 10 clientes recorrentes',
+        obj_lp_t4: '• Avaliar resultados do ano e planejar próximo ciclo de crescimento\n• Atingir MRR de R$ 13.500 com 15 clientes de assessoria preventiva\n• Contratar estagiário para dobrar capacidade de atendimento\n• Publicar balanço do ano no LinkedIn e definir meta de R$ 300.000 para o próximo',
+    },
+    familia: {
+        mercado_oportunidade1: 'Crescimento de divórcios (+18% pós-pandemia) e expansão do inventário extrajudicial — casos que exigem especialista humano e não podem ser automatizados.',
+        mercado_oportunidade2: 'Famílias recompostas, contratos de convivência e guarda compartilhada gerando nova demanda especializada sem concorrente com atendimento integrado na cidade.',
+        mercado_ameaca1: 'Plataformas de divórcio online por R$ 800 para casos simples — erodindo percepção de valor e pressionando os honorários de toda a categoria para baixo.',
+        mercado_ameaca2: 'Crescimento de novos advogados de família na região com presença digital forte e preços inicialmente abaixo do mercado para ganhar carteira de clientes.',
+        obj_visao5: 'Ser a referência estadual em advocacia familiar humanizada, com plataforma de mediação digital, equipe de 3 advogados e faturamento de R$ 400.000/ano.',
+        obj_1ano: '• 10 casos novos/mês com ticket médio de R$ 5.000\n• Nota 4.9 no Google com 60 avaliações\n• 5.000 seguidores engajados no Instagram\n• Lançar programa de mediação pré-judicial com psicólogo parceiro',
+        obj_trimestre: '• Lançar e-book "Guia do Divórcio sem Trauma" e captar 200 e-mails\n• Fechar parceria formal com 3 psicólogos da cidade\n• Publicar 3 posts/semana no Instagram com conteúdo acolhedor\n• Criar pacote de inventário extrajudicial com preço fixo',
+        forcas_forte1: 'Certificação em mediação familiar + parceria exclusiva com psicóloga — único escritório da cidade com atendimento jurídico e emocional integrado.',
+        forcas_forte2: 'Taxa de acordos de 65%, Instagram com 3.200 seguidores engajados e nota 4.9 no Google com 30 avaliações verificadas — forte reputação local.',
+        forcas_fraca1: 'Ticket médio baixo (R$ 3.500 vs média de R$ 5.000) e sem serviço recorrente — fluxo de caixa instável e totalmente dependente de novos casos.',
+        forcas_fraca2: 'Sem blog ou site com SEO ativo — depende exclusivamente do Instagram e indicações, sem captação orgânica via Google para casos mais complexos.',
+        matriz_fo1: 'Usar parceria com psicóloga (força) + demanda por famílias recompostas (oportunidade) → lançar "Pacote Família Recomposta" com suporte jurídico e psicológico integrado por R$ 7.000.',
+        matriz_fo2: 'Usar credibilidade do Instagram (força) + crescimento do inventário extrajudicial (oportunidade) → criar pacote de inventário com preço fixo (R$ 10.000) comunicado nas redes.',
+        matriz_fa1: 'Usar certificação em mediação (força) para se diferenciar das plataformas digitais baratas (ameaça) — comunicar que casos com filhos e bens nunca são resolvidos por algoritmos.',
+        matriz_fa2: 'Usar 65% de taxa de acordos (força) para se proteger da concorrência crescente (ameaça) — publicar depoimentos de clientes satisfeitos e resultados reais no Google e Instagram.',
+        matriz_fraqo1: 'Superar fluxo irregular (fraqueza) aproveitando crescimento do inventário (oportunidade) → criar "Pacote Inventário Expresso" com preço fixo para estabilizar receita mensal.',
+        matriz_fraqo2: 'Superar ausência de SEO (fraqueza) para capturar buscas de divórcio no Google (oportunidade) → publicar 2 artigos/mês com palavras-chave "advogado divórcio [cidade]".',
+        obj_lp_bienal: '• Ser a referência em advocacia familiar humanizada no estado\n• Faturar R$ 400.000/ano com atendimento online nacional\n• Lançar plataforma de mediação digital com parceiros\n• Ter equipe com 1 advogado associado e 1 assistente',
+        obj_lp_anual: '• Tornar-se referência em advocacia familiar humanizada na região\n• Lançar programa de mediação pré-judicial com psicólogo parceiro\n• Expandir atendimento online para todo o Brasil com pacote digital\n• Faturar R$ 200.000 no ano com foco em casos consensuais e inventários',
+        obj_lp_t1: '• Atingir 6 leads qualificados/mês via Instagram e indicações\n• Publicar 3 Reels educativos por semana com 500+ visualizações\n• Fechar parceria ativa com 3 psicólogos e 2 mediadores\n• Lançar e-book "Guia do Divórcio sem Trauma" e capturar 200 e-mails',
+        obj_lp_t2: '• Consolidar 15 casos ativos com ticket médio de R$ 4.500\n• Atingir 1.000 seguidores engajados no Instagram\n• Alcançar nota 4,9+ no Google com 30 avaliações verificadas\n• Gerar R$ 13.500/mês de receita e reduzir custo por lead para R$ 175',
+        obj_lp_t3: '• Lançar pacote "Família Recomposta" com psicólogo parceiro (R$ 7.000)\n• Atingir 2.500 seguidores engajados no Instagram\n• Consolidar 12 casos ativos com ticket médio de R$ 4.500\n• Alcançar nota 4.9 no Google com 40 avaliações verificadas',
+        obj_lp_t4: '• Avaliar resultados do ano e estruturar expansão para atendimento online nacional\n• Atingir 15 casos ativos com ticket médio de R$ 4.500 (receita de R$ 13.500/mês)\n• Criar pacote de inventário extrajudicial com preço fixo comunicado no Instagram\n• Lançar newsletter bimestral para base de 200+ e-mails capturados',
+    },
+    empresarial: {
+        mercado_oportunidade1: '15 milhões de PMEs no Brasil sem assessoria jurídica recorrente — um mercado subatendido que busca previsibilidade, preço fixo e linguagem de negócios.',
+        mercado_oportunidade2: 'Reforma Tributária + regulação de IA e LGPD criando demanda massiva por especialistas — maior oportunidade para advogados empresariais nos últimos 50 anos.',
+        mercado_ameaca1: 'Big 4 (consultorias internacionais) oferecendo serviços jurídicos integrados e LegalTechs para contratos simples e due diligence automatizada.',
+        mercado_ameaca2: 'Boutiques jurídicas especializadas crescendo com modelo de assinatura similar — compressão de preços e dificuldade crescente de diferenciação.',
+        obj_visao5: 'Ser o escritório de referência nacional para startups e PMEs, com "Legal as a Service" em plataforma própria, 8 advogados e MRR de R$ 150.000/mês.',
+        obj_1ano: '• 20 clientes de assinatura mensal (MRR R$ 50.000)\n• LinkedIn com 8.000 seguidores qualificados e 5% de engajamento\n• 2 parcerias formais com aceleradoras de startups\n• Plataforma digital de acesso para clientes lançada',
+        obj_trimestre: '• Webinar gratuito sobre Reforma Tributária para PMEs (meta: 200 participantes)\n• Fechar 3 novos contratos de assinatura mensal\n• Publicar guia "10 Riscos Jurídicos para Startups"\n• Atingir 5.000 seguidores qualificados no LinkedIn',
+        forcas_forte1: 'Expertise em contratos B2B, M&A e LGPD + 35 clientes recorrentes com MRR consolidado e modelo de assinatura com preço fixo único na região.',
+        forcas_forte2: 'LinkedIn com 4.500 seguidores qualificados e 5 anos de experiência no ecossistema de startups — autoridade reconhecida e referência no nicho.',
+        forcas_fraca1: '3 clientes representam 45% da receita — alto risco de concentração que pode comprometer o caixa em caso de cancelamento de um grande contrato.',
+        forcas_fraca2: 'Onboarding ainda manual e demorado (7 dias úteis) — experiência abaixo das expectativas de startups que valorizam velocidade e automação de processos.',
+        matriz_fo1: 'Usar expertise na Reforma Tributária (força) + demanda massiva do mercado (oportunidade) → lançar "Pacote Reestruturação 2025" para os 35 clientes existentes e gerar upsell imediato.',
+        matriz_fo2: 'Usar LinkedIn com 4.500 seguidores (força) + 15M de PMEs sem assessoria (oportunidade) → campanha de LinkedIn Ads segmentada por cargo (CEO, CFO) com webinar como isca digital.',
+        matriz_fa1: 'Usar expertise em startups (força) para se blindar contra Big 4 (ameaça) — comunicar que grandes consultorias não dominam o "startup legal stack" e publicar cases comprovando isso.',
+        matriz_fa2: 'Usar modelo de assinatura com preço fixo (força) para contra-atacar boutiques concorrentes (ameaça) — adicionar relatório mensal e reunião trimestral inclusos para elevar valor percebido.',
+        matriz_fraqo1: 'Superar concentração de receita (fraqueza) aproveitando o mercado de PMEs (oportunidade) → meta de diversificar para 50+ clientes em 12 meses, reduzindo os 3 maiores para no máximo 20% da receita.',
+        matriz_fraqo2: 'Superar onboarding lento (fraqueza) para capturar startups que exigem agilidade (oportunidade) → implementar assinatura eletrônica + portal do cliente: reduzir de 7 dias para 1 dia.',
+        obj_lp_bienal: '• Tornar-se o escritório de referência para startups e PMEs no país\n• Atingir R$ 60.000/mês em receita recorrente com 24 clientes de pacote\n• Lançar "Legal as a Service" com plataforma própria\n• Contratar 2 advogados associados e 1 gerente de operações',
+        obj_lp_anual: '• Tornar-se o advogado empresarial de referência para startups e PMEs da região\n• Atingir R$ 30.000/mês em receita recorrente com 12 clientes de pacote\n• Lançar programa "Startup Legal Kit" com contratos e compliance incluídos\n• Faturar R$ 360.000 no ano com 70% de receita previsível via assinaturas',
+        obj_lp_t1: '• Fechar 2 contratos de assessoria jurídica recorrente (R$ 2.500/mês)\n• Publicar guia: "10 Riscos Jurídicos para Startups" e gerar 150 leads\n• Participar de 2 eventos do ecossistema de startups como palestrante\n• Implementar onboarding digital com contrato e assinatura eletrônica',
+        obj_lp_t2: '• Atingir 8 clientes em pacote mensal recorrente (R$ 20.000 MRR)\n• Consolidar presença no LinkedIn com 2.000 seguidores e 5% de engajamento\n• Fechar parcerias com 3 contadores e 2 aceleradoras como fonte de indicação\n• Publicar 2 cases de sucesso com autorização dos clientes',
+        obj_lp_t3: '• Lançar webinar sobre Reforma Tributária para PMEs (meta: 200 participantes)\n• Atingir 10 clientes em pacote mensal recorrente (MRR R$ 25.000)\n• Publicar 2 cases de sucesso com autorização e métricas reais\n• Consolidar parceria formal com 3 contadores e 2 aceleradoras',
+        obj_lp_t4: '• Avaliar resultados do ano; publicar relatório "Riscos Jurídicos para PMEs 2026"\n• Atingir 12 clientes em pacote mensal recorrente (MRR R$ 30.000)\n• Reduzir concentração de receita: nenhum cliente acima de 25% do faturamento\n• Planejar lançamento do "Startup Legal Kit" e plataforma digital para o próximo ano',
+    }
+};
+
+function saveDiag() {
+    const data = {};
+    document.querySelectorAll('#diagnostico-panel [data-diag]').forEach(el => {
+        data[el.dataset.diag] = el.value;
+    });
+    localStorage.setItem(DIAG_KEY, JSON.stringify(data));
+    showToast('Diagnóstico Estratégico salvo!');
+}
+
+function loadDiagData() {
+    const raw = localStorage.getItem(DIAG_KEY);
+    if (!raw) return;
+    try {
+        const data = JSON.parse(raw);
+        document.querySelectorAll('#diagnostico-panel [data-diag]').forEach(el => {
+            if (data[el.dataset.diag] !== undefined) el.value = data[el.dataset.diag];
+        });
+    } catch(e) {}
+}
+
+function clearDiag() {
+    if (!confirm('Limpar todos os campos do Diagnóstico Estratégico?')) return;
+    document.querySelectorAll('#diagnostico-panel [data-diag]').forEach(el => el.value = '');
+    localStorage.removeItem(DIAG_KEY);
+    showToast('Diagnóstico limpo.', 'fa-trash');
+}
+
+function loadDiagExample(key) {
+    if (!key) return;
+    const ex = DIAG_EXAMPLES[key];
+    if (!ex) return;
+    Object.entries(ex).forEach(([field, val]) => {
+        const el = document.querySelector(`#diagnostico-panel [data-diag="${field}"]`);
+        if (el) el.value = val;
+    });
+    showToast('Exemplo carregado!', 'fa-magic');
+}
+
+// Examples tabs
+document.querySelectorAll('.diag-ex-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.diag-ex-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.diag-ex-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.ex).classList.add('active');
+    });
+});
+
+document.getElementById('btn-save-diag').addEventListener('click', saveDiag);
+document.getElementById('btn-clear-diag').addEventListener('click', clearDiag);
+document.getElementById('btn-print-diag').addEventListener('click', () => window.print());
+document.getElementById('diag-example').addEventListener('change', e => loadDiagExample(e.target.value));
+
+loadDiagData();
+
+
 // ─── KANBAN ──────────────────────────────────────────────────────────────────
 const KANBAN_KEY = 'mktjur_kanban';
 
 const DEFAULT_BOARDS = {
+    analise: {
+        name: 'Análise',
+        columns: {
+            todo: [
+                { id: 1, title: 'Analise Macroambiente (PESTEL)', desc: 'Mapeie os fatores políticos, econômicos, sociais, tecnológicos, ambientais e legais que impactam seu escritório.', priority: 'alta', date: today() },
+                { id: 2, title: 'Mapei de 3 a 5 concorrentes / escritórios de referência', desc: 'Identifique concorrentes diretos e escritórios de referência, analise posicionamento, canais e diferenciais.', priority: 'alta', date: today() },
+                { id: 3, title: 'Monte a SWOT do seu escritório', desc: 'Liste Forças, Fraquezas, Oportunidades e Ameaças com base nos dados coletados.', priority: 'media', date: today() },
+            ],
+            doing: [],
+            review: []
+        }
+    },
     planejamento: {
         name: 'Planejamento',
         columns: {
             todo: [
-                { id: 1, title: 'Definir objetivos de marketing e metas claras', desc: 'Ex.: aumentar leads qualificados, reforçar posicionamento, lançar novo produto.', priority: 'media', date: today() },
-                { id: 2, title: 'Revisar Canvas de Marketing e persona', desc: 'Validar proposta de valor, público-alvo e insights da análise de mercado.', priority: 'media', date: today() },
-                { id: 3, title: 'Priorizar estratégias principais', desc: 'Escolher quais canais, campanhas e ações terão foco nas próximas semanas.', priority: 'alta', date: today() },
-                { id: 4, title: 'Mapear concorrentes e diferenciais', desc: 'Listar concorrentes locais, analisar posicionamento e identificar lacunas.', priority: 'baixa', date: today() },
+                { id: 10, title: 'Público-Alvo', desc: 'Defina o perfil do cliente ideal (persona): demográfico, comportamental, dores e objetivos.', priority: 'alta', date: today() },
+                { id: 11, title: 'Branding', desc: 'Construa a identidade visual e verbal do escritório: nome, logo, tom de voz e posicionamento.', priority: 'media', date: today() },
+                { id: 12, title: 'Mix de Marketing', desc: 'Defina produto/serviço, preço, praça (canais de distribuição) e promoção (comunicação).', priority: 'media', date: today() },
             ],
             doing: [],
             review: []
@@ -237,10 +385,18 @@ const DEFAULT_BOARDS = {
         name: 'Execução',
         columns: {
             todo: [
-                { id: 10, title: 'Publicar 3 posts no LinkedIn esta semana', desc: 'Temas: caso prático (sem identificar), dica jurídica, bastidores do escritório.', priority: 'alta', date: today() },
-                { id: 11, title: 'Gravar vídeo curto para Reels/Stories', desc: 'Responder uma dúvida frequente dos clientes em até 60 segundos.', priority: 'media', date: today() },
-                { id: 12, title: 'Atualizar Google Meu Negócio', desc: 'Adicionar fotos recentes, responder avaliações e atualizar horários.', priority: 'baixa', date: today() },
+                { id: 20, title: 'Calendário de Conteúdo', desc: 'Planeje e organize os conteúdos a serem publicados nos canais digitais do escritório.', priority: 'alta', date: today() },
+                { id: 21, title: 'Campanhas Pagas', desc: 'Configure e gerencie anúncios pagos (Google Ads, Meta Ads etc.) respeitando as normas da OAB.', priority: 'media', date: today() },
+                { id: 22, title: 'Campanhas Orgânicas', desc: 'Produza e distribua conteúdo orgânico: posts, artigos, vídeos e e-mail marketing.', priority: 'media', date: today() },
             ],
+            doing: [],
+            review: []
+        }
+    },
+    outro: {
+        name: 'Outro',
+        columns: {
+            todo: [],
             doing: [],
             review: []
         }
@@ -248,7 +404,7 @@ const DEFAULT_BOARDS = {
 };
 
 let kanbanData = null;
-let currentBoard = 'planejamento';
+let currentBoard = 'analise';
 let nextCardId = 100;
 let addingToCol = null;
 
@@ -333,18 +489,81 @@ function createCardEl(card, col) {
                 <span class="kanban-card-date">Criada: ${card.date}</span>
             </div>
             <div class="kanban-card-actions">
+                <button class="btn-card-action btn-card-edit" onclick="openEditModal(${card.id},'${col}')" title="Editar"><i class="fas fa-pencil-alt"></i></button>
                 <button class="btn-card-action btn-card-del" onclick="deleteCard(${card.id},'${col}')" title="Remover"><i class="fas fa-trash"></i></button>
             </div>
         </div>`;
 
-    // drag events
+    // Click anywhere on the card (except action buttons) to edit
+    div.addEventListener('click', e => {
+        if (e.target.closest('.kanban-card-actions')) return;
+        openEditModal(card.id, col);
+    });
+
+    // Drag start / end
     div.addEventListener('dragstart', e => {
         e.dataTransfer.setData('cardId', card.id);
         e.dataTransfer.setData('fromCol', col);
         div.classList.add('dragging');
     });
-    div.addEventListener('dragend', () => div.classList.remove('dragging'));
+    div.addEventListener('dragend', () => {
+        div.classList.remove('dragging');
+        clearDragIndicators();
+    });
+
+    // Per-card dragover — show insert indicator above or below the card
+    div.addEventListener('dragover', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        const rect = div.getBoundingClientRect();
+        clearDragIndicators();
+        if (e.clientY < rect.top + rect.height / 2) {
+            div.classList.add('drag-indicator-top');
+        } else {
+            div.classList.add('drag-indicator-bottom');
+        }
+    });
+
+    div.addEventListener('dragleave', e => {
+        if (!div.contains(e.relatedTarget)) {
+            div.classList.remove('drag-indicator-top', 'drag-indicator-bottom');
+        }
+    });
+
+    // Per-card drop — reorder within column or move across columns
+    div.addEventListener('drop', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = parseInt(e.dataTransfer.getData('cardId'));
+        const fromCol = e.dataTransfer.getData('fromCol');
+        const isAbove = div.classList.contains('drag-indicator-top');
+        clearDragIndicators();
+
+        if (id === card.id) return;
+
+        const board = kanbanData[currentBoard];
+        const srcIdx = board.columns[fromCol].findIndex(c => c.id === id);
+        if (srcIdx === -1) return;
+        const [movedCard] = board.columns[fromCol].splice(srcIdx, 1);
+
+        const tgtArr = board.columns[col];
+        let tgtIdx = tgtArr.findIndex(c => c.id === card.id);
+        if (tgtIdx === -1) tgtIdx = tgtArr.length;
+        if (!isAbove) tgtIdx++;
+        tgtArr.splice(tgtIdx, 0, movedCard);
+
+        saveKanban();
+        renderKanban();
+        showToast(fromCol !== col ? 'Tarefa movida!' : 'Tarefa reordenada!', fromCol !== col ? 'fa-arrows-alt' : 'fa-sort');
+    });
+
     return div;
+}
+
+function clearDragIndicators() {
+    document.querySelectorAll('.drag-indicator-top, .drag-indicator-bottom').forEach(el => {
+        el.classList.remove('drag-indicator-top', 'drag-indicator-bottom');
+    });
 }
 
 function deleteCard(id, col) {
@@ -354,17 +573,22 @@ function deleteCard(id, col) {
     renderKanban();
 }
 
-// Drop zones
+// Drop zones (handle drops on empty column space; per-card drops are handled above)
 ['todo', 'doing', 'review'].forEach(col => {
     const container = document.getElementById(`col-${col}`);
-    container.addEventListener('dragover', e => { e.preventDefault(); container.style.background = '#e0e7ff'; });
-    container.addEventListener('dragleave', () => { container.style.background = ''; });
+    container.addEventListener('dragover', e => {
+        e.preventDefault();
+        if (!e.target.closest('.kanban-card')) container.style.background = '#e0e7ff';
+    });
+    container.addEventListener('dragleave', e => {
+        if (!container.contains(e.relatedTarget)) container.style.background = '';
+    });
     container.addEventListener('drop', e => {
         e.preventDefault();
         container.style.background = '';
+        clearDragIndicators();
         const id = parseInt(e.dataTransfer.getData('cardId'));
         const fromCol = e.dataTransfer.getData('fromCol');
-        if (fromCol === col) return;
         const board = kanbanData[currentBoard];
         const cardIdx = board.columns[fromCol].findIndex(c => c.id === id);
         if (cardIdx === -1) return;
@@ -372,7 +596,7 @@ function deleteCard(id, col) {
         board.columns[col].push(card);
         saveKanban();
         renderKanban();
-        showToast('Tarefa movida!', 'fa-arrows-alt');
+        showToast(fromCol !== col ? 'Tarefa movida!' : 'Tarefa reordenada!', 'fa-arrows-alt');
     });
 });
 
@@ -443,11 +667,53 @@ document.getElementById('btn-delete-board').addEventListener('click', () => {
 document.getElementById('btn-reset-boards').addEventListener('click', () => {
     if (!confirm('Resetar todos os quadros para o padrão?')) return;
     kanbanData = JSON.parse(JSON.stringify(DEFAULT_BOARDS));
-    currentBoard = 'planejamento';
+    currentBoard = 'analise';
     saveKanban();
     rebuildBoardSelect();
     renderKanban();
     showToast('Quadros resetados.', 'fa-undo');
+});
+
+// Edit task modal
+let editingCardId = null;
+let editingCardCol = null;
+
+function openEditModal(id, col) {
+    const board = kanbanData[currentBoard];
+    const card = board.columns[col].find(c => c.id === id);
+    if (!card) return;
+    editingCardId = id;
+    editingCardCol = col;
+    document.getElementById('edit-task-title').value = card.title;
+    document.getElementById('edit-task-desc').value = card.desc || '';
+    document.getElementById('edit-task-priority').value = card.priority || 'media';
+    document.getElementById('edit-task-modal').classList.add('open');
+    document.getElementById('edit-task-title').focus();
+}
+
+document.getElementById('btn-edit-cancel').addEventListener('click', () => {
+    document.getElementById('edit-task-modal').classList.remove('open');
+});
+
+document.getElementById('btn-edit-confirm').addEventListener('click', () => {
+    const title = document.getElementById('edit-task-title').value.trim();
+    if (!title) { document.getElementById('edit-task-title').focus(); return; }
+    const desc = document.getElementById('edit-task-desc').value.trim();
+    const priority = document.getElementById('edit-task-priority').value;
+    const board = kanbanData[currentBoard];
+    const card = board.columns[editingCardCol].find(c => c.id === editingCardId);
+    if (!card) return;
+    card.title = title;
+    card.desc = desc;
+    card.priority = priority;
+    saveKanban();
+    renderKanban();
+    document.getElementById('edit-task-modal').classList.remove('open');
+    showToast('Tarefa atualizada!', 'fa-check');
+});
+
+document.getElementById('edit-task-modal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
 });
 
 loadKanban();
@@ -597,3 +863,535 @@ loadFunil();
 window.deleteCard = deleteCard;
 window.moveProspect = moveProspect;
 window.removeProspect = removeProspect;
+
+
+// ─── ANÁLISE PESTEL ──────────────────────────────────────────────────────────
+const PESTEL_KEY = 'mktjur_pestel';
+
+const PESTEL_EXAMPLES = {
+    trabalhista: {
+        p_oport: 'Reforma trabalhista gera demanda por reinterpretação de contratos e consultoria preventiva\nNovas normas sobre teletrabalho e home office abrem novo mercado\nDesjudicialização incentivando mediação e acordos extrajudiciais',
+        p_risco: 'Mudanças políticas podem reduzir proteções trabalhistas e diminuir litígios\nRestrições do Código de Ética da OAB à publicidade ativa limitam canais de captação',
+        p_acao: 'Monitorar projetos de lei trabalhistas e publicar análises semanais para se posicionar como referência\nParticipar de consultas públicas e comissões da OAB na área trabalhista',
+        e_oport: 'Crise econômica aumenta demissões e processos trabalhistas em 30%+\nPMEs sem assessoria preventiva estruturada são um mercado subatendido\nCrescimento do empreendedorismo individual gerando nova demanda por orientação',
+        e_risco: 'Recessão reduz capacidade de pagamento dos clientes pessoa física\nAumento de advogados trabalhistas baixando preços no mercado local',
+        e_acao: 'Criar pacote de assessoria preventiva mensal para PMEs a partir de R$ 800/mês\nOferir consulta inicial de diagnóstico gratuita (45 min) para conversão de leads',
+        s_oport: 'Maior consciência sobre direitos trabalhistas após cobertura midiática\nCrescimento de reclamações por home office e assédio no trabalho\nClasse trabalhadora mais informada e disposta a buscar orientação jurídica',
+        s_risco: 'Plataformas de autoatendimento jurídico para casos simples\nDesconfiança cultural em relação ao custo de advogados',
+        s_acao: 'Investir em conteúdo educativo para construir confiança e autoridade junto a trabalhadores e empresários\nPublicar casos reais (sem identificação) para demonstrar resultados concretos',
+        t_oport: 'IA jurídica reduzindo tempo em pesquisas de jurisprudência em 60%\nPlataformas digitais permitindo atendimento nacional sem escritório físico\nMarketing de conteúdo no LinkedIn com alto retorno orgânico para B2B',
+        t_risco: 'LegalTechs com serviços automatizados competindo por cálculos de rescisão e FGTS\nVulnerabilidade de dados de clientes com processos sensíveis',
+        t_acao: 'Adotar software jurídico com IA para ganhar eficiência e focar no trabalho estratégico\nImplementar contrato de confidencialidade digital e LGPD compliance',
+        ec_oport: 'Escritório 100% digital reduzindo custos fixos e atraindo empresas ESG\nClientes valorizando fornecedores com política de sustentabilidade',
+        ec_risco: 'Baixo impacto direto no segmento trabalhista — risco marginal',
+        ec_acao: 'Comunicar escritório "paperless" como diferencial de modernidade e redução de custos',
+        l_oport: 'Provimento 205/2021 permite marketing de conteúdo, LinkedIn e site profissional\nNormas trabalhistas em constante mudança criam demanda recorrente por atualização',
+        l_risco: 'Vedação a publicidade ativa, captação mercantil e uso de títulos não reconhecidos\nRisco de processo disciplinar por marketing irregular ou captação via tabela de honorários',
+        l_acao: 'Manter-se atualizado com o Código de Ética da OAB e usar apenas canais permitidos\nCriar política interna de marketing jurídico com checklist de conformidade',
+        resumo_oport: 'A reforma trabalhista e o aumento de demissões geram alta demanda por consultoria preventiva para PMEs — momento ideal para lançar pacote de assessoria mensal recorrente.',
+        resumo_risco: 'As restrições da OAB à publicidade limitam canais de aquisição. Mitigar com foco em indicação estruturada (contadores, RH) e marketing de conteúdo dentro das normas do Provimento 205/2021.',
+        resumo_acao: 'Lançar blog jurídico com 2 artigos/semana sobre temas trabalhistas, iniciar parceria formal com 3 escritórios de contabilidade e criar pacote preventivo para PMEs no próximo trimestre.',
+    },
+    familia: {
+        p_oport: 'Novas normas sobre guarda compartilhada e alimentos ampliam serviços oferecidos\nInventário extrajudicial consolidado como alternativa rápida ao processo judicial\nPolítica nacional de desjudicialização incentivando mediação familiar',
+        p_risco: 'Agenda política pode atrasar reformas no Código Civil\nOAB restringe captação ativa de clientes em momento de vulnerabilidade emocional',
+        p_acao: 'Monitorar projetos de lei sobre família e publicar análises antes da aprovação para se posicionar\nFocar em marketing de conteúdo acolhedor e educativo, não em captação direta',
+        e_oport: 'Crescimento do número de divórcios em períodos de crise financeira (+15% em recessão)\nMercado de inventários extrajudiciais com alto ticket médio (R$ 8.000–15.000)\nExpansão do atendimento online eliminando barreira geográfica',
+        e_risco: 'Clientes em situação de vulnerabilidade financeira durante separação ou inventário\nConcorrência de escritórios generalistas que cobram menos',
+        e_acao: 'Oferecer consulta inicial acessível (R$ 200) e parcelamento em casos consensuais\nCriar pacote de inventário extrajudicial com preço fixo e transparente',
+        s_oport: 'Aumento de famílias recompostas e novos arranjos familiares gerando demanda\nMaior disposição para buscar mediação como alternativa ao litígio\nConscientização sobre impacto do divórcio litigioso nas crianças',
+        s_risco: 'Estigma social ainda dificulta busca de ajuda jurídica em famílias tradicionais\nClientes vulneráveis susceptíveis a promessas falsas de concorrentes',
+        s_acao: 'Comunicar serviços de forma acolhedora, sigilosa e sem julgamento em todo o marketing\nParceria ativa com psicólogos e terapeutas como fonte de indicação qualificada',
+        t_oport: 'Mediação online reduzindo custo e tempo dos processos em 40%\nAssinatura digital de acordos agilizando inventários extrajudiciais\nConteúdo no Instagram com alto alcance orgânico entre mulheres 35–55 anos',
+        t_risco: 'Plataformas de divórcio online por R$ 800 atraindo casos simples\nRisco de vazamento de dados sensíveis de famílias',
+        t_acao: 'Diferenciar pelo atendimento online humanizado vs plataformas automatizadas\nImplementar política LGPD rigorosa e comunicá-la como garantia de sigilo',
+        ec_oport: 'Escritório digital elimina deslocamento, facilitando atendimento para cidades do interior\nConscientização ambiental alinhada com o público-alvo progressista',
+        ec_risco: 'Baixo impacto direto no segmento de família',
+        ec_acao: 'Expandir atendimento online para outras regiões do estado e comunicar como conveniência',
+        l_oport: 'Provimento 205/2021 permite Instagram com conteúdo educativo sobre família\nInventário extrajudicial regulamentado e crescendo como área de alta demanda',
+        l_risco: 'Restrições éticas à captação em momentos de vulnerabilidade (luto, separação)\nVedação ao sensacionalismo e à exploração da situação emocional do cliente',
+        l_acao: 'Focar em conteúdo educativo e indicações de psicólogos, evitando qualquer apelo emocional mercantil',
+        resumo_oport: 'O crescimento de divórcios em períodos de crise e o mercado de inventários extrajudiciais criam alta demanda — oportunidade de criar pacotes com preço fixo e atendimento online para todo o Brasil.',
+        resumo_risco: 'As restrições éticas à captação em momentos de vulnerabilidade exigem atenção. Mitigar com marketing de conteúdo educativo, parcerias com psicólogos e foco em posicionamento de longo prazo.',
+        resumo_acao: 'Publicar 3 Reels educativos/semana no Instagram, fechar parceria com 3 psicólogos e lançar e-book "Guia do Divórcio sem Trauma" para captar 200 leads qualificados.',
+    },
+    empresarial: {
+        p_oport: 'Reforma tributária gerando demanda massiva por reestruturação societária\nReforma administrativa abrindo oportunidades de compliance para empresas públicas e privadas\nNovas regulações de IA e dados criando nova área de especialização jurídica',
+        p_risco: 'Instabilidade política aumentando custo de capital para clientes\nMudanças regulatórias frequentes dificultando planejamento dos clientes',
+        p_acao: 'Tornar-se referência na reforma tributária com webinars, guias e análises antecipadas\nPublicar análise rápida a cada mudança regulatória relevante para o setor',
+        e_oport: 'Ecossistema de startups em crescimento precisando de suporte jurídico inicial\nEmpresários buscando reduzir carga tributária em tempos de crise\nCrescimento de M&A no setor de tecnologia e saúde',
+        e_risco: 'Grandes escritórios com estrutura maior disputando os mesmos clientes\nCrise econômica aumentando inadimplência de clientes PME',
+        e_acao: 'Especializar em startups e contratos de tecnologia como nicho não disputado pelos grandes escritórios\nExigir sinal de 40% e usar contrato robusto de honorários de êxito',
+        s_oport: 'Empresários buscando clareza jurídica sem juridiquês e com foco em negócios\nCrescimento da cultura de compliance entre PMEs e startups\nFounders jovens mais abertos a modelos de assinatura mensal',
+        s_risco: 'Descrença inicial de founders em advogados percebidos como caros\nConfusão entre serviços do advogado empresarial e do contador',
+        s_acao: 'Comunicar valor em linguagem de negócios (ROI, risco financeiro, proteção patrimonial)\nCriar conteúdo explicando claramente o papel do advogado empresarial vs contador',
+        t_oport: 'LGPD e regulação de IA criando nova demanda especializada de alto valor\nPlataformas de assinatura digital reduzindo custo operacional de contratos\nConteúdo no LinkedIn com alto alcance entre founders e CFOs',
+        t_risco: 'Contratos gerados por IA reduzindo demanda por trabalho jurídico simples\nLegalTechs automatizando due diligence básica',
+        t_acao: 'Adotar IA internamente para ganhar eficiência e focar em estratégia jurídica e regulatória\nCriar plataforma cliente com acesso digital 24/7 a documentos como diferencial',
+        ec_oport: 'Empresas exigindo ESG de fornecedores, incluindo escritórios jurídicos\nIncentivos fiscais para empresas sustentáveis gerando oportunidades de consultoria',
+        ec_risco: 'Clientes industriais com passivo ambiental complexo aumentando risco de responsabilidade',
+        ec_acao: 'Oferecer due diligence ESG e consultoria de incentivos fiscais verdes como serviço complementar',
+        l_oport: 'Proteção de dados e propriedade intelectual crescendo como áreas críticas e de alto valor\nProvimento 205/2021 permite ampla presença no LinkedIn com conteúdo educativo',
+        l_risco: 'Restrições de confidencialidade limitando uso público de cases de sucesso\nRisco de responsabilidade civil por planejamento mal estruturado',
+        l_acao: 'Usar depoimentos anônimos, métricas agregadas e cases com autorização escrita\nManter seguro de responsabilidade profissional e documentar todos os pareceres',
+        resumo_oport: 'A reforma tributária é a maior oportunidade do século para advogados empresariais — tornar-se referência com webinars, guias e análises antecipadas pode gerar dezenas de leads qualificados em 90 dias.',
+        resumo_risco: 'A concorrência com grandes escritórios e LegalTechs exige diferenciação clara. Mitigar com especialização em startups e PMEs, linguagem de negócios e modelo de assinatura mensal acessível.',
+        resumo_acao: 'Publicar guia sobre Reforma Tributária 2025, lançar webinar gratuito para startups e fechar 2 contratos de assessoria mensal nos próximos 60 dias.',
+    },
+    tributario: {
+        p_oport: 'Reforma tributária é a maior mudança em 50 anos — maior oportunidade do século para tributaristas\nCriação do IBS, CBS e IS gera demanda massiva por restruturação societária\nTransição de 7 anos criando consultoria recorrente de longo prazo',
+        p_risco: 'Instabilidade política pode alterar regras da transição e criar incerteza para planejamento\nNovas regulações constantemente alterando o que já foi planejado',
+        p_acao: 'Tornar-se referência na reforma tributária com webinars mensais, newsletters e análises semanais\nPublicar calculadoras e simuladores de impacto da reforma para gerar leads',
+        e_oport: 'Empresas buscando reduzir carga tributária em tempos de crise\nTese de "recuperação de créditos" gerando alto potencial de honorários de êxito\nPlanejamento sucessório com foco tributário crescendo entre empresários',
+        e_risco: 'Inadimplência de clientes PME em dificuldade financeira\nConcorrência de escritórios contábeis oferecendo serviços jurídicos de forma irregular',
+        e_acao: 'Exigir sinal de 40% em casos de recuperação de crédito\nDiferenciar claramente advogado tributário de contador em todo o marketing',
+        s_oport: 'PMEs sem contador especializado precisando urgentemente de orientação tributária\nEmpresários buscando planejamento sucessório para proteger patrimônio familiar\nCrescimento da consciência sobre planejamento tributário como necessidade, não luxo',
+        s_risco: 'Confusão do mercado entre advogado tributário e contador\nPercepção de que planejamento tributário é exclusivo para grandes empresas',
+        s_acao: 'Criar conteúdo educativo mostrando casos de PMEs economizando 20–30% em tributos com planejamento\nComunicar o ROI concreto do serviço em todos os materiais de marketing',
+        t_oport: 'Softwares de planejamento tributário e simuladores como ferramenta diferencial competitiva\nIA para análise de créditos fiscais reduzindo tempo de trabalho e aumentando precisão\nConteúdo sobre reforma tributária no LinkedIn com altíssimo alcance orgânico',
+        t_risco: 'Soluções de IA para cálculo tributário básico reduzindo demanda por trabalho simples\nSoftwares contábeis com funcionalidades jurídicas invadindo o mercado',
+        t_acao: 'Usar tecnologia internamente como vantagem operacional e focar em planejamento estratégico complexo\nCriar calculadoras e ferramentas digitais para gerar leads e demonstrar expertise',
+        ec_oport: 'Incentivos fiscais para empresas sustentáveis (IPTU verde, ISS reduzido) gerando nova especialidade\nEmpresas buscando créditos tributários em projetos de energia renovável',
+        ec_risco: 'Baixo impacto direto no segmento tributário principal',
+        ec_acao: 'Desenvolver expertise em incentivos fiscais verdes como nicho complementar de alto crescimento',
+        l_oport: 'Constantes mudanças na legislação tributária criam demanda contínua e recorrente\nProvimento 205/2021 permite publicação de análises técnicas e artigos no LinkedIn',
+        l_risco: 'Risco de responsabilidade civil por planejamento mal estruturado ou abusivo\nFronteiras tênues entre planejamento tributário legítimo e evasão fiscal',
+        l_acao: 'Manter seguro de responsabilidade profissional e documentar rigorosamente todos os pareceres\nEstabelecer critérios claros de conformidade para planejamentos ofertados',
+        resumo_oport: 'A reforma tributária representa a maior oportunidade da geração — tornar-se referência agora, antes da implementação plena, pode garantir uma carteira de clientes recorrentes por 7+ anos.',
+        resumo_risco: 'O risco de responsabilidade civil em planejamentos agressivos é real. Mitigar com documentação rigorosa, pareceres formais e seguro de responsabilidade profissional atualizado.',
+        resumo_acao: 'Lançar webinar gratuito sobre Reforma Tributária para PMEs, publicar análise semanal no LinkedIn e criar calculadora de impacto da reforma para gerar 100+ leads qualificados em 60 dias.',
+    }
+};
+
+function savePestel() {
+    const data = {};
+    document.querySelectorAll('#pestel-panel [data-pestel]').forEach(el => {
+        data[el.dataset.pestel] = el.value;
+    });
+    data.__area = document.getElementById('pestel-area').value;
+    data.__size = document.getElementById('pestel-size').value;
+    data.__scope = document.getElementById('pestel-scope').value;
+    localStorage.setItem(PESTEL_KEY, JSON.stringify(data));
+    showToast('Análise PESTEL salva!');
+}
+
+function loadPestelData() {
+    const raw = localStorage.getItem(PESTEL_KEY);
+    if (!raw) return;
+    try {
+        const data = JSON.parse(raw);
+        document.querySelectorAll('#pestel-panel [data-pestel]').forEach(el => {
+            if (data[el.dataset.pestel] !== undefined) el.value = data[el.dataset.pestel];
+        });
+        if (data.__area) document.getElementById('pestel-area').value = data.__area;
+        if (data.__size) document.getElementById('pestel-size').value = data.__size;
+        if (data.__scope) document.getElementById('pestel-scope').value = data.__scope;
+    } catch(e) {}
+}
+
+function clearPestel() {
+    if (!confirm('Limpar todos os campos da análise PESTEL?')) return;
+    document.querySelectorAll('#pestel-panel [data-pestel]').forEach(el => el.value = '');
+    document.getElementById('pestel-area').value = '';
+    document.getElementById('pestel-size').value = '';
+    document.getElementById('pestel-scope').value = '';
+    localStorage.removeItem(PESTEL_KEY);
+    showToast('Análise PESTEL limpa.', 'fa-trash');
+}
+
+function loadPestelExample() {
+    const area = document.getElementById('pestel-area').value;
+    if (!area) { showToast('Selecione a área de atuação primeiro.', 'fa-exclamation-triangle'); return; }
+    const ex = PESTEL_EXAMPLES[area];
+    if (!ex) { showToast('Exemplo não disponível para esta área.', 'fa-info-circle'); return; }
+    Object.entries(ex).forEach(([key, val]) => {
+        const el = document.querySelector(`#pestel-panel [data-pestel="${key}"]`);
+        if (el) el.value = val;
+    });
+    showToast('Exemplo carregado!', 'fa-magic');
+}
+
+// PESTEL examples tabs
+document.querySelectorAll('.pestel-ex-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.pestel-ex-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.pestel-ex-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(`pestel-ex-${tab.dataset.ex}`).classList.add('active');
+    });
+});
+
+document.getElementById('btn-save-pestel').addEventListener('click', savePestel);
+document.getElementById('btn-clear-pestel').addEventListener('click', clearPestel);
+document.getElementById('btn-print-pestel').addEventListener('click', () => window.print());
+document.getElementById('btn-load-pestel-example').addEventListener('click', loadPestelExample);
+
+loadPestelData();
+
+
+// ─── ANÁLISE SWOT ─────────────────────────────────────────────────────────────
+const SWOT_KEY = 'mktjur_swot';
+
+const SWOT_EXAMPLES = {
+    trabalhista: {
+        s_conhecimento: 'Especialização certificada em Direito do Trabalho\n10 anos de experiência em contencioso trabalhista complexo\nPalestrante reconhecido em eventos de RH e contabilidade',
+        s_reputacao: 'Nota 4.9 no Google com 45 avaliações verificadas\nRede sólida de 8 contadores que indicam regularmente\nTaxa de sucesso de 78% nos casos contenciosos',
+        s_processos: 'Atendimento online para todo o Brasil\nRetorno garantido em 24 horas úteis\nCRM estruturado para gestão e follow-up de casos',
+        w_capacidade: 'Escritório solo sem equipe de apoio\nTempo limitado para produção de conteúdo (máx. 3h/semana)\nSem expertise em marketing digital',
+        w_marketing: 'LinkedIn com menos de 500 seguidores\nPresença no Instagram inexistente\nSem blog ativo com artigos de SEO',
+        w_financeiro: 'Dependência de 2 grandes clientes (60% da receita)\nFluxo de caixa irregular (picos e vales)\nSem budget definido para marketing',
+        o_mercado: 'Crescimento de 30% em reclamações trabalhistas pós-reforma\nPMEs sem assessoria preventiva estruturada — mercado subatendido\nDemanda crescente por consultoria sobre home office e teletrabalho',
+        o_digital: 'LinkedIn com alto alcance orgânico para público empresarial\nMarketing de conteúdo com ROI comprovado na área jurídica\nAtendimento online eliminando barreira geográfica',
+        o_parcerias: 'Parcerias com escritórios de contabilidade como fonte de indicação\nCo-marketing com consultores de RH\nPresença em associações empresariais regionais',
+        t_concorrencia: 'Plataformas jurídicas online com preço 60% menor para casos simples\nSaturação de advogados trabalhistas na região\nEscritórios maiores com time de marketing profissional',
+        t_regulacao: 'Vedação a publicidade ativa e captação mercantil pela OAB\nRisco de processo disciplinar por marketing irregular\nRestrições ao uso de tabelas de honorários em publicidade',
+        t_mercado: 'IA automatizando cálculos de rescisão e documentos simples\nCrise econômica reduzindo tickets médios dos casos\nClientes cada vez mais pesquisando preços online antes de contratar',
+        acao_so: 'Usar especialização trabalhista + crescimento de demanda preventiva → lançar "Pacote Preventivo PME" por R$ 800/mês incluindo: auditoria trabalhista trimestral, revisão de contratos e 2h de consultoria. Meta: 5 clientes recorrentes em 90 dias.',
+        acao_wo: 'Resolver fraqueza no LinkedIn + alto alcance orgânico → contratar designer freelancer por R$ 400/mês para criar 3 peças/semana e publicar consistentemente por 60 dias. Meta: 1.500 seguidores qualificados.',
+        acao_st: 'Usar reputação de especialista (nota 4.9) + ameaça das plataformas low-cost → criar campanha de conteúdo comunicando "o custo real de um processo trabalhista mal defendido". Diferenciação por profundidade técnica.',
+        acao_wt: 'Reduzir dependência dos 2 grandes clientes + ameaça de recessão → implementar programa de indicação formal com desconto de 10% para clientes que indicarem, meta de diversificar para 8+ clientes recorrentes em 6 meses.',
+    },
+    familia: {
+        s_conhecimento: 'Especialização certificada em Direito de Família e Sucessões\nCertificação em mediação familiar pelo CONIMA\nTreinamento em comunicação não-violenta e atendimento humanizado',
+        s_reputacao: 'Parceria formal com psicóloga parceira — diferencial único na região\nNota 4.9 no Google com 30 avaliações verificadas\nTaxa de acordos de 65% (reduz litígio e trauma)',
+        s_processos: 'Atendimento 100% sigiloso e humanizado\nInstagram com 3.200 seguidores engajados\nAtendimento online para clientes de outras cidades',
+        w_capacidade: 'Ticket médio baixo (R$ 3.500 vs média de mercado de R$ 5.000)\nAlta rotatividade de casos (baixa recorrência)\nDificuldade em cobrar honorários de clientes vulneráveis',
+        w_marketing: 'Sem blog ou site com conteúdo de SEO\nAusência de estratégia de e-mail marketing\nDependência excessiva do Instagram como único canal digital',
+        w_financeiro: 'Receita instável — concentração em casos consensuais simples de baixo ticket\nSem serviço recorrente como âncora financeira',
+        o_mercado: 'Inventários extrajudiciais crescendo como serviço de alto ticket (R$ 8.000–15.000)\nCrescimento de famílias recompostas gerando novos tipos de demanda\nMercado de mediação pré-judicial em expansão',
+        o_digital: 'Alta busca orgânica por "advogado divórcio [cidade]" no Google\nInstagram com altíssimo alcance para mulheres 35–55 anos — público-alvo\nAtendimento online eliminando barreira geográfica e de deslocamento',
+        o_parcerias: 'Indicação de psicólogos, terapeutas e assistentes sociais\nParceria com cartórios para inventário extrajudicial\nCo-marketing com grupos de apoio a mulheres',
+        t_concorrencia: 'Plataformas de divórcio online por R$ 800 para casos simples\nCrescimento de advogados especializados em família na região\nEscritórios generalistas cobrando menos e disputando casos consensuais',
+        t_regulacao: 'Restrições éticas à captação ativa em momentos de vulnerabilidade emocional\nVedação ao sensacionalismo e exploração da situação do cliente em marketing',
+        t_mercado: 'Percepção de custo elevado dificulta conversão de leads\nClientes vulneráveis susceptíveis a promessas irrealistas de concorrentes',
+        acao_so: 'Usar parceria com psicóloga + crescimento de famílias recompostas → criar "Pacote Família Recomposta" com suporte jurídico e psicológico integrado. Preço: R$ 6.000. Comunicar como solução completa e humanizada.',
+        acao_wo: 'Resolver falta de SEO + alta busca por "divórcio" no Google → criar blog com 2 artigos/mês otimizados para palavras-chave como "advogado divórcio [cidade]" e "inventário sem briga". Meta: ranking na 1ª página em 90 dias.',
+        acao_st: 'Usar experiência em mediação + ameaça de plataformas baratas → comunicar ativamente que divórcio com filhos e bens compartilhados exige advogado especializado. Criar conteúdo sobre "o custo real do divórcio sem advogado".',
+        acao_wt: 'Aumentar ticket médio + reduzir instabilidade financeira → incluir inventário extrajudicial no portfólio principal e criar meta de fechar 2 casos/mês com ticket médio de R$ 10.000.',
+    },
+    empresarial: {
+        s_conhecimento: 'Equipe especializada em contratos B2B, M&A e LGPD\nLLM em Direito Empresarial e Contratos\nConhecimento profundo do ecossistema de startups e fintechs',
+        s_reputacao: 'Carteira de 35 clientes recorrentes com MRR consolidado\nPresença forte em eventos e aceleradoras do ecossistema\nLinkedIn com 4.500 seguidores qualificados',
+        s_processos: 'Modelo de assinatura mensal com preço fixo e previsível\nPlataforma digital de assinatura e gestão de documentos\nOnboarding estruturado com contrato e checklist digital',
+        w_capacidade: 'Alta dependência de 3 clientes-chave representando 45% da receita\nProcesso de onboarding ainda manual e demorado\nSem área de contencioso — terceiriza toda a litigância',
+        w_marketing: 'Blog com publicações irregulares (1–2 posts/mês)\nAusência de estratégia de remarketing e nutrição de leads\nSem case studies publicados com métricas de resultado',
+        w_financeiro: 'Custo operacional alto em relação a escritórios menores\nModelo de precificação complexo dificulta comparação e conversão',
+        o_mercado: 'Reforma tributária exigindo reestruturação societária massiva\nCrescimento de M&A no setor de tecnologia e saúde\nEmpresas internacionalizando e precisando de suporte jurídico especializado',
+        o_digital: 'Regulação de IA e dados criando nova área de especialização de altíssimo valor\nLinkedIn com alto alcance orgânico entre founders, CEOs e CFOs\nWebinars gratuitos como geração de leads qualificados B2B',
+        o_parcerias: 'Parcerias com aceleradoras e hubs de inovação como fonte de leads\nCo-marketing com escritórios de contabilidade especializados em startups\nParticipação em Demo Days e pitch events',
+        t_concorrencia: 'Big 4 e consultorias oferecendo serviços jurídicos integrados\nLegalTechs automatizando contratos padrão e due diligence básica\nEscritórios menores cobrando menos para o mesmo escopo',
+        t_regulacao: 'Restrições de confidencialidade limitando uso público de cases\nRisco de responsabilidade civil por planejamento societário mal estruturado',
+        t_mercado: 'Guerra por talentos — risco real de perder sócios para concorrentes\nClientes comparando preços online com escritórios boutique menores',
+        acao_so: 'Usar expertise em contratos + demanda da reforma tributária → lançar "Pacote Reestruturação Tributária 2025" para clientes existentes e prospectos. Webinar gratuito de lançamento + artigo LinkedIn. Meta: 5 novos clientes em 60 dias.',
+        acao_wo: 'Digitalizar onboarding + crescimento de M&A → criar plataforma cliente com acesso 24/7 a documentos, status dos casos e relatório mensal digital. Diferencial de experiência vs escritórios tradicionais.',
+        acao_st: 'Usar presença consolidada no ecossistema de startups + ameaça das LegalTechs → posicionar como "parceiro jurídico estratégico de longo prazo", não fornecedor de contratos. Comunicar valor pelo que o advogado previne, não só pelo que executa.',
+        acao_wt: 'Diversificar base de clientes + mitigar dependência excessiva → implementar programa de indicação com bônus para clientes que trouxerem novos contratos e meta de atingir 50 clientes recorrentes em 12 meses.',
+    }
+};
+
+let swotTags = { s: [], w: [], o: [], t: [] };
+
+function saveSWOT() {
+    const data = {};
+    document.querySelectorAll('#swot-panel [data-swot]').forEach(el => {
+        data[el.dataset.swot] = el.value;
+    });
+    data.__tags = swotTags;
+    localStorage.setItem(SWOT_KEY, JSON.stringify(data));
+    showToast('Análise SWOT salva!');
+}
+
+function loadSWOTData() {
+    const raw = localStorage.getItem(SWOT_KEY);
+    if (!raw) return;
+    try {
+        const data = JSON.parse(raw);
+        document.querySelectorAll('#swot-panel [data-swot]').forEach(el => {
+            if (data[el.dataset.swot] !== undefined) el.value = data[el.dataset.swot];
+        });
+        if (data.__tags) {
+            swotTags = data.__tags;
+            ['s','w','o','t'].forEach(q => renderSwotTags(q));
+        }
+    } catch(e) {}
+}
+
+function clearSWOT() {
+    if (!confirm('Limpar todos os campos da análise SWOT?')) return;
+    document.querySelectorAll('#swot-panel [data-swot]').forEach(el => el.value = '');
+    swotTags = { s: [], w: [], o: [], t: [] };
+    ['s','w','o','t'].forEach(q => renderSwotTags(q));
+    localStorage.removeItem(SWOT_KEY);
+    showToast('SWOT limpa.', 'fa-trash');
+}
+
+function loadSwotExample(key) {
+    if (!key) return;
+    const ex = SWOT_EXAMPLES[key];
+    if (!ex) return;
+    Object.entries(ex).forEach(([field, val]) => {
+        const el = document.querySelector(`#swot-panel [data-swot="${field}"]`);
+        if (el) el.value = val;
+    });
+    showToast('Exemplo SWOT carregado!', 'fa-magic');
+}
+
+function addSwotTag(quad) {
+    const label = prompt(`Adicionar item rápido em ${quad === 's' ? 'Forças' : quad === 'w' ? 'Fraquezas' : quad === 'o' ? 'Oportunidades' : 'Ameaças'}:`);
+    if (!label || !label.trim()) return;
+    swotTags[quad].push(label.trim());
+    renderSwotTags(quad);
+}
+
+function removeSwotTag(quad, idx) {
+    swotTags[quad].splice(idx, 1);
+    renderSwotTags(quad);
+}
+
+function renderSwotTags(quad) {
+    const container = document.getElementById(`swot-tags-${quad}`);
+    if (!container) return;
+    container.innerHTML = '';
+    swotTags[quad].forEach((tag, idx) => {
+        const span = document.createElement('span');
+        span.className = `swot-tag swot-tag-${quad}`;
+        span.innerHTML = `${tag} <button class="btn-remove-tag" onclick="removeSwotTag('${quad}',${idx})"><i class="fas fa-times"></i></button>`;
+        container.appendChild(span);
+    });
+}
+
+// SWOT add item buttons
+document.querySelectorAll('.btn-add-swot-item').forEach(btn => {
+    btn.addEventListener('click', () => addSwotTag(btn.dataset.quad));
+});
+
+// SWOT example selector
+document.querySelectorAll('.swot-ex-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.swot-ex-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.swot-ex-case').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.target).classList.add('active');
+    });
+});
+
+document.getElementById('btn-save-swot').addEventListener('click', saveSWOT);
+document.getElementById('btn-clear-swot').addEventListener('click', clearSWOT);
+document.getElementById('btn-print-swot').addEventListener('click', () => window.print());
+document.getElementById('swot-example').addEventListener('change', e => loadSwotExample(e.target.value));
+
+loadSWOTData();
+
+// expose for onclick handlers
+window.removeSwotTag = removeSwotTag;
+
+
+// ─── CANVAS DE DESENVOLVIMENTO DE BRANDING ───────────────────────────────────
+const BRANDING_KEY = 'mktjur_branding';
+
+const ARCHETYPE_DESCS = {
+    heroi:     'Focado em resultado e conquista. Linguagem de ação, superação e vitória. Ideal para contencioso e advocacia de defesa.',
+    sabio:     'Referência de conhecimento técnico e educação. Analítico e confiável. Ideal para advocacia preventiva e consultiva.',
+    cuidador:  'Empatia e acolhimento acima de tudo. Comunicação humanizada. Ideal para direito de família e público vulnerável.',
+    guardiao:  'Proteção e segurança como valores centrais. Tom firme, confiável e preventivo. Ideal para compliance e gestão de riscos.',
+    parceiro:  'Confiança e proximidade com o cliente. Colaborativo e transparente. Ideal para assessoria recorrente e contratos.',
+    inovador:  'Modernidade e soluções criativas. Digital-first e linguagem contemporânea. Ideal para startups e LegalTech.',
+    governante:'Autoridade, liderança e excelência premium. Tom institucional e sofisticado. Ideal para grandes escritórios e bancas.',
+    explorador:'Especialização em nicho, autenticidade e descoberta. Tom único e específico. Ideal para áreas emergentes e sub-atendidas.',
+};
+
+const BRANDING_EXAMPLES = {
+    trabalhista: {
+        fundacao_proposito: 'Fazer com que PMEs nunca percam dinheiro por desconhecer direitos trabalhistas — educando tanto quanto defendendo.',
+        fundacao_visao: 'Ser o escritório trabalhista de referência para PMEs de Minas Gerais até 2028, com presença nacional via conteúdo digital educativo.',
+        fundacao_valores: 'Transparência total com o cliente\nResultado mensurável e comunicado\nLinguagem acessível — sem juridiquês\nAtendimento próximo e responsivo em 24h\nÉtica acima do resultado em qualquer situação',
+        pos_publico: 'Donos de PME com 5–50 funcionários, sem jurídico interno, setor de serviços e comércio. Medo de passivo trabalhista e linguagem jurídica inacessível.',
+        pos_diferencial: 'Único pacote preventivo da região com preço fixo mensal + WhatsApp ilimitado + relatório mensal de riscos identificados — nenhum concorrente local oferece isso.',
+        pos_mensagem: 'Para PMEs com 5–50 funcionários\nQue precisam de segurança trabalhista sem surpresas\nLima Advocacia Trabalhista\nOferece assessoria preventiva com preço fixo e relatório mensal\nDiferente dos escritórios tradicionais\nNós cobramos mensalidade fixa, respondemos em 24h e entregamos proteção real antes do processo.',
+        personalidade_arquetipo: 'sabio',
+        tom_formalidade: '2',
+        tom_tecnico: '2',
+        tom_serio: '3',
+        personalidade_usa: 'Segurança, Clareza, Preventivo, Juntos, Proteção, Previsível, Simples, Resultado, Parceiro',
+        personalidade_evita: '"Garantia de êxito", "Melhor advogado", "Vencemos sempre", "Especialista em tudo" — expressões vedadas pelo Provimento 205/2021 da OAB',
+        cor_primaria: '#1a365d',
+        cor_primaria_sig: 'Confiança e autoridade',
+        cor_secundaria: '#d4af37',
+        cor_secundaria_sig: 'Excelência e qualidade premium',
+        cor_destaque: '#059669',
+        cor_destaque_sig: 'Resultado e crescimento',
+        visual_tipografia: 'Título: Playfair Display — sofisticação e tradição jurídica\nTexto: Inter — clareza e modernidade\nNunca usar fontes decorativas ou de difícil leitura',
+        visual_elementos: 'Escudo minimalista com monograma da inicial do sobrenome. Sem balança ou toga clichê. Fotografia real do advogado (não stock photo). Estilo clean e profissional.',
+        visual_nome: '"Lima Advocacia Trabalhista"\nTagline: "Proteção preventiva para a sua empresa."\nBase legal: art. 4º §2º Provimento 205/2021 — slogan descritivo é permitido.',
+        exp_primeiro: 'Cliente encontra no LinkedIn → artigo sobre risco trabalhista → clica no link WhatsApp → resposta personalizada em até 2h → convite para diagnóstico gratuito de 30 min.',
+        exp_touchpoints: '• LinkedIn: autoridade e expertise técnica\n• WhatsApp: agilidade e proximidade\n• Contrato: organização e profissionalismo\n• Relatório mensal: transparência e cuidado ativo\n• E-mail: registro e formalidade necessária',
+        exp_pos: 'E-mail de acompanhamento 30 dias após encerramento do caso\nNewsletter mensal com novidades trabalhistas relevantes\nLigação semestral de relacionamento\nLembrete anual de renovação do pacote preventivo',
+        exp_sentimento: 'Seguro — mesmo quando o assunto é difícil.\nBem-informado — sempre sabe o que está acontecendo.\nProtegido — os riscos estão mapeados e monitorados.\nConfiante — sente que está nas mãos certas.',
+        aut_conteudo: '3 posts/semana no LinkedIn (caso hipotético ético, dica prática, bastidor do escritório)\nArtigo técnico mensal no blog (SEO orgânico)\nNewsletter quinzenal com análise de mudanças legislativas\nResposta pública a dúvidas frequentes no LinkedIn',
+        aut_prova: 'Especialização certificada em Direito do Trabalho — PUC/SP\n8 anos de experiência em contencioso e preventivo trabalhista\n200+ casos resolvidos com taxa de sucesso de 78%\nNota 4.9 no Google com 80 avaliações verificadas\nPalestrante no SENAC e SEBRAE Regional',
+        aut_parcerias: '3 escritórios de contabilidade como parceiros primários de indicação\nConsultores de RH e departamento pessoal\nSindicato patronal da cidade — co-marketing mensal\nMédicos do trabalho para assessoria integrada de saúde e segurança',
+        aut_rp: 'Comentarista jurídico no jornal local sobre temas trabalhistas\nParticipação mensal no podcast do sindicato patronal\nArtigos publicados em portais de contabilidade parceiros\nEntrevistas para rádio sobre reforma trabalhista e CLT',
+        valor_paraquem: 'Donos de PMEs com 5–50 funcionários, sem jurídico interno, no setor de serviços e comércio que estão expostos a riscos trabalhistas sem saber.',
+        valor_entrega: 'Segurança jurídica trabalhista com preço fixo e previsível, atendimento via WhatsApp ilimitado, resposta em 24h e relatório mensal de riscos identificados.',
+        valor_diferente: 'Única advocacia da região com modelo preventivo recorrente + relatório de riscos + WhatsApp ilimitado + preço fixo sem surpresas no boleto.',
+        valor_frase: '"O jurídico que previne antes de precisar defender."',
+    },
+    familia: {
+        fundacao_proposito: 'Guiar famílias nos momentos mais difíceis com clareza e humanidade — sem julgamentos, com soluções que colocam o bem-estar de todos acima do litígio.',
+        fundacao_visao: 'Ser a referência estadual em advocacia familiar humanizada com programa de mediação pré-judicial próprio e parceria psicológica consolidada.',
+        fundacao_valores: 'Acolhimento genuíno sem julgamento\nSigilo absoluto em todos os atendimentos\nResolução pacífica como primeiro caminho\nHumanização acima da tecnicidade\nParceria com psicólogos para cuidado integral',
+        pos_publico: 'Mulheres 30–55 anos em processo de divórcio; cônjuges com filhos buscando acordo sem trauma; famílias que precisam de inventário ágil e acessível.',
+        pos_diferencial: 'Único escritório da cidade com atendimento integrado jurídico + psicológico. Taxa de acordo de 65% (vs média nacional de 30%). Inventário com preço fixo.',
+        pos_mensagem: 'Para famílias em transição (divórcio, guarda ou inventário)\nQue precisam resolver sem mais trauma ou conflito\nDra. Ana Lima Advocacia Familiar\nOferece atendimento jurídico e psicológico integrado com 65% de taxa de acordos\nDiferente dos escritórios tradicionais\nNós colocamos o bem-estar da família antes do litígio, combinando direito e suporte emocional.',
+        personalidade_arquetipo: 'cuidador',
+        tom_formalidade: '3',
+        tom_tecnico: '4',
+        tom_serio: '4',
+        personalidade_usa: 'Acolhimento, Recomeço, Resolução, Proteção, Juntos, Com você, Clareza, Seguro, Humanidade',
+        personalidade_evita: '"Ganhamos a guarda", "Garantimos pensão", "O melhor acordo possível" — qualquer promessa de resultado específico vedada pela OAB',
+        cor_primaria: '#0e7568',
+        cor_primaria_sig: 'Tranquilidade e esperança',
+        cor_secundaria: '#e8825a',
+        cor_secundaria_sig: 'Calor humano e acolhimento',
+        cor_destaque: '#d4af37',
+        cor_destaque_sig: 'Qualidade e confiança',
+        visual_tipografia: 'Título: Cormorant Garamond — humanidade e elegância clássica\nTexto: Lato — acessibilidade e leiturabilidade\nEvitar fontes frias, muito técnicas ou impessoais',
+        visual_elementos: 'Ícone de mãos abertas ou folha estilizada (sem balança ou toga). Fotografias reais e acolhedoras da advogada e do ambiente. Estilo clean e esperançoso.',
+        visual_nome: '"Dra. Ana Lima | Direito de Família"\nTagline: "Clareza nos momentos que mais importam."\nOpcional: logotipo com elemento floral minimalista.',
+        exp_primeiro: 'Instagram (Reel educativo sobre guarda) → DM com link de agendamento → consulta inicial sigilosa e acolhedora (WhatsApp ou presencial).',
+        exp_touchpoints: '• Instagram: humanização e educação acessível\n• WhatsApp: cuidado, agilidade e sigilo total\n• Sala de espera: acolhedora, sem ambiente frio de escritório\n• Contrato: clareza e organização\n• Relatório de progresso: transparência ativa',
+        exp_pos: 'E-mail de acompanhamento 15 dias após encerramento\nNewsletter bimestral com dicas de direito de família\nMensagem de suporte no aniversário do acordo ou divórcio\nIndicação de psicólogos parceiros para suporte contínuo',
+        exp_sentimento: 'Acolhida — sentir que alguém genuinamente está do seu lado.\nProtegida — seus direitos e os dos filhos são defendidos.\nCom esperança — o recomeço é possível e o caminho é claro.\nRespeitada — sem julgamentos, com dignidade em cada momento.',
+        aut_conteudo: '3 Reels/semana no Instagram (dúvidas sobre divórcio, guarda e alimentos)\nBlog com artigos SEO mensais ("advogado divórcio [cidade]")\nE-book "Guia do Divórcio sem Trauma" como isca digital\nNewsletter mensal para a base de leads capturada',
+        aut_prova: 'Certificação em mediação familiar pelo CONIMA\nParceria visível com psicóloga especialista em separação\n65% dos casos encerrados por acordo (vs 30% média nacional)\nNota 4.9 no Google com 60 avaliações verificadas\nInventário extrajudicial: 30+ realizados com média de 15 dias',
+        aut_parcerias: '3 psicólogos e terapeutas de casal como parceiros de indicação\nMediadores certificados para casos que precisam de mediação formal\nCartórios de notas para inventário extrajudicial ágil\nAssistentes sociais e grupos de apoio ao divórcio da cidade',
+        aut_rp: 'Entrevistas em revistas femininas locais sobre direitos no divórcio\nParticipação em grupos de apoio online como especialista convidada\nArtigos sobre guarda e alimentos em portais de família\nWebinars mensais: "Seus direitos no divórcio"',
+        valor_paraquem: 'Pessoas em processo de divórcio, guarda ou inventário que precisam de clareza jurídica com humanização — não apenas de documentos.',
+        valor_entrega: 'Advocacia familiar com suporte jurídico e psicológico integrado, focada em resolução por acordo, com 65% de taxa de casos consensuais.',
+        valor_diferente: 'Única da região com atendimento integrado jurídico + psicológico, foco em acordo antes do litígio e inventário extrajudicial com preço fixo.',
+        valor_frase: '"Advocacia familiar — clareza nos momentos que mais importam."',
+    },
+    empresarial: {
+        fundacao_proposito: 'Democratizar o acesso ao jurídico estratégico de qualidade — que não seja prerrogativa exclusiva de grandes empresas com recursos para Big Law.',
+        fundacao_visao: 'O escritório empresarial de referência para o ecossistema de inovação do Brasil, com 100 clientes recorrentes em assinatura até 2027.',
+        fundacao_valores: 'Linguagem clara — sem juridiquês desnecessário\nPreço justo e previsível para PMEs\nPrevenção acima da litigância sempre\nParceria de longo prazo com o cliente\nInovação contínua em processos e entrega',
+        pos_publico: 'Founders e CEOs de startups Série Seed/A e donos de PMEs com 5–200 funcionários, sem jurídico interno, que precisam de segurança jurídica sem o custo da Big Law.',
+        pos_diferencial: 'Único escritório com modelo de assinatura mensal por preço fixo + linguagem de negócios + reunião estratégica trimestral inclusa + onboarding digital em 24h.',
+        pos_mensagem: 'Para startups e PMEs que crescem sem jurídico interno\nQue precisam de proteção contínua sem burocracia\nMotta Legal Advocacia Empresarial\nOferece assinatura mensal com preço fixo e linguagem de negócios\nDiferente de grandes escritórios e Big Law\nNós falamos a língua do founder, respondemos em 24h e entregamos estratégia, não só documentos.',
+        personalidade_arquetipo: 'inovador',
+        tom_formalidade: '2',
+        tom_tecnico: '3',
+        tom_serio: '2',
+        personalidade_usa: 'Estratégia, Crescimento, Previsibilidade, Proteção, Parceria, Eficiência, ROI jurídico, Digital, Ágil',
+        personalidade_evita: '"Ad referendum", "Douto", "Ilustríssimo" — qualquer linguagem que afaste founders sem formação jurídica; juridiquês desnecessário',
+        cor_primaria: '#1e3a5f',
+        cor_primaria_sig: 'Confiança e solidez institucional',
+        cor_secundaria: '#ea580c',
+        cor_secundaria_sig: 'Inovação, energia e ação',
+        cor_destaque: '#334155',
+        cor_destaque_sig: 'Sofisticação e solidez premium',
+        visual_tipografia: 'Inter (toda a identidade) — moderna, tecnológica, sem serifa. Peso variável para criar hierarquia visual consistente em todas as plataformas.',
+        visual_elementos: 'Design system contemporâneo e digital-first. Sem elementos jurídicos clichê. Ícones lineares e minimalistas. Cores contrastantes para CTAs. Grid limpo.',
+        visual_nome: '"Motta Legal"\nTagline: "Jurídico estratégico para quem constrói o futuro."\nUsado com e sem tagline conforme o formato (digital vs impresso).',
+        exp_primeiro: 'LinkedIn (artigo sobre risco jurídico para startups) → download de guia PDF → diagnóstico estratégico gratuito de 45 min → proposta em 48h via documento digital.',
+        exp_touchpoints: '• LinkedIn: thought leadership e autoridade técnica\n• Site: calculadora de risco jurídico como lead magnet\n• Contrato digital: organização e agilidade (DocuSign)\n• Dashboard do cliente: transparência e autonomia\n• Newsletter: parceria e atualização contínua',
+        exp_pos: 'Alertas automáticos sobre mudanças regulatórias relevantes\nReunião estratégica trimestral inclusa em todos os planos\nPrograma de indicação: 1 mês grátis para quem traz novo cliente\nCheck-in anual de revisão da estratégia jurídica',
+        exp_sentimento: 'Confiante — as decisões são tomadas com informação jurídica sólida.\nEstratégico — o jurídico apoia o crescimento, não só previne problemas.\nEm parceria — o escritório cresce junto com a empresa.\nCom visibilidade — sempre sabe o que está acontecendo e por quê.',
+        aut_conteudo: '3 posts/semana LinkedIn (análise de risco jurídico, contratos, regulação de IA)\nWebinar mensal sobre temas regulatórios relevantes para startups\nNewsletter semanal com análise de mudanças legislativas para PMEs\nGuia prático mensal para download ("Contratos para Startups", "LGPD na prática")',
+        aut_prova: 'LLM em Direito Empresarial e Contratos — USP\n35 clientes recorrentes com MRR consolidado de R$ 87.500\nLinkedIn com 4.500 seguidores qualificados (founders e gestores)\nPalestrante confirmado em 3 aceleradoras e 2 hubs de inovação\nCitado em artigos da Exame e Época Negócios',
+        aut_parcerias: '2 aceleradoras como parceiros de indicação primária (Deal Flow)\n3 hubs de inovação e co-working premium\n4 escritórios de contabilidade especializados em startups\nHub de co-working da cidade como parceiro de marca',
+        aut_rp: 'Comentarista em portais especializados (Exame, StartupBase, Finsiders)\nParticipação em podcasts de empreendedorismo (Mova-se, Startups Inside)\nPresença em Demo Days como mentor jurídico de startups\nEntrevistas sobre regulação de IA e LGPD para veículos nacionais',
+        valor_paraquem: 'Founders e donos de PMEs que crescem sem jurídico interno e precisam de segurança jurídica com linguagem de negócios e preço previsível.',
+        valor_entrega: 'Parceria jurídica estratégica com assinatura mensal de preço fixo, linguagem acessível, onboarding digital em 24h e reunião estratégica trimestral.',
+        valor_diferente: 'Único escritório com modelo de assinatura digital-first, linguagem de negócios sem juridiquês e reunião estratégica trimestral inclusa em todos os planos.',
+        valor_frase: '"Jurídico estratégico para quem constrói o futuro."',
+    }
+};
+
+function saveBranding() {
+    const data = {};
+    document.querySelectorAll('#branding-panel [data-brand]').forEach(el => {
+        data[el.dataset.brand] = el.value;
+    });
+    localStorage.setItem(BRANDING_KEY, JSON.stringify(data));
+    showToast('Canvas de Branding salvo!');
+}
+
+function loadBrandingData() {
+    const raw = localStorage.getItem(BRANDING_KEY);
+    if (!raw) return;
+    try {
+        const data = JSON.parse(raw);
+        document.querySelectorAll('#branding-panel [data-brand]').forEach(el => {
+            if (data[el.dataset.brand] !== undefined) el.value = data[el.dataset.brand];
+        });
+        if (data.personalidade_arquetipo) {
+            selectArchetype(data.personalidade_arquetipo, false);
+        }
+    } catch(e) {}
+}
+
+function clearBranding() {
+    if (!confirm('Limpar todos os campos do Canvas de Branding?')) return;
+    document.querySelectorAll('#branding-panel [data-brand]').forEach(el => {
+        if (el.type !== 'color') el.value = '';
+    });
+    document.querySelectorAll('.archetype-pill').forEach(p => p.classList.remove('selected'));
+    const box = document.getElementById('archetype-desc-box');
+    box.textContent = '';
+    box.classList.remove('visible');
+    document.querySelectorAll('#branding-panel .tone-range').forEach(r => { r.value = 3; });
+    localStorage.removeItem(BRANDING_KEY);
+    showToast('Canvas de Branding limpo.', 'fa-trash');
+}
+
+function loadBrandingExample(key) {
+    if (!key) return;
+    const ex = BRANDING_EXAMPLES[key];
+    if (!ex) return;
+    Object.entries(ex).forEach(([field, val]) => {
+        const el = document.querySelector(`#branding-panel [data-brand="${field}"]`);
+        if (el) el.value = val;
+    });
+    if (ex.personalidade_arquetipo) {
+        selectArchetype(ex.personalidade_arquetipo, true);
+    }
+    showToast('Exemplo de branding carregado!', 'fa-magic');
+}
+
+function selectArchetype(key, showToastMsg) {
+    document.querySelectorAll('.archetype-pill').forEach(p => {
+        p.classList.toggle('selected', p.dataset.arch === key);
+    });
+    document.getElementById('brand-arquetipo-val').value = key;
+    const desc = ARCHETYPE_DESCS[key];
+    const box = document.getElementById('archetype-desc-box');
+    if (desc) {
+        box.textContent = desc;
+        box.classList.add('visible');
+    } else {
+        box.classList.remove('visible');
+    }
+}
+
+// Archetype pill interactions
+document.querySelectorAll('.archetype-pill').forEach(pill => {
+    pill.addEventListener('click', () => selectArchetype(pill.dataset.arch, false));
+});
+
+// Example tabs
+document.querySelectorAll('.branding-ex-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.branding-ex-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.branding-ex-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.ex).classList.add('active');
+    });
+});
+
+document.getElementById('btn-save-branding').addEventListener('click', saveBranding);
+document.getElementById('btn-clear-branding').addEventListener('click', clearBranding);
+document.getElementById('btn-print-branding').addEventListener('click', () => window.print());
+document.getElementById('branding-example').addEventListener('change', e => loadBrandingExample(e.target.value));
+
+loadBrandingData();

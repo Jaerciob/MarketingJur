@@ -28,22 +28,912 @@
 <!-- Tabs -->
 <nav class="tools-tabs">
     <div class="tabs-inner">
-        <button class="tab-btn active" data-tab="canvas-panel">
-            <i class="fas fa-th-large"></i> Canvas de Marketing Jurídico
-        </button>
-        <button class="tab-btn" data-tab="kanban-panel">
+        <button class="tab-btn active" data-tab="kanban-panel">
             <i class="fas fa-columns"></i> Plano de Trabalho
+        </button>
+        <button class="tab-btn" data-tab="diagnostico-panel">
+            <i class="fas fa-stethoscope"></i> Diagnóstico Estratégico
+        </button>
+        <button class="tab-btn" data-tab="branding-panel">
+            <i class="fas fa-paint-brush"></i> Canvas de Branding
+        </button>
+        <button class="tab-btn" data-tab="canvas-panel">
+            <i class="fas fa-th-large"></i> Canvas de Marketing Jurídico
         </button>
         <button class="tab-btn" data-tab="funil-panel">
             <i class="fas fa-filter"></i> Gestão do Funil de Vendas
+        </button>
+        <button class="tab-btn" data-tab="pestel-panel">
+            <i class="fas fa-globe"></i> Análise PESTEL
+        </button>
+        <button class="tab-btn" data-tab="swot-panel">
+            <i class="fas fa-th"></i> Análise SWOT
         </button>
     </div>
 </nav>
 
 <!-- ═══════════════════════════════════════════════════════════════
+     FERRAMENTA 0: CANVAS DE DIAGNÓSTICO ESTRATÉGICO
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="diagnostico-panel" class="tool-panel">
+    <div class="tool-container">
+        <div class="section-title">
+            <h2>Canvas de Diagnóstico Estratégico</h2>
+            <p>Mapeie onde seu escritório está hoje e defina onde quer chegar. Estratégia de marketing personalizada, conforme as regras éticas da OAB.</p>
+        </div>
+
+        <!-- Actions Bar -->
+        <div class="canvas-actions">
+            <div class="canvas-actions-left">
+                <div class="canvas-example-select">
+                    <label>Exemplos práticos:</label>
+                    <select id="diag-example">
+                        <option value="">— Selecione um exemplo —</option>
+                        <option value="trabalhista">Direito Trabalhista</option>
+                        <option value="familia">Direito de Família</option>
+                        <option value="empresarial">Direito Empresarial</option>
+                    </select>
+                </div>
+                <button class="btn-clear" id="btn-clear-diag"><i class="fas fa-eraser"></i> Limpar</button>
+                <button class="btn-print" id="btn-print-diag"><i class="fas fa-print"></i> Imprimir</button>
+            </div>
+            <button class="btn-save" id="btn-save-diag"><i class="fas fa-save"></i> Salvar Diagnóstico</button>
+        </div>
+
+        <!-- Defina os seus objetivos -->
+        <div class="obj-lp-block">
+            <div class="obj-lp-header">
+                <i class="fas fa-crosshairs"></i>
+                <div>
+                    <span class="obj-lp-title">Defina os seus objetivos</span>
+                    <span class="obj-lp-subtitle">Da visão de futuro ao planejamento trimestral</span>
+                </div>
+            </div>
+
+            <!-- Visão 3 anos — bloco único -->
+            <div class="obj-lp-card obj-lp-card--full">
+                <div class="obj-lp-card-header obj-bienal">
+                    <i class="fas fa-rocket"></i>
+                    <span>Visão: Onde seu escritório estará em três anos?</span>
+                </div>
+                <textarea data-diag="obj_lp_bienal" class="obj-lp-textarea obj-lp-textarea--full" placeholder="Ex.: Em 3 anos, ter uma carteira de 40 clientes ativos, faturamento de R$ 30.000/mês, 1 sócio contratado, ser palestrante reconhecido na área e ter lançado um produto digital com receita passiva."></textarea>
+            </div>
+
+            <!-- Metas do Próximo Ano — bloco único -->
+            <div class="obj-lp-card obj-lp-card--full">
+                <div class="obj-lp-card-header obj-anual">
+                    <i class="fas fa-trophy"></i>
+                    <span>Metas do Próximo Ano</span>
+                </div>
+                <textarea data-diag="obj_lp_anual" class="obj-lp-textarea obj-lp-textarea--full" placeholder="Ex.: Dobrar o faturamento do escritório, consolidar a marca pessoal e lançar um evento presencial na área de atuação."></textarea>
+            </div>
+
+            <!-- 4 Trimestres — paralelos -->
+            <div class="obj-lp-grid">
+                <div class="obj-lp-card">
+                    <div class="obj-lp-card-header obj-t1">
+                        <i class="fas fa-seedling"></i>
+                        <span>1º Trimestre</span>
+                    </div>
+                    <textarea data-diag="obj_lp_t1" class="obj-lp-textarea" placeholder="Ex.: Criar presença profissional no LinkedIn e publicar 3 artigos jurídicos por semana..."></textarea>
+                </div>
+                <div class="obj-lp-card">
+                    <div class="obj-lp-card-header obj-t2">
+                        <i class="fas fa-chart-line"></i>
+                        <span>2º Trimestre</span>
+                    </div>
+                    <textarea data-diag="obj_lp_t2" class="obj-lp-textarea" placeholder="Ex.: Lançar campanha de captação e atingir 5 novos clientes via marketing digital..."></textarea>
+                </div>
+                <div class="obj-lp-card">
+                    <div class="obj-lp-card-header obj-t3">
+                        <i class="fas fa-bullseye"></i>
+                        <span>3º Trimestre</span>
+                    </div>
+                    <textarea data-diag="obj_lp_t3" class="obj-lp-textarea" placeholder="Ex.: Consolidar autoridade na área e iniciar parcerias estratégicas..."></textarea>
+                </div>
+                <div class="obj-lp-card">
+                    <div class="obj-lp-card-header obj-t4">
+                        <i class="fas fa-flag-checkered"></i>
+                        <span>4º Trimestre</span>
+                    </div>
+                    <textarea data-diag="obj_lp_t4" class="obj-lp-textarea" placeholder="Ex.: Avaliar resultados do ano, planejar o próximo ciclo e escalar o escritório..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── ROW 1: 3 colunas ── -->
+        <div class="diag-row1">
+
+            <!-- BLOCO 1: Mercado Jurídico -->
+            <div class="diag-block diag-mercado">
+                <div class="diag-block-header diag-blue">
+                    <i class="fas fa-chart-line"></i>
+                    <div>
+                        <span class="diag-block-title">Mercado Jurídico</span>
+                        <span class="diag-block-sub">Oportunidades e Ameaças</span>
+                    </div>
+                </div>
+                <div class="diag-block-body">
+                    <div class="diag-mercado-grid">
+                        <div class="diag-field diag-field--oportunidade">
+                            <label><i class="fas fa-circle-check" style="color:#27ae60"></i> Oportunidade 1</label>
+                            <textarea data-diag="mercado_oportunidade1" placeholder="Ex.: PMEs sem assessoria trabalhista recorrente — mercado de R$ 500M/ano no Brasil."></textarea>
+                        </div>
+                        <div class="diag-field diag-field--oportunidade">
+                            <label><i class="fas fa-circle-check" style="color:#27ae60"></i> Oportunidade 2</label>
+                            <textarea data-diag="mercado_oportunidade2" placeholder="Ex.: Crescimento das consultas preventivas pós-Reforma Trabalhista — demanda não atendida localmente."></textarea>
+                        </div>
+                        <div class="diag-field diag-field--ameaca">
+                            <label><i class="fas fa-circle-xmark" style="color:#e74c3c"></i> Ameaça 1</label>
+                            <textarea data-diag="mercado_ameaca1" placeholder="Ex.: LegalTechs automatizando cálculos e triagem, reduzindo demanda por serviços básicos."></textarea>
+                        </div>
+                        <div class="diag-field diag-field--ameaca">
+                            <label><i class="fas fa-circle-xmark" style="color:#e74c3c"></i> Ameaça 2</label>
+                            <textarea data-diag="mercado_ameaca2" placeholder="Ex.: Advogados generalistas com preços mais baixos concorrendo nos serviços menos complexos."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCO 2: Objetivos -->
+            <div class="diag-block diag-objetivos">
+                <div class="diag-block-header diag-red">
+                    <i class="fas fa-crosshairs"></i>
+                    <div>
+                        <span class="diag-block-title">Objetivos</span>
+                        <span class="diag-block-sub">Onde Quero Chegar</span>
+                    </div>
+                </div>
+                <div class="diag-block-body">
+                    <div class="diag-field">
+                        <label><i class="fas fa-rocket"></i> Visão (3 Anos)</label>
+                        <textarea data-diag="obj_visao5" placeholder="Ex.: Ser o escritório de referência em compliance trabalhista para PMEs do estado, com presença nacional via conteúdo digital."></textarea>
+                    </div>
+                    <div class="diag-field">
+                        <label><i class="fas fa-calendar-alt"></i> 1 Ano</label>
+                        <textarea data-diag="obj_1ano" placeholder="Ex.: 15 clientes PMEs com contrato de assessoria recorrente, faturamento de R$ 20.000/mês, ser palestrante em 2 eventos de RH."></textarea>
+                    </div>
+                    <div class="diag-field">
+                        <label><i class="fas fa-bullseye"></i> Próximo Trimestre</label>
+                        <textarea data-diag="obj_trimestre" placeholder="Ex.: Publicar 2 artigos/semana no LinkedIn; fechar 2 contratos de assessoria preventiva; atingir nota 4.8 no Google."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCO 3: Forças e Fraquezas -->
+            <div class="diag-block diag-forcas">
+                <div class="diag-block-header diag-green">
+                    <i class="fas fa-balance-scale"></i>
+                    <div>
+                        <span class="diag-block-title">Forças e Fraquezas</span>
+                        <span class="diag-block-sub">Diagnóstico Interno</span>
+                    </div>
+                </div>
+                <div class="diag-block-body">
+                    <div class="diag-forcas-grid">
+                        <div class="diag-field">
+                            <label><i class="fas fa-fist-raised"></i> Fortaleza 1</label>
+                            <textarea data-diag="forcas_forte1" placeholder="Ex.: Especialização certificada em Direito do Trabalho com taxa de sucesso de 78% nos casos."></textarea>
+                        </div>
+                        <div class="diag-field">
+                            <label><i class="fas fa-fist-raised"></i> Fortaleza 2</label>
+                            <textarea data-diag="forcas_forte2" placeholder="Ex.: Rede de 8 contadores que indicam regularmente e atendimento online para todo o Brasil."></textarea>
+                        </div>
+                        <div class="diag-field">
+                            <label><i class="fas fa-bolt"></i> Fraqueza 1</label>
+                            <textarea data-diag="forcas_fraca1" placeholder="Ex.: Escritório solo sem equipe de apoio — capacidade limitada de atender mais clientes."></textarea>
+                        </div>
+                        <div class="diag-field">
+                            <label><i class="fas fa-bolt"></i> Fraqueza 2</label>
+                            <textarea data-diag="forcas_fraca2" placeholder="Ex.: LinkedIn com apenas 450 seguidores e sem budget de marketing definido."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /diag-row1 -->
+
+        <!-- ── ROW 2: Matriz Cruzada ── -->
+        <div class="diag-row2">
+
+            <!-- Forças x Oportunidades -->
+            <div class="diag-cruzada-block diag-cruzada-fo">
+                <div class="diag-cruzada-header">
+                    <i class="fas fa-arrows-to-circle"></i>
+                    <div>
+                        <span class="diag-cruzada-title">Forças × Oportunidades</span>
+                        <span class="diag-cruzada-sub">Como usar minhas forças para aproveitar as oportunidades?</span>
+                    </div>
+                </div>
+                <div class="diag-cruzada-body">
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> Estratégia 1</label>
+                        <textarea data-diag="matriz_fo1" placeholder="Ex.: Usar especialização certificada (força) para capturar o mercado de PMEs sem assessoria preventiva (oportunidade) com um pacote mensal a R$ 900/mês."></textarea>
+                    </div>
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> Estratégia 2</label>
+                        <textarea data-diag="matriz_fo2" placeholder="Ex.: Usar a rede de contadores indicadores (força) para aproveitar a demanda pós-Reforma Trabalhista (oportunidade) e captar 5 novos clientes PME no trimestre."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forças x Ameaças -->
+            <div class="diag-cruzada-block diag-cruzada-fa">
+                <div class="diag-cruzada-header">
+                    <i class="fas fa-shield-halved"></i>
+                    <div>
+                        <span class="diag-cruzada-title">Forças × Ameaças</span>
+                        <span class="diag-cruzada-sub">Como usar minhas forças para neutralizar as ameaças?</span>
+                    </div>
+                </div>
+                <div class="diag-cruzada-body">
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> Estratégia 1</label>
+                        <textarea data-diag="matriz_fa1" placeholder="Ex.: Usar especialização certificada (força) para diferenciar dos generalistas com preço mais baixo (ameaça) — comunicar expertise e resultados no LinkedIn."></textarea>
+                    </div>
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> Estratégia 2</label>
+                        <textarea data-diag="matriz_fa2" placeholder="Ex.: Usar o atendimento personalizado (força) para proteger a carteira das LegalTechs (ameaça) — reforçar relacionamento com clientes atuais via newsletter e check-ins mensais."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fraquezas x Oportunidades -->
+            <div class="diag-cruzada-block diag-cruzada-fraqo">
+                <div class="diag-cruzada-header">
+                    <i class="fas fa-arrow-up-right-dots"></i>
+                    <div>
+                        <span class="diag-cruzada-title">Fraquezas × Oportunidades</span>
+                        <span class="diag-cruzada-sub">Quais fraquezas corrigir para não perder oportunidades?</span>
+                    </div>
+                </div>
+                <div class="diag-cruzada-body">
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> Plano de Melhoria 1</label>
+                        <textarea data-diag="matriz_fraqo1" placeholder="Ex.: Superar a fraqueza de capacidade limitada (solo) para aproveitar o mercado crescente — contratar estagiário por R$ 600/mês para dobrar produção."></textarea>
+                    </div>
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> Plano de Melhoria 2</label>
+                        <textarea data-diag="matriz_fraqo2" placeholder="Ex.: Superar a fraqueza de baixa presença digital (450 seguidores) para capturar demanda online — publicar 3x/semana no LinkedIn por 90 dias."></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /diag-row2 -->
+
+        <!-- ── Exemplos Práticos ── -->
+        <div class="diag-examples-block">
+            <div class="diag-examples-header">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Exemplos Práticos Preenchidos</span>
+            </div>
+            <div class="diag-ex-tabs">
+                <button class="diag-ex-tab active" data-ex="diag-ex-trabalhista"><i class="fas fa-briefcase"></i> Trabalhista</button>
+                <button class="diag-ex-tab" data-ex="diag-ex-familia"><i class="fas fa-heart"></i> Família</button>
+                <button class="diag-ex-tab" data-ex="diag-ex-empresarial"><i class="fas fa-building"></i> Empresarial</button>
+            </div>
+
+            <!-- Exemplo: Trabalhista -->
+            <div class="diag-ex-content active" id="diag-ex-trabalhista">
+                <div class="diag-ex-row1">
+                    <div class="diag-ex-card diag-ex-blue">
+                        <div class="diag-ex-card-header">Mercado Jurídico</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 1:</strong> 6 milhões de PMEs sem assessoria trabalhista preventiva — demanda não atendida localmente, potencial de R$ 500M/ano no Brasil.</div>
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 2:</strong> Crescimento de consultas preventivas pós-Reforma Trabalhista: teletrabalho, IA no RH e terceirização gerando nova jurisprudência.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 1:</strong> LegalTechs automatizando cálculos de rescisão e triagem — reduzindo demanda por serviços básicos e comprimindo honorários.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 2:</strong> Advogados generalistas com preços 40% menores competindo por clientes que ainda não percebem o valor da especialização.</div>
+                        </div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-red">
+                        <div class="diag-ex-card-header">Objetivos</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-rocket"></i> Visão (3 Anos):</strong> Ser o escritório de referência nacional em compliance trabalhista para PMEs, com plataforma digital própria, equipe de 5 advogados e MRR de R$ 100.000/mês.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-calendar-alt"></i> 1 Ano:</strong> 15 clientes PMEs com contrato de assessoria recorrente (MRR R$ 13.500), ser palestrante em 2 eventos de RH e lançar blog com 500 visitas/mês.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-bullseye"></i> Próximo Trimestre:</strong> Publicar 2 artigos/semana no LinkedIn; fechar 2 contratos de assessoria preventiva; atingir nota 4.8 no Google com 30 avaliações.</div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-green">
+                        <div class="diag-ex-card-header">Forças e Fraquezas</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 1:</strong> Especialização certificada com 78% de sucesso nos casos e rede de 8 contadores indicadores ativos.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 2:</strong> Atendimento 100% online com nota 4.9 no Google e 45 avaliações — reputação consolidada.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 1:</strong> Escritório solo sem equipe de apoio — capacidade limitada de atender mais clientes simultaneamente.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 2:</strong> LinkedIn com apenas 450 seguidores e sem budget de marketing definido ou freelancer de conteúdo.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diag-ex-cruzada-row">
+                    <div class="diag-ex-cruzada-card diag-ex-cruzada-fo">
+                        <div class="diag-ex-cruzada-header"><i class="fas fa-arrows-to-circle"></i> Forças × Oportunidades</div>
+                        <div class="diag-ex-item"><strong>Estratégia 1:</strong> Usar especialização certificada (força) + mercado de PMEs sem assessoria (oportunidade) → lançar "Pacote Preventivo PME" a R$ 900/mês com meta de 15 contratos em 12 meses.</div>
+                        <div class="diag-ex-item"><strong>Estratégia 2:</strong> Usar rede de 8 contadores indicadores (força) + demanda pós-Reforma (oportunidade) → programa de indicação formalizado com bônus por cliente fechado.</div>
+                    </div>
+                    <div class="diag-ex-cruzada-card diag-ex-cruzada-fa">
+                        <div class="diag-ex-cruzada-header"><i class="fas fa-shield-halved"></i> Forças × Ameaças</div>
+                        <div class="diag-ex-item"><strong>Estratégia 1:</strong> Usar certificação (força) para se diferenciar de generalistas baratos (ameaça) — publicar cases com resultados reais no LinkedIn e no Google para justificar o valor do especialista.</div>
+                        <div class="diag-ex-item"><strong>Estratégia 2:</strong> Usar atendimento personalizado (força) para criar fidelidade e barreira contra LegalTechs (ameaça) — check-in mensal obrigatório incluso no pacote.</div>
+                    </div>
+                    <div class="diag-ex-cruzada-card diag-ex-cruzada-fraqo">
+                        <div class="diag-ex-cruzada-header"><i class="fas fa-arrow-up-right-dots"></i> Fraquezas × Oportunidades</div>
+                        <div class="diag-ex-item"><strong>Plano 1:</strong> Superar capacidade limitada (fraqueza) para aproveitar o mercado crescente (oportunidade) — contratar estagiário por R$ 600/mês e freelancer de conteúdo para dobrar capacidade.</div>
+                        <div class="diag-ex-item"><strong>Plano 2:</strong> Superar o LinkedIn fraco (fraqueza) para capturar demanda digital (oportunidade) — comprometer-se a publicar 3x/semana por 90 dias e investir R$ 300/mês em LinkedIn Ads.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo: Família -->
+            <div class="diag-ex-content" id="diag-ex-familia">
+                <div class="diag-ex-row1">
+                    <div class="diag-ex-card diag-ex-blue">
+                        <div class="diag-ex-card-header">Mercado Jurídico</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 1:</strong> Crescimento de divórcios (+18% pós-pandemia) e expansão do inventário extrajudicial — casos que exigem especialista humano e não podem ser automatizados.</div>
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 2:</strong> Famílias recompostas, contratos de convivência e guarda compartilhada gerando nova demanda especializada sem concorrente com atendimento integrado.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 1:</strong> Plataformas de divórcio online por R$ 800 para casos simples — erodindo a percepção de valor e pressionando honorários para baixo.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 2:</strong> Crescimento de novos advogados de família na região com presença digital forte e preços inicialmente abaixo do mercado.</div>
+                        </div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-red">
+                        <div class="diag-ex-card-header">Objetivos</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-rocket"></i> Visão (3 Anos):</strong> Ser a referência estadual em advocacia familiar humanizada, com plataforma de mediação digital, equipe de 3 advogados e faturamento de R$ 400.000/ano.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-calendar-alt"></i> 1 Ano:</strong> 10 casos novos/mês com ticket médio de R$ 5.000, nota 4.9 no Google, 5.000 seguidores no Instagram e lançamento do programa de mediação pré-judicial.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-bullseye"></i> Próximo Trimestre:</strong> Lançar e-book "Guia do Divórcio sem Trauma"; parceria formal com 3 psicólogos; publicar 3 Reels/semana no Instagram.</div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-green">
+                        <div class="diag-ex-card-header">Forças e Fraquezas</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 1:</strong> Certificação em mediação + parceria exclusiva com psicóloga — único escritório da cidade com atendimento jurídico e emocional integrado.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 2:</strong> Taxa de acordos de 65%, Instagram com 3.200 seguidores e nota 4.9 no Google com 30 avaliações verificadas.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 1:</strong> Ticket médio baixo (R$ 3.500 vs média de R$ 5.000) e sem serviço recorrente — fluxo de caixa instável e dependente de novos casos.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 2:</strong> Sem blog ou site com SEO ativo — depende exclusivamente do Instagram e indicações, sem captação orgânica via Google.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diag-ex-cruzada-row">
+                    <div class="diag-ex-cruzada-card diag-ex-cruzada-fo">
+                        <div class="diag-ex-cruzada-header"><i class="fas fa-arrows-to-circle"></i> Forças × Oportunidades</div>
+                        <div class="diag-ex-item"><strong>Estratégia 1:</strong> Usar parceria com psicóloga (força) + demanda por famílias recompostas (oportunidade) → lançar "Pacote Família Recomposta" com suporte jurídico e psicológico integrado por R$ 7.000.</div>
+                        <div class="diag-ex-item"><strong>Estratégia 2:</strong> Usar credibilidade do Instagram (força) + crescimento do inventário extrajudicial (oportunidade) → criar pacote de inventário com preço fixo (R$ 10.000) divulgado nas redes.</div>
+                    </div>
+                    <div class="diag-ex-cruzada-card diag-ex-cruzada-fa">
+                        <div class="diag-ex-cruzada-header"><i class="fas fa-shield-halved"></i> Forças × Ameaças</div>
+                        <div class="diag-ex-item"><strong>Estratégia 1:</strong> Usar certificação em mediação (força) para se diferenciar dos plataformas digitais baratas (ameaça) — comunicar que casos com filhos e bens nunca podem ser resolvidos por algoritmos.</div>
+                        <div class="diag-ex-item"><strong>Estratégia 2:</strong> Usar 65% de taxa de acordos (força) para proteger da concorrência crescente (ameaça) — publicar depoimentos de clientes satisfeitos e resultados reais no Google e Instagram.</div>
+                    </div>
+                    <div class="diag-ex-cruzada-card diag-ex-cruzada-fraqo">
+                        <div class="diag-ex-cruzada-header"><i class="fas fa-arrow-up-right-dots"></i> Fraquezas × Oportunidades</div>
+                        <div class="diag-ex-item"><strong>Plano 1:</strong> Superar fluxo irregular (fraqueza) aproveitando crescimento do inventário (oportunidade) → criar "Pacote Inventário Expresso" com preço fixo para estabilizar receita mensal.</div>
+                        <div class="diag-ex-item"><strong>Plano 2:</strong> Superar ausência de SEO (fraqueza) para capturar buscas de divórcio no Google (oportunidade) → publicar 2 artigos/mês com palavras-chave "advogado divórcio [cidade]".</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo: Empresarial -->
+            <div class="diag-ex-content" id="diag-ex-empresarial">
+                <div class="diag-ex-row1">
+                    <div class="diag-ex-card diag-ex-blue">
+                        <div class="diag-ex-card-header">Mercado Jurídico</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 1:</strong> 15 milhões de PMEs no Brasil sem assessoria jurídica recorrente — um mercado subatendido que busca previsibilidade e linguagem de negócios.</div>
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 2:</strong> Reforma Tributária + regulação de IA e LGPD criando demanda massiva por especialistas — maior oportunidade para advogados empresariais nos últimos 50 anos.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 1:</strong> Big 4 (consultorias internacionais) oferecendo serviços jurídicos integrados e LegalTechs para contratos simples e due diligence automatizada.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 2:</strong> Boutiques jurídicas especializadas crescendo com modelo de assinatura similar — compressão de preços e dificuldade de diferenciação.</div>
+                        </div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-red">
+                        <div class="diag-ex-card-header">Objetivos</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-rocket"></i> Visão (3 Anos):</strong> Ser o escritório de referência nacional para startups e PMEs, com "Legal as a Service" em plataforma própria, 8 advogados e MRR de R$ 150.000/mês.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-calendar-alt"></i> 1 Ano:</strong> 20 clientes de assinatura mensal (MRR R$ 50.000), LinkedIn com 8.000 seguidores e 2 parcerias formais com aceleradoras de startups.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-bullseye"></i> Próximo Trimestre:</strong> Webinar sobre Reforma Tributária para 200 participantes; fechar 3 novos contratos de assinatura mensal; publicar guia "10 Riscos Jurídicos para Startups".</div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-green">
+                        <div class="diag-ex-card-header">Forças e Fraquezas</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 1:</strong> Expertise em contratos B2B, M&A e LGPD + 35 clientes recorrentes com MRR consolidado e modelo de assinatura único na região.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 2:</strong> LinkedIn com 4.500 seguidores qualificados e 5 anos de experiência no ecossistema de startups — autoridade reconhecida no nicho.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 1:</strong> 3 clientes representam 45% da receita — alto risco de concentração que pode comprometer o caixa em caso de cancelamento.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 2:</strong> Onboarding ainda manual e demorado (7 dias) — experiência abaixo das expectativas de startups que valorizam velocidade e automação.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diag-ex-cruzada-row">
+                    <div class="diag-ex-cruzada-card diag-ex-cruzada-fo">
+                        <div class="diag-ex-cruzada-header"><i class="fas fa-arrows-to-circle"></i> Forças × Oportunidades</div>
+                        <div class="diag-ex-item"><strong>Estratégia 1:</strong> Usar expertise na Reforma Tributária (força) + demanda massiva do mercado (oportunidade) → lançar "Pacote Reestruturação 2025" para os 35 clientes existentes e gerar upsell imediato.</div>
+                        <div class="diag-ex-item"><strong>Estratégia 2:</strong> Usar LinkedIn com 4.500 seguidores (força) + 15M de PMEs sem assessoria (oportunidade) → campanha de LinkedIn Ads segmentada por cargo (CEO, CFO) com webinar como isca.</div>
+                    </div>
+                    <div class="diag-ex-cruzada-card diag-ex-cruzada-fa">
+                        <div class="diag-ex-cruzada-header"><i class="fas fa-shield-halved"></i> Forças × Ameaças</div>
+                        <div class="diag-ex-item"><strong>Estratégia 1:</strong> Usar expertise em startups (força) para se blindar contra Big 4 (ameaça) — comunicar que grandes consultorias não dominam o "startup legal stack" e publicar cases comprovando isso.</div>
+                        <div class="diag-ex-item"><strong>Estratégia 2:</strong> Usar modelo de assinatura com preço fixo (força) para contra-atacar boutiques concorrentes (ameaça) — adicionar relatório mensal e reunião trimestral inclusos para elevar o valor percebido.</div>
+                    </div>
+                    <div class="diag-ex-cruzada-card diag-ex-cruzada-fraqo">
+                        <div class="diag-ex-cruzada-header"><i class="fas fa-arrow-up-right-dots"></i> Fraquezas × Oportunidades</div>
+                        <div class="diag-ex-item"><strong>Plano 1:</strong> Superar concentração de receita (fraqueza) aproveitando o mercado de PMEs (oportunidade) → meta de diversificar para 50+ clientes em 12 meses, reduzindo os 3 maiores para no máximo 20% da receita.</div>
+                        <div class="diag-ex-item"><strong>Plano 2:</strong> Superar onboarding lento (fraqueza) para capturar startups que exigem agilidade (oportunidade) → implementar assinatura eletrônica + portal do cliente para reduzir onboarding de 7 dias para 1 dia.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /diag-examples-block -->
+
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FERRAMENTA: CANVAS DE DESENVOLVIMENTO DE BRANDING
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="branding-panel" class="tool-panel">
+    <div class="tool-container">
+        <div class="section-title">
+            <h2>Canvas de Desenvolvimento de Branding</h2>
+            <p>Construa uma marca jurídica sólida, ética e memorável. Da identidade visual à experiência do cliente — conforme o Provimento 205/2021 da OAB.</p>
+        </div>
+
+        <!-- Actions Bar -->
+        <div class="canvas-actions">
+            <div class="canvas-actions-left">
+                <div class="canvas-example-select">
+                    <label>Exemplos práticos:</label>
+                    <select id="branding-example">
+                        <option value="">— Selecione um exemplo —</option>
+                        <option value="trabalhista">Direito Trabalhista</option>
+                        <option value="familia">Direito de Família</option>
+                        <option value="empresarial">Direito Empresarial</option>
+                    </select>
+                </div>
+                <button class="btn-clear" id="btn-clear-branding"><i class="fas fa-eraser"></i> Limpar</button>
+                <button class="btn-print" id="btn-print-branding"><i class="fas fa-print"></i> Imprimir</button>
+            </div>
+            <button class="btn-save" id="btn-save-branding"><i class="fas fa-save"></i> Salvar Branding</button>
+        </div>
+
+        <!-- ── ROW 1: Fundação + Posicionamento ── -->
+        <div class="branding-row">
+
+            <!-- Fundação da Marca -->
+            <div class="branding-block">
+                <div class="branding-block-header brand-purple">
+                    <i class="fas fa-gem"></i>
+                    <div>
+                        <span class="branding-block-title">Fundação da Marca</span>
+                        <span class="branding-block-sub">Por que você existe</span>
+                    </div>
+                </div>
+                <div class="branding-block-body">
+                    <div class="branding-field">
+                        <label><i class="fas fa-heart"></i> Propósito — Seu Porquê</label>
+                        <textarea data-brand="fundacao_proposito" placeholder="Por que você escolheu ser advogado? Qual impacto quer causar além dos honorários?&#10;Ex.: Acredito que acesso à justiça muda vidas — quero ser o advogado que PMEs da minha cidade teriam contratado antes de quebrar por contratos mal feitos."></textarea>
+                    </div>
+                    <div class="branding-field">
+                        <label><i class="fas fa-eye"></i> Visão</label>
+                        <textarea data-brand="fundacao_visao" placeholder="Onde quer estar em 5 anos? Como quer ser reconhecido?&#10;Ex.: Ser o escritório de referência em compliance trabalhista para PMEs do estado com presença nacional via conteúdo digital."></textarea>
+                    </div>
+                    <div class="branding-field branding-field--highlight">
+                        <label><i class="fas fa-star"></i> Valores Inegociáveis</label>
+                        <textarea data-brand="fundacao_valores" placeholder="Ex.: Transparência total / Ética acima do resultado / Atendimento humanizado / Excelência técnica contínua / Inovação responsável..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Posicionamento -->
+            <div class="branding-block">
+                <div class="branding-block-header brand-blue">
+                    <i class="fas fa-crosshairs"></i>
+                    <div>
+                        <span class="branding-block-title">Posicionamento</span>
+                        <span class="branding-block-sub">Como você quer ser percebido</span>
+                    </div>
+                </div>
+                <div class="branding-block-body">
+                    <div class="branding-field">
+                        <label><i class="fas fa-user-tie"></i> Público-Alvo Principal</label>
+                        <textarea data-brand="pos_publico" placeholder="Quem é seu cliente ideal? Cargo, setor, dores específicas...&#10;Ex.: Donos de PME com 5–50 funcionários, sem jurídico interno, medo de passivo trabalhista."></textarea>
+                    </div>
+                    <div class="branding-field">
+                        <label><i class="fas fa-trophy"></i> Diferencial Competitivo</label>
+                        <textarea data-brand="pos_diferencial" placeholder="O que você faz que nenhum concorrente direto faz ou faz melhor?&#10;Ex.: Único pacote preventivo da região com preço fixo + WhatsApp ilimitado + relatório mensal de riscos."></textarea>
+                    </div>
+                    <div class="branding-field branding-field--highlight">
+                        <label><i class="fas fa-quote-left"></i> Mensagem de Posicionamento</label>
+                        <textarea data-brand="pos_mensagem" placeholder="Para [segmento de mercado/público-alvo]&#10;Que precisa de [necessidade/problema]&#10;Nosso [produto/serviço]&#10;Oferece [benefício principal]&#10;Diferente de [concorrentes]&#10;Nós [razões para acreditar]"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /branding-row1 -->
+
+        <!-- ── ROW 2: Personalidade + Identidade Visual ── -->
+        <div class="branding-row">
+
+            <!-- Personalidade e Voz -->
+            <div class="branding-block">
+                <div class="branding-block-header brand-amber">
+                    <i class="fas fa-theater-masks"></i>
+                    <div>
+                        <span class="branding-block-title">Personalidade e Voz</span>
+                        <span class="branding-block-sub">Como sua marca se comunica</span>
+                    </div>
+                </div>
+                <div class="branding-block-body">
+                    <div class="branding-field">
+                        <label><i class="fas fa-masks-theater"></i> Arquétipo da Marca</label>
+                        <div class="archetype-selector" id="archetype-selector">
+                            <div class="archetype-pill" data-arch="heroi"><i class="fas fa-fist-raised"></i><span>Herói</span><small>Resultado e conquista</small></div>
+                            <div class="archetype-pill" data-arch="sabio"><i class="fas fa-book-open"></i><span>Sábio</span><small>Expertise e saber</small></div>
+                            <div class="archetype-pill" data-arch="cuidador"><i class="fas fa-hand-holding-heart"></i><span>Cuidador</span><small>Empatia e acolhimento</small></div>
+                            <div class="archetype-pill" data-arch="guardiao"><i class="fas fa-shield-alt"></i><span>Guardião</span><small>Proteção e segurança</small></div>
+                            <div class="archetype-pill" data-arch="parceiro"><i class="fas fa-handshake"></i><span>Parceiro</span><small>Confiança e proximidade</small></div>
+                            <div class="archetype-pill" data-arch="inovador"><i class="fas fa-lightbulb"></i><span>Inovador</span><small>Modernidade e soluções</small></div>
+                            <div class="archetype-pill" data-arch="governante"><i class="fas fa-crown"></i><span>Governante</span><small>Autoridade e excelência</small></div>
+                            <div class="archetype-pill" data-arch="explorador"><i class="fas fa-compass"></i><span>Explorador</span><small>Nicho e especialização</small></div>
+                        </div>
+                        <input type="hidden" data-brand="personalidade_arquetipo" id="brand-arquetipo-val">
+                        <div class="archetype-desc-box" id="archetype-desc-box"></div>
+                    </div>
+                    <div class="branding-field">
+                        <label><i class="fas fa-sliders-h"></i> Tom de Voz</label>
+                        <div class="tone-sliders">
+                            <div class="tone-slider-item">
+                                <span class="tone-pole">Formal</span>
+                                <input type="range" min="1" max="5" value="3" data-brand="tom_formalidade" class="tone-range">
+                                <span class="tone-pole">Descontraído</span>
+                            </div>
+                            <div class="tone-slider-item">
+                                <span class="tone-pole">Técnico</span>
+                                <input type="range" min="1" max="5" value="3" data-brand="tom_tecnico" class="tone-range">
+                                <span class="tone-pole">Acessível</span>
+                            </div>
+                            <div class="tone-slider-item">
+                                <span class="tone-pole">Sério</span>
+                                <input type="range" min="1" max="5" value="3" data-brand="tom_serio" class="tone-range">
+                                <span class="tone-pole">Empático</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branding-two-col">
+                        <div class="branding-field">
+                            <label class="label-green"><i class="fas fa-check-circle"></i> Palavras que Usamos</label>
+                            <textarea data-brand="personalidade_usa" placeholder="Ex.: Segurança, Clareza, Resultado, Proteção, Parceiro, Solução, Juntos, Confiança..."></textarea>
+                        </div>
+                        <div class="branding-field">
+                            <label class="label-red"><i class="fas fa-times-circle"></i> Palavras que Evitamos</label>
+                            <textarea data-brand="personalidade_evita" placeholder="Ex.: &quot;Garanto resultado&quot;, &quot;Melhor advogado&quot;, &quot;Ganhamos sempre&quot; — vedados pela OAB..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Identidade Visual -->
+            <div class="branding-block">
+                <div class="branding-block-header brand-teal">
+                    <i class="fas fa-palette"></i>
+                    <div>
+                        <span class="branding-block-title">Identidade Visual</span>
+                        <span class="branding-block-sub">Conforme Provimento 205/2021 OAB</span>
+                    </div>
+                </div>
+                <div class="branding-block-body">
+                    <div class="branding-field">
+                        <label><i class="fas fa-fill-drip"></i> Paleta de Cores</label>
+                        <div class="color-palette-builder">
+                            <div class="color-swatch-group">
+                                <input type="color" data-brand="cor_primaria" value="#1a365d" class="color-input">
+                                <div class="color-swatch-info">
+                                    <span class="color-swatch-label">Cor Primária</span>
+                                    <input type="text" data-brand="cor_primaria_sig" placeholder="Ex.: Confiança, autoridade" class="color-sig-input">
+                                </div>
+                            </div>
+                            <div class="color-swatch-group">
+                                <input type="color" data-brand="cor_secundaria" value="#d4af37" class="color-input">
+                                <div class="color-swatch-info">
+                                    <span class="color-swatch-label">Cor Secundária</span>
+                                    <input type="text" data-brand="cor_secundaria_sig" placeholder="Ex.: Excelência, premium" class="color-sig-input">
+                                </div>
+                            </div>
+                            <div class="color-swatch-group">
+                                <input type="color" data-brand="cor_destaque" value="#059669" class="color-input">
+                                <div class="color-swatch-info">
+                                    <span class="color-swatch-label">Cor de Destaque</span>
+                                    <input type="text" data-brand="cor_destaque_sig" placeholder="Ex.: CTAs, badges, ações" class="color-sig-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branding-field">
+                        <label><i class="fas fa-font"></i> Tipografia</label>
+                        <textarea data-brand="visual_tipografia" placeholder="Ex.: Título: Playfair Display (sofisticação); Texto: Inter (clareza e modernidade). Evitar fontes decorativas ou de difícil leitura..."></textarea>
+                    </div>
+                    <div class="branding-field">
+                        <label><i class="fas fa-shapes"></i> Elementos Visuais e Estilo</label>
+                        <textarea data-brand="visual_elementos" placeholder="Ex.: Estilo minimalista com linhas finas; ícone de escudo com monograma; sem balança clichê; fotografia real do advogado, não stock photo..."></textarea>
+                    </div>
+                    <div class="branding-field branding-field--highlight">
+                        <label><i class="fas fa-id-badge"></i> Nome, Assinatura e Slogan</label>
+                        <textarea data-brand="visual_nome" placeholder='Ex.: "Silva Advocacia Trabalhista" — tagline: "Proteção preventiva para sua empresa."&#10;Provimento 205/2021: slogan descritivo é permitido; vedados "o melhor" e promessas de resultado.'></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /branding-row2 -->
+
+        <!-- ── ROW 3: Experiência + Autoridade ── -->
+        <div class="branding-row">
+
+            <!-- Experiência de Marca -->
+            <div class="branding-block">
+                <div class="branding-block-header brand-green">
+                    <i class="fas fa-route"></i>
+                    <div>
+                        <span class="branding-block-title">Experiência de Marca</span>
+                        <span class="branding-block-sub">Como o cliente sente sua marca</span>
+                    </div>
+                </div>
+                <div class="branding-block-body">
+                    <div class="branding-field">
+                        <label><i class="fas fa-door-open"></i> Primeiro Contato</label>
+                        <textarea data-brand="exp_primeiro" placeholder="Como o cliente chega até você? O que vê e sente primeiro?&#10;Ex.: LinkedIn → artigo relevante → clica no WhatsApp → resposta personalizada em 2h → diagnóstico gratuito de 30 min..."></textarea>
+                    </div>
+                    <div class="branding-field">
+                        <label><i class="fas fa-map-signs"></i> Pontos de Contato (Touchpoints)</label>
+                        <textarea data-brand="exp_touchpoints" placeholder="Liste cada touchpoint e o que a marca deve comunicar:&#10;• LinkedIn: autoridade e expertise&#10;• WhatsApp: agilidade e proximidade&#10;• Contrato: organização e profissionalismo&#10;• Relatório mensal: transparência e cuidado"></textarea>
+                    </div>
+                    <div class="branding-field">
+                        <label><i class="fas fa-heart"></i> Pós-Atendimento e Fidelização</label>
+                        <textarea data-brand="exp_pos" placeholder="Ex.: E-mail de acompanhamento 30 dias após; newsletter trimestral; mensagem no aniversário; check-in semestral de relacionamento..."></textarea>
+                    </div>
+                    <div class="branding-field branding-field--highlight">
+                        <label><i class="fas fa-quote-right"></i> Como o Cliente Deve se Sentir</label>
+                        <textarea data-brand="exp_sentimento" placeholder="Ex.: Seguro — mesmo quando o assunto é difícil.&#10;Respeitado — sem juridiquês desnecessário.&#10;Informado — sempre sabe o que está acontecendo.&#10;Confiante — sente que está nas mãos certas."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Construção de Autoridade -->
+            <div class="branding-block">
+                <div class="branding-block-header brand-red">
+                    <i class="fas fa-award"></i>
+                    <div>
+                        <span class="branding-block-title">Construção de Autoridade</span>
+                        <span class="branding-block-sub">Ser reconhecido como referência</span>
+                    </div>
+                </div>
+                <div class="branding-block-body">
+                    <div class="branding-field">
+                        <label><i class="fas fa-pen-fancy"></i> Estratégia de Conteúdo da Marca</label>
+                        <textarea data-brand="aut_conteudo" placeholder="Ex.: LinkedIn: 3 posts/semana (caso hipotético, dica prática, bastidor ético); Blog: artigo técnico mensal; Newsletter quinzenal com análises legislativas..."></textarea>
+                    </div>
+                    <div class="branding-field">
+                        <label><i class="fas fa-certificate"></i> Provas de Autoridade</label>
+                        <textarea data-brand="aut_prova" placeholder="Ex.: Especialização pela PUC/SP; 8 anos de experiência; 200+ casos; nota 4.9 Google com 80 avaliações; palestrante no SENAC/SEBRAE; artigos publicados..."></textarea>
+                    </div>
+                    <div class="branding-field">
+                        <label><i class="fas fa-handshake"></i> Parcerias Estratégicas</label>
+                        <textarea data-brand="aut_parcerias" placeholder="Ex.: 3 escritórios de contabilidade como parceiros de indicação; psicóloga para atendimento integrado; consultores de RH; co-marketing com aceleradoras..."></textarea>
+                    </div>
+                    <div class="branding-field">
+                        <label><i class="fas fa-newspaper"></i> RP e Visibilidade</label>
+                        <textarea data-brand="aut_rp" placeholder="Ex.: Comentarista jurídico no jornal local; podcast mensal com sindicato patronal; artigos em portais jurídicos; entrevistas para rádio sobre mudanças legislativas..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /branding-row3 -->
+
+        <!-- ── ROW 4: Proposta de Valor (full width) ── -->
+        <div class="branding-value-block">
+            <div class="branding-value-header">
+                <i class="fas fa-gem"></i>
+                <div>
+                    <span class="branding-value-title">Proposta de Valor da Marca</span>
+                    <span class="branding-value-sub">Síntese do que torna sua marca única e insubstituível no mercado jurídico</span>
+                </div>
+            </div>
+            <div class="branding-value-body">
+                <div class="branding-field">
+                    <label><i class="fas fa-user-friends"></i> Para Quem é sua Marca</label>
+                    <textarea data-brand="valor_paraquem" placeholder="Ex.: Para donos de PMEs com até 50 funcionários que estão expostos a riscos trabalhistas sem ter assessoria jurídica preventiva..."></textarea>
+                </div>
+                <div class="branding-field">
+                    <label><i class="fas fa-gift"></i> O Que sua Marca Entrega</label>
+                    <textarea data-brand="valor_entrega" placeholder="Ex.: Segurança jurídica com preço fixo e previsível, atendimento humanizado, resposta garantida em 24h e relatório mensal de riscos..."></textarea>
+                </div>
+                <div class="branding-field">
+                    <label><i class="fas fa-bolt"></i> Por Que É Diferente</label>
+                    <textarea data-brand="valor_diferente" placeholder="Ex.: Única advocacia da região com modelo preventivo recorrente + relatório mensal + WhatsApp ilimitado + preço fixo sem surpresas..."></textarea>
+                </div>
+                <div class="branding-field branding-field--highlight">
+                    <label><i class="fas fa-signature"></i> Sua Marca em Uma Frase</label>
+                    <textarea data-brand="valor_frase" placeholder='Sua tagline de marca (art. 4º §2º do Provimento 205/2021):&#10;&#10;Ex.: "O jurídico que previne antes de precisar defender."&#10;Ex.: "Advocacia familiar — clareza nos momentos que mais importam."&#10;Ex.: "Direito trabalhista sem juridiquês."'></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Exemplos Práticos ── -->
+        <div class="branding-examples-block">
+            <div class="branding-examples-header">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Exemplos Práticos de Branding por Área</span>
+            </div>
+            <div class="branding-ex-tabs">
+                <button class="branding-ex-tab active" data-ex="branding-ex-trabalhista"><i class="fas fa-briefcase"></i> Trabalhista</button>
+                <button class="branding-ex-tab" data-ex="branding-ex-familia"><i class="fas fa-heart"></i> Família</button>
+                <button class="branding-ex-tab" data-ex="branding-ex-empresarial"><i class="fas fa-building"></i> Empresarial</button>
+            </div>
+
+            <!-- Exemplo: Trabalhista -->
+            <div class="branding-ex-content active" id="branding-ex-trabalhista">
+                <div class="branding-ex-grid">
+                    <div class="branding-ex-card brand-ex-purple">
+                        <div class="branding-ex-card-header">Fundação da Marca</div>
+                        <div class="branding-ex-item"><strong>Propósito:</strong> Fazer com que PMEs nunca percam dinheiro por desconhecer direitos trabalhistas — educando tanto quanto defendendo.</div>
+                        <div class="branding-ex-item"><strong>Visão:</strong> Ser o escritório trabalhista de referência para PMEs de MG até 2028, com presença nacional via conteúdo digital.</div>
+                        <div class="branding-ex-item"><strong>Valores:</strong> Transparência total · Resultado mensurável · Linguagem acessível · Atendimento próximo e em 24h.</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-blue">
+                        <div class="branding-ex-card-header">Posicionamento</div>
+                        <div class="branding-ex-item"><strong>Público:</strong> Donos de PME com 5–50 funcionários, sem jurídico interno, setor de serviços e comércio.</div>
+                        <div class="branding-ex-item"><strong>Diferencial:</strong> Único pacote preventivo da região: preço fixo mensal + WhatsApp ilimitado + relatório de riscos.</div>
+                        <div class="branding-ex-item"><strong>Mensagem:</strong> Para PMEs com 5–50 funcionários / Que precisam de segurança trabalhista sem surpresas / Lima Advocacia Trabalhista / Oferece assessoria preventiva com preço fixo e relatório mensal / Diferente dos escritórios tradicionais / Nós cobramos mensalidade fixa, respondemos em 24h e entregamos proteção real antes do processo.</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-amber">
+                        <div class="branding-ex-card-header">Personalidade e Voz</div>
+                        <div class="branding-ex-item"><strong>Arquétipo:</strong> Sábio + Parceiro — especialista confiável com presença próxima e acessível.</div>
+                        <div class="branding-ex-item"><strong>Tom:</strong> Direto e claro, sem juridiquês. Sério quando necessário, acessível sempre. Orientado a soluções.</div>
+                        <div class="branding-ex-item"><strong>Usa:</strong> "Segurança", "Clareza", "Preventivo", "Juntos", "Proteção", "Previsível", "Simples".</div>
+                        <div class="branding-ex-item"><strong>Evita:</strong> "Garantia de êxito", "Melhor advogado", "Vencemos sempre", "Especialista em tudo".</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-teal">
+                        <div class="branding-ex-card-header">Identidade Visual</div>
+                        <div class="branding-ex-item"><strong>Cores:</strong> Azul marinho (#1a365d) — confiança; Dourado (#d4af37) — excelência; Verde (#059669) — resultado.</div>
+                        <div class="branding-ex-item"><strong>Tipografia:</strong> Playfair Display (títulos — sofisticação) + Inter (textos — clareza). Clássico e moderno.</div>
+                        <div class="branding-ex-item"><strong>Elementos:</strong> Escudo minimalista com monograma. Sem balança clichê. Fotografia real do advogado.</div>
+                        <div class="branding-ex-item"><strong>Assinatura:</strong> "Lima Advocacia Trabalhista — Proteção preventiva para a sua empresa."</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-green">
+                        <div class="branding-ex-card-header">Experiência de Marca</div>
+                        <div class="branding-ex-item"><strong>1º Contato:</strong> LinkedIn → artigo sobre risco trabalhista → WhatsApp → diagnóstico gratuito de 30 min.</div>
+                        <div class="branding-ex-item"><strong>Touchpoints:</strong> LinkedIn (autoridade) · WhatsApp (agilidade) · Contrato (organização) · Relatório mensal (transparência).</div>
+                        <div class="branding-ex-item"><strong>Pós-atendimento:</strong> E-mail 30 dias após + newsletter mensal + ligação semestral de relacionamento.</div>
+                        <div class="branding-ex-item"><strong>Sentimento desejado:</strong> Seguro · Bem-informado · Protegido · Confiante.</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-red">
+                        <div class="branding-ex-card-header">Construção de Autoridade</div>
+                        <div class="branding-ex-item"><strong>Conteúdo:</strong> 3 posts/semana LinkedIn (caso hipotético, dica, bastidor ético) + artigo mensal no blog.</div>
+                        <div class="branding-ex-item"><strong>Provas:</strong> Especialização PUC/SP · 8 anos experiência · 200+ casos · nota 4.9 Google · palestrante SENAC.</div>
+                        <div class="branding-ex-item"><strong>Parcerias:</strong> 3 escritórios de contabilidade · consultores de RH · sindicato patronal da cidade.</div>
+                        <div class="branding-ex-item"><strong>RP:</strong> Comentarista jurídico no jornal local + participação mensal no podcast do sindicato patronal.</div>
+                    </div>
+                </div>
+                <div class="branding-ex-value-row">
+                    <div class="branding-ex-value-label"><i class="fas fa-gem"></i> Proposta de Valor da Marca</div>
+                    <div class="branding-ex-value-items">
+                        <div class="branding-ex-value-item"><strong>Para quem:</strong> PMEs com 5–50 funcionários sem jurídico interno.</div>
+                        <div class="branding-ex-value-item"><strong>Entrega:</strong> Proteção trabalhista preventiva com preço fixo e relatório mensal de riscos.</div>
+                        <div class="branding-ex-value-item"><strong>Por quê diferente:</strong> Única no mercado local com modelo preventivo recorrente + WhatsApp ilimitado.</div>
+                        <div class="branding-ex-value-item branding-ex-value-highlight"><strong><i class="fas fa-signature"></i> Tagline:</strong> "O jurídico que previne antes de precisar defender."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo: Família -->
+            <div class="branding-ex-content" id="branding-ex-familia">
+                <div class="branding-ex-grid">
+                    <div class="branding-ex-card brand-ex-purple">
+                        <div class="branding-ex-card-header">Fundação da Marca</div>
+                        <div class="branding-ex-item"><strong>Propósito:</strong> Guiar famílias nos momentos mais difíceis com clareza e humanidade — sem julgamentos, com soluções.</div>
+                        <div class="branding-ex-item"><strong>Visão:</strong> Ser a referência estadual em advocacia familiar humanizada com programa de mediação pré-judicial próprio.</div>
+                        <div class="branding-ex-item"><strong>Valores:</strong> Acolhimento · Sigilo absoluto · Resolução pacífica · Humanização · Parceria com psicólogos.</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-blue">
+                        <div class="branding-ex-card-header">Posicionamento</div>
+                        <div class="branding-ex-item"><strong>Público:</strong> Mulheres 30–55 anos em processo de divórcio; cônjuges com filhos buscando acordo; famílias para inventário.</div>
+                        <div class="branding-ex-item"><strong>Diferencial:</strong> Único escritório com atendimento integrado jurídico + psicológico. Taxa de acordos de 65%.</div>
+                        <div class="branding-ex-item"><strong>Mensagem:</strong> Para famílias em transição (divórcio, guarda ou inventário) / Que precisam resolver sem mais trauma ou conflito / Dra. Ana Lima Advocacia Familiar / Oferece atendimento jurídico e psicológico integrado com 65% de taxa de acordos / Diferente dos escritórios tradicionais / Nós colocamos o bem-estar da família antes do litígio, combinando direito e suporte emocional.</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-amber">
+                        <div class="branding-ex-card-header">Personalidade e Voz</div>
+                        <div class="branding-ex-item"><strong>Arquétipo:</strong> Cuidador + Parceiro — acolhedor, empático e presente em cada etapa do processo.</div>
+                        <div class="branding-ex-item"><strong>Tom:</strong> Acolhedor, esperançoso, seguro. Humanizado sem ser informal. Evita linguagem fria e técnica.</div>
+                        <div class="branding-ex-item"><strong>Usa:</strong> "Acolhimento", "Recomeço", "Resolução", "Proteção", "Juntos", "Com você", "Clareza".</div>
+                        <div class="branding-ex-item"><strong>Evita:</strong> "Ganhamos a guarda", "Garantimos pensão", "O melhor acordo" — promessas de resultado.</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-teal">
+                        <div class="branding-ex-card-header">Identidade Visual</div>
+                        <div class="branding-ex-item"><strong>Cores:</strong> Verde-azulado (#0e7568) — tranquilidade; Salmão (#e8825a) — calor humano; Branco — espaço e clareza.</div>
+                        <div class="branding-ex-item"><strong>Tipografia:</strong> Cormorant Garamond (títulos — humanidade) + Lato (textos — acessibilidade).</div>
+                        <div class="branding-ex-item"><strong>Elementos:</strong> Ícone de mãos abertas ou folha estilizada. Fotos reais e acolhedoras. Sem toga ou balança.</div>
+                        <div class="branding-ex-item"><strong>Assinatura:</strong> "Dra. Ana Lima | Direito de Família — Clareza nos momentos que mais importam."</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-green">
+                        <div class="branding-ex-card-header">Experiência de Marca</div>
+                        <div class="branding-ex-item"><strong>1º Contato:</strong> Instagram (Reel educativo) → DM com link → consulta inicial sigilosa e acolhedora.</div>
+                        <div class="branding-ex-item"><strong>Touchpoints:</strong> Instagram (humanização) · WhatsApp (cuidado) · Sala de espera (acolhedora) · Relatório (transparência).</div>
+                        <div class="branding-ex-item"><strong>Pós-atendimento:</strong> E-mail 15 dias após · Newsletter bimestral · Mensagem no aniversário do acordo · Indicação de psicólogos.</div>
+                        <div class="branding-ex-item"><strong>Sentimento desejado:</strong> Acolhida · Protegida · Com esperança · Respeitada · Em boas mãos.</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-red">
+                        <div class="branding-ex-card-header">Construção de Autoridade</div>
+                        <div class="branding-ex-item"><strong>Conteúdo:</strong> 3 Reels/semana no Instagram (dúvidas sobre divórcio e guarda) + blog SEO mensal + e-book "Guia do Divórcio sem Trauma".</div>
+                        <div class="branding-ex-item"><strong>Provas:</strong> Certificação CONIMA · parceria visível com psicóloga · 65% taxa de acordos · nota 4.9 Google.</div>
+                        <div class="branding-ex-item"><strong>Parcerias:</strong> 3 psicólogos e terapeutas · mediadores certificados · cartórios para inventário extrajudicial.</div>
+                        <div class="branding-ex-item"><strong>RP:</strong> Entrevistas em revistas femininas locais · grupos de apoio online · webinars mensais sobre direitos.</div>
+                    </div>
+                </div>
+                <div class="branding-ex-value-row">
+                    <div class="branding-ex-value-label"><i class="fas fa-gem"></i> Proposta de Valor da Marca</div>
+                    <div class="branding-ex-value-items">
+                        <div class="branding-ex-value-item"><strong>Para quem:</strong> Pessoas em processo de divórcio, guarda ou inventário que precisam de humanização.</div>
+                        <div class="branding-ex-value-item"><strong>Entrega:</strong> Advocacia familiar com suporte jurídico e psicológico integrado — resolução com menos trauma.</div>
+                        <div class="branding-ex-value-item"><strong>Por quê diferente:</strong> Única da região com atendimento integrado jurídico + psicológico e foco em acordo (65%).</div>
+                        <div class="branding-ex-value-item branding-ex-value-highlight"><strong><i class="fas fa-signature"></i> Tagline:</strong> "Advocacia familiar — clareza nos momentos que mais importam."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo: Empresarial -->
+            <div class="branding-ex-content" id="branding-ex-empresarial">
+                <div class="branding-ex-grid">
+                    <div class="branding-ex-card brand-ex-purple">
+                        <div class="branding-ex-card-header">Fundação da Marca</div>
+                        <div class="branding-ex-item"><strong>Propósito:</strong> Democratizar acesso ao jurídico estratégico — que não seja prerrogativa exclusiva de grandes empresas com recursos para Big Law.</div>
+                        <div class="branding-ex-item"><strong>Visão:</strong> O escritório empresarial de referência para o ecossistema de inovação do Brasil, com 100 clientes em assinatura.</div>
+                        <div class="branding-ex-item"><strong>Valores:</strong> Linguagem clara · Preço justo · Prevenção antes da litigância · Parceria de longo prazo · Inovação.</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-blue">
+                        <div class="branding-ex-card-header">Posicionamento</div>
+                        <div class="branding-ex-item"><strong>Público:</strong> Founders e CEOs de startups Série Seed/A e donos de PMEs com 5–200 funcionários, sem jurídico interno.</div>
+                        <div class="branding-ex-item"><strong>Diferencial:</strong> Assinatura mensal com preço fixo + linguagem de negócios + reunião estratégica trimestral inclusa.</div>
+                        <div class="branding-ex-item"><strong>Mensagem:</strong> Para startups e PMEs que crescem sem jurídico interno / Que precisam de proteção contínua sem burocracia / Motta Legal Advocacia Empresarial / Oferece assinatura mensal com preço fixo e linguagem de negócios / Diferente de grandes escritórios e Big Law / Nós falamos a língua do founder, respondemos em 24h e entregamos estratégia, não só documentos.</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-amber">
+                        <div class="branding-ex-card-header">Personalidade e Voz</div>
+                        <div class="branding-ex-item"><strong>Arquétipo:</strong> Sábio + Inovador — especialista técnico com abordagem estratégica e linguagem de negócios.</div>
+                        <div class="branding-ex-item"><strong>Tom:</strong> Estratégico, prático, direto. Linguagem de negócios — evita juridiquês. Confiante e orientado a crescimento.</div>
+                        <div class="branding-ex-item"><strong>Usa:</strong> "Estratégia", "Crescimento", "Previsibilidade", "Parceria", "Eficiência", "ROI jurídico", "Ágil".</div>
+                        <div class="branding-ex-item"><strong>Evita:</strong> "Ad referendum", "Douto", "Ilustríssimo" — juridiquês que afasta founders sem formação legal.</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-teal">
+                        <div class="branding-ex-card-header">Identidade Visual</div>
+                        <div class="branding-ex-item"><strong>Cores:</strong> Azul profundo (#1e3a5f) — confiança; Laranja (#ea580c) — inovação e energia; Cinza (#334155) — solidez.</div>
+                        <div class="branding-ex-item"><strong>Tipografia:</strong> Inter (toda a marca) — moderna, tecnológica, sem serifa. Peso variável para hierarquia visual.</div>
+                        <div class="branding-ex-item"><strong>Elementos:</strong> Design contemporâneo digital-first. Sem elementos jurídicos clichê. Ícones lineares e minimalistas.</div>
+                        <div class="branding-ex-item"><strong>Assinatura:</strong> "Motta Legal — Jurídico estratégico para quem constrói o futuro."</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-green">
+                        <div class="branding-ex-card-header">Experiência de Marca</div>
+                        <div class="branding-ex-item"><strong>1º Contato:</strong> LinkedIn (artigo sobre risco jurídico para startups) → guia PDF → diagnóstico estratégico gratuito de 45 min.</div>
+                        <div class="branding-ex-item"><strong>Touchpoints:</strong> LinkedIn (thought leadership) · Site com calculadora de risco · Contrato digital · Dashboard do cliente.</div>
+                        <div class="branding-ex-item"><strong>Pós-atendimento:</strong> Alertas sobre mudanças regulatórias · Reunião trimestral estratégica inclusa · Programa de indicação.</div>
+                        <div class="branding-ex-item"><strong>Sentimento desejado:</strong> Confiante · Estratégico · Em parceria · Com visibilidade total · Crescendo com segurança.</div>
+                    </div>
+                    <div class="branding-ex-card brand-ex-red">
+                        <div class="branding-ex-card-header">Construção de Autoridade</div>
+                        <div class="branding-ex-item"><strong>Conteúdo:</strong> 3 posts/semana LinkedIn (análise de risco, contratos, regulação de IA) + webinar mensal + newsletter semanal.</div>
+                        <div class="branding-ex-item"><strong>Provas:</strong> LLM Direito Empresarial USP · 35 clientes recorrentes · LinkedIn 4.500 seguidores · palestrante em 3 aceleradoras.</div>
+                        <div class="branding-ex-item"><strong>Parcerias:</strong> 2 aceleradoras · 3 hubs de inovação · 4 contadores para startups · co-working premium da cidade.</div>
+                        <div class="branding-ex-item"><strong>RP:</strong> Artigos na Exame e StartupBase · podcasts de empreendedorismo · mentorias em Demo Days de startups.</div>
+                    </div>
+                </div>
+                <div class="branding-ex-value-row">
+                    <div class="branding-ex-value-label"><i class="fas fa-gem"></i> Proposta de Valor da Marca</div>
+                    <div class="branding-ex-value-items">
+                        <div class="branding-ex-value-item"><strong>Para quem:</strong> Founders e PMEs que crescem sem jurídico interno e falam a língua de negócios.</div>
+                        <div class="branding-ex-value-item"><strong>Entrega:</strong> Parceria jurídica com assinatura mensal de preço fixo, onboarding digital e reunião trimestral.</div>
+                        <div class="branding-ex-value-item"><strong>Por quê diferente:</strong> Único escritório com modelo digital-first, linguagem de negócios e reunião estratégica inclusa.</div>
+                        <div class="branding-ex-value-item branding-ex-value-highlight"><strong><i class="fas fa-signature"></i> Tagline:</strong> "Jurídico estratégico para quem constrói o futuro."</div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /branding-examples-block -->
+
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
      FERRAMENTA 1: CANVAS DE MARKETING JURÍDICO
      ═══════════════════════════════════════════════════════════════ -->
-<div id="canvas-panel" class="tool-panel active">
+<div id="canvas-panel" class="tool-panel">
     <div class="tool-container">
         <div class="section-title">
             <h2>Canvas de Marketing Jurídico</h2>
@@ -66,71 +956,6 @@
                 <button class="btn-print" id="btn-print-canvas"><i class="fas fa-print"></i> Imprimir</button>
             </div>
             <button class="btn-save" id="btn-save-canvas"><i class="fas fa-save"></i> Salvar Canvas</button>
-        </div>
-
-        <!-- Defina os seus objetivos -->
-        <div class="obj-lp-block">
-            <div class="obj-lp-header">
-                <i class="fas fa-crosshairs"></i>
-                <div>
-                    <span class="obj-lp-title">Defina os seus objetivos</span>
-                    <span class="obj-lp-subtitle">Da visão de futuro ao planejamento trimestral</span>
-                </div>
-            </div>
-
-            <!-- Visão 2 anos — bloco único -->
-            <div class="obj-lp-card obj-lp-card--full">
-                <div class="obj-lp-card-header obj-bienal">
-                    <i class="fas fa-rocket"></i>
-                    <span>Onde seu escritório estará em dois anos?</span>
-                </div>
-                <textarea data-field="obj_lp_bienal" class="obj-lp-textarea obj-lp-textarea--full" placeholder="Ex.: Em 2 anos, ter uma carteira de 40 clientes ativos, faturamento de R$ 30.000/mês, 1 sócio contratado, ser palestrante reconhecido na área e ter lançado um produto digital com receita passiva."></textarea>
-            </div>
-
-            <!-- Objetivos Anuais — bloco único -->
-            <div class="obj-lp-card obj-lp-card--full">
-                <div class="obj-lp-card-header obj-anual">
-                    <i class="fas fa-trophy"></i>
-                    <span>Objetivos Anuais</span>
-                </div>
-                <textarea data-field="obj_lp_anual" class="obj-lp-textarea obj-lp-textarea--full" placeholder="Ex.: Dobrar o faturamento do escritório, consolidar a marca pessoal e lançar um evento presencial na área de atuação."></textarea>
-            </div>
-
-            <!-- 4 Trimestres — paralelos -->
-            <div class="obj-lp-grid">
-                <div class="obj-lp-card">
-                    <div class="obj-lp-card-header obj-t1">
-                        <i class="fas fa-seedling"></i>
-                        <span>1º Trimestre</span>
-                        <span class="obj-lp-prazo">Jan–Mar</span>
-                    </div>
-                    <textarea data-field="obj_lp_t1" class="obj-lp-textarea" placeholder="Ex.: Criar presença profissional no LinkedIn e publicar 3 artigos jurídicos por semana..."></textarea>
-                </div>
-                <div class="obj-lp-card">
-                    <div class="obj-lp-card-header obj-t2">
-                        <i class="fas fa-chart-line"></i>
-                        <span>2º Trimestre</span>
-                        <span class="obj-lp-prazo">Abr–Jun</span>
-                    </div>
-                    <textarea data-field="obj_lp_t2" class="obj-lp-textarea" placeholder="Ex.: Lançar campanha de captação e atingir 5 novos clientes via marketing digital..."></textarea>
-                </div>
-                <div class="obj-lp-card">
-                    <div class="obj-lp-card-header obj-t3">
-                        <i class="fas fa-bullseye"></i>
-                        <span>3º Trimestre</span>
-                        <span class="obj-lp-prazo">Jul–Set</span>
-                    </div>
-                    <textarea data-field="obj_lp_t3" class="obj-lp-textarea" placeholder="Ex.: Consolidar autoridade na área e iniciar parcerias estratégicas..."></textarea>
-                </div>
-                <div class="obj-lp-card">
-                    <div class="obj-lp-card-header obj-t4">
-                        <i class="fas fa-flag-checkered"></i>
-                        <span>4º Trimestre</span>
-                        <span class="obj-lp-prazo">Out–Dez</span>
-                    </div>
-                    <textarea data-field="obj_lp_t4" class="obj-lp-textarea" placeholder="Ex.: Avaliar resultados do ano, planejar o próximo ciclo e escalar o escritório..."></textarea>
-                </div>
-            </div>
         </div>
 
         <!-- Canvas Board — Business Model Canvas Layout -->
@@ -330,7 +1155,7 @@
 <!-- ═══════════════════════════════════════════════════════════════
      FERRAMENTA 2: PLANO DE TRABALHO (KANBAN)
      ═══════════════════════════════════════════════════════════════ -->
-<div id="kanban-panel" class="tool-panel">
+<div id="kanban-panel" class="tool-panel active">
     <div class="tool-container">
         <div class="section-title">
             <h2>Plano de Trabalho</h2>
@@ -372,11 +1197,11 @@
                 </div>
                 <div class="kanban-cards" id="col-doing"></div>
             </div>
-            <!-- Revisão -->
+            <!-- Feito -->
             <div class="kanban-column col-review">
                 <div class="kanban-column-header">
                     <div class="kanban-col-title">
-                        <i class="fas fa-eye"></i> Revisão
+                        <i class="fas fa-check-circle"></i> Feito
                     </div>
                     <span class="kanban-count" id="count-review">0</span>
                 </div>
@@ -487,6 +1312,709 @@
             </div>
         </div>
 
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FERRAMENTA 4: ANÁLISE PESTEL
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="pestel-panel" class="tool-panel">
+    <div class="tool-container">
+        <div class="section-title">
+            <h2>Análise PESTEL</h2>
+            <p>Mapeie os fatores externos que impactam seu escritório. Preencha cada dimensão e identifique oportunidades e riscos do ambiente.</p>
+        </div>
+
+        <!-- Actions Bar -->
+        <div class="canvas-actions">
+            <div class="canvas-actions-left">
+                <!-- Perfil do Escritório -->
+                <div class="pestel-profile-group">
+                    <div class="pestel-profile-field">
+                        <label><i class="fas fa-balance-scale"></i> Área de Atuação</label>
+                        <select id="pestel-area">
+                            <option value="">— Selecione —</option>
+                            <option value="trabalhista">Direito Trabalhista</option>
+                            <option value="familia">Direito de Família</option>
+                            <option value="empresarial">Direito Empresarial</option>
+                            <option value="tributario">Direito Tributário</option>
+                            <option value="criminal">Direito Criminal</option>
+                            <option value="previdenciario">Direito Previdenciário</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="pestel-profile-field">
+                        <label><i class="fas fa-users"></i> Tamanho do Escritório</label>
+                        <select id="pestel-size">
+                            <option value="">— Selecione —</option>
+                            <option value="solo">Solo (apenas 1 advogado)</option>
+                            <option value="pequeno">Pequeno (2–5 advogados)</option>
+                            <option value="medio">Médio (6–20 advogados)</option>
+                            <option value="grande">Grande (21+ advogados)</option>
+                        </select>
+                    </div>
+                    <div class="pestel-profile-field">
+                        <label><i class="fas fa-map-marker-alt"></i> Abrangência</label>
+                        <select id="pestel-scope">
+                            <option value="">— Selecione —</option>
+                            <option value="local">Local (uma cidade)</option>
+                            <option value="regional">Regional (estado)</option>
+                            <option value="nacional">Nacional</option>
+                            <option value="online">100% Online</option>
+                        </select>
+                    </div>
+                    <button class="btn-pestel-example" id="btn-load-pestel-example"><i class="fas fa-magic"></i> Carregar Exemplo</button>
+                </div>
+                <button class="btn-clear" id="btn-clear-pestel"><i class="fas fa-eraser"></i> Limpar</button>
+                <button class="btn-print" id="btn-print-pestel"><i class="fas fa-print"></i> Imprimir</button>
+            </div>
+            <button class="btn-save" id="btn-save-pestel"><i class="fas fa-save"></i> Salvar Análise</button>
+        </div>
+
+        <!-- PESTEL Grid -->
+        <div class="pestel-grid">
+
+            <!-- P — Político -->
+            <div class="pestel-card pestel-p">
+                <div class="pestel-card-header">
+                    <div class="pestel-letter">P</div>
+                    <div>
+                        <span class="pestel-card-title">Político</span>
+                        <span class="pestel-card-sub">Regulação, OAB, políticas públicas</span>
+                    </div>
+                </div>
+                <div class="pestel-card-body">
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-up"></i> Oportunidades</label>
+                        <textarea data-pestel="p_oport" placeholder="Ex.: Novas legislações criando demanda na sua área; políticas de desjudicialização abrindo mercado para mediação..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-down"></i> Ameaças / Riscos</label>
+                        <textarea data-pestel="p_risco" placeholder="Ex.: Restrições do Código de Ética da OAB à publicidade; mudanças políticas que reduzem demanda na sua área..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-lightbulb"></i> Ação Estratégica</label>
+                        <textarea data-pestel="p_acao" placeholder="Ex.: Monitorar projetos de lei relevantes e publicar análises para se posicionar como referência..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E — Econômico -->
+            <div class="pestel-card pestel-e">
+                <div class="pestel-card-header">
+                    <div class="pestel-letter">E</div>
+                    <div>
+                        <span class="pestel-card-title">Econômico</span>
+                        <span class="pestel-card-sub">Cenário financeiro e mercado</span>
+                    </div>
+                </div>
+                <div class="pestel-card-body">
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-up"></i> Oportunidades</label>
+                        <textarea data-pestel="e_oport" placeholder="Ex.: Crise econômica aumenta demanda por reestruturação de dívidas e demissões; crescimento de PMEs cria demanda por assessoria..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-down"></i> Ameaças / Riscos</label>
+                        <textarea data-pestel="e_risco" placeholder="Ex.: Recessão reduz capacidade de pagamento dos clientes; aumento de escritórios concorrentes baixando preços..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-lightbulb"></i> Ação Estratégica</label>
+                        <textarea data-pestel="e_acao" placeholder="Ex.: Criar pacotes mensais de assessoria com valor fixo para reduzir barreira de acesso..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- S — Social -->
+            <div class="pestel-card pestel-s">
+                <div class="pestel-card-header">
+                    <div class="pestel-letter">S</div>
+                    <div>
+                        <span class="pestel-card-title">Social</span>
+                        <span class="pestel-card-sub">Comportamento e cultura da sociedade</span>
+                    </div>
+                </div>
+                <div class="pestel-card-body">
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-up"></i> Oportunidades</label>
+                        <textarea data-pestel="s_oport" placeholder="Ex.: Maior consciência sobre direitos trabalhistas; crescimento de famílias monoparentais aumentando demanda em direito de família..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-down"></i> Ameaças / Riscos</label>
+                        <textarea data-pestel="s_risco" placeholder="Ex.: Desconfiança do público em relação a advogados; concorrência de plataformas jurídicas "low cost"..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-lightbulb"></i> Ação Estratégica</label>
+                        <textarea data-pestel="s_acao" placeholder="Ex.: Investir em conteúdo educativo para construir confiança e autoridade junto ao público-alvo..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- T — Tecnológico -->
+            <div class="pestel-card pestel-t">
+                <div class="pestel-card-header">
+                    <div class="pestel-letter">T</div>
+                    <div>
+                        <span class="pestel-card-title">Tecnológico</span>
+                        <span class="pestel-card-sub">Inovação e ferramentas digitais</span>
+                    </div>
+                </div>
+                <div class="pestel-card-body">
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-up"></i> Oportunidades</label>
+                        <textarea data-pestel="t_oport" placeholder="Ex.: IA jurídica reduzindo tempo em pesquisas; plataformas digitais permitindo atendimento nacional; marketing de conteúdo de baixo custo..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-down"></i> Ameaças / Riscos</label>
+                        <textarea data-pestel="t_risco" placeholder="Ex.: LegalTechs com serviços automatizados competindo por casos simples; vulnerabilidade de dados de clientes..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-lightbulb"></i> Ação Estratégica</label>
+                        <textarea data-pestel="t_acao" placeholder="Ex.: Adotar software jurídico e automação de contratos para ganhar eficiência e se diferenciar..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E — Ecológico -->
+            <div class="pestel-card pestel-ec">
+                <div class="pestel-card-header">
+                    <div class="pestel-letter">E</div>
+                    <div>
+                        <span class="pestel-card-title">Ecológico / Ambiental</span>
+                        <span class="pestel-card-sub">Sustentabilidade e regulação ambiental</span>
+                    </div>
+                </div>
+                <div class="pestel-card-body">
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-up"></i> Oportunidades</label>
+                        <textarea data-pestel="ec_oport" placeholder="Ex.: Crescimento de demanda por compliance ambiental e ESG; escritório 100% digital reduzindo custos e alinhando com valores modernos..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-down"></i> Ameaças / Riscos</label>
+                        <textarea data-pestel="ec_risco" placeholder="Ex.: Clientes do setor industrial com passivo ambiental; exigências de selos de sustentabilidade para licitações..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-lightbulb"></i> Ação Estratégica</label>
+                        <textarea data-pestel="ec_acao" placeholder="Ex.: Posicionar o escritório como "digital-first" e sem papel, comunicando isso como diferencial de modernidade..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L — Legal -->
+            <div class="pestel-card pestel-l">
+                <div class="pestel-card-header">
+                    <div class="pestel-letter">L</div>
+                    <div>
+                        <span class="pestel-card-title">Legal / Regulatório</span>
+                        <span class="pestel-card-sub">Normas, LGPD, ética profissional</span>
+                    </div>
+                </div>
+                <div class="pestel-card-body">
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-up"></i> Oportunidades</label>
+                        <textarea data-pestel="l_oport" placeholder="Ex.: LGPD criando demanda por consultoria de privacidade; novas leis tributárias gerando oportunidades de planejamento..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-down"></i> Ameaças / Riscos</label>
+                        <textarea data-pestel="l_risco" placeholder="Ex.: Restrições éticas ao marketing jurídico limitando canais; risco de processo disciplinar por publicidade irregular..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-lightbulb"></i> Ação Estratégica</label>
+                        <textarea data-pestel="l_acao" placeholder="Ex.: Manter-se atualizado com o Provimento 205/2021 da OAB e usar apenas canais permitidos para marketing..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /pestel-grid -->
+
+        <!-- Resumo Estratégico -->
+        <div class="pestel-summary-block">
+            <div class="pestel-summary-header">
+                <i class="fas fa-compass"></i>
+                <div>
+                    <span class="pestel-summary-title">Síntese Estratégica</span>
+                    <span class="pestel-summary-sub">Com base na análise PESTEL, quais são as 3 principais conclusões para o seu escritório?</span>
+                </div>
+            </div>
+            <div class="pestel-summary-body">
+                <div class="pestel-field">
+                    <label><i class="fas fa-star"></i> Principal Oportunidade Identificada</label>
+                    <textarea data-pestel="resumo_oport" placeholder="Ex.: A reforma trabalhista e o aumento de demissões geram alta demanda por consultoria preventiva para PMEs — momento ideal para lançar pacote de assessoria mensal..."></textarea>
+                </div>
+                <div class="pestel-field">
+                    <label><i class="fas fa-exclamation-triangle"></i> Principal Risco a Mitigar</label>
+                    <textarea data-pestel="resumo_risco" placeholder="Ex.: As restrições da OAB à publicidade limitam canais de aquisição — mitigar com foco em indicação estruturada e marketing de conteúdo dentro das normas..."></textarea>
+                </div>
+                <div class="pestel-field">
+                    <label><i class="fas fa-road"></i> Ação Prioritária para os Próximos 90 dias</label>
+                    <textarea data-pestel="resumo_acao" placeholder="Ex.: Lançar blog jurídico com 2 artigos/semana sobre temas trabalhistas e iniciar parceria formal com 3 contadores da região..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exemplos Práticos -->
+        <div class="pestel-examples-block">
+            <div class="pestel-examples-header">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Exemplos Práticos por Tipo de Escritório</span>
+            </div>
+            <div class="pestel-examples-tabs">
+                <button class="pestel-ex-tab active" data-ex="trabalhista">Trabalhista</button>
+                <button class="pestel-ex-tab" data-ex="familia">Família</button>
+                <button class="pestel-ex-tab" data-ex="empresarial">Empresarial</button>
+                <button class="pestel-ex-tab" data-ex="tributario">Tributário</button>
+            </div>
+            <div class="pestel-ex-content active" id="pestel-ex-trabalhista">
+                <table class="pestel-ex-table">
+                    <thead><tr><th>Fator</th><th>Oportunidade</th><th>Risco</th><th>Ação</th></tr></thead>
+                    <tbody>
+                        <tr class="row-p"><td><span class="ex-badge ex-p">P</span> Político</td><td>Reforma trabalhista gera demanda por reinterpretação de contratos</td><td>Mudanças eleitorais podem alterar proteções trabalhistas</td><td>Publicar análises sobre impactos de cada mudança legislativa</td></tr>
+                        <tr class="row-e"><td><span class="ex-badge ex-e">E</span> Econômico</td><td>Crise aumenta demissões e processos trabalhistas em 30%+</td><td>PMEs sem verba para assessoria preventiva</td><td>Criar pacote mensal a partir de R$ 800 para PMEs</td></tr>
+                        <tr class="row-s"><td><span class="ex-badge ex-s">S</span> Social</td><td>Maior consciência sobre direitos trabalhistas entre empregados</td><td>Plataformas de autoatendimento jurídico para casos simples</td><td>Focar em casos complexos e educação para empresas</td></tr>
+                        <tr class="row-t"><td><span class="ex-badge ex-t">T</span> Tecnológico</td><td>IA para triagem de documentos reduz 60% do tempo</td><td>LegalTechs automatizando rescisões simples</td><td>Adotar IA e se diferenciar pelo atendimento consultivo</td></tr>
+                        <tr class="row-ec"><td><span class="ex-badge ex-ec">E</span> Ecológico</td><td>Escritório digital reduz custos e atrai empresas ESG</td><td>Baixo impacto direto no segmento</td><td>Comunicar escritório "paperless" como diferencial</td></tr>
+                        <tr class="row-l"><td><span class="ex-badge ex-l">L</span> Legal</td><td>Prov. 205/2021 permite conteúdo educativo e LinkedIn</td><td>Vedação a publicidade direta e captação ativa de clientes</td><td>Produzir conteúdo educativo e monitorar atualizações do CFOAB</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pestel-ex-content" id="pestel-ex-familia">
+                <table class="pestel-ex-table">
+                    <thead><tr><th>Fator</th><th>Oportunidade</th><th>Risco</th><th>Ação</th></tr></thead>
+                    <tbody>
+                        <tr class="row-p"><td><span class="ex-badge ex-p">P</span> Político</td><td>Novas normas sobre guarda e alimentos ampliam serviços</td><td>Agenda política pode atrasar reformas no Código Civil</td><td>Monitorar PLs sobre família e publicar antecipadamente</td></tr>
+                        <tr class="row-e"><td><span class="ex-badge ex-e">E</span> Econômico</td><td>Crescimento de divórcios em períodos de crise financeira</td><td>Clientes sem condição de pagar honorários elevados</td><td>Oferecer consulta inicial acessível e parcelamento</td></tr>
+                        <tr class="row-s"><td><span class="ex-badge ex-s">S</span> Social</td><td>Aumento de famílias recompostas e novos arranjos familiares</td><td>Estigma social ainda dificulta busca de ajuda jurídica</td><td>Comunicar serviços de forma acolhedora e sigilosa</td></tr>
+                        <tr class="row-t"><td><span class="ex-badge ex-t">T</span> Tecnológico</td><td>Mediação online reduz custo e tempo dos processos</td><td>Concorrência de plataformas de divórcio online</td><td>Oferecer atendimento online + humanizado como diferencial</td></tr>
+                        <tr class="row-ec"><td><span class="ex-badge ex-ec">E</span> Ecológico</td><td>Atendimento digital atrai clientes fora da cidade</td><td>Baixo impacto direto no segmento</td><td>Expandir atendimento para outras regiões via online</td></tr>
+                        <tr class="row-l"><td><span class="ex-badge ex-l">L</span> Legal</td><td>Inventário extrajudicial crescendo como alternativa rápida</td><td>Restrições éticas à captação ativa de clientes em momento de vulnerabilidade</td><td>Focar em conteúdo educativo e indicações de psicólogos parceiros</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pestel-ex-content" id="pestel-ex-empresarial">
+                <table class="pestel-ex-table">
+                    <thead><tr><th>Fator</th><th>Oportunidade</th><th>Risco</th><th>Ação</th></tr></thead>
+                    <tbody>
+                        <tr class="row-p"><td><span class="ex-badge ex-p">P</span> Político</td><td>Reformas tributária e administrativa geram alta demanda por restruturação</td><td>Instabilidade política aumenta custo de capital para clientes</td><td>Publicar guias práticos sobre cada reforma e capturar leads</td></tr>
+                        <tr class="row-e"><td><span class="ex-badge ex-e">E</span> Econômico</td><td>Ecossistema de startups em crescimento precisa de suporte jurídico</td><td>Grandes escritórios com estrutura maior disputando os mesmos clientes</td><td>Especializar em startups e contratos de tecnologia como nicho</td></tr>
+                        <tr class="row-s"><td><span class="ex-badge ex-s">S</span> Social</td><td>Empresários buscam clareza jurídica sem juridiquês</td><td>Descrença inicial de founders em advogados "caros"</td><td>Comunicar valor em linguagem de negócios, não jurídica</td></tr>
+                        <tr class="row-t"><td><span class="ex-badge ex-t">T</span> Tecnológico</td><td>LGPD e regulação de IA criando nova demanda especializada</td><td>Contratos gerados por IA reduzindo demanda por trabalho simples</td><td>Focar em estratégia jurídica e conformidade regulatória</td></tr>
+                        <tr class="row-ec"><td><span class="ex-badge ex-ec">E</span> Ecológico</td><td>Empresas exigindo ESG de fornecedores, incluindo jurídico</td><td>Clientes industriais com passivo ambiental complexo</td><td>Oferecer due diligence ESG como serviço complementar</td></tr>
+                        <tr class="row-l"><td><span class="ex-badge ex-l">L</span> Legal</td><td>Proteção de dados e PI crescendo como área crítica</td><td>Restrições de confidencialidade limitam uso de cases</td><td>Usar depoimentos anônimos e métricas de resultado agregadas</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pestel-ex-content" id="pestel-ex-tributario">
+                <table class="pestel-ex-table">
+                    <thead><tr><th>Fator</th><th>Oportunidade</th><th>Risco</th><th>Ação</th></tr></thead>
+                    <tbody>
+                        <tr class="row-p"><td><span class="ex-badge ex-p">P</span> Político</td><td>Reforma tributária é a maior oportunidade do século para tributaristas</td><td>Transição de 7 anos cria incerteza para clientes e escritório</td><td>Tornar-se referência na reforma com webinars e conteúdo antecipado</td></tr>
+                        <tr class="row-e"><td><span class="ex-badge ex-e">E</span> Econômico</td><td>Empresas buscando reduzir carga tributária em tempos de crise</td><td>Inadimplência de clientes em dificuldade financeira</td><td>Exigir sinal de 40% e usar contrato robusto de honorários</td></tr>
+                        <tr class="row-s"><td><span class="ex-badge ex-s">S</span> Social</td><td>PMEs sem contador especializado precisando de orientação</td><td>Confusão entre serviço de advogado e contador</td><td>Comunicar claramente o papel do advogado tributário vs contador</td></tr>
+                        <tr class="row-t"><td><span class="ex-badge ex-t">T</span> Tecnológico</td><td>Softwares de planejamento tributário como ferramenta diferencial</td><td>Soluções de IA para cálculo tributário básico</td><td>Usar tecnologia internamente e focar em planejamento estratégico</td></tr>
+                        <tr class="row-ec"><td><span class="ex-badge ex-ec">E</span> Ecológico</td><td>Incentivos fiscais para empresas sustentáveis gerando oportunidades</td><td>Baixo impacto direto no segmento principal</td><td>Oferecer consultoria de incentivos fiscais verdes como nicho</td></tr>
+                        <tr class="row-l"><td><span class="ex-badge ex-l">L</span> Legal</td><td>Constantes mudanças na legislação criam demanda contínua</td><td>Risco de responsabilidade civil por planejamento mal estruturado</td><td>Manter seguro de responsabilidade profissional e documentar pareceres</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- /pestel-examples-block -->
+
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FERRAMENTA 5: ANÁLISE SWOT
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="swot-panel" class="tool-panel">
+    <div class="tool-container">
+        <div class="section-title">
+            <h2>Análise SWOT</h2>
+            <p>Identifique os pontos fortes, fraquezas, oportunidades e ameaças do seu escritório para construir uma estratégia sólida.</p>
+        </div>
+
+        <!-- Actions Bar -->
+        <div class="canvas-actions">
+            <div class="canvas-actions-left">
+                <div class="canvas-example-select">
+                    <label>Exemplos práticos:</label>
+                    <select id="swot-example">
+                        <option value="">— Selecione —</option>
+                        <option value="trabalhista">Direito Trabalhista</option>
+                        <option value="familia">Direito de Família</option>
+                        <option value="empresarial">Direito Empresarial</option>
+                    </select>
+                </div>
+                <button class="btn-clear" id="btn-clear-swot"><i class="fas fa-eraser"></i> Limpar</button>
+                <button class="btn-print" id="btn-print-swot"><i class="fas fa-print"></i> Imprimir</button>
+            </div>
+            <button class="btn-save" id="btn-save-swot"><i class="fas fa-save"></i> Salvar SWOT</button>
+        </div>
+
+        <!-- SWOT Matrix -->
+        <div class="swot-matrix">
+
+            <!-- Forças -->
+            <div class="swot-quadrant swot-s">
+                <div class="swot-quadrant-header">
+                    <div class="swot-icon-badge swot-s-color"><i class="fas fa-fist-raised"></i></div>
+                    <div>
+                        <span class="swot-q-title">Forças <em>(Strengths)</em></span>
+                        <span class="swot-q-sub">O que você faz melhor que os concorrentes?</span>
+                    </div>
+                </div>
+                <div class="swot-quadrant-body">
+                    <div class="swot-hint swot-hint-s">Fatores internos positivos que estão sob seu controle</div>
+                    <div class="swot-field">
+                        <label><i class="fas fa-star"></i> Especialização e Conhecimento</label>
+                        <textarea data-swot="s_conhecimento" placeholder="Ex.: Especialização certificada em Direito Trabalhista; 10 anos de experiência em contencioso trabalhista complexo..."></textarea>
+                    </div>
+                    <div class="swot-field">
+                        <label><i class="fas fa-users"></i> Relacionamento e Reputação</label>
+                        <textarea data-swot="s_reputacao" placeholder="Ex.: Nota 4.9 no Google com 80 avaliações; rede sólida de indicadores (contadores, RH); palestrante reconhecido..."></textarea>
+                    </div>
+                    <div class="swot-field">
+                        <label><i class="fas fa-cogs"></i> Processos e Diferenciais</label>
+                        <textarea data-swot="s_processos" placeholder="Ex.: Atendimento online 100%; retorno em 24h garantido; contratos digitais e CRM para gestão de casos..."></textarea>
+                    </div>
+                    <div class="swot-tags-area" id="swot-tags-s"></div>
+                    <button class="btn-add-swot-item" data-quad="s">
+                        <i class="fas fa-plus"></i> Adicionar Força
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fraquezas -->
+            <div class="swot-quadrant swot-w">
+                <div class="swot-quadrant-header">
+                    <div class="swot-icon-badge swot-w-color"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div>
+                        <span class="swot-q-title">Fraquezas <em>(Weaknesses)</em></span>
+                        <span class="swot-q-sub">O que precisa melhorar em seu escritório?</span>
+                    </div>
+                </div>
+                <div class="swot-quadrant-body">
+                    <div class="swot-hint swot-hint-w">Fatores internos negativos que precisam ser desenvolvidos</div>
+                    <div class="swot-field">
+                        <label><i class="fas fa-user-slash"></i> Capacidade e Recursos</label>
+                        <textarea data-swot="w_capacidade" placeholder="Ex.: Escritório solo sem equipe de apoio; tempo limitado para produção de conteúdo; sem expertise em marketing digital..."></textarea>
+                    </div>
+                    <div class="swot-field">
+                        <label><i class="fas fa-chart-bar"></i> Marketing e Visibilidade</label>
+                        <textarea data-swot="w_marketing" placeholder="Ex.: Presença online incipiente; poucas avaliações no Google; LinkedIn com conteúdo irregular; sem site profissional..."></textarea>
+                    </div>
+                    <div class="swot-field">
+                        <label><i class="fas fa-money-bill-wave"></i> Financeiro e Estrutura</label>
+                        <textarea data-swot="w_financeiro" placeholder="Ex.: Dependência de um único cliente grande; fluxo de caixa irregular; sem budget para marketing; escritório sem estrutura para escalar..."></textarea>
+                    </div>
+                    <div class="swot-tags-area" id="swot-tags-w"></div>
+                    <button class="btn-add-swot-item" data-quad="w">
+                        <i class="fas fa-plus"></i> Adicionar Fraqueza
+                    </button>
+                </div>
+            </div>
+
+            <!-- Oportunidades -->
+            <div class="swot-quadrant swot-o">
+                <div class="swot-quadrant-header">
+                    <div class="swot-icon-badge swot-o-color"><i class="fas fa-rocket"></i></div>
+                    <div>
+                        <span class="swot-q-title">Oportunidades <em>(Opportunities)</em></span>
+                        <span class="swot-q-sub">Quais tendências externas podem beneficiar você?</span>
+                    </div>
+                </div>
+                <div class="swot-quadrant-body">
+                    <div class="swot-hint swot-hint-o">Fatores externos positivos que você pode aproveitar</div>
+                    <div class="swot-field">
+                        <label><i class="fas fa-trending-up"></i> Mercado e Demanda</label>
+                        <textarea data-swot="o_mercado" placeholder="Ex.: Crescimento do mercado de assessoria preventiva para PMEs; expansão de startups buscando suporte jurídico inicial..."></textarea>
+                    </div>
+                    <div class="swot-field">
+                        <label><i class="fas fa-globe"></i> Digital e Tecnologia</label>
+                        <textarea data-swot="o_digital" placeholder="Ex.: Marketing de conteúdo permite alcance nacional com baixo custo; atendimento online elimina barreira geográfica..."></textarea>
+                    </div>
+                    <div class="swot-field">
+                        <label><i class="fas fa-handshake"></i> Parcerias Estratégicas</label>
+                        <textarea data-swot="o_parcerias" placeholder="Ex.: Parceria com contadores e consultores de RH como fonte de indicações; co-marketing com profissionais complementares..."></textarea>
+                    </div>
+                    <div class="swot-tags-area" id="swot-tags-o"></div>
+                    <button class="btn-add-swot-item" data-quad="o">
+                        <i class="fas fa-plus"></i> Adicionar Oportunidade
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ameaças -->
+            <div class="swot-quadrant swot-t">
+                <div class="swot-quadrant-header">
+                    <div class="swot-icon-badge swot-t-color"><i class="fas fa-shield-alt"></i></div>
+                    <div>
+                        <span class="swot-q-title">Ameaças <em>(Threats)</em></span>
+                        <span class="swot-q-sub">Quais riscos externos podem prejudicar o escritório?</span>
+                    </div>
+                </div>
+                <div class="swot-quadrant-body">
+                    <div class="swot-hint swot-hint-t">Fatores externos negativos que precisam ser monitorados</div>
+                    <div class="swot-field">
+                        <label><i class="fas fa-building"></i> Concorrência</label>
+                        <textarea data-swot="t_concorrencia" placeholder="Ex.: Grandes escritórios com marketing profissional; plataformas jurídicas online com preços baixos; advogados generalistas disputando o mesmo cliente..."></textarea>
+                    </div>
+                    <div class="swot-field">
+                        <label><i class="fas fa-balance-scale-right"></i> Regulação e Ética</label>
+                        <textarea data-swot="t_regulacao" placeholder="Ex.: Restrições da OAB à publicidade ativa; risco de processo disciplinar por marketing irregular; mudanças no Código de Ética..."></textarea>
+                    </div>
+                    <div class="swot-field">
+                        <label><i class="fas fa-exclamation-circle"></i> Mercado e Conjuntura</label>
+                        <textarea data-swot="t_mercado" placeholder="Ex.: Saturação do mercado jurídico; crise econômica reduzindo capacidade de pagamento dos clientes; IA substituindo trabalho de menor complexidade..."></textarea>
+                    </div>
+                    <div class="swot-tags-area" id="swot-tags-t"></div>
+                    <button class="btn-add-swot-item" data-quad="t">
+                        <i class="fas fa-plus"></i> Adicionar Ameaça
+                    </button>
+                </div>
+            </div>
+
+        </div><!-- /swot-matrix -->
+
+        <!-- Plano de Ação SWOT -->
+        <div class="swot-action-block">
+            <div class="swot-action-header">
+                <i class="fas fa-map-signs"></i>
+                <div>
+                    <span class="swot-action-title">Plano de Ação SWOT</span>
+                    <span class="swot-action-sub">Transforme sua análise em estratégias concretas cruzando os quadrantes</span>
+                </div>
+            </div>
+            <div class="swot-action-grid">
+                <div class="swot-action-card swot-action-so">
+                    <div class="swot-action-card-header">
+                        <span class="swot-combo"><span class="combo-s">F</span>+<span class="combo-o">O</span></span>
+                        <span>Estratégia Agressiva</span>
+                    </div>
+                    <p class="swot-action-desc">Use suas <strong>Forças</strong> para aproveitar as <strong>Oportunidades</strong></p>
+                    <textarea data-swot="acao_so" placeholder="Ex.: Usar minha especialização trabalhista + crescimento de demanda preventiva → lançar pacote de assessoria mensal para PMEs com até 20 funcionários, promovendo via LinkedIn com conteúdo educativo..."></textarea>
+                </div>
+                <div class="swot-action-card swot-action-wo">
+                    <div class="swot-action-card-header">
+                        <span class="swot-combo"><span class="combo-w">Fr</span>+<span class="combo-o">O</span></span>
+                        <span>Estratégia de Crescimento</span>
+                    </div>
+                    <p class="swot-action-desc">Supere suas <strong>Fraquezas</strong> aproveitando as <strong>Oportunidades</strong></p>
+                    <textarea data-swot="acao_wo" placeholder="Ex.: Resolver fraqueza de marketing digital + oportunidade do conteúdo online → contratar um designer freelancer por R$ 400/mês para criar peças profissionais para o LinkedIn..."></textarea>
+                </div>
+                <div class="swot-action-card swot-action-st">
+                    <div class="swot-action-card-header">
+                        <span class="swot-combo"><span class="combo-s">F</span>+<span class="combo-t">A</span></span>
+                        <span>Estratégia Defensiva</span>
+                    </div>
+                    <p class="swot-action-desc">Use suas <strong>Forças</strong> para neutralizar as <strong>Ameaças</strong></p>
+                    <textarea data-swot="acao_st" placeholder="Ex.: Usar minha reputação de especialista + ameaça das plataformas low-cost → comunicar ativamente que casos complexos exigem advogado especializado, diferenciando por profundidade técnica..."></textarea>
+                </div>
+                <div class="swot-action-card swot-action-wt">
+                    <div class="swot-action-card-header">
+                        <span class="swot-combo"><span class="combo-w">Fr</span>+<span class="combo-t">A</span></span>
+                        <span>Estratégia de Sobrevivência</span>
+                    </div>
+                    <p class="swot-action-desc">Minimize <strong>Fraquezas</strong> e evite as <strong>Ameaças</strong></p>
+                    <textarea data-swot="acao_wt" placeholder="Ex.: Reduzir dependência de um único cliente grande + ameaça de perda desse cliente → criar programa de indicação e diversificar carteira com pelo menos 5 clientes recorrentes..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exemplos Práticos SWOT -->
+        <div class="swot-examples-block">
+            <div class="swot-examples-header">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Exemplos Práticos de Análise SWOT por Área</span>
+            </div>
+
+            <!-- Trabalhista -->
+            <div class="swot-ex-case active" id="swot-ex-trabalhista">
+                <div class="swot-ex-title"><i class="fas fa-briefcase"></i> Escritório de Direito Trabalhista — Solo, 3 anos de atuação</div>
+                <div class="swot-ex-matrix">
+                    <div class="swot-ex-q swot-ex-s">
+                        <div class="swot-ex-q-header"><span class="ex-badge ex-s-badge">F</span> Forças</div>
+                        <ul>
+                            <li>Especialização certificada em Direito do Trabalho</li>
+                            <li>Nota 4.9 no Google com 45 avaliações</li>
+                            <li>Taxa de sucesso de 78% nos casos contenciosos</li>
+                            <li>Rede de 8 contadores que indicam regularmente</li>
+                            <li>Atendimento online para todo o Brasil</li>
+                        </ul>
+                    </div>
+                    <div class="swot-ex-q swot-ex-w">
+                        <div class="swot-ex-q-header"><span class="ex-badge ex-w-badge">Fr</span> Fraquezas</div>
+                        <ul>
+                            <li>Sem equipe de apoio (escritório solo)</li>
+                            <li>LinkedIn com menos de 500 seguidores</li>
+                            <li>Sem budget definido para marketing</li>
+                            <li>Dependência de 2 grandes clientes (60% da receita)</li>
+                            <li>Sem sistema de CRM estruturado</li>
+                        </ul>
+                    </div>
+                    <div class="swot-ex-q swot-ex-o">
+                        <div class="swot-ex-q-header"><span class="ex-badge ex-o-badge">O</span> Oportunidades</div>
+                        <ul>
+                            <li>Reforma trabalhista gerando nova onda de demanda</li>
+                            <li>PMEs sem assessoria preventiva estruturada</li>
+                            <li>Conteúdo educativo no LinkedIn com alto alcance orgânico</li>
+                            <li>Parcerias com consultorias de RH</li>
+                            <li>Crescimento de demandas sobre home office e teletrabalho</li>
+                        </ul>
+                    </div>
+                    <div class="swot-ex-q swot-ex-t">
+                        <div class="swot-ex-q-header"><span class="ex-badge ex-t-badge">A</span> Ameaças</div>
+                        <ul>
+                            <li>Plataformas jurídicas online com preço 60% menor</li>
+                            <li>Saturação de advogados trabalhistas na região</li>
+                            <li>OAB restringindo publicidade ativa</li>
+                            <li>Crise econômica reduzindo tickets médios</li>
+                            <li>IA automatizando cálculos de rescisão</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="swot-ex-insights">
+                    <div class="swot-ex-insight swot-ex-insight-so"><span>F+O:</span> Usar especialização + demanda por preventivo → Lançar "Pacote Preventivo PME" por R$ 800/mês</div>
+                    <div class="swot-ex-insight swot-ex-insight-wo"><span>Fr+O:</span> Resolver fraqueza no LinkedIn + alcance orgânico → Publicar 3 posts/semana por 60 dias e atingir 1.500 seguidores</div>
+                    <div class="swot-ex-insight swot-ex-insight-st"><span>F+A:</span> Usar reputação + ameaça de plataformas → Comunicar complexidade dos casos e custo de erros sem especialista</div>
+                    <div class="swot-ex-insight swot-ex-insight-wt"><span>Fr+A:</span> Diversificar de 2 para 8 clientes recorrentes nos próximos 6 meses</div>
+                </div>
+            </div>
+
+            <!-- Família -->
+            <div class="swot-ex-case" id="swot-ex-familia">
+                <div class="swot-ex-title"><i class="fas fa-heart"></i> Escritório de Direito de Família — Pequeno (3 advogados)</div>
+                <div class="swot-ex-matrix">
+                    <div class="swot-ex-q swot-ex-s">
+                        <div class="swot-ex-q-header"><span class="ex-badge ex-s-badge">F</span> Forças</div>
+                        <ul>
+                            <li>Equipe multidisciplinar com psicóloga parceira</li>
+                            <li>Experiência em mediação familiar certificada</li>
+                            <li>Instagram com 3.200 seguidores engajados</li>
+                            <li>Taxa de acordos de 65% (reduz litígio)</li>
+                            <li>Atendimento 100% sigiloso e humanizado</li>
+                        </ul>
+                    </div>
+                    <div class="swot-ex-q swot-ex-w">
+                        <div class="swot-ex-q-header"><span class="ex-badge ex-w-badge">Fr</span> Fraquezas</div>
+                        <ul>
+                            <li>Ticket médio baixo (R$ 3.500 vs média de R$ 5.000)</li>
+                            <li>Sem blog ou site com conteúdo SEO</li>
+                            <li>Alta rotatividade de casos (baixa recorrência)</li>
+                            <li>Dificuldade em cobrar honorários de clientes vulneráveis</li>
+                        </ul>
+                    </div>
+                    <div class="swot-ex-q swot-ex-o">
+                        <div class="swot-ex-q-header"><span class="ex-badge ex-o-badge">O</span> Oportunidades</div>
+                        <ul>
+                            <li>Inventários extrajudiciais crescendo como serviço</li>
+                            <li>Alta busca orgânica por "advogado divórcio [cidade]"</li>
+                            <li>Crescimento de famílias recompostas e novos arranjos</li>
+                            <li>Mercado de mediação préjudicial em expansão</li>
+                        </ul>
+                    </div>
+                    <div class="swot-ex-q swot-ex-t">
+                        <div class="swot-ex-q-header"><span class="ex-badge ex-t-badge">A</span> Ameaças</div>
+                        <ul>
+                            <li>Plataformas de divórcio online por R$ 800</li>
+                            <li>Crescimento de advogados especializados na região</li>
+                            <li>Restrições éticas à captação em momento de vulnerabilidade</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="swot-ex-insights">
+                    <div class="swot-ex-insight swot-ex-insight-so"><span>F+O:</span> Usar parceria com psicóloga + crescimento de famílias recompostas → criar "Pacote Família Recomposta" com suporte jurídico e psicológico integrado</div>
+                    <div class="swot-ex-insight swot-ex-insight-wo"><span>Fr+O:</span> Resolver falta de SEO + alta busca por "divórcio" → criar blog com 2 artigos/mês otimizados para Google</div>
+                    <div class="swot-ex-insight swot-ex-insight-st"><span>F+A:</span> Usar experiência em mediação + ameaça de plataformas baratas → comunicar que divórcio com filhos e bens exige especialista</div>
+                    <div class="swot-ex-insight swot-ex-insight-wt"><span>Fr+A:</span> Aumentar ticket médio para R$ 5.000 incluindo inventário e mediação no portfólio</div>
+                </div>
+            </div>
+
+            <!-- Empresarial -->
+            <div class="swot-ex-case" id="swot-ex-empresarial">
+                <div class="swot-ex-title"><i class="fas fa-building"></i> Escritório Empresarial — Médio (8 advogados)</div>
+                <div class="swot-ex-matrix">
+                    <div class="swot-ex-q swot-ex-s">
+                        <div class="swot-ex-q-header"><span class="ex-badge ex-s-badge">F</span> Forças</div>
+                        <ul>
+                            <li>Equipe especializada em contratos, M&A e LGPD</li>
+                            <li>Carteira de 35 clientes recorrentes (MRR)</li>
+                            <li>Presença forte no ecossistema de startups</li>
+                            <li>LinkedIn com 4.500 seguidores qualificados</li>
+                            <li>Pacote de assinatura mensal consolidado</li>
+                        </ul>
+                    </div>
+                    <div class="swot-ex-q swot-ex-w">
+                        <div class="swot-ex-q-header"><span class="ex-badge ex-w-badge">Fr</span> Fraquezas</div>
+                        <ul>
+                            <li>Alta dependência de 3 clientes-chave (45% da receita)</li>
+                            <li>Processo de onboarding manual e demorado</li>
+                            <li>Sem área de contencioso (terceiriza tudo)</li>
+                            <li>Custo operacional alto vs concorrentes menores</li>
+                        </ul>
+                    </div>
+                    <div class="swot-ex-q swot-ex-o">
+                        <div class="swot-ex-q-header"><span class="ex-badge ex-o-badge">O</span> Oportunidades</div>
+                        <ul>
+                            <li>Reforma tributária exigindo reestruturação societária massiva</li>
+                            <li>Regulação de IA e dados criando nova demanda</li>
+                            <li>Crescimento de M&A no setor de tecnologia</li>
+                            <li>Empresas internacionalizando e precisando de suporte jurídico</li>
+                        </ul>
+                    </div>
+                    <div class="swot-ex-q swot-ex-t">
+                        <div class="swot-ex-q-header"><span class="ex-badge ex-t-badge">A</span> Ameaças</div>
+                        <ul>
+                            <li>Big 4 e consultorias oferecendo serviços jurídicos integrados</li>
+                            <li>LegalTechs automatizando contratos padrão</li>
+                            <li>Guerra por talentos — risco de perder sócios</li>
+                            <li>Clientes comparando preços com escritórios menores</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="swot-ex-insights">
+                    <div class="swot-ex-insight swot-ex-insight-so"><span>F+O:</span> Usar expertise em contratos + demanda da reforma tributária → lançar "Pacote Reestruturação 2025" para clientes existentes e novos</div>
+                    <div class="swot-ex-insight swot-ex-insight-wo"><span>Fr+O:</span> Digitalizar onboarding + crescimento de M&A → criar plataforma cliente com acesso 24/7 a documentos e status dos casos</div>
+                    <div class="swot-ex-insight swot-ex-insight-st"><span>F+A:</span> Usar presença no ecossistema de startups + ameaça das LegalTechs → posicionar como "parceiro jurídico estratégico", não fornecedor de contratos</div>
+                    <div class="swot-ex-insight swot-ex-insight-wt"><span>Fr+A:</span> Diversificar base de clientes de 3 para 10+ clientes-chave nos próximos 12 meses</div>
+                </div>
+            </div>
+
+            <div class="swot-ex-selector">
+                <span>Ver exemplo:</span>
+                <button class="swot-ex-btn active" data-target="swot-ex-trabalhista"><i class="fas fa-briefcase"></i> Trabalhista</button>
+                <button class="swot-ex-btn" data-target="swot-ex-familia"><i class="fas fa-heart"></i> Família</button>
+                <button class="swot-ex-btn" data-target="swot-ex-empresarial"><i class="fas fa-building"></i> Empresarial</button>
+            </div>
+
+        </div><!-- /swot-examples-block -->
+
+    </div>
+</div>
+
+<!-- Edit Task Modal -->
+<div id="edit-task-modal" class="modal-overlay">
+    <div class="modal-box">
+        <div class="modal-title"><i class="fas fa-pencil-alt"></i> Editar Tarefa</div>
+        <form id="edit-task-form" class="modal-form" onsubmit="return false;">
+            <div>
+                <label>Título da Tarefa *</label>
+                <input type="text" id="edit-task-title" placeholder="Ex.: Publicar artigo sobre direitos trabalhistas">
+            </div>
+            <div>
+                <label>Descrição</label>
+                <textarea id="edit-task-desc" placeholder="Detalhes, contexto ou próximos passos..."></textarea>
+            </div>
+            <div>
+                <label>Prioridade</label>
+                <select id="edit-task-priority">
+                    <option value="media">Média</option>
+                    <option value="alta">Alta</option>
+                    <option value="baixa">Baixa</option>
+                </select>
+            </div>
+            <div class="modal-btns">
+                <button type="button" class="btn-modal-cancel" id="btn-edit-cancel">Cancelar</button>
+                <button type="button" class="btn-modal-confirm" id="btn-edit-confirm">Salvar Alterações</button>
+            </div>
+        </form>
     </div>
 </div>
 
