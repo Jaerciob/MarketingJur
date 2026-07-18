@@ -28,11 +28,20 @@
 <!-- Tabs -->
 <nav class="tools-tabs">
     <div class="tabs-inner">
-        <button class="tab-btn active" data-tab="kanban-panel">
+        <button class="tab-btn active" data-tab="prompts-panel">
+            <i class="fas fa-wand-magic-sparkles"></i> Biblioteca de Prompts
+        </button>
+        <button class="tab-btn" data-tab="kanban-panel">
             <i class="fas fa-columns"></i> Plano de Trabalho
         </button>
         <button class="tab-btn" data-tab="diagnostico-panel">
             <i class="fas fa-stethoscope"></i> Diagnóstico Estratégico
+        </button>
+        <button class="tab-btn" data-tab="pestel-panel">
+            <i class="fas fa-globe"></i> Análise PESTEL
+        </button>
+        <button class="tab-btn" data-tab="swot-panel">
+            <i class="fas fa-th"></i> Análise SWOT
         </button>
         <button class="tab-btn" data-tab="branding-panel">
             <i class="fas fa-paint-brush"></i> Canvas de Branding
@@ -43,14 +52,73 @@
         <button class="tab-btn" data-tab="funil-panel">
             <i class="fas fa-filter"></i> Gestão do Funil de Vendas
         </button>
-        <button class="tab-btn" data-tab="pestel-panel">
-            <i class="fas fa-globe"></i> Análise PESTEL
-        </button>
-        <button class="tab-btn" data-tab="swot-panel">
-            <i class="fas fa-th"></i> Análise SWOT
-        </button>
     </div>
 </nav>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     BIBLIOTECA DE PROMPTS
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="prompts-panel" class="tool-panel active">
+    <div class="tool-container">
+        <div class="section-title">
+            <h2>Biblioteca de Prompts</h2>
+            <p>Preencha o perfil do escritório e gere prompts estratégicos prontos para usar.</p>
+        </div>
+
+        <div class="prompt-library-layout">
+            <section class="prompt-profile-card">
+                <div class="prompt-card-heading">
+                    <i class="fas fa-building"></i>
+                    <div>
+                        <h3>Perfil do Escritório</h3>
+                        <p>Essas informações personalizam todos os prompts.</p>
+                    </div>
+                </div>
+                <div class="prompt-profile-fields">
+                    <label>Áreas de atuação
+                        <textarea data-prompt-profile="areas" rows="2" placeholder="Ex.: Trabalhista, Civil, Tributário"></textarea>
+                    </label>
+                    <label>Tamanho
+                        <input data-prompt-profile="tamanho" type="text" placeholder="Ex.: Escritório boutique com 5 advogados">
+                    </label>
+                    <label>Localização / alcance
+                        <input data-prompt-profile="alcance" type="text" placeholder="Ex.: Nacional, regional ou uma cidade específica">
+                    </label>
+                    <label>Perfil dos clientes
+                        <textarea data-prompt-profile="clientes" rows="2" placeholder="Ex.: PMEs, grandes empresas, pessoas físicas, startups"></textarea>
+                    </label>
+                    <label>Diferenciais competitivos
+                        <textarea data-prompt-profile="diferenciais" rows="3" placeholder="Ex.: Especialização técnica, atendimento ágil, tecnologia"></textarea>
+                    </label>
+                    <label>Objetivo estratégico atual
+                        <textarea data-prompt-profile="objetivo" rows="3" placeholder="Ex.: Aumentar o faturamento em 20% e atrair clientes de maior porte"></textarea>
+                    </label>
+                </div>
+            </section>
+
+            <section class="prompt-generator-card">
+                <div class="prompt-card-heading">
+                    <i class="fas fa-sparkles"></i>
+                    <div>
+                        <h3>Gerador de Prompt</h3>
+                        <p>Escolha a análise que deseja preparar.</p>
+                    </div>
+                </div>
+                <div class="prompt-template-picker" role="group" aria-label="Tipo de prompt">
+                    <button class="prompt-template-btn active" type="button" data-prompt-template="pestel">Análise PESTEL</button>
+                    <button class="prompt-template-btn" type="button" data-prompt-template="competitiva">Análise Competitiva</button>
+                    <button class="prompt-template-btn" type="button" data-prompt-template="swot">Matriz SWOT</button>
+                    <button class="prompt-template-btn" type="button" data-prompt-template="branding">Construção de Branding</button>
+                </div>
+                <div class="prompt-output-header">
+                    <label for="generated-prompt">Prompt personalizado</label>
+                    <button id="btn-copy-prompt" class="btn-prompt-copy" type="button" title="Copiar prompt"><i class="fas fa-copy"></i> Copiar</button>
+                </div>
+                <textarea id="generated-prompt" class="generated-prompt" rows="22" readonly aria-label="Prompt personalizado gerado"></textarea>
+            </section>
+        </div>
+    </div>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════════════
      FERRAMENTA 0: CANVAS DE DIAGNÓSTICO ESTRATÉGICO
@@ -1155,7 +1223,7 @@
 <!-- ═══════════════════════════════════════════════════════════════
      FERRAMENTA 2: PLANO DE TRABALHO (KANBAN)
      ═══════════════════════════════════════════════════════════════ -->
-<div id="kanban-panel" class="tool-panel active">
+<div id="kanban-panel" class="tool-panel">
     <div class="tool-container">
         <div class="section-title">
             <h2>Plano de Trabalho</h2>

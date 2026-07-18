@@ -21,6 +21,139 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     });
 });
 
+// ─── BIBLIOTECA DE PROMPTS ──────────────────────────────────────────────────
+const PROMPT_PROFILE_KEY = 'mktjur_prompt_profile';
+let activePromptTemplate = 'pestel';
+
+const promptTemplates = {
+    pestel: `Você é um consultor estratégico sênior especializado em gestão de escritórios de advocacia e inteligência de mercado no setor jurídico brasileiro. Realize uma pesquisa e análise detalhada do Macroambiente utilizando a ferramenta PESTEL (Político, Econômico, Social, Tecnológico, Ecológico/Ambiental e Legal), aplicada ao seguinte perfil de escritório:
+
+{{perfil}}
+
+INSTRUÇÕES DE ANÁLISE
+Para CADA uma das 6 dimensões do PESTEL, estruture a resposta com:
+1. TENDÊNCIAS PRINCIPAIS (3 a 5 pontos)
+   - Fatos e movimentos observáveis no macroambiente, com dados ou fontes de referência sempre que possível.
+2. OPORTUNIDADES
+   - Como essas tendências podem ser convertidas em vantagem competitiva para o escritório, considerando seu perfil específico (áreas de atuação, clientes e diferenciais).
+3. RISCOS/AMEAÇAS
+   - Impactos negativos potenciais sobre a operação, o faturamento, a reputação ou a conformidade do escritório.
+4. AÇÕES PRIORITÁRIAS PARA OS PRÓXIMOS 90 DIAS
+   - De 2 a 4 ações concretas, específicas e executáveis (não genéricas), indicando responsável sugerido (sócio, marketing, jurídico, TI etc.) e critério de sucesso mensurável.
+
+FORMATO DE SAÍDA
+- Utilize tabelas ou tópicos claros para cada dimensão.
+- Ao final, inclua um QUADRO-RESUMO consolidando as 5 ações mais críticas e urgentes (priorizadas por impacto x esforço) para os próximos 90 dias, conectadas diretamente ao objetivo estratégico informado.
+- Sempre que fizer alguma constatação de tendência ou dado de mercado, sinalize se é baseado em pesquisa atual ou em conhecimento geral, para permitir validação posterior.`,
+    competitiva: `Você é um consultor de estratégia e inteligência competitiva especializado no mercado jurídico brasileiro. Realize uma análise competitiva prática para o perfil de escritório abaixo.
+
+{{perfil}}
+
+INSTRUÇÕES DE ANÁLISE
+1. Defina os concorrentes diretos, indiretos e substitutos que o escritório deve monitorar, considerando suas áreas de atuação, alcance e perfil de clientes.
+2. Identifique de 5 a 8 critérios de comparação relevantes, como posicionamento, especialização, serviços, jornada do cliente, presença digital, autoridade, preço percebido, tecnologia e atendimento.
+3. Apresente hipóteses de diferenciação defensável, conectando os diferenciais atuais ao objetivo estratégico.
+4. Aponte lacunas competitivas, riscos de comoditização e oportunidades de nicho.
+5. Recomende 5 ações para os próximos 90 dias, com responsável sugerido, prazo e métrica de sucesso.
+
+FORMATO DE SAÍDA
+- Organize em tabelas ou tópicos claros.
+- Diferencie fatos que exigem pesquisa atual de hipóteses estratégicas a validar.
+- Priorize recomendações viáveis e compatíveis com as regras de publicidade da OAB.`,
+    swot: `Você é um consultor estratégico especializado em escritórios de advocacia. Elabore uma Matriz SWOT aprofundada e acionável para o perfil abaixo.
+
+{{perfil}}
+
+INSTRUÇÕES DE ANÁLISE
+1. Liste de 5 a 7 FORÇAS internas que podem ser alavancadas.
+2. Liste de 5 a 7 FRAQUEZAS internas que limitam crescimento, eficiência ou posicionamento.
+3. Liste de 5 a 7 OPORTUNIDADES externas relevantes no mercado jurídico brasileiro.
+4. Liste de 5 a 7 AMEAÇAS externas que podem afetar receita, reputação, operação ou conformidade.
+5. Crie estratégias FO, FA, WO e WT, conectando os elementos da matriz ao objetivo estratégico informado.
+6. Defina um plano de 90 dias com as 5 ações de maior impacto, responsável, indicador de sucesso e prioridade por impacto x esforço.
+
+FORMATO DE SAÍDA
+- Apresente primeiro uma matriz em tabela e depois as estratégias cruzadas.
+- Sinalize claramente o que depende de pesquisa atual de mercado ou validação interna.
+- Considere as regras éticas da OAB em toda recomendação de marketing e captação.`,
+    branding: `Você é um estrategista de marca especializado em posicionamento de escritórios de advocacia no Brasil. Desenvolva uma base estratégica de branding para o perfil abaixo.
+
+{{perfil}}
+
+INSTRUÇÕES DE ANÁLISE
+1. Defina propósito, visão e valores de marca coerentes com o perfil e o objetivo estratégico.
+2. Delimite público prioritário, dores, necessidades, contexto de decisão e percepção desejada.
+3. Proponha um posicionamento claro, com categoria, público, benefício principal, prova/diferencial e território de marca.
+4. Sugira de 3 a 5 mensagens-chave, tom de voz, palavras a priorizar e palavras a evitar, em conformidade com as regras da OAB.
+5. Recomende uma arquitetura de conteúdo e experiência do cliente que concretize o posicionamento.
+6. Apresente um plano de implementação para os próximos 90 dias com responsáveis, entregáveis e métricas.
+
+FORMATO DE SAÍDA
+- Use títulos e tópicos claros.
+- Diferencie recomendações estratégicas de informações que precisam ser validadas com clientes, equipe ou pesquisa de mercado.
+- Evite promessas de resultado, linguagem mercantilista e qualquer prática incompatível com a publicidade advocatícia.`
+};
+
+function getPromptProfile() {
+    const values = {};
+    document.querySelectorAll('[data-prompt-profile]').forEach(field => {
+        values[field.dataset.promptProfile] = field.value.trim() || 'Não informado';
+    });
+    return `PERFIL DO ESCRITÓRIO
+Áreas de atuação: ${values.areas}
+Tamanho: ${values.tamanho}
+Localização/Alcance: ${values.alcance}
+Perfil dos clientes: ${values.clientes}
+Diferenciais competitivos: ${values.diferenciais}
+Objetivo estratégico atual: ${values.objetivo}`;
+}
+
+function generatePrompt() {
+    const output = document.getElementById('generated-prompt');
+    output.value = promptTemplates[activePromptTemplate].replace('{{perfil}}', getPromptProfile());
+}
+
+function savePromptProfile() {
+    const data = {};
+    document.querySelectorAll('[data-prompt-profile]').forEach(field => {
+        data[field.dataset.promptProfile] = field.value;
+    });
+    localStorage.setItem(PROMPT_PROFILE_KEY, JSON.stringify(data));
+    generatePrompt();
+}
+
+function loadPromptProfile() {
+    try {
+        const data = JSON.parse(localStorage.getItem(PROMPT_PROFILE_KEY) || '{}');
+        document.querySelectorAll('[data-prompt-profile]').forEach(field => {
+            field.value = data[field.dataset.promptProfile] || '';
+        });
+    } catch (error) {}
+    generatePrompt();
+}
+
+document.querySelectorAll('[data-prompt-profile]').forEach(field => field.addEventListener('input', savePromptProfile));
+document.querySelectorAll('.prompt-template-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        activePromptTemplate = button.dataset.promptTemplate;
+        document.querySelectorAll('.prompt-template-btn').forEach(item => item.classList.toggle('active', item === button));
+        generatePrompt();
+    });
+});
+
+document.getElementById('btn-copy-prompt').addEventListener('click', async () => {
+    const output = document.getElementById('generated-prompt');
+    try {
+        await navigator.clipboard.writeText(output.value);
+    } catch (error) {
+        output.select();
+        document.execCommand('copy');
+    }
+    showToast('Prompt copiado para a área de transferência.', 'fa-copy');
+});
+
+loadPromptProfile();
+
 // ─── CANVAS ──────────────────────────────────────────────────────────────────
 const CANVAS_KEY = 'mktjur_canvas';
 
