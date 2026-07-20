@@ -40,6 +40,9 @@
         <button class="tab-btn" data-tab="pestel-panel">
             <i class="fas fa-globe"></i> Análise PESTEL
         </button>
+        <button class="tab-btn" data-tab="competitiva-panel">
+            <i class="fas fa-chess-knight"></i> Análise Competitiva
+        </button>
         <button class="tab-btn" data-tab="swot-panel">
             <i class="fas fa-th"></i> Análise SWOT
         </button>
@@ -1243,6 +1246,18 @@
             </div>
         </div>
 
+        <!-- Progress Indicator -->
+        <div class="kanban-progress-wrap">
+            <div class="kanban-progress-top">
+                <span class="kanban-progress-label"><i class="fas fa-chart-line"></i> Progresso do Quadro</span>
+                <span class="kanban-progress-pct" id="kanban-pct">0%</span>
+            </div>
+            <div class="kanban-progress-bar-bg">
+                <div class="kanban-progress-bar-fill" id="kanban-progress-fill" style="width:0%"></div>
+            </div>
+            <p class="kanban-progress-phrase" id="kanban-progress-phrase">Comece agora! Cada tarefa concluída é um passo rumo ao sucesso.</p>
+        </div>
+
         <!-- Kanban Board -->
         <div class="kanban-board">
             <!-- A Fazer -->
@@ -1684,6 +1699,311 @@
                 </table>
             </div>
         </div><!-- /pestel-examples-block -->
+
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ANÁLISE COMPETITIVA
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="competitiva-panel" class="tool-panel">
+    <div class="tool-container">
+        <div class="section-title">
+            <h2>Análise Competitiva</h2>
+            <p>Mapeie seus concorrentes, identifique lacunas estratégicas e defina sua posição diferenciada no mercado jurídico.</p>
+        </div>
+
+        <!-- Actions Bar -->
+        <div class="canvas-actions">
+            <div class="canvas-actions-left">
+                <div class="pestel-profile-group">
+                    <div class="pestel-profile-field">
+                        <label><i class="fas fa-balance-scale"></i> Área de Atuação</label>
+                        <select id="comp-area">
+                            <option value="">— Selecione —</option>
+                            <option value="trabalhista">Direito Trabalhista</option>
+                            <option value="familia">Direito de Família</option>
+                            <option value="empresarial">Direito Empresarial</option>
+                            <option value="tributario">Direito Tributário</option>
+                            <option value="criminal">Direito Criminal</option>
+                            <option value="previdenciario">Direito Previdenciário</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="pestel-profile-field">
+                        <label><i class="fas fa-users"></i> Tamanho do Escritório</label>
+                        <select id="comp-size">
+                            <option value="">— Selecione —</option>
+                            <option value="solo">Solo (apenas 1 advogado)</option>
+                            <option value="pequeno">Pequeno (2–5 advogados)</option>
+                            <option value="medio">Médio (6–20 advogados)</option>
+                            <option value="grande">Grande (21+ advogados)</option>
+                        </select>
+                    </div>
+                    <div class="pestel-profile-field">
+                        <label><i class="fas fa-map-marker-alt"></i> Abrangência</label>
+                        <select id="comp-scope">
+                            <option value="">— Selecione —</option>
+                            <option value="local">Local (uma cidade)</option>
+                            <option value="regional">Regional (estado)</option>
+                            <option value="nacional">Nacional</option>
+                            <option value="online">100% Online</option>
+                        </select>
+                    </div>
+                    <button class="btn-pestel-example" id="btn-load-comp-example"><i class="fas fa-magic"></i> Carregar Exemplo</button>
+                </div>
+                <button class="btn-clear" id="btn-clear-comp"><i class="fas fa-eraser"></i> Limpar</button>
+                <button class="btn-print" id="btn-print-comp"><i class="fas fa-print"></i> Imprimir</button>
+            </div>
+            <button class="btn-save" id="btn-save-comp"><i class="fas fa-save"></i> Salvar Análise</button>
+        </div>
+
+        <!-- Section: Mapeamento de Concorrentes -->
+        <div class="comp-section-label">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>Mapeamento de Concorrentes</span>
+        </div>
+
+        <div class="pestel-grid" style="margin-bottom: 14px;">
+
+            <!-- Concorrentes Diretos -->
+            <div class="pestel-card comp-dir">
+                <div class="pestel-card-header">
+                    <div class="pestel-letter"><i class="fas fa-users"></i></div>
+                    <div>
+                        <span class="pestel-card-title">Concorrentes Diretos</span>
+                        <span class="pestel-card-sub">Mesma especialidade, mesma praça</span>
+                    </div>
+                </div>
+                <div class="pestel-card-body">
+                    <div class="pestel-field">
+                        <label><i class="fas fa-search"></i> Quem são e pontos fortes</label>
+                        <textarea data-comp="dir_quem" placeholder="Ex.: 3 advogados trabalhistas no mesmo bairro, com foco em contencioso para empregados; escritório generalista com sócio trabalhista..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-up"></i> Sua vantagem sobre eles</label>
+                        <textarea data-comp="dir_vantagem" placeholder="Ex.: Nenhum com modelo preventivo para PMEs; poucos com presença digital ativa para empresários; nenhum com assinatura mensal..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-lightbulb"></i> Ação Estratégica</label>
+                        <textarea data-comp="dir_acao" placeholder="Ex.: Pesquisar os 5 principais concorrentes no LinkedIn e Google Meu Negócio para mapear posicionamento e preços praticados..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concorrentes Indiretos -->
+            <div class="pestel-card comp-ind">
+                <div class="pestel-card-header">
+                    <div class="pestel-letter"><i class="fas fa-code-branch"></i></div>
+                    <div>
+                        <span class="pestel-card-title">Concorrentes Indiretos</span>
+                        <span class="pestel-card-sub">Disputam os mesmos clientes de outra forma</span>
+                    </div>
+                </div>
+                <div class="pestel-card-body">
+                    <div class="pestel-field">
+                        <label><i class="fas fa-search"></i> Quem são e como captam clientes</label>
+                        <textarea data-comp="ind_quem" placeholder="Ex.: Contadores com orientação jurídica informal; consultores de RH; escritórios generalistas com promessa de cuidar de tudo..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-down"></i> Impacto no seu negócio</label>
+                        <textarea data-comp="ind_impacto" placeholder="Ex.: Contadores orientando PMEs sobre questões trabalhistas antes de chegar ao advogado; generalistas capturando clientes pela variedade..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-lightbulb"></i> Ação Estratégica</label>
+                        <textarea data-comp="ind_acao" placeholder="Ex.: Criar programa de parceria formal com contadores — orientação gratuita em casos complexos em troca de indicação sistemática..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Substitutos Digitais -->
+            <div class="pestel-card comp-sub">
+                <div class="pestel-card-header">
+                    <div class="pestel-letter"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <span class="pestel-card-title">Substitutos Digitais</span>
+                        <span class="pestel-card-sub">LegalTechs, plataformas e IA jurídica</span>
+                    </div>
+                </div>
+                <div class="pestel-card-body">
+                    <div class="pestel-field">
+                        <label><i class="fas fa-search"></i> Principais plataformas e ofertas</label>
+                        <textarea data-comp="sub_plataformas" placeholder="Ex.: Plataformas de rescisão online por R$ 200–400; IA gerando contratos básicos; sindicatos com jurídico gratuito..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-down"></i> Risco que representam</label>
+                        <textarea data-comp="sub_risco" placeholder="Ex.: Casos simples sendo resolvidos sem advogado; clientes usando IA para redigir contratos sem revisão especializada..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-lightbulb"></i> Ação Estratégica</label>
+                        <textarea data-comp="sub_acao" placeholder="Ex.: Comunicar que erros em documentos custam 10–50x o valor do advogado; focar em casos de alta complexidade e estratégia..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /competitor mapping grid -->
+
+        <!-- Section: Dimensões Competitivas -->
+        <div class="comp-section-label">
+            <i class="fas fa-chart-bar"></i>
+            <span>Dimensões Competitivas</span>
+        </div>
+
+        <div class="pestel-grid">
+
+            <!-- Presença Digital -->
+            <div class="pestel-card comp-dig">
+                <div class="pestel-card-header">
+                    <div class="pestel-letter"><i class="fas fa-globe"></i></div>
+                    <div>
+                        <span class="pestel-card-title">Presença Digital & Autoridade</span>
+                        <span class="pestel-card-sub">SEO, redes sociais, conteúdo</span>
+                    </div>
+                </div>
+                <div class="pestel-card-body">
+                    <div class="pestel-field">
+                        <label><i class="fas fa-search"></i> Status atual vs concorrentes</label>
+                        <textarea data-comp="dig_status" placeholder="Ex.: Maioria dos concorrentes sem blog ativo; Google Meu Negócio desatualizado; poucos com conteúdo B2B no LinkedIn..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-up"></i> Oportunidade Digital</label>
+                        <textarea data-comp="dig_oport" placeholder="Ex.: SEO local para 'advogado [área] [cidade]' com pouca concorrência; LinkedIn com alto alcance para público-alvo..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-lightbulb"></i> Ação Estratégica</label>
+                        <textarea data-comp="dig_acao" placeholder="Ex.: Configurar Google Meu Negócio completo + pedir 20 avaliações + publicar 1 artigo/mês otimizado para SEO local..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Posicionamento e Preço -->
+            <div class="pestel-card comp-pos">
+                <div class="pestel-card-header">
+                    <div class="pestel-letter"><i class="fas fa-tag"></i></div>
+                    <div>
+                        <span class="pestel-card-title">Posicionamento & Preço</span>
+                        <span class="pestel-card-sub">Como o mercado te percebe vs concorrentes</span>
+                    </div>
+                </div>
+                <div class="pestel-card-body">
+                    <div class="pestel-field">
+                        <label><i class="fas fa-search"></i> Percepção atual no mercado</label>
+                        <textarea data-comp="pos_atual" placeholder="Ex.: Maioria posicionada genericamente sem nicho claro; cobranças por hora ou êxito sem transparência de preço..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-down"></i> Risco de Comoditização</label>
+                        <textarea data-comp="pos_risco" placeholder="Ex.: Clientes comparando apenas preço; percepção de que todos fazem a mesma coisa; dificuldade em comunicar diferencial..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-lightbulb"></i> Ação Estratégica</label>
+                        <textarea data-comp="pos_acao" placeholder="Ex.: Criar mensagem de posicionamento clara com nicho, público-alvo e diferencial específico; comunicar preço fixo como vantagem..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Atendimento e Experiência -->
+            <div class="pestel-card comp-exp">
+                <div class="pestel-card-header">
+                    <div class="pestel-letter"><i class="fas fa-star"></i></div>
+                    <div>
+                        <span class="pestel-card-title">Atendimento & Experiência</span>
+                        <span class="pestel-card-sub">Jornada do cliente e pontos de contato</span>
+                    </div>
+                </div>
+                <div class="pestel-card-body">
+                    <div class="pestel-field">
+                        <label><i class="fas fa-search"></i> Como você atende vs concorrentes</label>
+                        <textarea data-comp="exp_status" placeholder="Ex.: Concorrentes com resposta em 2–5 dias; sem canal digital ágil; sem portal do cliente ou relatório periódico..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-arrow-up"></i> Diferencial de Experiência</label>
+                        <textarea data-comp="exp_diferencial" placeholder="Ex.: WhatsApp com resposta em 2h; relatório mensal de riscos; onboarding estruturado; acesso digital a documentos..."></textarea>
+                    </div>
+                    <div class="pestel-field">
+                        <label><i class="fas fa-lightbulb"></i> Ação Estratégica</label>
+                        <textarea data-comp="exp_acao" placeholder="Ex.: Implementar WhatsApp Business com confirmação automática + criar modelo de relatório mensal para clientes de assinatura..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /competitive dimensions grid -->
+
+        <!-- Síntese Competitiva -->
+        <div class="pestel-summary-block">
+            <div class="pestel-summary-header">
+                <i class="fas fa-bullseye"></i>
+                <div>
+                    <span class="pestel-summary-title">Síntese Competitiva</span>
+                    <span class="pestel-summary-sub">Consolide os principais insights e defina sua posição diferenciada no mercado</span>
+                </div>
+            </div>
+            <div class="pestel-summary-body">
+                <div class="pestel-field">
+                    <label><i class="fas fa-shield-alt"></i> Diferenciação Defensável</label>
+                    <textarea data-comp="resumo_diferenciacao" placeholder="Ex.: Único escritório trabalhista da cidade com modelo preventivo para PMEs, assinatura mensal e relatório de riscos — combinação que nenhum concorrente oferece..."></textarea>
+                </div>
+                <div class="pestel-field">
+                    <label><i class="fas fa-door-open"></i> Principal Lacuna de Mercado</label>
+                    <textarea data-comp="resumo_lacuna" placeholder="Ex.: Nenhum concorrente local ocupa o nicho 'jurídico preventivo para PMEs' com modelo de assinatura. O mercado ainda é 95% reativo — esta é a janela de oportunidade..."></textarea>
+                </div>
+                <div class="pestel-field">
+                    <label><i class="fas fa-road"></i> Plano de Ação — 90 dias</label>
+                    <textarea data-comp="resumo_acao" placeholder="Ex.: 1. Mapear 5 concorrentes no LinkedIn (Semana 1)&#10;2. Configurar Google Meu Negócio + 20 avaliações (Semana 2)&#10;3. Lançar Pacote Preventivo PME (Semana 3)&#10;4. Publicar artigo de SEO (Semana 4)&#10;5. Abordar 10 contadores para parceria (Mês 2)"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exemplos Práticos -->
+        <div class="pestel-examples-block">
+            <div class="pestel-examples-header">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Exemplos Práticos por Tipo de Escritório</span>
+            </div>
+            <div class="pestel-examples-tabs">
+                <button class="comp-ex-tab active" data-ex="comp-ex-trabalhista">Trabalhista</button>
+                <button class="comp-ex-tab" data-ex="comp-ex-familia">Família</button>
+                <button class="comp-ex-tab" data-ex="comp-ex-empresarial">Empresarial</button>
+            </div>
+            <div class="comp-ex-content active" id="comp-ex-trabalhista">
+                <table class="pestel-ex-table">
+                    <thead><tr><th>Dimensão</th><th>Situação do Mercado</th><th>Lacuna / Oportunidade</th><th>Ação Recomendada</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Concorrentes Diretos</strong></td><td>Maioria foca em contencioso para empregados; poucos com modelo preventivo para empregadores</td><td>Nicho de assessoria preventiva para PMEs praticamente vazio</td><td>Lançar "Pacote PME Preventivo" com assinatura mensal a partir de R$ 800</td></tr>
+                        <tr><td><strong>Concorrentes Indiretos</strong></td><td>Contadores e consultores de RH orientando PMEs informalmente sobre questões trabalhistas</td><td>Parceria com contadores pode gerar indicação sistemática e exclusiva</td><td>Criar programa formal de parceria com 10 contadores da região</td></tr>
+                        <tr><td><strong>Substitutos Digitais</strong></td><td>Plataformas de rescisão online por R$ 200–400; sindicatos com jurídico gratuito para trabalhadores</td><td>Casos complexos com múltiplos funcionários ainda exigem especialista</td><td>Comunicar riscos de erros em rescisão complexa em artigos e conteúdo</td></tr>
+                        <tr><td><strong>Presença Digital</strong></td><td>Poucos concorrentes com SEO ativo ou LinkedIn B2B direcionado para empresários</td><td>SEO local "advogado trabalhista [cidade]" sem concorrência relevante</td><td>Blog + Google Meu Negócio completo + LinkedIn para donos de PME</td></tr>
+                        <tr><td><strong>Posicionamento</strong></td><td>Mercado comoditizado em preço; cobranças por hora ou êxito sem transparência</td><td>Modelo de assinatura com preço fixo cria percepção de previsibilidade</td><td>Reposicionar como "jurídico trabalhista para empresas" com preço fixo mensal</td></tr>
+                        <tr><td><strong>Experiência</strong></td><td>Atendimento lento; sem canal ágil; sem relatório periódico de riscos</td><td>WhatsApp Business + relatório mensal = diferencial percebido pelo cliente</td><td>Implementar SLA de resposta em 2h + relatório mensal de riscos para assinantes</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="comp-ex-content" id="comp-ex-familia">
+                <table class="pestel-ex-table">
+                    <thead><tr><th>Dimensão</th><th>Situação do Mercado</th><th>Lacuna / Oportunidade</th><th>Ação Recomendada</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Concorrentes Diretos</strong></td><td>Maioria foca em litígio; poucos com abordagem humanizada ou parceria com psicólogos</td><td>Atendimento integrado jurídico + psicológico ainda é exceção no mercado</td><td>Formalizar parceria com psicólogos e comunicar como diferencial central</td></tr>
+                        <tr><td><strong>Concorrentes Indiretos</strong></td><td>Notários captando inventários; psicólogos referenciando mediação antes de advogado</td><td>Parceria com psicólogos e terapeutas como canal de indicação inexplorado</td><td>Criar rede de indicação formal com 5 psicólogos e 3 terapeutas parceiros</td></tr>
+                        <tr><td><strong>Substitutos Digitais</strong></td><td>Plataformas de divórcio consensual online por R$ 800–1.500</td><td>Casos com filhos, bens ou conflito emocional exigem humanização especializada</td><td>Comunicar que o "divórcio barato" pode custar caro em acordos mal feitos</td></tr>
+                        <tr><td><strong>Presença Digital</strong></td><td>Instagram com conteúdo genérico sobre divórcio; pouco conteúdo acolhedor</td><td>Instagram com alto alcance para mulheres 35–55 em momento de vulnerabilidade</td><td>3 posts/semana acolhedores no Instagram + SEO "advogado família [cidade]"</td></tr>
+                        <tr><td><strong>Posicionamento</strong></td><td>Maioria posicionada genericamente sem nicho ou metodologia comunicada</td><td>Posicionamento em "advocacia familiar humanizada" é diferenciado e defensável</td><td>Comunicar taxa de acordos (65%) e metodologia humanizada em todos os canais</td></tr>
+                        <tr><td><strong>Experiência</strong></td><td>Atendimento frio, formal, sem suporte emocional durante o processo</td><td>Suporte integrado com psicólogo parceiro elimina a principal dor do cliente</td><td>Incluir 1ª sessão com psicólogo parceiro no pacote de divórcio consensual</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="comp-ex-content" id="comp-ex-empresarial">
+                <table class="pestel-ex-table">
+                    <thead><tr><th>Dimensão</th><th>Situação do Mercado</th><th>Lacuna / Oportunidade</th><th>Ação Recomendada</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Concorrentes Diretos</strong></td><td>Grandes escritórios com estrutura completa; boutiques especialistas em M&A ou LGPD</td><td>Startups e PMEs tech precisam de especialista que fala linguagem de negócios</td><td>Posicionar como "parceiro jurídico estratégico para startups e scale-ups"</td></tr>
+                        <tr><td><strong>Concorrentes Indiretos</strong></td><td>Consultorias de gestão incluindo análise jurídica; contabilidades com planejamento societário</td><td>Aceleradoras e hubs de inovação como canal de aquisição com acesso a portfólio</td><td>Candidatar-se como advogado parceiro de 2 aceleradoras em 60 dias</td></tr>
+                        <tr><td><strong>Substitutos Digitais</strong></td><td>LegalTechs automatizando contratos padrão; IA gerando NDAs e minutas básicas</td><td>M&A, LGPD estratégica e regulação de IA exigem estratégia que IA não substitui</td><td>Focar em serviços de alto valor: M&A, LGPD, regulação de IA, PI e governança</td></tr>
+                        <tr><td><strong>Presença Digital</strong></td><td>Poucos escritórios com conteúdo no LinkedIn direcionado para founders e CFOs</td><td>LinkedIn com alto alcance orgânico no ecossistema de startups e tech</td><td>Publicar 3x/semana análises jurídicas em linguagem de negócios no LinkedIn</td></tr>
+                        <tr><td><strong>Posicionamento</strong></td><td>Maioria posicionada como fornecedor transacional, não como parceiro estratégico</td><td>Posição de "parceiro jurídico estratégico" gera relacionamento longo e maior LTV</td><td>Reposicionar comunicação com foco em ROI: "quanto custa não ter um advogado estratégico?"</td></tr>
+                        <tr><td><strong>Experiência</strong></td><td>Atendimento tradicional sem plataforma digital; sem transparência de andamento</td><td>Portal cliente com acesso digital 24/7 é diferencial percebido como modernidade</td><td>Implementar portal de gestão de documentos com acesso digital para clientes</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- /examples block -->
 
     </div>
 </div>

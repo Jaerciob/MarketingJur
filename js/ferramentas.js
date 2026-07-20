@@ -573,6 +573,29 @@ function rebuildBoardSelect() {
     });
 }
 
+function getProgressPhrase(pct) {
+    if (pct === 100) return '🏆 Incrível! Quadro 100% concluído. Você é imparável!';
+    if (pct >= 75)  return '🔥 Quase lá! Um último esforço e você fecha o quadro com chave de ouro!';
+    if (pct >= 50)  return '💪 Mais da metade concluída! Você está no caminho certo — não pare agora!';
+    if (pct >= 25)  return '🚀 Ótimo ritmo! Cada tarefa feita te aproxima dos seus objetivos.';
+    if (pct > 0)    return '✨ Começo é começo! Continue e veja o progresso crescer.';
+    return '📋 Comece agora! Cada tarefa concluída é um passo rumo ao sucesso.';
+}
+
+function updateKanbanProgress() {
+    const board = kanbanData[currentBoard];
+    if (!board) return;
+    const total = ['todo', 'doing', 'review'].reduce((sum, col) => sum + (board.columns[col] || []).length, 0);
+    const done  = (board.columns['review'] || []).length;
+    const pct   = total === 0 ? 0 : Math.round((done / total) * 100);
+
+    document.getElementById('kanban-pct').textContent = `${pct}%`;
+    const fill = document.getElementById('kanban-progress-fill');
+    fill.style.width = `${pct}%`;
+    fill.dataset.pct = pct;
+    document.getElementById('kanban-progress-phrase').textContent = getProgressPhrase(pct);
+}
+
 function renderKanban() {
     const board = kanbanData[currentBoard];
     if (!board) return;
@@ -601,6 +624,7 @@ function renderKanban() {
             });
         }
     });
+    updateKanbanProgress();
 }
 
 function createCardEl(card, col) {
@@ -1159,7 +1183,151 @@ document.getElementById('btn-clear-pestel').addEventListener('click', clearPeste
 document.getElementById('btn-print-pestel').addEventListener('click', () => window.print());
 document.getElementById('btn-load-pestel-example').addEventListener('click', loadPestelExample);
 
+document.getElementById('btn-print-pestel').addEventListener('click', () => window.print());
+document.getElementById('btn-load-pestel-example').addEventListener('click', loadPestelExample);
+
 loadPestelData();
+
+
+// ─── ANÁLISE COMPETITIVA ──────────────────────────────────────────────────────
+const COMPETITIVA_KEY = 'mktjur_competitiva';
+
+const COMPETITIVA_EXAMPLES = {
+    trabalhista: {
+        dir_quem: 'Advogados trabalhistas da cidade com foco em contencioso para empregados\nEscritórios generalistas com sócio trabalhista atendendo de tudo\nCentros de atendimento jurídico de sindicatos com serviço gratuito',
+        dir_vantagem: 'Poucos com modelo preventivo voltado para PMEs (empregadores)\nPoucos com presença digital ativa e conteúdo B2B para empresários\nNenhum com modelo de assinatura mensal com preço fixo e previsível',
+        dir_acao: 'Pesquisar os 5 principais concorrentes locais no LinkedIn e Google Meu Negócio para mapear posicionamento, serviços ofertados e avaliações de clientes',
+        ind_quem: 'Contadores e escritórios de contabilidade orientando PMEs informalmente sobre questões trabalhistas\nConsultores de RH fazendo análise de risco trabalhista sem base jurídica sólida\nEscritórios generalistas captando clientes PME com promessa de "cuidar de tudo"',
+        ind_impacto: 'Contadores capturando consultas iniciais trabalhistas e resolvendo informalmente\nGeneralistas ganhando clientes pela variedade de serviços, não pela especialização\nRisco de o cliente resolver questões complexas sem advogado especializado',
+        ind_acao: 'Criar programa de parceria formal com contadores: orientação jurídica gratuita em 3 casos complexos/mês em troca de indicação sistemática e exclusiva',
+        sub_plataformas: 'Plataformas online de rescisão e acordo por R$ 200–400\nIA jurídica (ChatGPT, Copilot) para redigir contratos e notificações básicas\nSindicatos com departamento jurídico gratuito para trabalhadores',
+        sub_risco: 'Casos simples de rescisão sendo resolvidos sem advogado por R$ 200–400\nClientes usando IA para redigir contratos de trabalho sem revisão especializada\nSindicatos capturando trabalhadores que poderiam ser clientes pagantes',
+        sub_acao: 'Criar conteúdo educativo sobre riscos de rescisão mal calculada demonstrando que o custo do erro é 10–50x o valor do advogado especializado',
+        dig_status: 'Maioria dos concorrentes locais com Google Meu Negócio desatualizado ou incompleto\nPoucos com conteúdo no LinkedIn voltado para empresários e donos de PME\nNenhum concorrente local com blog de SEO ativo para "advogado trabalhista [cidade]"',
+        dig_oport: 'Oportunidade de dominar o ranking local de SEO em 90–180 dias com publicação consistente\nLinkedIn com alto alcance orgânico entre donos de PME, RHs e contadores\nGoogle Meu Negócio otimizado captura quem pesquisa jurídico trabalhista na cidade',
+        dig_acao: 'Configurar Google Meu Negócio completo + solicitar 20 avaliações de clientes antigos + publicar 1 artigo/mês otimizado para "advogado trabalhista [cidade]" com foco em empregadores',
+        pos_atual: 'Maioria posicionada como "advogado de trabalhador" — deixando o nicho de empregadores aberto\nPreços geralmente por hora ou êxito sem transparência; poucos com assinatura mensal\nPoucos comunicam ROI ou valor preventivo do serviço, apenas reativo',
+        pos_risco: 'Mercado comoditizado: clientes comparam apenas preço sem entender diferencial de especialização\nPercepção genérica de que todos os trabalhistas fazem a mesma coisa\nDificuldade em comunicar o valor preventivo (evitar processos) vs valor reativo',
+        pos_acao: 'Posicionar claramente como "jurídico trabalhista para empresas" com mensagem de previsibilidade (assinatura mensal, preço fixo) diferenciando do mercado reativo',
+        exp_status: 'Concorrentes com tempo médio de resposta de 1–5 dias úteis\nAtendimento predominantemente presencial sem canal digital ágil\nSem portal do cliente, relatório periódico ou comunicação proativa',
+        exp_diferencial: 'WhatsApp Business com resposta garantida em 2h úteis\nRelatório mensal de riscos trabalhistas para clientes de assinatura\nOnboarding estruturado com checklist de riscos na 1ª semana do contrato',
+        exp_acao: 'Implementar WhatsApp Business com mensagem automática + criar modelo de "Relatório Mensal de Riscos" padrão para todos os clientes de assinatura',
+        resumo_diferenciacao: 'Único escritório trabalhista da região especializado em proteção preventiva de PMEs, com modelo de assinatura mensal (preço fixo), WhatsApp com resposta em 2h e relatório mensal de riscos — combinação que nenhum concorrente local oferece.',
+        resumo_lacuna: 'O nicho de "jurídico trabalhista preventivo para PMEs com modelo de assinatura" está completamente vazio no mercado local. 95% da concorrência é 100% reativa. Ser o primeiro a ocupar esse posicionamento com consistência cria barreira competitiva difícil de replicar.',
+        resumo_acao: '1. Mapear 5 concorrentes no LinkedIn e Google Meu Negócio (Semana 1)\n2. Configurar Google Meu Negócio completo + solicitar 20 avaliações (Semana 2)\n3. Lançar "Pacote Preventivo PME" R$ 800/mês com proposta e landing page (Semana 3)\n4. Publicar artigo de SEO "riscos trabalhistas que PMEs ignoram" (Semana 4)\n5. Visitar e apresentar proposta de parceria para 10 contadores locais (Mês 2)',
+    },
+    familia: {
+        dir_quem: 'Advogados de família da cidade com foco em litígio e disputa de guarda\nEscritórios generalistas com sócio de família atendendo de tudo\nDefensores públicos para casos de gratuidade de justiça',
+        dir_vantagem: 'Poucos com certificação em mediação familiar homologada\nPoucos com parceria formal com psicólogos para atendimento integrado\nNenhum com taxa de acordos documentada e comunicada publicamente',
+        dir_acao: 'Pesquisar os 5 advogados de família mais visíveis na cidade no Google e Instagram para entender posicionamento e serviços ofertados',
+        ind_quem: 'Psicólogos e terapeutas que orientam clientes sobre separação informalmente\nNotários e tabeliães captando inventários extrajudiciais de forma direta\nPlataformas de mediação digital como Acordo Fácil e Resolve Já',
+        ind_impacto: 'Psicólogos com clientes em processo de separação que ainda não buscaram advogado — canal de indicação inexplorado\nTabeliães captando casos de inventário diretamente, sem advogado\nClientes buscando mediadores independentes antes de contratar advogado',
+        ind_acao: 'Criar rede de indicação formal com 5 psicólogos, 3 terapeutas e 2 cartórios parceiros — oferecer palestra gratuita sobre aspectos jurídicos do divórcio para seus pacientes',
+        sub_plataformas: 'Plataformas de divórcio online consensual por R$ 800–1.500\nServidor de autocomposição online do CNJ (CEJUSC digital)\nIA gerando minutas de acordo de divórcio e inventário básico',
+        sub_risco: 'Casos consensuais simples migrando para plataformas digitais a custo 60–80% menor\nCasais sem bens e sem filhos optando por divórcio extrajudicial sem advogado\nPercepção de que o divórcio "simples" não precisa de especialista',
+        sub_acao: 'Comunicar que divórcio com filhos menores, bens compartilhados ou qualquer conflito exige advogado especializado — o acordo mal feito pode ser revisado judicialmente por anos',
+        dig_status: 'Concorrentes predominantemente no Instagram com conteúdo genérico sobre divórcio\nPoucos com SEO otimizado para "advogado de família [cidade]"\nAusência de conteúdo acolhedor para quem está em momento de vulnerabilidade',
+        dig_oport: 'Instagram com alto alcance orgânico para mulheres 35–55 anos — público-alvo principal\nSEO local para "advogado divórcio [cidade]" e "inventário extrajudicial [cidade]" com pouca concorrência\nConteúdo acolhedor e humanizado gera maior identificação e confiança que conteúdo técnico',
+        dig_acao: 'Calendário de conteúdo mensal para Instagram com 3 posts/semana acolhedores + 1 artigo de blog/mês para SEO "advogado família [cidade]"',
+        pos_atual: 'Maioria posicionada como "advogado de família" genérico sem nicho comunicado\nPreços geralmente por procedimento sem transparência ou opções de parcelamento\nPoucos comunicam índice de acordos ou metodologia humanizada como diferencial',
+        pos_risco: 'Competição por preço em casos simples com plataformas digitais e generalistas\nDificuldade de comunicar diferencial de humanização vs advogado técnico convencional\nClientes em momento de vulnerabilidade tendem a escolher o primeiro contato, não o melhor',
+        pos_acao: 'Comunicar taxa de acordos (65%), parceria psicológica e metodologia humanizada em TODOS os pontos de contato — site, Instagram, Google Meu Negócio e no primeiro atendimento',
+        exp_status: 'Atendimento frio, formal e técnico — focado no processo, não na pessoa\nCliente navega sozinho sem suporte emocional ou orientação proativa\nComunicação esporádica sobre andamento do processo',
+        exp_diferencial: 'Atendimento integrado com psicólogo parceiro desde o primeiro contato\n1ª sessão com psicólogo inclusa como parte do pacote de divórcio\nWhatsApp com comunicação proativa sobre andamento do processo',
+        exp_acao: 'Incluir 1 sessão com psicólogo parceiro no pacote de divórcio consensual como diferencial; comunicar isso em toda a divulgação como o que separa de todos os concorrentes',
+        resumo_diferenciacao: 'Único escritório da cidade com atendimento jurídico + psicológico integrado, taxa de acordos de 65% documentada e metodologia humanizada que coloca o bem-estar da família acima do litígio — diferencial impossível de replicar rapidamente.',
+        resumo_lacuna: 'O mercado de família está saturado em litígio reativo. O nicho de "advocacia familiar humanizada com suporte psicológico integrado" está vazio na maioria das cidades. Famílias em crise emocional pagam mais por quem as trata como pessoas, não como processos.',
+        resumo_acao: '1. Mapear os 5 principais advogados de família no Google/Instagram (Semana 1)\n2. Formalizar parceria com 3 psicólogos e 2 terapeutas com proposta de indicação (Semana 2)\n3. Otimizar Google Meu Negócio + pedir 15 avaliações (Semana 2–3)\n4. Criar post de Instagram apresentando metodologia humanizada e parceria psicológica (Semana 3)\n5. Incluir 1 sessão de psicólogo no pacote de divórcio e comunicar nos canais (Semana 4)',
+    },
+    empresarial: {
+        dir_quem: 'Grandes escritórios full-service com times completos e clientes de grande porte\nBoutiques especializadas em M&A, contratos ou LGPD\nEscritórios generalistas com sócio empresarial atendendo de tudo',
+        dir_vantagem: 'Boutiques raramente falam a linguagem de negócios de founders e startups\nGrandes escritórios têm custo inacessível para PMEs e startups em fase inicial\nGeneralistas não têm profundidade em regulação de IA, LGPD ou contratos de tecnologia',
+        dir_acao: 'Mapear os 5 principais escritórios empresariais da cidade no LinkedIn e analisar para quem comunicam, qual linguagem usam e quais serviços destacam',
+        ind_quem: 'Consultorias de gestão e estratégia incluindo análise de risco jurídico no escopo\nEscritórios de contabilidade com departamento de planejamento societário\nAcceleradoras e hubs de inovação com advogado residente próprio',
+        ind_impacto: 'Fundadores buscando consultores de gestão que "entendem o negócio" antes de buscar advogado\nContadores captando startups com proposta de planejamento societário e tributário completo\nAcceleradoras com advogado parceiro bloqueando acesso a seu portfólio de startups',
+        ind_acao: 'Candidatar-se como advogado parceiro de 2 aceleradoras e 1 hub de inovação nos próximos 60 dias — oferecer mentorias jurídicas gratuitas como forma de entrada',
+        sub_plataformas: 'LegalTechs de contratos automatizados (Contraktor, DocuSign + templates IA)\nIA generativa para minutas de NDA, prestação de serviços e acordos simples\nPlataformas de due diligence automatizada para M&A de pequeno porte',
+        sub_risco: 'Contratos simples sendo gerados por IA sem revisão especializada — criando riscos que o cliente não vê\nStartups acreditando que template de NDA por IA é suficiente para proteger IP\nDue diligence básica sendo feita internamente com ferramentas digitais',
+        sub_acao: 'Focar em serviços de alto valor estratégico que IA não substitui: M&A complexo, LGPD estratégica, regulação de IA, propriedade intelectual e governança',
+        dig_status: 'Poucos escritórios empresariais com presença ativa no LinkedIn falando para founders e CFOs\nConteúdo predominantemente técnico em juridiquês, sem linguagem de negócios\nAusência de análises sobre regulação de IA, LGPD e temas quentes para o ecossistema tech',
+        dig_oport: 'LinkedIn com alto alcance orgânico entre founders, CFOs e investidores\nConteúdo sobre LGPD, regulação de IA e M&A em linguagem de negócios é raro e muito consumido\nWebinars gratuitos sobre temas jurídicos de startups geram leads qualificados de alto valor',
+        dig_acao: 'Publicar 3x/semana no LinkedIn com análises jurídicas em linguagem de negócios + organizar 1 webinar gratuito/mês sobre tema jurídico hot para o ecossistema de startups',
+        pos_atual: 'Maioria posicionada como fornecedor de serviços jurídicos transacionais — não como parceiro estratégico\nCobrança por hora cria relação adversarial (cliente evita ligar para economizar)\nPoucos se posicionam em nichos como startups, fintechs ou healthtechs',
+        pos_risco: 'Commoditização de serviços padrão por LegalTechs tornando difícil competir em preço\nClientes comparando preço por hora sem considerar profundidade e especialização\nPerda de clientes para escritórios maiores quando a startup escala',
+        pos_acao: 'Reposicionar como "parceiro jurídico estratégico para startups e scale-ups" com modelo de assinatura mensal — preço fixo, previsível e alinhado com o modelo de negócio das startups',
+        exp_status: 'Atendimento formal e hierárquico sem acesso direto ao especialista\nComunicação lenta; updates esporádicos sobre andamento de casos\nSem plataforma digital de acesso a documentos e contratos',
+        exp_diferencial: 'Acesso direto ao sócio via WhatsApp com resposta em 2h úteis\nPortal cliente com acesso 24/7 a documentos, contratos e status dos casos\nRelatório mensal de risco jurídico com alertas de compliance proativos',
+        exp_acao: 'Implementar portal do cliente (pode começar com Google Drive estruturado) + criar relatório mensal de risco jurídico padrão para clientes de assinatura',
+        resumo_diferenciacao: 'Único escritório empresarial da região especializado em startups e scale-ups, falando a linguagem de negócios, com modelo de assinatura mensal previsível, acesso direto ao sócio e portal digital — o parceiro jurídico estratégico que fundadores procuram mas raramente encontram.',
+        resumo_lacuna: 'O ecossistema de startups e PMEs de tecnologia está crescendo em todas as cidades, mas a maioria dos escritórios empresariais ainda fala para grandes empresas em linguagem técnica. O nicho de "jurídico empresarial para startups com modelo de assinatura e linguagem de negócios" está vazio na maioria dos mercados.',
+        resumo_acao: '1. Mapear 5 concorrentes no LinkedIn analisando posicionamento e linguagem (Semana 1)\n2. Candidatar-se a 2 aceleradoras como advogado parceiro com proposta de mentoria (Semana 2)\n3. Publicar análise sobre regulação de IA ou LGPD no LinkedIn (Semana 2)\n4. Lançar modelo de assinatura mensal para startups com 3 opções de pacote (Semana 3–4)\n5. Organizar webinar gratuito sobre LGPD ou regulação de IA para startups (Mês 2)',
+    }
+};
+
+function saveCompetitiva() {
+    const data = {};
+    document.querySelectorAll('#competitiva-panel [data-comp]').forEach(el => {
+        data[el.dataset.comp] = el.value;
+    });
+    data.__area = document.getElementById('comp-area').value;
+    data.__size = document.getElementById('comp-size').value;
+    data.__scope = document.getElementById('comp-scope').value;
+    localStorage.setItem(COMPETITIVA_KEY, JSON.stringify(data));
+    showToast('Análise Competitiva salva!');
+}
+
+function loadCompetitivaData() {
+    const raw = localStorage.getItem(COMPETITIVA_KEY);
+    if (!raw) return;
+    try {
+        const data = JSON.parse(raw);
+        document.querySelectorAll('#competitiva-panel [data-comp]').forEach(el => {
+            if (data[el.dataset.comp] !== undefined) el.value = data[el.dataset.comp];
+        });
+        if (data.__area) document.getElementById('comp-area').value = data.__area;
+        if (data.__size) document.getElementById('comp-size').value = data.__size;
+        if (data.__scope) document.getElementById('comp-scope').value = data.__scope;
+    } catch(e) {}
+}
+
+function clearCompetitiva() {
+    if (!confirm('Limpar todos os campos da Análise Competitiva?')) return;
+    document.querySelectorAll('#competitiva-panel [data-comp]').forEach(el => el.value = '');
+    document.getElementById('comp-area').value = '';
+    document.getElementById('comp-size').value = '';
+    document.getElementById('comp-scope').value = '';
+    localStorage.removeItem(COMPETITIVA_KEY);
+    showToast('Análise Competitiva limpa.', 'fa-trash');
+}
+
+function loadCompetitivaExample() {
+    const area = document.getElementById('comp-area').value;
+    if (!area) { showToast('Selecione a área de atuação primeiro.', 'fa-exclamation-triangle'); return; }
+    const ex = COMPETITIVA_EXAMPLES[area];
+    if (!ex) { showToast('Exemplo não disponível para esta área.', 'fa-info-circle'); return; }
+    Object.entries(ex).forEach(([key, val]) => {
+        const el = document.querySelector(`#competitiva-panel [data-comp="${key}"]`);
+        if (el) el.value = val;
+    });
+    showToast('Exemplo carregado!', 'fa-magic');
+}
+
+// Competitiva examples tabs
+document.querySelectorAll('#competitiva-panel .comp-ex-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('#competitiva-panel .comp-ex-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('#competitiva-panel .comp-ex-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.ex).classList.add('active');
+    });
+});
+
+document.getElementById('btn-save-comp').addEventListener('click', saveCompetitiva);
+document.getElementById('btn-clear-comp').addEventListener('click', clearCompetitiva);
+document.getElementById('btn-print-comp').addEventListener('click', () => window.print());
+document.getElementById('btn-load-comp-example').addEventListener('click', loadCompetitivaExample);
+
+loadCompetitivaData();
 
 
 // ─── ANÁLISE SWOT ─────────────────────────────────────────────────────────────
