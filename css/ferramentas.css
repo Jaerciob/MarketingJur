@@ -1141,6 +1141,18 @@ body {
 .diag-field--ameaca textarea:focus { border-color: #c0392b; background: var(--white); }
 .diag-field--ameaca label { color: #922b21; }
 
+/* Insights fields (amber tint) — span full width in both grids */
+.diag-mercado-insights,
+.diag-forcas-insights {
+    grid-column: 1 / -1;
+}
+.diag-field--insights textarea {
+    border-color: #f39c12;
+    background: #fef9ec;
+}
+.diag-field--insights textarea:focus { border-color: #d68910; background: var(--white); }
+.diag-field--insights label { color: #9a6108; }
+
 /* Shared field styles */
 .diag-field label {
     display: flex;
