@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Estratégico do Escritório | Ambiente Interno (SWOT)</title>
+<meta name="description" content="Diagnóstico rápido de maturidade interna para escritórios de advocacia, com geração automática de pontos fortes, pontos fracos e recomendações estratégicas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+      <div class="brand-text">
+        <span class="brand-title">Diagnóstico Estratégico</span>
+        <span class="brand-sub">Ambiente Interno · Análise SWOT para Escritórios de Advocacia</span>
+      </div>
+    </div>
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-label"><span id="progress-count">0</span> / <span id="progress-total">0</span> respondidas</div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+  </div>
+</header>
+
+<main id="app-main">
+
+  <!-- ============ SEÇÃO 1: INTRO / IDENTIFICAÇÃO ============ -->
+  <section class="screen intro-screen" id="screen-intro">
+    <div class="intro-card">
+      <span class="pill"><i class="fa-solid fa-clock"></i> Leva menos de 5 minutos</span>
+      <h1>Diagnóstico do Ambiente Interno<br>do seu Escritório</h1>
+      <p class="intro-text">
+        Este questionário avalia a maturidade do seu escritório em <strong>7 dimensões estratégicas</strong>,
+        gerando automaticamente os principais <strong>Pontos Fortes</strong>, <strong>Pontos Fracos</strong>
+        e um <strong>plano de prioridades</strong> para os próximos 90 dias — a base da sua Análise SWOT.
+      </p>
+
+      <div class="dimensoes-preview" id="dimensoes-preview"></div>
+
+      <form id="form-identificacao" class="identificacao-form">
+        <div class="field">
+          <label for="input-escritorio">Nome do escritório</label>
+          <input type="text" id="input-escritorio" placeholder="Ex.: Silva &amp; Associados Advocacia" required>
+        </div>
+        <div class="field">
+          <label for="input-respondente">Nome / cargo de quem está respondendo</label>
+          <input type="text" id="input-respondente" placeholder="Ex.: Ana Silva – Sócia-fundadora" required>
+        </div>
+        <button type="submit" class="btn-primary btn-large">
+          Iniciar diagnóstico <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ SEÇÃO 2: QUESTIONÁRIO (gerado via JS) ============ -->
+  <section class="screen quiz-screen hidden" id="screen-quiz">
+    <div class="quiz-container" id="quiz-container"></div>
+  </section>
+
+  <!-- ============ SEÇÃO 3: RESULTADO ============ -->
+  <section class="screen results-screen hidden" id="screen-results">
+    <div class="results-container" id="results-container"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Ferramenta de diagnóstico estratégico para escritórios de advocacia · Uso interno para apoio à Análise SWOT.</p>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

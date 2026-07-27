@@ -1696,3 +1696,552 @@ document.getElementById('btn-print-branding').addEventListener('click', () => wi
 document.getElementById('branding-example').addEventListener('change', e => loadBrandingExample(e.target.value));
 
 loadBrandingData();
+
+// ─── DIAGNÓSTICO: PONTOS FORTES E FRACOS ─────────────────────────────────────
+
+const PF_DIMENSOES = [
+    {
+        id: 'especializacao',
+        nome: 'Especialização e Posicionamento',
+        icone: 'fa-bullseye',
+        cor: '#1a365d',
+        afirmacoes: [
+            'Nosso escritório tem uma especialização clara e reconhecida pelo mercado.',
+            'Conseguimos comunicar com precisão o que fazemos e para quem.',
+            'Temos um posicionamento diferenciado da concorrência.',
+            'O cliente-alvo está bem definido e nossas ações são direcionadas a ele.'
+        ],
+        comentario: {
+            excelente: 'Excelente posicionamento! Seu escritório tem especialização sólida e bem comunicada. Capitalize essa força para atrair clientes de maior valor e fortalecer sua autoridade de mercado.',
+            forte: 'Bom posicionamento. Há espaço para refinar ainda mais a comunicação do diferencial e tornar sua especialização ainda mais reconhecida.',
+            estavel: 'Posicionamento moderado. Defina com mais clareza o nicho e o cliente-alvo para aumentar a efetividade das ações de marketing.',
+            atencao: 'O posicionamento precisa de atenção urgente. Sem clareza sobre a especialização, é difícil se diferenciar e atrair os clientes certos.',
+            critico: 'Ponto fraco crítico. Sem posicionamento claro, o escritório compete por preço e perde clientes qualificados. Redefinir a especialização é prioridade imediata.'
+        },
+        recomendacao: 'Defina em uma frase o que seu escritório faz, para quem faz e qual resultado entrega. Use essa declaração como base de toda a comunicação (site, LinkedIn, proposta).'
+    },
+    {
+        id: 'relacionamento',
+        nome: 'Relacionamento com Clientes',
+        icone: 'fa-handshake',
+        cor: '#0f766e',
+        afirmacoes: [
+            'Mantemos contato regular e proativo com clientes atuais e anteriores.',
+            'Temos processos estruturados de acompanhamento pós-serviço.',
+            'Nossa carteira de clientes ativos cresce de forma consistente.',
+            'Recebemos indicações frequentes de novos clientes por parte dos atuais.'
+        ],
+        comentario: {
+            excelente: 'Relacionamento exemplar! Seus clientes se sentem valorizados e são promotores do escritório. Continue investindo nessa dimensão, ela é um diferencial competitivo poderoso.',
+            forte: 'Bom relacionamento com clientes. Estruture ainda melhor os processos de pós-atendimento e programas de indicação para amplificar os resultados.',
+            estavel: 'Relacionamento satisfatório, mas com potencial de melhoria. Crie rituais regulares de contato com ex-clientes e implemente um sistema de indicação formal.',
+            atencao: 'O relacionamento com clientes precisa de atenção. Muitos escritórios perdem receita por não manter o contato após o encerramento do caso.',
+            critico: 'Relacionamento crítico. A ausência de contato pós-atendimento gera perda de retenção e indicações. Comece com um CRM simples e uma cadência de follow-up.'
+        },
+        recomendacao: 'Implante um CRM básico (pode ser uma planilha) e defina uma cadência de contato: e-mail ou mensagem de check-in a cada 90 dias para ex-clientes estratégicos.'
+    },
+    {
+        id: 'autoridade',
+        nome: 'Autoridade e Marca',
+        icone: 'fa-star',
+        cor: '#b45309',
+        afirmacoes: [
+            'Produzimos conteúdo técnico que demonstra expertise (artigos, posts, vídeos, palestras).',
+            'Somos reconhecidos como referência em nossa área de atuação.',
+            'Nossa presença digital (site, LinkedIn, redes sociais) reflete nossa especialização.',
+            'Participamos de eventos, publicações ou mídias relevantes para o nosso público.'
+        ],
+        comentario: {
+            excelente: 'Autoridade consolidada! Seu escritório é referência no mercado. Explore parcerias estratégicas, convites para palestrar e colaboração em publicações para ampliar ainda mais o alcance.',
+            forte: 'Boa autoridade de marca. Intensifique a frequência de conteúdo e busque presença em canais de maior alcance para seu público-alvo.',
+            estavel: 'Autoridade em desenvolvimento. Estabeleça uma rotina de produção de conteúdo e escolha 1-2 canais prioritários para concentrar esforços.',
+            atencao: 'Autoridade frágil. Sem visibilidade, o escritório depende quase exclusivamente de indicações. Comece a publicar conteúdo útil ao seu público-alvo imediatamente.',
+            critico: 'Marca praticamente invisível no mercado. Construir autoridade é urgente. Comece com o LinkedIn: 2 posts por semana sobre casos e tendências da sua área.'
+        },
+        recomendacao: 'Crie um calendário editorial mensal com pelo menos 2 publicações técnicas por semana no LinkedIn. Cada post deve responder a uma dúvida real do seu cliente-alvo.'
+    },
+    {
+        id: 'gestao',
+        nome: 'Gestão e Rentabilidade',
+        icone: 'fa-chart-bar',
+        cor: '#7c3aed',
+        afirmacoes: [
+            'Conhecemos com precisão o custo de cada caso e nossa margem de lucro.',
+            'Temos metas de faturamento definidas e as acompanhamos regularmente.',
+            'Fazemos precificação estratégica, não apenas por hora ou por "preço de mercado".',
+            'Nosso faturamento cobre os custos operacionais e gera reserva de capital.'
+        ],
+        comentario: {
+            excelente: 'Gestão financeira exemplar! Você tem controle dos números e toma decisões baseadas em dados. Use essa solidez para investir em crescimento com segurança.',
+            forte: 'Boa gestão financeira. Refine a precificação por valor entregue e implante indicadores de acompanhamento mensal para otimizar a rentabilidade.',
+            estavel: 'Gestão financeira adequada, mas com espaço para melhorias. Revise a precificação e comece a rastrear a margem por tipo de serviço.',
+            atencao: 'Gestão financeira fraca. Sem controle de custos e metas claras, o escritório pode crescer em volume e diminuir em lucro. Priorize organizar as finanças.',
+            critico: 'Gestão financeira crítica. Trabalhar sem conhecer custos e margens é um risco grave. Implante uma planilha financeira básica ainda esta semana.'
+        },
+        recomendacao: 'Defina o custo real do seu tempo (incluindo despesas fixas e pró-labore desejado), calcule a margem de cada serviço e revise a tabela de honorários a cada 6 meses.'
+    },
+    {
+        id: 'operacional',
+        nome: 'Eficiência Operacional',
+        icone: 'fa-cogs',
+        cor: '#0891b2',
+        afirmacoes: [
+            'Temos processos documentados para as principais atividades do escritório.',
+            'A equipe utiliza ferramentas adequadas (software jurídico, gestão de prazos, controle de tarefas).',
+            'O tempo administrativo é minimizado para que a equipe foque no trabalho jurídico.',
+            'Monitoramos indicadores básicos de produtividade e cumprimento de prazos.'
+        ],
+        comentario: {
+            excelente: 'Operação altamente eficiente! Processos bem definidos e ferramentas adequadas permitem que a equipe entregue mais valor com menos esforço. Avalie automação e delegação para escalar.',
+            forte: 'Boa eficiência operacional. Há oportunidade de documentar os processos existentes e incorporar mais automação para liberar tempo estratégico da equipe.',
+            estavel: 'Eficiência moderada. Mapeie os principais gargalos operacionais e priorize a implantação de um software de gestão de prazos e tarefas.',
+            atencao: 'Eficiência baixa. Sem processos claros, o retrabalho e os prazos perdidos geram riscos jurídicos e prejudicam a experiência do cliente.',
+            critico: 'Eficiência crítica. A ausência de processos documentados e ferramentas adequadas é um risco para a qualidade do serviço. Implante um sistema de gestão jurídica com urgência.'
+        },
+        recomendacao: 'Mapeie os 5 processos mais repetitivos do escritório, crie checklists para cada um e avalie a adoção de um software jurídico (ex.: Advwin, Toth, Jurídico Certo) para controle de prazos.'
+    },
+    {
+        id: 'inovacao',
+        nome: 'Inovação e Tecnologia',
+        icone: 'fa-microchip',
+        cor: '#059669',
+        afirmacoes: [
+            'Utilizamos tecnologia para automatizar tarefas repetitivas no dia a dia.',
+            'A equipe está atualizada com as principais ferramentas digitais jurídicas (IA, automação, legal tech).',
+            'Exploramos ativamente canais digitais para geração de novos negócios.',
+            'Investimos periodicamente em formação tecnológica da equipe.'
+        ],
+        comentario: {
+            excelente: 'Escritório altamente inovador! A adoção de tecnologia cria vantagem competitiva real. Compartilhe boas práticas com a equipe e avalie como a IA pode ampliar ainda mais sua eficiência.',
+            forte: 'Boa adoção de tecnologia. Explore ferramentas de IA para pesquisa, redação e análise de contratos para ganhar ainda mais eficiência.',
+            estavel: 'Tecnologia moderada. Identifique as tarefas que mais consomem tempo da equipe e pesquise soluções tecnológicas específicas para elas.',
+            atencao: 'Baixa adoção de tecnologia. O risco de ficar para trás da concorrência é real. Comece com ferramentas gratuitas ou de baixo custo para dar os primeiros passos.',
+            critico: 'Tecnologia crítica. A ausência de ferramentas digitais gera ineficiência e dificulta a competitividade. Defina um orçamento mínimo para investimento em tecnologia jurídica.'
+        },
+        recomendacao: 'Realize um inventário das ferramentas atuais, identifique as lacunas e estabeleça um plano trimestral de adoção de novas tecnologias. Comece com IA para pesquisa jurídica e redação de peças.'
+    },
+    {
+        id: 'crescimento',
+        nome: 'Crescimento e Estratégia',
+        icone: 'fa-rocket',
+        cor: '#dc2626',
+        afirmacoes: [
+            'Temos um plano estratégico formal para os próximos 12 meses com metas claras.',
+            'Revisamos periodicamente os resultados em relação às metas definidas.',
+            'Tomamos decisões de negócio com base em dados e indicadores, não apenas intuição.',
+            'Temos clareza sobre os próximos passos para escalar e crescer o escritório.'
+        ],
+        comentario: {
+            excelente: 'Estratégia exemplar! Seu escritório opera com visão de longo prazo e disciplina de execução. Compartilhe o plano com a equipe e revise-o trimestralmente para manter o alinhamento.',
+            forte: 'Boa estratégia. Formalize o plano por escrito se ainda não fez, defina responsáveis para cada meta e crie uma rotina de revisão mensal dos indicadores.',
+            estavel: 'Estratégia em desenvolvimento. Transforme as intenções em um plano escrito com metas SMART, prazos e indicadores de acompanhamento.',
+            atencao: 'Estratégia fraca. Sem um plano definido, o escritório reage ao mercado em vez de projetar o seu futuro. Reserve um dia para planejar os próximos 12 meses.',
+            critico: 'Ausência de estratégia. Trabalhar sem plano é o principal inibidor do crescimento sustentável. Comece com 3 metas anuais claras e 1 ação concreta por mês para cada uma.'
+        },
+        recomendacao: 'Elabore um plano de uma página com: visão de 3 anos, 3 metas anuais mensuráveis, 3 ações prioritárias para o próximo trimestre e 3 indicadores de acompanhamento mensal.'
+    }
+];
+
+const PF_LIKERT_LABELS = ['Discordo totalmente', 'Discordo', 'Neutro', 'Concordo', 'Concordo totalmente'];
+const PF_FAIXAS = [
+    { min: 4.5, max: 5.0, classe: 'excelente', label: 'Excelente', badge: 'pf-badge-excelente', cor: '#15803d' },
+    { min: 3.8, max: 4.4, classe: 'forte',     label: 'Forte',     badge: 'pf-badge-forte',     cor: '#065f46' },
+    { min: 3.0, max: 3.7, classe: 'estavel',   label: 'Estável',   badge: 'pf-badge-estavel',   cor: '#92400e' },
+    { min: 2.0, max: 2.9, classe: 'atencao',   label: 'Atenção',   badge: 'pf-badge-atencao',   cor: '#c2410c' },
+    { min: 1.0, max: 1.9, classe: 'critico',   label: 'Ponto Fraco Crítico', badge: 'pf-badge-critico', cor: '#991b1b' }
+];
+const PF_OPEN_QUESTIONS = [
+    { id: 'diferenciais',    label: 'Quais são os maiores diferenciais do seu escritório hoje?' },
+    { id: 'desafios',        label: 'Quais são os principais desafios internos que limitam o crescimento?' },
+    { id: 'melhoria12meses', label: 'Qual área você quer priorizar para melhorar nos próximos 12 meses?' }
+];
+
+let pfRespostas = {};
+let pfAbertas = {};
+let pfEscritorioNome = '';
+let pfRespondente = '';
+let pfRadarChart = null;
+
+function pfClassificar(media) {
+    for (const f of PF_FAIXAS) {
+        if (media >= f.min && media <= f.max) return f;
+    }
+    return PF_FAIXAS[PF_FAIXAS.length - 1];
+}
+
+function pfCalcularMediaDim(dimId) {
+    const dim = PF_DIMENSOES.find(d => d.id === dimId);
+    const notas = dim.afirmacoes.map((_, i) => pfRespostas[`${dimId}_${i}`] || 0);
+    const respondidas = notas.filter(n => n > 0);
+    if (!respondidas.length) return 0;
+    return respondidas.reduce((a, b) => a + b, 0) / respondidas.length;
+}
+
+function pfContarRespondidas() {
+    let total = 0;
+    PF_DIMENSOES.forEach(d => { total += d.afirmacoes.length; });
+    let respondidas = Object.keys(pfRespostas).filter(k => pfRespostas[k] > 0).length;
+    return { respondidas, total };
+}
+
+function pfAtualizarProgresso() {
+    const { respondidas, total } = pfContarRespondidas();
+    const pct = total > 0 ? (respondidas / total) * 100 : 0;
+    const fill = document.getElementById('pf-progress-fill');
+    const count = document.getElementById('pf-progress-count');
+    const totalEl = document.getElementById('pf-progress-total');
+    if (fill) fill.style.width = pct + '%';
+    if (count) count.textContent = respondidas;
+    if (totalEl) totalEl.textContent = total;
+}
+
+function pfRenderIntro() {
+    const grid = document.getElementById('pf-dimensoes-preview');
+    if (!grid) return;
+    const cores = ['#1a365d','#0f766e','#b45309','#7c3aed','#0891b2','#059669','#dc2626'];
+    grid.innerHTML = PF_DIMENSOES.map((d, i) => `
+        <div class="pf-dim-tag" style="border-color:${cores[i]}22; color:${cores[i]}">
+            <i class="fas ${d.icone}" style="color:${cores[i]}"></i>
+            <span>${d.nome}</span>
+        </div>
+    `).join('');
+}
+
+function pfRenderQuiz() {
+    const container = document.getElementById('pf-quiz-container');
+    if (!container) return;
+
+    let html = '';
+    PF_DIMENSOES.forEach((dim, di) => {
+        html += `
+        <div class="pf-dim-card">
+            <div class="pf-dim-card-header" style="background: linear-gradient(135deg, ${dim.cor}, ${dim.cor}cc)">
+                <div class="pf-dim-card-icon"><i class="fas ${dim.icone}"></i></div>
+                <div>
+                    <div class="pf-dim-card-title">${dim.nome}</div>
+                    <div class="pf-dim-card-num">Dimensão ${di + 1} de ${PF_DIMENSOES.length}</div>
+                </div>
+            </div>
+            <div class="pf-dim-card-body">
+                ${dim.afirmacoes.map((texto, qi) => `
+                <div class="pf-question">
+                    <div class="pf-question-text">${qi + 1}. ${texto}</div>
+                    <div class="pf-likert">
+                        ${[1,2,3,4,5].map(val => `
+                        <label class="pf-likert-option" title="${PF_LIKERT_LABELS[val-1]}">
+                            <input type="radio" name="pf_${dim.id}_${qi}" value="${val}"
+                                onchange="pfSetResposta('${dim.id}',${qi},${val})"
+                                ${pfRespostas[`${dim.id}_${qi}`] === val ? 'checked' : ''}>
+                            <span class="pf-likert-btn">${val}</span>
+                            <span class="pf-likert-label">${PF_LIKERT_LABELS[val-1]}</span>
+                        </label>`).join('')}
+                    </div>
+                </div>`).join('')}
+            </div>
+        </div>`;
+    });
+
+    // Open questions
+    html += `
+    <div style="margin-top:8px; margin-bottom:12px;">
+        <div class="pf-section-title"><i class="fas fa-pen-to-square" style="color:var(--primary-light)"></i> Perguntas Abertas</div>
+    </div>`;
+    PF_OPEN_QUESTIONS.forEach((q, qi) => {
+        html += `
+        <div class="pf-open-card">
+            <div class="pf-open-header">
+                <i class="fas fa-comment-dots"></i>
+                <span>${qi + 1}. ${q.label}</span>
+            </div>
+            <div class="pf-open-body">
+                <textarea id="pf-open-${q.id}" placeholder="Escreva sua resposta aqui..."
+                    oninput="pfAbertas['${q.id}']=this.value">${pfAbertas[q.id] || ''}</textarea>
+            </div>
+        </div>`;
+    });
+
+    html += `
+    <div class="pf-nav-row">
+        <span></span>
+        <button class="pf-btn-nav next" onclick="pfFinalizar()">
+            Ver resultado <i class="fas fa-chart-line"></i>
+        </button>
+    </div>`;
+
+    container.innerHTML = html;
+    pfAtualizarProgresso();
+}
+
+function pfSetResposta(dimId, qi, val) {
+    pfRespostas[`${dimId}_${qi}`] = val;
+    pfAtualizarProgresso();
+}
+
+function pfFinalizar() {
+    const { respondidas, total } = pfContarRespondidas();
+    if (respondidas < total * 0.5) {
+        alert('Por favor, responda pelo menos metade das afirmações antes de gerar o resultado.');
+        return;
+    }
+    pfRenderResultados();
+    pfShowScreen('results');
+    document.getElementById('pontos-fortes-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function pfRenderResultados() {
+    const container = document.getElementById('pf-results-container');
+    if (!container) return;
+
+    const medias = PF_DIMENSOES.map(d => pfCalcularMediaDim(d.id));
+    const classificacoes = medias.map(m => pfClassificar(m));
+    const mediaGeral = medias.filter(m => m > 0).reduce((a, b) => a + b, 0) / medias.filter(m => m > 0).length || 0;
+    const pontuacaoGeral = Math.round(((mediaGeral - 1) / 4) * 100);
+    const classGeral = pfClassificar(mediaGeral);
+
+    // Top 5 forças e fraquezas por afirmação
+    const afirmacoesPontuadas = [];
+    PF_DIMENSOES.forEach(d => {
+        d.afirmacoes.forEach((texto, i) => {
+            const nota = pfRespostas[`${d.id}_${i}`] || 0;
+            if (nota > 0) {
+                afirmacoesPontuadas.push({ texto, nota, dim: d.nome, dimId: d.id });
+            }
+        });
+    });
+    afirmacoesPontuadas.sort((a, b) => b.nota - a.nota);
+    const top5Forcas = afirmacoesPontuadas.filter(a => a.nota >= 4).slice(0, 5);
+    const top5Fraquezas = [...afirmacoesPontuadas].sort((a, b) => a.nota - b.nota).filter(a => a.nota <= 3).slice(0, 5);
+
+    // Top 3 prioridades (piores dimensões)
+    const dimComMedia = PF_DIMENSOES.map((d, i) => ({ ...d, media: medias[i] }));
+    const prioridades = [...dimComMedia].filter(d => d.media > 0).sort((a, b) => a.media - b.media).slice(0, 3);
+
+    // Header
+    let html = `
+    <div class="pf-result-header">
+        <h2><i class="fas fa-chart-pie" style="margin-right:8px;opacity:.8"></i>Relatório de Diagnóstico — Pontos Fortes e Fracos</h2>
+        <div class="pf-result-meta">
+            ${pfEscritorioNome ? `<strong>${pfEscritorioNome}</strong> · ` : ''}
+            ${pfRespondente ? `Respondido por: ${pfRespondente} · ` : ''}
+            ${new Date().toLocaleDateString('pt-BR')}
+        </div>
+        <div class="pf-score-row">
+            <div class="pf-score-circle">
+                <span class="pf-score-num">${pontuacaoGeral}</span>
+                <span class="pf-score-of">/ 100</span>
+            </div>
+            <div class="pf-score-info">
+                <div class="pf-score-badge">${classGeral.label}</div>
+                <p style="margin-top:10px">${pfTextoGeral(pontuacaoGeral, classGeral.classe)}</p>
+            </div>
+        </div>
+    </div>`;
+
+    // Radar chart
+    html += `
+    <div class="pf-chart-section">
+        <div class="pf-chart-wrap">
+            <canvas id="pf-radar-canvas" width="400" height="400"></canvas>
+        </div>
+    </div>`;
+
+    // Dimension table
+    html += `
+    <div class="pf-dim-table-section">
+        <div class="pf-section-title"><i class="fas fa-table" style="color:var(--primary-light)"></i> Pontuação por Dimensão</div>
+        <table class="pf-dim-table">
+            <thead><tr><th>Dimensão</th><th>Média</th><th>Maturidade</th></tr></thead>
+            <tbody>
+                ${PF_DIMENSOES.map((d, i) => {
+                    const m = medias[i];
+                    const cl = classificacoes[i];
+                    const barColor = cl.cor;
+                    const barWidth = m > 0 ? ((m - 1) / 4 * 100).toFixed(0) : 0;
+                    return `<tr>
+                        <td><i class="fas ${d.icone}" style="color:${d.cor};margin-right:7px;font-size:13px"></i>${d.nome}</td>
+                        <td>
+                            <div class="pf-score-bar-wrap">
+                                <strong>${m > 0 ? m.toFixed(1) : '–'}</strong>
+                                <div class="pf-score-bar-bg">
+                                    <div class="pf-score-bar-fill" style="width:${barWidth}%;background:${barColor}"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="pf-badge-class ${cl.badge}">${cl.label}</span></td>
+                    </tr>`;
+                }).join('')}
+            </tbody>
+        </table>
+    </div>`;
+
+    // Forças e Fraquezas
+    html += `<div class="pf-ff-grid">
+        <div class="pf-ff-card">
+            <div class="pf-ff-header forcas"><i class="fas fa-thumbs-up"></i> Top 5 Pontos Fortes</div>
+            ${top5Forcas.length ? top5Forcas.map(a => `
+            <div class="pf-ff-item">
+                <i class="fas fa-circle-check pf-ff-icon pos"></i>
+                <span><strong style="font-size:11px;color:#15803d;display:block">${a.dim}</strong>${a.texto}</span>
+            </div>`).join('') : '<div class="pf-ff-item"><i class="fas fa-info-circle pf-ff-icon pos"></i><span>Nenhuma força destacada ainda. Responda mais afirmações.</span></div>'}
+        </div>
+        <div class="pf-ff-card">
+            <div class="pf-ff-header fraquezas"><i class="fas fa-thumbs-down"></i> Top 5 Pontos Fracos</div>
+            ${top5Fraquezas.length ? top5Fraquezas.map(a => `
+            <div class="pf-ff-item">
+                <i class="fas fa-circle-xmark pf-ff-icon neg"></i>
+                <span><strong style="font-size:11px;color:#b91c1c;display:block">${a.dim}</strong>${a.texto}</span>
+            </div>`).join('') : '<div class="pf-ff-item"><i class="fas fa-info-circle pf-ff-icon neg"></i><span>Nenhuma fraqueza destacada ainda. Responda mais afirmações.</span></div>'}
+        </div>
+    </div>`;
+
+    // 90-day priorities
+    html += `
+    <div class="pf-priorities-section">
+        <div class="pf-section-title"><i class="fas fa-flag" style="color:#dc2626"></i> 3 Prioridades Estratégicas — Próximos 90 Dias</div>
+        ${prioridades.map((d, i) => `
+        <div class="pf-priority-item">
+            <div class="pf-priority-num">${i + 1}</div>
+            <div class="pf-priority-body">
+                <div class="pf-priority-dim">${d.nome} · Média: ${d.media.toFixed(1)} — ${pfClassificar(d.media).label}</div>
+                <div class="pf-priority-rec">${d.recomendacao}</div>
+            </div>
+        </div>`).join('')}
+    </div>`;
+
+    // Comments by dimension
+    html += `
+    <div class="pf-comments-section">
+        <div class="pf-section-title"><i class="fas fa-comment-alt" style="color:var(--primary-light)"></i> Comentários Estratégicos por Dimensão</div>
+        ${PF_DIMENSOES.map((d, i) => {
+            const m = medias[i];
+            if (m === 0) return '';
+            const cl = classificacoes[i];
+            return `<div class="pf-comment-item">
+                <div class="pf-comment-dim">
+                    <i class="fas ${d.icone}" style="color:${d.cor}"></i>
+                    ${d.nome} <span class="pf-badge-class ${cl.badge}" style="font-size:11px">${cl.label}</span>
+                </div>
+                <div class="pf-comment-text">${d.comentario[cl.classe]}</div>
+            </div>`;
+        }).join('')}
+    </div>`;
+
+    // Open answers
+    const temAberta = Object.values(pfAbertas).some(v => v && v.trim());
+    if (temAberta) {
+        html += `
+        <div class="pf-open-answers-section">
+            <div class="pf-section-title"><i class="fas fa-pen" style="color:var(--primary-light)"></i> Respostas Abertas</div>
+            ${PF_OPEN_QUESTIONS.map(q => {
+                const resp = pfAbertas[q.id];
+                if (!resp || !resp.trim()) return '';
+                return `<div class="pf-open-answer">
+                    <div class="pf-open-answer-q">${q.label}</div>
+                    <div class="pf-open-answer-a">"${resp}"</div>
+                </div>`;
+            }).join('')}
+        </div>`;
+    }
+
+    container.innerHTML = html;
+
+    // Render radar chart
+    setTimeout(() => pfRenderRadar(medias), 80);
+}
+
+function pfTextoGeral(pontuacao, classe) {
+    const textos = {
+        excelente: 'Seu escritório apresenta maturidade estratégica excepcional. Você está entre os mais bem posicionados do mercado.',
+        forte: 'Seu escritório tem fundamentos sólidos. Pequenos ajustes nas dimensões mais fracas podem alavancar significativamente os resultados.',
+        estavel: 'Seu escritório tem uma base funcional. Priorize as dimensões com menor pontuação para dar um salto de qualidade.',
+        atencao: 'Existem fragilidades importantes que limitam o crescimento. Foque nas prioridades identificadas para evoluir rapidamente.',
+        critico: 'O escritório precisa de intervenção estratégica urgente. As prioridades identificadas são o ponto de partida para a transformação.'
+    };
+    return textos[classe] || '';
+}
+
+function pfRenderRadar(medias) {
+    const canvas = document.getElementById('pf-radar-canvas');
+    if (!canvas || typeof Chart === 'undefined') return;
+    if (pfRadarChart) { pfRadarChart.destroy(); pfRadarChart = null; }
+    pfRadarChart = new Chart(canvas, {
+        type: 'radar',
+        data: {
+            labels: PF_DIMENSOES.map(d => d.nome.split(' e ')[0]),
+            datasets: [{
+                label: 'Maturidade',
+                data: medias.map(m => m > 0 ? parseFloat(m.toFixed(2)) : 0),
+                backgroundColor: 'rgba(26, 54, 93, 0.15)',
+                borderColor: 'rgba(26, 54, 93, 0.9)',
+                pointBackgroundColor: 'rgba(212, 175, 55, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(26, 54, 93, 1)',
+                borderWidth: 2,
+                pointRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                r: {
+                    min: 0, max: 5,
+                    ticks: { stepSize: 1, font: { size: 11 }, color: '#64748b', backdropColor: 'transparent' },
+                    pointLabels: { font: { size: 11, family: 'Inter' }, color: '#1a365d' },
+                    grid: { color: 'rgba(26,54,93,0.1)' },
+                    angleLines: { color: 'rgba(26,54,93,0.1)' }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: ctx => ` ${ctx.raw.toFixed(1)} / 5.0`
+                    }
+                }
+            }
+        }
+    });
+}
+
+function pfShowScreen(name) {
+    ['intro', 'quiz', 'results'].forEach(s => {
+        const el = document.getElementById(`pf-screen-${s}`);
+        if (el) el.classList.toggle('pf-hidden', s !== name);
+    });
+}
+
+function pfIniciar(e) {
+    e.preventDefault();
+    pfEscritorioNome = document.getElementById('pf-input-escritorio').value.trim();
+    pfRespondente   = document.getElementById('pf-input-respondente').value.trim();
+    pfRenderQuiz();
+    pfShowScreen('quiz');
+    document.getElementById('pontos-fortes-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function pfNovoDiagnostico() {
+    pfRespostas = {};
+    pfAbertas = {};
+    pfEscritorioNome = '';
+    pfRespondente = '';
+    if (pfRadarChart) { pfRadarChart.destroy(); pfRadarChart = null; }
+    document.getElementById('pf-input-escritorio').value = '';
+    document.getElementById('pf-input-respondente').value = '';
+    document.getElementById('pf-results-container').innerHTML = '';
+    pfShowScreen('intro');
+    pfRenderIntro();
+    document.getElementById('pontos-fortes-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Init
+(function pfInit() {
+    pfRenderIntro();
+    const form = document.getElementById('pf-form-identificacao');
+    if (form) form.addEventListener('submit', pfIniciar);
+    const btnNovo = document.getElementById('pf-btn-novo');
+    if (btnNovo) btnNovo.addEventListener('click', pfNovoDiagnostico);
+    const { total } = pfContarRespondidas();
+    const totalEl = document.getElementById('pf-progress-total');
+    if (totalEl) totalEl.textContent = total;
+})();

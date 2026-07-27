@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/ferramentas.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -36,6 +37,9 @@
         </button>
         <button class="tab-btn" data-tab="diagnostico-panel">
             <i class="fas fa-stethoscope"></i> Diagnóstico Estratégico
+        </button>
+        <button class="tab-btn" data-tab="pontos-fortes-panel">
+            <i class="fas fa-clipboard-list"></i> Diagnóstico: Pontos Fortes e Fracos
         </button>
         <button class="tab-btn" data-tab="pestel-panel">
             <i class="fas fa-globe"></i> Análise PESTEL
@@ -534,6 +538,68 @@
             </div>
 
         </div><!-- /diag-examples-block -->
+
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FERRAMENTA: DIAGNÓSTICO — PONTOS FORTES E FRACOS (SWOT INTERNO)
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="pontos-fortes-panel" class="tool-panel">
+    <div class="tool-container">
+
+        <!-- ── TELA 1: IDENTIFICAÇÃO ──────────────────────────────── -->
+        <div id="pf-screen-intro" class="pf-screen">
+            <div class="pf-intro-card">
+                <span class="pf-pill"><i class="fas fa-clock"></i> Leva menos de 5 minutos</span>
+                <h2 class="pf-title">Diagnóstico do Ambiente Interno<br>do seu Escritório</h2>
+                <p class="pf-intro-text">
+                    Este questionário avalia a maturidade do seu escritório em <strong>7 dimensões estratégicas</strong>,
+                    gerando automaticamente os principais <strong>Pontos Fortes</strong>, <strong>Pontos Fracos</strong>
+                    e um <strong>plano de prioridades</strong> para os próximos 90 dias — a base da sua Análise SWOT.
+                </p>
+                <div class="pf-dimensoes-grid" id="pf-dimensoes-preview"></div>
+                <form id="pf-form-identificacao" class="pf-form-id">
+                    <div class="pf-field">
+                        <label for="pf-input-escritorio">Nome do escritório</label>
+                        <input type="text" id="pf-input-escritorio" placeholder="Ex.: Silva &amp; Associados Advocacia" required>
+                    </div>
+                    <div class="pf-field">
+                        <label for="pf-input-respondente">Nome / cargo de quem está respondendo</label>
+                        <input type="text" id="pf-input-respondente" placeholder="Ex.: Ana Silva – Sócia-fundadora" required>
+                    </div>
+                    <button type="submit" class="pf-btn-primary">
+                        Iniciar diagnóstico <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ── TELA 2: QUESTIONÁRIO ───────────────────────────────── -->
+        <div id="pf-screen-quiz" class="pf-screen pf-hidden">
+            <div class="pf-quiz-header">
+                <div class="pf-progress-wrap">
+                    <div class="pf-progress-label">
+                        <span id="pf-progress-count">0</span> / <span id="pf-progress-total">0</span> respondidas
+                    </div>
+                    <div class="pf-progress-bar"><div class="pf-progress-fill" id="pf-progress-fill"></div></div>
+                </div>
+            </div>
+            <div id="pf-quiz-container"></div>
+        </div>
+
+        <!-- ── TELA 3: RESULTADOS ─────────────────────────────────── -->
+        <div id="pf-screen-results" class="pf-screen pf-hidden">
+            <div id="pf-results-container"></div>
+            <div class="pf-results-actions">
+                <button class="pf-btn-outline" id="pf-btn-novo">
+                    <i class="fas fa-redo"></i> Novo diagnóstico
+                </button>
+                <button class="pf-btn-primary" id="pf-btn-print" onclick="window.print()">
+                    <i class="fas fa-print"></i> Imprimir / Exportar PDF
+                </button>
+            </div>
+        </div>
 
     </div>
 </div>
