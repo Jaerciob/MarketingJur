@@ -494,6 +494,7 @@ const DEFAULT_BOARDS = {
         name: 'Análise',
         columns: {
             todo: [
+                { id: 0, title: 'Defina Objetivos', desc: 'Estabeleça metas claras e mensuráveis para o seu marketing jurídico: o que você quer alcançar, em quanto tempo e como vai medir o sucesso.', priority: 'alta', date: today() },
                 { id: 1, title: 'Analise Macroambiente (PESTEL)', desc: 'Mapeie os fatores políticos, econômicos, sociais, tecnológicos, ambientais e legais que impactam seu escritório.', priority: 'alta', date: today() },
                 { id: 2, title: 'Mapei de 3 a 5 concorrentes / escritórios de referência', desc: 'Identifique concorrentes diretos e escritórios de referência, analise posicionamento, canais e diferenciais.', priority: 'alta', date: today() },
                 { id: 3, title: 'Monte a SWOT do seu escritório', desc: 'Liste Forças, Fraquezas, Oportunidades e Ameaças com base nos dados coletados.', priority: 'media', date: today() },
@@ -551,6 +552,25 @@ function loadKanban() {
         try { kanbanData = JSON.parse(raw); } catch(e) { kanbanData = JSON.parse(JSON.stringify(DEFAULT_BOARDS)); }
     } else {
         kanbanData = JSON.parse(JSON.stringify(DEFAULT_BOARDS));
+    }
+    // Migration: ensure "Defina Objetivos" is the first task in the analise board
+    if (kanbanData.analise && kanbanData.analise.columns && kanbanData.analise.columns.todo) {
+        const allCols = [
+            ...kanbanData.analise.columns.todo,
+            ...(kanbanData.analise.columns.doing || []),
+            ...(kanbanData.analise.columns.review || [])
+        ];
+        const alreadyExists = allCols.some(t => t.id === 0 || t.title === 'Defina Objetivos');
+        if (!alreadyExists) {
+            kanbanData.analise.columns.todo.unshift({
+                id: 0,
+                title: 'Defina Objetivos',
+                desc: 'Estabeleça metas claras e mensuráveis para o seu marketing jurídico: o que você quer alcançar, em quanto tempo e como vai medir o sucesso.',
+                priority: 'alta',
+                date: today()
+            });
+            saveKanban();
+        }
     }
     // sync boards select
     rebuildBoardSelect();
