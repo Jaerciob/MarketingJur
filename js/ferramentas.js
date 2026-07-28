@@ -11,13 +11,55 @@ function showToast(msg, icon = 'fa-check-circle') {
     setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-// ─── TABS ────────────────────────────────────────────────────────────────────
-document.querySelectorAll('.tab-btn').forEach(btn => {
+// ─── TABS (two-level navigation) ─────────────────────────────────────────────
+const subnav = document.getElementById('tools-subnav');
+
+function showPanel(panelId) {
+    document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+    const panel = document.getElementById(panelId);
+    if (panel) panel.classList.add('active');
+}
+
+function activateSubnav(groupId) {
+    document.querySelectorAll('.subnav-group').forEach(g => g.classList.remove('active'));
+    const group = document.getElementById('subnav-' + groupId);
+    if (group) {
+        group.classList.add('active');
+        subnav.classList.add('visible');
+        // activate first subtab in the group
+        const firstBtn = group.querySelector('.subtab-btn');
+        if (firstBtn) {
+            group.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
+            firstBtn.classList.add('active');
+            showPanel(firstBtn.dataset.panel);
+        }
+    } else {
+        subnav.classList.remove('visible');
+    }
+}
+
+document.querySelectorAll('.group-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.group-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
+        const direct = btn.dataset.direct;
+        if (direct) {
+            // Direct panel — hide subnav
+            subnav.classList.remove('visible');
+            document.querySelectorAll('.subnav-group').forEach(g => g.classList.remove('active'));
+            showPanel(direct);
+        } else {
+            activateSubnav(btn.dataset.group);
+        }
+    });
+});
+
+document.querySelectorAll('.subtab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const group = btn.closest('.subnav-group');
+        group.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        showPanel(btn.dataset.panel);
     });
 });
 

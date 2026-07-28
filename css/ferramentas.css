@@ -145,6 +145,79 @@ body {
 .tab-btn i { font-size: 0.95rem; }
 
 /* ===================================
+   Sub-navigation (two-level tabs)
+   =================================== */
+.tools-subnav {
+    background: var(--gray-50, #f8f9fa);
+    border-bottom: 2px solid var(--gray-200);
+    position: sticky;
+    top: 104px;
+    z-index: 98;
+    display: none;
+}
+.tools-subnav.visible { display: block; }
+
+.subnav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+}
+
+.subnav-group { display: none; width: 100%; }
+.subnav-group.active { display: flex; }
+
+.subtab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    margin-bottom: -2px;
+}
+.subtab-btn:hover { color: var(--primary-color); }
+.subtab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+.subtab-btn i { font-size: 0.85rem; }
+
+/* Gestão placeholder */
+.gestao-coming-soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    text-align: center;
+    color: var(--gray-400);
+}
+.gestao-coming-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+}
+.gestao-coming-soon h3 { color: var(--gray-600); margin-bottom: 8px; }
+.gestao-coming-soon p { font-size: 0.95rem; max-width: 420px; }
+
+/* ===================================
    Tool Panels
    =================================== */
 .tool-panel { display: none; }
@@ -2851,7 +2924,7 @@ body {
 }
 
 @media print {
-    .tools-header, .tools-tabs, .canvas-actions { display: none !important; }
+    .tools-header, .tools-tabs, .tools-subnav, .canvas-actions { display: none !important; }
     body { background: white; }
     .canvas-board { box-shadow: none; border: 1px solid #ccc; }
 }
@@ -3444,7 +3517,7 @@ body {
 
 /* Print */
 @media print {
-    .tools-header, .tools-tabs, .pf-results-actions, #pf-screen-intro, #pf-screen-quiz { display: none !important; }
+    .tools-header, .tools-tabs, .tools-subnav, .pf-results-actions, #pf-screen-intro, #pf-screen-quiz { display: none !important; }
     #pontos-fortes-panel { display: block !important; }
     #pf-screen-results { display: block !important; }
     .pf-hidden { display: none !important; }

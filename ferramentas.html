@@ -29,39 +29,64 @@
 <!-- Tabs -->
 <nav class="tools-tabs">
     <div class="tabs-inner">
-        <button class="tab-btn active" data-tab="prompts-panel">
+        <button class="tab-btn group-btn active" data-group="prompts" data-direct="prompts-panel">
             <i class="fas fa-wand-magic-sparkles"></i> Biblioteca de Prompts
         </button>
-        <button class="tab-btn" data-tab="kanban-panel">
+        <button class="tab-btn group-btn" data-group="kanban" data-direct="kanban-panel">
             <i class="fas fa-columns"></i> Plano de Trabalho
         </button>
-        <button class="tab-btn" data-tab="diagnostico-panel">
-            <i class="fas fa-stethoscope"></i> Diagnóstico Estratégico
+        <button class="tab-btn group-btn" data-group="mercado">
+            <i class="fas fa-compass"></i> Mercado e Objetivos
         </button>
-        <button class="tab-btn" data-tab="diagnostico-acoes-panel">
-            <i class="fas fa-rocket"></i> Diagnóstico e Ações
+        <button class="tab-btn group-btn" data-group="branding">
+            <i class="fas fa-paint-brush"></i> Branding e Marketing
         </button>
-        <button class="tab-btn" data-tab="pontos-fortes-panel">
-            <i class="fas fa-clipboard-list"></i> Diagnóstico: Pontos Fortes e Fracos
+        <button class="tab-btn group-btn" data-group="execucao">
+            <i class="fas fa-rocket"></i> Execução
         </button>
-        <button class="tab-btn" data-tab="pestel-panel">
-            <i class="fas fa-globe"></i> Análise PESTEL
+        <button class="tab-btn group-btn" data-group="gestao" data-direct="gestao-panel">
+            <i class="fas fa-chart-line"></i> Gestão
         </button>
-        <button class="tab-btn" data-tab="competitiva-panel">
-            <i class="fas fa-chess-knight"></i> Análise Competitiva
+        <button class="tab-btn group-btn" data-group="aprofundamento">
+            <i class="fas fa-microscope"></i> Aprofundamento
         </button>
-        <button class="tab-btn" data-tab="swot-panel">
-            <i class="fas fa-th"></i> Análise SWOT
-        </button>
-        <button class="tab-btn" data-tab="branding-panel">
-            <i class="fas fa-paint-brush"></i> Canvas de Branding
-        </button>
-        <button class="tab-btn" data-tab="canvas-panel">
-            <i class="fas fa-th-large"></i> Canvas de Marketing Jurídico
-        </button>
-        <button class="tab-btn" data-tab="funil-panel">
-            <i class="fas fa-filter"></i> Gestão do Funil de Vendas
-        </button>
+    </div>
+</nav>
+<!-- Sub-nav -->
+<nav class="tools-subnav" id="tools-subnav">
+    <div class="subnav-inner">
+        <div class="subnav-group" id="subnav-mercado">
+            <button class="subtab-btn active" data-panel="diagnostico-acoes-panel">
+                <i class="fas fa-stethoscope"></i> Canvas de Diagnóstico
+            </button>
+            <button class="subtab-btn" data-panel="pontos-fortes-panel">
+                <i class="fas fa-clipboard-list"></i> Diagnóstico: Pontos Fortes e Fracos
+            </button>
+        </div>
+        <div class="subnav-group" id="subnav-branding">
+            <button class="subtab-btn active" data-panel="branding-panel">
+                <i class="fas fa-palette"></i> Canvas de Branding
+            </button>
+            <button class="subtab-btn" data-panel="canvas-panel">
+                <i class="fas fa-th-large"></i> Canvas de Marketing Jurídico
+            </button>
+        </div>
+        <div class="subnav-group" id="subnav-execucao">
+            <button class="subtab-btn active" data-panel="funil-panel">
+                <i class="fas fa-filter"></i> Gestão do Funil de Vendas
+            </button>
+        </div>
+        <div class="subnav-group" id="subnav-aprofundamento">
+            <button class="subtab-btn active" data-panel="pestel-panel">
+                <i class="fas fa-globe"></i> Análise PESTEL
+            </button>
+            <button class="subtab-btn" data-panel="swot-panel">
+                <i class="fas fa-th"></i> Análise SWOT
+            </button>
+            <button class="subtab-btn" data-panel="competitiva-panel">
+                <i class="fas fa-chess-knight"></i> Análise Competitiva
+            </button>
+        </div>
     </div>
 </nav>
 
@@ -3751,6 +3776,23 @@
                 <button type="button" class="btn-modal-confirm" id="btn-modal-confirm">Adicionar Tarefa</button>
             </div>
         </form>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     GESTÃO
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="gestao-panel" class="tool-panel">
+    <div class="tool-container">
+        <div class="section-title">
+            <h2>Gestão</h2>
+            <p>Ferramentas de gestão do escritório em breve.</p>
+        </div>
+        <div class="gestao-coming-soon">
+            <div class="gestao-coming-icon"><i class="fas fa-tools"></i></div>
+            <h3>Em construção</h3>
+            <p>Esta seção receberá ferramentas de gestão operacional e financeira do escritório em breve.</p>
+        </div>
     </div>
 </div>
 
