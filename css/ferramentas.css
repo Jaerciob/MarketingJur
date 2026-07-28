@@ -1060,6 +1060,304 @@ body {
 .funil-empty i { font-size: 1.4rem; }
 
 /* ===================================
+   Canvas de Diagnóstico e Ações
+   =================================== */
+
+/* ── Row 2: Preservar / Iniciar / Aprimorar / Eliminar ── */
+.diag-acoes-row2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.diag-acoes-block {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.diag-acoes-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 16px;
+    color: var(--white);
+    flex-shrink: 0;
+}
+.diag-acoes-header > i { font-size: 1.1rem; opacity: 0.9; flex-shrink: 0; }
+.diag-acoes-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+.diag-acoes-sub { display: block; font-size: 0.65rem; opacity: 0.82; margin-top: 1px; line-height: 1.35; }
+
+/* Accent colours */
+.diag-acoes-preservar { border-top: 3px solid #059669; }
+.diag-acoes-preservar .diag-acoes-header { background: linear-gradient(135deg, #047857, #059669); }
+
+.diag-acoes-iniciar { border-top: 3px solid #2563eb; }
+.diag-acoes-iniciar .diag-acoes-header { background: linear-gradient(135deg, #1d4ed8, #2563eb); }
+
+.diag-acoes-aprimorar { border-top: 3px solid #ea580c; }
+.diag-acoes-aprimorar .diag-acoes-header { background: linear-gradient(135deg, #c2410c, #ea580c); }
+
+.diag-acoes-eliminar { border-top: 3px solid #dc2626; }
+.diag-acoes-eliminar .diag-acoes-header { background: linear-gradient(135deg, #b91c1c, #dc2626); }
+
+.diag-acoes-body {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+.diag-acoes-body .diag-field textarea { min-height: 70px; }
+
+@media (max-width: 1024px) {
+    .diag-acoes-row2 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .diag-acoes-row2 { grid-template-columns: 1fr; }
+}
+
+/* ── Plano de Ação ── */
+.diag-plano-acao-block {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+    margin-bottom: 14px;
+}
+
+.diag-plano-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: var(--white);
+}
+.diag-plano-header > i { font-size: 1.2rem; opacity: 0.9; flex-shrink: 0; }
+.diag-plano-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+}
+.diag-plano-sub { display: block; font-size: 0.7rem; opacity: 0.75; margin-top: 1px; }
+
+.btn-add-acao {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 2px solid rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.15);
+    color: var(--white);
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.btn-add-acao:hover { background: rgba(255,255,255,0.3); border-color: var(--white); }
+
+.diag-plano-table-wrap {
+    overflow-x: auto;
+    padding: 0;
+}
+
+.diag-plano-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+.diag-plano-table th {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--gray-200);
+    white-space: nowrap;
+}
+.diag-plano-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: middle;
+    color: var(--gray-700);
+}
+.diag-plano-table tr:last-child td { border-bottom: none; }
+.diag-plano-table .col-acao { width: 45%; }
+.diag-plano-table .col-data { width: 12%; min-width: 110px; }
+.diag-plano-table .col-resp { width: 22%; }
+.diag-plano-table .col-status { width: 13%; min-width: 130px; }
+.diag-plano-table .col-del { width: 4%; min-width: 36px; }
+
+.diag-plano-table input[type="text"],
+.diag-plano-table input[type="date"] {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid var(--gray-200);
+    border-radius: 5px;
+    font-size: 0.82rem;
+    font-family: var(--font-primary);
+    color: var(--gray-700);
+    background: var(--gray-50);
+    transition: border-color 0.2s;
+}
+.diag-plano-table input[type="text"]:focus,
+.diag-plano-table input[type="date"]:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    background: var(--white);
+}
+
+.diag-plano-table select {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid var(--gray-200);
+    border-radius: 5px;
+    font-size: 0.82rem;
+    font-family: var(--font-primary);
+    color: var(--gray-700);
+    background: var(--gray-50);
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+.diag-plano-table select:focus { outline: none; border-color: var(--accent-blue); }
+.diag-plano-table select.status-afazer { background: #f1f5f9; color: var(--gray-600); border-color: var(--gray-300); }
+.diag-plano-table select.status-fazendo { background: #eff6ff; color: #1d4ed8; border-color: #93c5fd; }
+.diag-plano-table select.status-feito { background: #f0fdf4; color: #15803d; border-color: #86efac; }
+
+.btn-del-acao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    border: 1px solid var(--gray-200);
+    background: var(--white);
+    color: var(--gray-400);
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.15s;
+}
+.btn-del-acao:hover { background: #fee2e2; border-color: #fca5a5; color: #dc2626; }
+
+.diag-plano-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 32px 24px;
+    color: var(--gray-400);
+    font-size: 0.85rem;
+    text-align: center;
+}
+.diag-plano-empty i { font-size: 1.8rem; opacity: 0.4; }
+.diag-plano-empty p { margin: 0; line-height: 1.5; }
+
+/* ── Example row: 4 cards ── */
+.diag-acoes-ex-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.diag-acoes-ex-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+}
+
+.diag-acoes-ex-header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.diag-acoes-ex-card .diag-ex-item { font-size: 0.78rem; }
+
+.acoes-ex-preservar .diag-acoes-ex-header { background: #059669; }
+.acoes-ex-preservar .diag-ex-item { background: #ecfdf5; }
+
+.acoes-ex-iniciar .diag-acoes-ex-header { background: #2563eb; }
+.acoes-ex-iniciar .diag-ex-item { background: #eff6ff; }
+
+.acoes-ex-aprimorar .diag-acoes-ex-header { background: #ea580c; }
+.acoes-ex-aprimorar .diag-ex-item { background: #fff7ed; }
+
+.acoes-ex-eliminar .diag-acoes-ex-header { background: #dc2626; }
+.acoes-ex-eliminar .diag-ex-item { background: #fef2f2; }
+
+@media (max-width: 1024px) {
+    .diag-acoes-ex-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .diag-acoes-ex-row { grid-template-columns: 1fr; }
+}
+
+/* ── Example Plano de Ação ── */
+.diag-acoes-ex-plano {
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.diag-acoes-ex-plano-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--gray-100);
+    border-bottom: 1px solid var(--gray-200);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.diag-plano-table--example { font-size: 0.8rem; }
+.diag-plano-table--example th { font-size: 0.68rem; padding: 8px 12px; }
+.diag-plano-table--example td { padding: 7px 12px; }
+
+/* Status badge (example tables) */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.status-afazer  { background: #f1f5f9; color: #475569; }
+.status-fazendo { background: #eff6ff; color: #1d4ed8; }
+.status-feito   { background: #f0fdf4; color: #15803d; }
+
+/* ===================================
    Canvas de Diagnóstico Estratégico
    =================================== */
 

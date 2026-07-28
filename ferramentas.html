@@ -38,6 +38,9 @@
         <button class="tab-btn" data-tab="diagnostico-panel">
             <i class="fas fa-stethoscope"></i> Diagnóstico Estratégico
         </button>
+        <button class="tab-btn" data-tab="diagnostico-acoes-panel">
+            <i class="fas fa-rocket"></i> Diagnóstico e Ações
+        </button>
         <button class="tab-btn" data-tab="pontos-fortes-panel">
             <i class="fas fa-clipboard-list"></i> Diagnóstico: Pontos Fortes e Fracos
         </button>
@@ -681,6 +684,699 @@
                         <div class="diag-ex-item"><strong>Plano 1:</strong> Superar a equipe enxuta (fraqueza) para atender projetos de recuperação de créditos (oportunidade) → contratar apoio técnico e adotar ferramentas de análise documental.</div>
                         <div class="diag-ex-item"><strong>Plano 2:</strong> Superar a baixa presença digital (fraqueza) para captar PMEs preocupadas com a Reforma (oportunidade) → publicar conteúdo educativo autoral e realizar webinars informativos periódicos.</div>
                     </div>
+                </div>
+            </div>
+
+        </div><!-- /diag-examples-block -->
+
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FERRAMENTA: DIAGNÓSTICO E AÇÕES
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="diagnostico-acoes-panel" class="tool-panel">
+    <div class="tool-container">
+        <div class="section-title">
+            <h2>Canvas de Diagnóstico e Ações</h2>
+            <p>Transforme o diagnóstico em ações concretas: preserve o que funciona, inicie o que falta, aprimore o que pode melhorar e elimine o que desperdiça recursos.</p>
+        </div>
+
+        <!-- Actions Bar -->
+        <div class="canvas-actions">
+            <div class="canvas-actions-left">
+                <div class="canvas-example-select">
+                    <label>Exemplos práticos:</label>
+                    <select id="diag-acoes-example">
+                        <option value="">— Selecione um exemplo —</option>
+                        <option value="trabalhista">Direito Trabalhista</option>
+                        <option value="familia">Direito de Família</option>
+                        <option value="empresarial">Direito Empresarial</option>
+                        <option value="previdenciario">Direito Previdenciário</option>
+                        <option value="consumidor">Direito do Consumidor</option>
+                        <option value="tributario">Direito Tributário</option>
+                    </select>
+                </div>
+                <button class="btn-clear" id="btn-clear-diag-acoes"><i class="fas fa-eraser"></i> Limpar</button>
+                <button class="btn-print" id="btn-print-diag-acoes"><i class="fas fa-print"></i> Imprimir</button>
+            </div>
+            <button class="btn-save" id="btn-save-diag-acoes"><i class="fas fa-save"></i> Salvar Diagnóstico e Ações</button>
+        </div>
+
+        <!-- Defina os seus objetivos -->
+        <div class="obj-lp-block">
+            <div class="obj-lp-header">
+                <i class="fas fa-crosshairs"></i>
+                <div>
+                    <span class="obj-lp-title">Defina os seus objetivos</span>
+                    <span class="obj-lp-subtitle">Da visão de futuro ao planejamento trimestral</span>
+                </div>
+            </div>
+            <div class="obj-lp-card obj-lp-card--full">
+                <div class="obj-lp-card-header obj-bienal">
+                    <i class="fas fa-rocket"></i>
+                    <span>Visão: Onde seu escritório estará em três anos?</span>
+                </div>
+                <textarea data-diag-acoes="obj_lp_bienal" class="obj-lp-textarea obj-lp-textarea--full" placeholder="Ex.: Em 3 anos, ter uma carteira de 40 clientes ativos, faturamento de R$ 30.000/mês, 1 sócio contratado, ser palestrante reconhecido na área e ter lançado um produto digital com receita passiva."></textarea>
+            </div>
+            <div class="obj-lp-card obj-lp-card--full">
+                <div class="obj-lp-card-header obj-anual">
+                    <i class="fas fa-trophy"></i>
+                    <span>Metas do Próximo Ano</span>
+                </div>
+                <textarea data-diag-acoes="obj_lp_anual" class="obj-lp-textarea obj-lp-textarea--full" placeholder="Ex.: Dobrar o faturamento do escritório, consolidar a marca pessoal e lançar um evento presencial na área de atuação."></textarea>
+            </div>
+            <div class="obj-lp-grid">
+                <div class="obj-lp-card">
+                    <div class="obj-lp-card-header obj-t1"><i class="fas fa-seedling"></i><span>1º Trimestre</span></div>
+                    <textarea data-diag-acoes="obj_lp_t1" class="obj-lp-textarea" placeholder="Ex.: Criar presença profissional no LinkedIn e publicar 3 artigos jurídicos por semana..."></textarea>
+                </div>
+                <div class="obj-lp-card">
+                    <div class="obj-lp-card-header obj-t2"><i class="fas fa-chart-line"></i><span>2º Trimestre</span></div>
+                    <textarea data-diag-acoes="obj_lp_t2" class="obj-lp-textarea" placeholder="Ex.: Lançar campanha de captação e atingir 5 novos clientes via marketing digital..."></textarea>
+                </div>
+                <div class="obj-lp-card">
+                    <div class="obj-lp-card-header obj-t3"><i class="fas fa-bullseye"></i><span>3º Trimestre</span></div>
+                    <textarea data-diag-acoes="obj_lp_t3" class="obj-lp-textarea" placeholder="Ex.: Consolidar autoridade na área e iniciar parcerias estratégicas..."></textarea>
+                </div>
+                <div class="obj-lp-card">
+                    <div class="obj-lp-card-header obj-t4"><i class="fas fa-flag-checkered"></i><span>4º Trimestre</span></div>
+                    <textarea data-diag-acoes="obj_lp_t4" class="obj-lp-textarea" placeholder="Ex.: Avaliar resultados do ano, planejar o próximo ciclo e escalar o escritório..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── ROW 1: 3 colunas ── -->
+        <div class="diag-row1">
+            <!-- BLOCO 1: Mercado Jurídico -->
+            <div class="diag-block diag-mercado">
+                <div class="diag-block-header diag-blue">
+                    <i class="fas fa-chart-line"></i>
+                    <div>
+                        <span class="diag-block-title">Mercado Jurídico</span>
+                        <span class="diag-block-sub">Oportunidades e Ameaças</span>
+                    </div>
+                </div>
+                <div class="diag-block-body">
+                    <div class="diag-mercado-grid">
+                        <div class="diag-field diag-field--oportunidade">
+                            <label><i class="fas fa-circle-check" style="color:#27ae60"></i> Oportunidade 1</label>
+                            <textarea data-diag-acoes="mercado_oportunidade1" placeholder="Ex.: PMEs sem assessoria trabalhista recorrente — mercado de R$ 500M/ano no Brasil."></textarea>
+                        </div>
+                        <div class="diag-field diag-field--oportunidade">
+                            <label><i class="fas fa-circle-check" style="color:#27ae60"></i> Oportunidade 2</label>
+                            <textarea data-diag-acoes="mercado_oportunidade2" placeholder="Ex.: Crescimento das consultas preventivas pós-Reforma Trabalhista — demanda não atendida localmente."></textarea>
+                        </div>
+                        <div class="diag-field diag-field--ameaca">
+                            <label><i class="fas fa-circle-xmark" style="color:#e74c3c"></i> Ameaça 1</label>
+                            <textarea data-diag-acoes="mercado_ameaca1" placeholder="Ex.: LegalTechs automatizando cálculos e triagem, reduzindo demanda por serviços básicos."></textarea>
+                        </div>
+                        <div class="diag-field diag-field--ameaca">
+                            <label><i class="fas fa-circle-xmark" style="color:#e74c3c"></i> Ameaça 2</label>
+                            <textarea data-diag-acoes="mercado_ameaca2" placeholder="Ex.: Advogados generalistas com preços mais baixos concorrendo nos serviços menos complexos."></textarea>
+                        </div>
+                        <div class="diag-field diag-field--insights diag-mercado-insights">
+                            <label><i class="fas fa-lightbulb" style="color:#f39c12"></i> Insights</label>
+                            <textarea data-diag-acoes="mercado_insights" placeholder="Ex.: Com base nas oportunidades e ameaças identificadas, quais são seus principais insights sobre o mercado jurídico?"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCO 2: Objetivos -->
+            <div class="diag-block diag-objetivos">
+                <div class="diag-block-header diag-red">
+                    <i class="fas fa-crosshairs"></i>
+                    <div>
+                        <span class="diag-block-title">Objetivos</span>
+                        <span class="diag-block-sub">Onde Quero Chegar</span>
+                    </div>
+                </div>
+                <div class="diag-block-body">
+                    <div class="diag-field">
+                        <label><i class="fas fa-rocket"></i> Visão (3 Anos)</label>
+                        <textarea data-diag-acoes="obj_visao5" placeholder="Ex.: Ser o escritório de referência em compliance trabalhista para PMEs do estado, com presença nacional via conteúdo digital."></textarea>
+                    </div>
+                    <div class="diag-field">
+                        <label><i class="fas fa-calendar-alt"></i> 1 Ano</label>
+                        <textarea data-diag-acoes="obj_1ano" placeholder="Ex.: 15 clientes PMEs com contrato de assessoria recorrente, faturamento de R$ 20.000/mês, ser palestrante em 2 eventos de RH."></textarea>
+                    </div>
+                    <div class="diag-field">
+                        <label><i class="fas fa-bullseye"></i> Próximo Trimestre</label>
+                        <textarea data-diag-acoes="obj_trimestre" placeholder="Ex.: Publicar 2 artigos/semana no LinkedIn; fechar 2 contratos de assessoria preventiva; atingir nota 4.8 no Google."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCO 3: Forças e Fraquezas -->
+            <div class="diag-block diag-forcas">
+                <div class="diag-block-header diag-green">
+                    <i class="fas fa-balance-scale"></i>
+                    <div>
+                        <span class="diag-block-title">Forças e Fraquezas</span>
+                        <span class="diag-block-sub">Diagnóstico Interno</span>
+                    </div>
+                </div>
+                <div class="diag-block-body">
+                    <div class="diag-forcas-grid">
+                        <div class="diag-field">
+                            <label><i class="fas fa-fist-raised"></i> Fortaleza 1</label>
+                            <textarea data-diag-acoes="forcas_forte1" placeholder="Ex.: Especialização certificada em Direito do Trabalho com 8 anos de experiência em contencioso e preventivo."></textarea>
+                        </div>
+                        <div class="diag-field">
+                            <label><i class="fas fa-fist-raised"></i> Fortaleza 2</label>
+                            <textarea data-diag-acoes="forcas_forte2" placeholder="Ex.: Rede de 8 contadores que indicam regularmente e atendimento online para todo o Brasil."></textarea>
+                        </div>
+                        <div class="diag-field">
+                            <label><i class="fas fa-bolt"></i> Fraqueza 1</label>
+                            <textarea data-diag-acoes="forcas_fraca1" placeholder="Ex.: Escritório solo sem equipe de apoio — capacidade limitada de atender mais clientes."></textarea>
+                        </div>
+                        <div class="diag-field">
+                            <label><i class="fas fa-bolt"></i> Fraqueza 2</label>
+                            <textarea data-diag-acoes="forcas_fraca2" placeholder="Ex.: LinkedIn com apenas 450 seguidores e sem budget de marketing definido."></textarea>
+                        </div>
+                        <div class="diag-field diag-field--insights diag-forcas-insights">
+                            <label><i class="fas fa-lightbulb" style="color:#f39c12"></i> Insights</label>
+                            <textarea data-diag-acoes="forcas_insights" placeholder="Ex.: Com base nas forças e fraquezas identificadas, quais são seus principais insights sobre o diagnóstico interno?"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /diag-row1 -->
+
+        <!-- ── ROW 2: Preservar / Iniciar / Aprimorar / Eliminar ── -->
+        <div class="diag-acoes-row2">
+
+            <!-- Preservar -->
+            <div class="diag-acoes-block diag-acoes-preservar">
+                <div class="diag-acoes-header">
+                    <i class="fas fa-shield-check"></i>
+                    <div>
+                        <span class="diag-acoes-title">Preservar</span>
+                        <span class="diag-acoes-sub">O que estou fazendo bem, que gera valor e devo continuar?</span>
+                    </div>
+                </div>
+                <div class="diag-acoes-body">
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> O que preservar 1</label>
+                        <textarea data-diag-acoes="acoes_preservar1" placeholder="Ex.: Atendimento personalizado com check-in mensal — clientes renovam e indicam. Manter esse padrão de relacionamento como diferencial central."></textarea>
+                    </div>
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> O que preservar 2</label>
+                        <textarea data-diag-acoes="acoes_preservar2" placeholder="Ex.: Parceria com 8 contadores gerando 60% dos leads. Manter contato quinzenal, enviar material técnico e participar dos encontros do grupo."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Iniciar -->
+            <div class="diag-acoes-block diag-acoes-iniciar">
+                <div class="diag-acoes-header">
+                    <i class="fas fa-circle-plus"></i>
+                    <div>
+                        <span class="diag-acoes-title">Iniciar</span>
+                        <span class="diag-acoes-sub">O que preciso começar a fazer?</span>
+                    </div>
+                </div>
+                <div class="diag-acoes-body">
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> O que iniciar 1</label>
+                        <textarea data-diag-acoes="acoes_iniciar1" placeholder="Ex.: Começar a publicar 2x por semana no LinkedIn com conteúdo educativo sobre riscos trabalhistas para PMEs — hoje tenho 0 publicações."></textarea>
+                    </div>
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> O que iniciar 2</label>
+                        <textarea data-diag-acoes="acoes_iniciar2" placeholder="Ex.: Implementar CRM para rastrear leads, follow-ups e taxa de conversão — hoje tudo é feito no WhatsApp e planilha sem controle."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aprimorar -->
+            <div class="diag-acoes-block diag-acoes-aprimorar">
+                <div class="diag-acoes-header">
+                    <i class="fas fa-arrow-trend-up"></i>
+                    <div>
+                        <span class="diag-acoes-title">Aprimorar</span>
+                        <span class="diag-acoes-sub">O que pode ser executado melhor?</span>
+                    </div>
+                </div>
+                <div class="diag-acoes-body">
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> O que aprimorar 1</label>
+                        <textarea data-diag-acoes="acoes_aprimorar1" placeholder="Ex.: Proposta comercial — hoje entrego por texto no WhatsApp. Criar modelo profissional em PDF com escopo, prazo e honorários para elevar percepção de valor."></textarea>
+                    </div>
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> O que aprimorar 2</label>
+                        <textarea data-diag-acoes="acoes_aprimorar2" placeholder="Ex.: Onboarding de novos clientes — demora 7 dias e é manual. Criar checklist digital e contrato com assinatura eletrônica para reduzir para 1 dia."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Eliminar -->
+            <div class="diag-acoes-block diag-acoes-eliminar">
+                <div class="diag-acoes-header">
+                    <i class="fas fa-trash-can"></i>
+                    <div>
+                        <span class="diag-acoes-title">Eliminar</span>
+                        <span class="diag-acoes-sub">O que desperdiça tempo ou recursos e não tem gerado resultados?</span>
+                    </div>
+                </div>
+                <div class="diag-acoes-body">
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> O que eliminar 1</label>
+                        <textarea data-diag-acoes="acoes_eliminar1" placeholder="Ex.: Reuniões de prospecção com empresas sem perfil — gasto 2h/semana em reuniões que nunca fecham. Criar filtro de pré-qualificação antes de agendar."></textarea>
+                    </div>
+                    <div class="diag-field">
+                        <label><i class="fas fa-pen-to-square"></i> O que eliminar 2</label>
+                        <textarea data-diag-acoes="acoes_eliminar2" placeholder="Ex.: Assessoria de clientes com ticket muito baixo (abaixo de R$ 500) que consomem tanto tempo quanto os clientes maiores — rever precificação ou encerrar contratos."></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /diag-acoes-row2 -->
+
+        <!-- ── Plano de Ação ── -->
+        <div class="diag-plano-acao-block">
+            <div class="diag-plano-header">
+                <i class="fas fa-list-check"></i>
+                <div>
+                    <span class="diag-plano-title">Plano de Ação</span>
+                    <span class="diag-plano-sub">Transforme insights em tarefas com responsável, prazo e acompanhamento</span>
+                </div>
+                <button class="btn-add-acao" id="btn-add-acao" type="button">
+                    <i class="fas fa-plus"></i> Adicionar Ação
+                </button>
+            </div>
+            <div class="diag-plano-table-wrap">
+                <table class="diag-plano-table">
+                    <thead>
+                        <tr>
+                            <th class="col-acao">Ação</th>
+                            <th class="col-data">Data</th>
+                            <th class="col-resp">Responsável</th>
+                            <th class="col-status">Status</th>
+                            <th class="col-del"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="plano-acoes-tbody">
+                        <!-- rows rendered by JS -->
+                    </tbody>
+                </table>
+                <div class="diag-plano-empty" id="diag-plano-empty">
+                    <i class="fas fa-list-check"></i>
+                    <p>Nenhuma ação adicionada ainda. Clique em <strong>Adicionar Ação</strong> para começar.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Exemplos Práticos ── -->
+        <div class="diag-examples-block">
+            <div class="diag-examples-header">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Exemplos Práticos Preenchidos</span>
+            </div>
+            <div class="diag-ex-tabs" id="diag-acoes-ex-tabs">
+                <button class="diag-ex-tab active" data-acoes-ex="diag-acoes-ex-trabalhista"><i class="fas fa-briefcase"></i> Trabalhista</button>
+                <button class="diag-ex-tab" data-acoes-ex="diag-acoes-ex-familia"><i class="fas fa-heart"></i> Família</button>
+                <button class="diag-ex-tab" data-acoes-ex="diag-acoes-ex-empresarial"><i class="fas fa-building"></i> Empresarial</button>
+                <button class="diag-ex-tab" data-acoes-ex="diag-acoes-ex-previdenciario"><i class="fas fa-user-shield"></i> Previdenciário</button>
+                <button class="diag-ex-tab" data-acoes-ex="diag-acoes-ex-consumidor"><i class="fas fa-cart-shopping"></i> Consumidor</button>
+                <button class="diag-ex-tab" data-acoes-ex="diag-acoes-ex-tributario"><i class="fas fa-file-invoice-dollar"></i> Tributário</button>
+            </div>
+
+            <!-- Exemplo: Trabalhista -->
+            <div class="diag-ex-content active" id="diag-acoes-ex-trabalhista">
+                <div class="diag-ex-row1">
+                    <div class="diag-ex-card diag-ex-blue">
+                        <div class="diag-ex-card-header">Mercado Jurídico</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 1:</strong> 6 milhões de PMEs sem assessoria trabalhista preventiva — mercado de R$ 500M/ano no Brasil totalmente subatendido localmente.</div>
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 2:</strong> Crescimento de consultas preventivas pós-Reforma Trabalhista: teletrabalho, IA no RH e nova jurisprudência gerando demanda especializada crescente.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 1:</strong> LegalTechs automatizando cálculos de rescisão e triagem — reduzindo demanda por serviços básicos e pressionando honorários para baixo.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 2:</strong> Advogados generalistas com preços 40% menores competindo pelos clientes que ainda não percebem o valor da especialização certificada.</div>
+                        </div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-red">
+                        <div class="diag-ex-card-header">Objetivos</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-rocket"></i> Visão (3 Anos):</strong> Ser o escritório de referência nacional em compliance trabalhista para PMEs, com plataforma digital própria, equipe de 5 advogados e MRR de R$ 100.000/mês.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-calendar-alt"></i> 1 Ano:</strong> 15 clientes PMEs com contrato de assessoria recorrente (MRR R$ 13.500), ser palestrante em 2 eventos de RH e lançar blog com 500 visitas/mês.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-bullseye"></i> Próximo Trimestre:</strong> Publicar 2 artigos/semana no LinkedIn; fechar 2 contratos de assessoria preventiva; atingir nota 4.8 no Google com 30 avaliações.</div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-green">
+                        <div class="diag-ex-card-header">Forças e Fraquezas</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 1:</strong> Especialização certificada, 8 anos de experiência em contencioso e preventivo e rede de 8 contadores parceiros ativos.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 2:</strong> Atendimento 100% online com nota 4.9 no Google e 45 avaliações — reputação consolidada.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 1:</strong> Escritório solo sem equipe de apoio — capacidade limitada de atender mais clientes simultaneamente.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 2:</strong> LinkedIn com apenas 450 seguidores e sem budget de marketing definido ou freelancer de conteúdo.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diag-acoes-ex-row">
+                    <div class="diag-acoes-ex-card acoes-ex-preservar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-shield-check"></i> Preservar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Manter o check-in mensal com todos os clientes de assessoria preventiva — essa prática tem zero churn e gera indicações espontâneas. Não abrir mão mesmo com crescimento de carteira.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Preservar a rede de 8 contadores parceiros: envio quinzenal de boletim técnico exclusivo e ligação de relacionamento uma vez por mês. É a principal fonte de clientes qualificados.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-iniciar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-circle-plus"></i> Iniciar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Iniciar publicação sistemática no LinkedIn: 2 posts educativos/semana sobre riscos trabalhistas para PMEs. Meta: 1.000 seguidores em 90 dias e 3 leads qualificados/mês via rede.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Iniciar uso de CRM (HubSpot gratuito): cadastrar todos os leads, registrar follow-ups e medir taxa de conversão. Hoje não há visibilidade sobre o pipeline.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-aprimorar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-arrow-trend-up"></i> Aprimorar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Aprimorar proposta comercial: criar template PDF profissional com escopo detalhado, prazo e honorários — substituir o envio informal por WhatsApp e aumentar taxa de fechamento.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Aprimorar onboarding de clientes: criar checklist digital e contrato com assinatura eletrônica (DocuSign) para reduzir de 7 dias manuais para 1 dia automatizado.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-eliminar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-trash-can"></i> Eliminar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Eliminar reuniões de prospecção sem pré-qualificação: 2h/semana perdidas com empresas fora do perfil. Implementar formulário de triagem antes de qualquer agendamento.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Eliminar clientes com ticket abaixo de R$ 500 que consomem o mesmo tempo que clientes maiores — comunicar reajuste ou encerrar com 30 dias de antecedência.</div>
+                    </div>
+                </div>
+                <div class="diag-acoes-ex-plano">
+                    <div class="diag-acoes-ex-plano-header"><i class="fas fa-list-check"></i> Plano de Ação</div>
+                    <table class="diag-plano-table diag-plano-table--example">
+                        <thead><tr><th>Ação</th><th>Data</th><th>Responsável</th><th>Status</th></tr></thead>
+                        <tbody>
+                            <tr><td>Publicar 2 posts/semana no LinkedIn sobre riscos trabalhistas</td><td>2025-08-15</td><td>Advogado(a) sócio(a)</td><td><span class="status-badge status-fazendo">FAZENDO</span></td></tr>
+                            <tr><td>Implementar CRM HubSpot gratuito e cadastrar pipeline de leads</td><td>2025-08-30</td><td>Advogado(a) sócio(a)</td><td><span class="status-badge status-afazer">A FAZER</span></td></tr>
+                            <tr><td>Criar proposta comercial em PDF e substituir envio por WhatsApp</td><td>2025-09-15</td><td>Advogado(a) sócio(a)</td><td><span class="status-badge status-afazer">A FAZER</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Exemplo: Família -->
+            <div class="diag-ex-content" id="diag-acoes-ex-familia">
+                <div class="diag-ex-row1">
+                    <div class="diag-ex-card diag-ex-blue">
+                        <div class="diag-ex-card-header">Mercado Jurídico</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 1:</strong> Crescimento de divórcios (+18% pós-pandemia) e expansão do inventário extrajudicial — casos que exigem especialista humano e não podem ser automatizados.</div>
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 2:</strong> Famílias recompostas, contratos de convivência e guarda compartilhada gerando nova demanda especializada sem concorrente com atendimento integrado.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 1:</strong> Plataformas de divórcio online por R$ 800 para casos simples — erodindo a percepção de valor e pressionando honorários para baixo.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 2:</strong> Crescimento de novos advogados de família na região com presença digital forte e preços inicialmente abaixo do mercado.</div>
+                        </div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-red">
+                        <div class="diag-ex-card-header">Objetivos</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-rocket"></i> Visão (3 Anos):</strong> Ser a referência estadual em advocacia familiar humanizada, com plataforma de mediação digital, equipe de 3 advogados e faturamento de R$ 400.000/ano.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-calendar-alt"></i> 1 Ano:</strong> 10 casos novos/mês com ticket médio de R$ 5.000, nota 4.9 no Google, 5.000 seguidores no Instagram e lançamento do programa de mediação pré-judicial.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-bullseye"></i> Próximo Trimestre:</strong> Lançar e-book "Guia do Divórcio sem Trauma"; parceria formal com 3 psicólogos; publicar 3 Reels/semana no Instagram.</div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-green">
+                        <div class="diag-ex-card-header">Forças e Fraquezas</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 1:</strong> Certificação em mediação + parceria exclusiva com psicóloga — único escritório da cidade com atendimento jurídico e emocional integrado.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 2:</strong> Instagram com 3.200 seguidores engajados e nota 4.9 no Google com 30 avaliações verificadas — forte reputação local.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 1:</strong> Ticket médio baixo (R$ 3.500 vs média de R$ 5.000) e sem serviço recorrente — fluxo de caixa instável.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 2:</strong> Sem blog ou site com SEO ativo — depende exclusivamente do Instagram e indicações, sem captação orgânica via Google.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diag-acoes-ex-row">
+                    <div class="diag-acoes-ex-card acoes-ex-preservar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-shield-check"></i> Preservar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Preservar a parceria exclusiva com a psicóloga parceira — este diferencial é único na cidade e é citado em 80% das avaliações positivas. Formalizar e ampliar a colaboração.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Manter a cadência de 3 posts/semana no Instagram com conteúdo acolhedor sobre divórcio e guarda — é o principal canal de captação orgânica com custo zero.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-iniciar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-circle-plus"></i> Iniciar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Iniciar blog com SEO: publicar 2 artigos/mês sobre "advogado divórcio [cidade]" e "inventário extrajudicial" para capturar buscas no Google e reduzir dependência do Instagram.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Iniciar pacote de inventário extrajudicial com preço fixo apresentado em propostas individuais — hoje o serviço existe mas não é comunicado estruturadamente.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-aprimorar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-arrow-trend-up"></i> Aprimorar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Aprimorar atendimento inicial: criar roteiro de acolhimento por telefone para reduzir o tempo da primeira conversa de 45 min para 20 min sem perder a qualidade humanizada.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Aprimorar comunicação de honorários: criar proposta visual com etapas claras do processo para elevar o ticket médio de R$ 3.500 para R$ 5.000 sem perder conversão.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-eliminar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-trash-can"></i> Eliminar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Eliminar atendimentos de triagem não qualificados: hoje qualquer pessoa pode agendar consulta. Criar formulário de pré-atendimento para filtrar casos fora do perfil ideal.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Eliminar a gestão de redes sociais feita na madrugada — está causando esgotamento. Contratar freelancer de conteúdo por R$ 600/mês para assumir a produção dos posts.</div>
+                    </div>
+                </div>
+                <div class="diag-acoes-ex-plano">
+                    <div class="diag-acoes-ex-plano-header"><i class="fas fa-list-check"></i> Plano de Ação</div>
+                    <table class="diag-plano-table diag-plano-table--example">
+                        <thead><tr><th>Ação</th><th>Data</th><th>Responsável</th><th>Status</th></tr></thead>
+                        <tbody>
+                            <tr><td>Publicar 2 artigos de SEO/mês sobre divórcio e inventário</td><td>2025-08-20</td><td>Advogada + Redator</td><td><span class="status-badge status-afazer">A FAZER</span></td></tr>
+                            <tr><td>Contratar freelancer de conteúdo para Instagram (R$ 600/mês)</td><td>2025-08-10</td><td>Advogada sócia</td><td><span class="status-badge status-fazendo">FAZENDO</span></td></tr>
+                            <tr><td>Criar proposta visual de honorários com etapas do processo</td><td>2025-09-01</td><td>Advogada sócia</td><td><span class="status-badge status-feito">FEITO</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Exemplo: Empresarial -->
+            <div class="diag-ex-content" id="diag-acoes-ex-empresarial">
+                <div class="diag-ex-row1">
+                    <div class="diag-ex-card diag-ex-blue">
+                        <div class="diag-ex-card-header">Mercado Jurídico</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 1:</strong> 15 milhões de PMEs no Brasil sem assessoria jurídica recorrente — mercado subatendido que busca previsibilidade e linguagem de negócios.</div>
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 2:</strong> Reforma Tributária + regulação de IA e LGPD criando demanda massiva por especialistas — maior oportunidade para advogados empresariais nos últimos 50 anos.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 1:</strong> Big 4 oferecendo serviços jurídicos integrados e LegalTechs para contratos simples e due diligence automatizada.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 2:</strong> Boutiques jurídicas especializadas crescendo com modelo de assinatura similar — compressão de preços e dificuldade de diferenciação.</div>
+                        </div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-red">
+                        <div class="diag-ex-card-header">Objetivos</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-rocket"></i> Visão (3 Anos):</strong> Ser o escritório de referência nacional para startups e PMEs, com "Legal as a Service" em plataforma própria, 8 advogados e MRR de R$ 150.000/mês.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-calendar-alt"></i> 1 Ano:</strong> 20 clientes de assinatura mensal (MRR R$ 50.000), LinkedIn com 8.000 seguidores e 2 parcerias formais com aceleradoras de startups.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-bullseye"></i> Próximo Trimestre:</strong> Webinar sobre Reforma Tributária para 200 participantes; fechar 3 novos contratos de assinatura mensal.</div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-green">
+                        <div class="diag-ex-card-header">Forças e Fraquezas</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 1:</strong> Expertise em contratos B2B, M&A e LGPD + 35 clientes recorrentes com MRR consolidado e modelo de assinatura único na região.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 2:</strong> LinkedIn com 4.500 seguidores qualificados e 5 anos de experiência no ecossistema de startups — autoridade reconhecida no nicho.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 1:</strong> 3 clientes representam 45% da receita — alto risco de concentração.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 2:</strong> Onboarding ainda manual e demorado (7 dias) — experiência abaixo das expectativas de startups.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diag-acoes-ex-row">
+                    <div class="diag-acoes-ex-card acoes-ex-preservar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-shield-check"></i> Preservar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Preservar o modelo de assinatura com preço fixo e reunião trimestral incluída — é o principal diferencial competitivo e responsável pela retenção dos 35 clientes recorrentes.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Manter a produção de conteúdo educativo no LinkedIn: 2 posts/semana sobre riscos jurídicos para startups. É a principal fonte de leads qualificados sem custo de mídia.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-iniciar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-circle-plus"></i> Iniciar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Iniciar programa de diversificação de carteira: meta de 50 clientes em 12 meses para reduzir concentração dos 3 maiores de 45% para menos de 20% da receita.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Iniciar webinars mensais educativos sobre a Reforma Tributária para PMEs — posicionar como a referência do nicho e gerar leads qualificados de alto valor.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-aprimorar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-arrow-trend-up"></i> Aprimorar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Aprimorar onboarding: implementar assinatura eletrônica + portal do cliente para reduzir de 7 dias para 1 dia — startups esperam velocidade e automação.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Aprimorar relatório mensal: adicionar dashboard visual com indicadores jurídicos do cliente para elevar percepção de valor e justificar o ticket do pacote.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-eliminar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-trash-can"></i> Eliminar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Eliminar a prática de aceitar clientes fora do perfil ideal (empresas sem estrutura mínima) que consomem mais tempo do que geram receita. Criar critério de qualificação mínima.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Eliminar reuniões internas sem pauta definida — consomem 4h/semana sem decisão. Adotar formato assíncrono via Loom para atualizações e reservar reuniões apenas para decisões.</div>
+                    </div>
+                </div>
+                <div class="diag-acoes-ex-plano">
+                    <div class="diag-acoes-ex-plano-header"><i class="fas fa-list-check"></i> Plano de Ação</div>
+                    <table class="diag-plano-table diag-plano-table--example">
+                        <thead><tr><th>Ação</th><th>Data</th><th>Responsável</th><th>Status</th></tr></thead>
+                        <tbody>
+                            <tr><td>Implementar onboarding digital com assinatura eletrônica</td><td>2025-08-25</td><td>Sócio + TI</td><td><span class="status-badge status-fazendo">FAZENDO</span></td></tr>
+                            <tr><td>Realizar primeiro webinar sobre Reforma Tributária para PMEs</td><td>2025-09-10</td><td>Advogado sócio</td><td><span class="status-badge status-afazer">A FAZER</span></td></tr>
+                            <tr><td>Criar critério de qualificação de clientes e implementar triagem</td><td>2025-08-15</td><td>Sócios</td><td><span class="status-badge status-feito">FEITO</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Exemplo: Previdenciário -->
+            <div class="diag-ex-content" id="diag-acoes-ex-previdenciario">
+                <div class="diag-ex-row1">
+                    <div class="diag-ex-card diag-ex-blue">
+                        <div class="diag-ex-card-header">Mercado Jurídico</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 1:</strong> Envelhecimento populacional e mais de 30 milhões de beneficiários do INSS — demanda crescente por aposentadorias, revisões e planejamento previdenciário.</div>
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 2:</strong> Complexidade após a Reforma da Previdência e alto índice de indeferimentos de BPC/LOAS geram procura por especialista.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 1:</strong> Portais e escritórios de massa com atendimento padronizado disputando o segurado por volume e desvalorizando o trabalho técnico.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 2:</strong> Mudanças frequentes de regras e digitalização do INSS exigindo atualização constante e elevando o custo de acompanhamento.</div>
+                        </div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-red">
+                        <div class="diag-ex-card-header">Objetivos</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-rocket"></i> Visão (3 Anos):</strong> Ser referência regional em Direito Previdenciário com equipe de 4 advogados, atendimento híbrido e forte produção de conteúdo educativo sobre benefícios do INSS.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-calendar-alt"></i> 1 Ano:</strong> 20 novos requerimentos/mês, rede de 10 parceiros entre contadores e sindicatos e canal no YouTube com vídeos explicativos sobre aposentadorias.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-bullseye"></i> Próximo Trimestre:</strong> Publicar 2 artigos/semana sobre regras de aposentadoria; realizar 1 palestra educativa em sindicato; estruturar checklist de planejamento previdenciário.</div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-green">
+                        <div class="diag-ex-card-header">Forças e Fraquezas</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 1:</strong> Especialização em Direito Previdenciário com 7 anos de experiência e domínio do sistema Meu INSS.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 2:</strong> Rede de contadores e sindicatos rurais que encaminham segurados e atendimento acolhedor reconhecido pelo público.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 1:</strong> Processos de longa duração e receita concentrada em honorários de êxito — fluxo de caixa irregular ao longo do ano.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 2:</strong> Baixa presença digital e ausência de material educativo estruturado para orientar segurados antes da procura.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diag-acoes-ex-row">
+                    <div class="diag-acoes-ex-card acoes-ex-preservar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-shield-check"></i> Preservar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Manter a análise detalhada do CNIS antes de qualquer protocolo — é o principal diferencial que evita indeferimentos e gera confiança do segurado. Não abrir mão por volume.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Preservar a parceria com sindicatos rurais — é a fonte mais qualificada de segurados com real necessidade e capacidade de pagamento. Manter reunião mensal de relacionamento.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-iniciar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-circle-plus"></i> Iniciar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Iniciar linha de planejamento previdenciário pago à vista (honorários fixos): serviço independente de perícia que estabiliza a receita no curto prazo e não depende de êxito.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Iniciar canal no YouTube com vídeos educativos semanais sobre regras de aposentadoria pós-Reforma — alcançar o público 50+ que pesquisa no YouTube antes de procurar advogado.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-aprimorar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-arrow-trend-up"></i> Aprimorar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Aprimorar comunicação durante o processo: criar atualização quinzenal por WhatsApp para o segurado com status simplificado — hoje o cliente fica sem notícias por semanas.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Aprimorar o diagnóstico inicial de CNIS: criar relatório visual com simulação de cenários de aposentadoria para o segurado entender as opções antes de decidir.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-eliminar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-trash-can"></i> Eliminar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Eliminar casos de BPC/LOAS sem diagnóstico mínimo prévio — geram retrabalho com indeferimentos previsíveis. Exigir laudo médico básico antes de aceitar o caso.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Eliminar deslocamentos presenciais desnecessários: hoje 40% das consultas iniciais são presenciais sem necessidade. Migrar triagem e diagnóstico para atendimento online.</div>
+                    </div>
+                </div>
+                <div class="diag-acoes-ex-plano">
+                    <div class="diag-acoes-ex-plano-header"><i class="fas fa-list-check"></i> Plano de Ação</div>
+                    <table class="diag-plano-table diag-plano-table--example">
+                        <thead><tr><th>Ação</th><th>Data</th><th>Responsável</th><th>Status</th></tr></thead>
+                        <tbody>
+                            <tr><td>Criar serviço de planejamento previdenciário com honorários fixos</td><td>2025-08-20</td><td>Advogado(a) especialista</td><td><span class="status-badge status-afazer">A FAZER</span></td></tr>
+                            <tr><td>Gravar e publicar primeiros 4 vídeos sobre aposentadoria no YouTube</td><td>2025-09-01</td><td>Advogado(a) + Editor</td><td><span class="status-badge status-fazendo">FAZENDO</span></td></tr>
+                            <tr><td>Implementar atualização quinzenal via WhatsApp para clientes ativos</td><td>2025-08-15</td><td>Assistente + Advogado(a)</td><td><span class="status-badge status-feito">FEITO</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Exemplo: Consumidor -->
+            <div class="diag-ex-content" id="diag-acoes-ex-consumidor">
+                <div class="diag-ex-row1">
+                    <div class="diag-ex-card diag-ex-blue">
+                        <div class="diag-ex-card-header">Mercado Jurídico</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 1:</strong> Alto volume de conflitos com bancos, telecom e planos de saúde e crescimento do e-commerce ampliam a demanda por defesa do consumidor.</div>
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 2:</strong> Lei do Superendividamento (Lei 14.181/2021) criando novo campo de atuação em repactuação de dívidas e educação financeira.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 1:</strong> Plataformas de acordo online resolvendo casos simples sem advogado, reduzindo a demanda de baixo valor.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 2:</strong> Grande concorrência de escritórios de alto volume competindo por casos de ticket menor e comprimindo honorários.</div>
+                        </div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-red">
+                        <div class="diag-ex-card-header">Objetivos</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-rocket"></i> Visão (3 Anos):</strong> Ser referência em Direito do Consumidor na região, com operação eficiente para alto volume, equipe de 5 pessoas e forte conteúdo educativo.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-calendar-alt"></i> 1 Ano:</strong> 40 casos novos/mês com processo padronizado, base de conteúdo com 40 artigos e canal de esclarecimento sobre superendividamento.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-bullseye"></i> Próximo Trimestre:</strong> Publicar 3 conteúdos/semana sobre direitos do consumidor; estruturar fluxo de triagem digital; realizar 1 palestra educativa sobre superendividamento.</div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-green">
+                        <div class="diag-ex-card-header">Forças e Fraquezas</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 1:</strong> Experiência de 6 anos em demandas contra bancos, telecom e planos de saúde e processos internos preparados para alto volume.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 2:</strong> Presença digital consolidada com conteúdo educativo e boa reputação em avaliações verificadas.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 1:</strong> Ticket médio menor por caso — rentabilidade depende de escala e eficiência operacional.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 2:</strong> Dependência de honorários de êxito e alto custo de triagem manual de novos casos.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diag-acoes-ex-row">
+                    <div class="diag-acoes-ex-card acoes-ex-preservar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-shield-check"></i> Preservar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Preservar os processos padronizados de peças jurídicas repetitivas — são a base da operação de alto volume com qualidade. Documentar e proteger contra rotatividade da equipe.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Manter a produção de conteúdo educativo nas redes sociais: 3 posts/semana sobre direitos do consumidor — é a principal fonte de leads com menor custo por aquisição.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-iniciar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-circle-plus"></i> Iniciar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Iniciar linha dedicada de repactuação de dívidas (superendividamento): criar fluxo específico de triagem e peças para este tipo de caso que cresce com a Lei 14.181/2021.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Iniciar estratégia de SEO: publicar 2 artigos/mês sobre temas de alto volume de busca ("banco cobrou taxa indevida", "plano de saúde negou cobertura") para gerar leads orgânicos.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-aprimorar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-arrow-trend-up"></i> Aprimorar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Aprimorar triagem de casos: criar formulário digital de pré-análise para reduzir triagem manual de 30 min para 5 min por caso e escalar o volume sem aumentar custo.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Aprimorar comunicação com clientes: criar painel simples no WhatsApp Business para atualizar todos os clientes sobre andamento dos processos sem custo de tempo individual.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-eliminar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-trash-can"></i> Eliminar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Eliminar casos com valor de causa abaixo de R$ 2.000 que consomem tanto recurso quanto casos maiores — revisar critério de aceitação com piso de valor mínimo.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Eliminar o processo manual de acompanhamento de prazos processuais em planilha — migrar para sistema jurídico com alertas automáticos para eliminar risco de perda de prazo.</div>
+                    </div>
+                </div>
+                <div class="diag-acoes-ex-plano">
+                    <div class="diag-acoes-ex-plano-header"><i class="fas fa-list-check"></i> Plano de Ação</div>
+                    <table class="diag-plano-table diag-plano-table--example">
+                        <thead><tr><th>Ação</th><th>Data</th><th>Responsável</th><th>Status</th></tr></thead>
+                        <tbody>
+                            <tr><td>Criar formulário digital de triagem e pré-análise de casos</td><td>2025-08-18</td><td>Advogado(a) + Dev</td><td><span class="status-badge status-fazendo">FAZENDO</span></td></tr>
+                            <tr><td>Estruturar linha de repactuação de dívidas com fluxo próprio</td><td>2025-09-05</td><td>Advogado(a) sócio(a)</td><td><span class="status-badge status-afazer">A FAZER</span></td></tr>
+                            <tr><td>Migrar controle de prazos de planilha para sistema jurídico</td><td>2025-08-10</td><td>Equipe jurídica</td><td><span class="status-badge status-feito">FEITO</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Exemplo: Tributário -->
+            <div class="diag-ex-content" id="diag-acoes-ex-tributario">
+                <div class="diag-ex-row1">
+                    <div class="diag-ex-card diag-ex-blue">
+                        <div class="diag-ex-card-header">Mercado Jurídico</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 1:</strong> Reforma Tributária (EC 132/2023) gerando insegurança e forte demanda de PMEs por planejamento e adequação ao novo modelo fiscal.</div>
+                            <div class="diag-ex-item diag-ex-green-item"><strong><i class="fas fa-circle-check"></i> Oportunidade 2:</strong> Alto potencial de recuperação de créditos tributários e revisão de regimes por empresas que pagam mais tributos do que o devido.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 1:</strong> Consultorias e Big 4 disputando o mesmo mercado de planejamento tributário com equipes robustas.</div>
+                            <div class="diag-ex-item diag-ex-orange"><strong><i class="fas fa-circle-xmark"></i> Ameaça 2:</strong> Softwares de gestão tributária automatizando cálculos e apurações, reduzindo demanda por serviços operacionais.</div>
+                        </div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-red">
+                        <div class="diag-ex-card-header">Objetivos</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-rocket"></i> Visão (3 Anos):</strong> Ser referência em Direito Tributário para PMEs, com serviço recorrente de consultoria, equipe de 4 advogados e autoridade reconhecida sobre a Reforma Tributária.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-calendar-alt"></i> 1 Ano:</strong> 12 clientes de consultoria recorrente, 8 parcerias com contadores e webinars educativos periódicos sobre a transição da Reforma.</div>
+                        <div class="diag-ex-item"><strong><i class="fas fa-bullseye"></i> Próximo Trimestre:</strong> Publicar 2 artigos/semana sobre a Reforma Tributária; realizar 1 webinar educativo; estruturar diagnóstico de recuperação de créditos.</div>
+                    </div>
+                    <div class="diag-ex-card diag-ex-green">
+                        <div class="diag-ex-card-header">Forças e Fraquezas</div>
+                        <div class="diag-ex-grid2">
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 1:</strong> Especialização e pós-graduação em Direito Tributário com 9 anos de experiência em planejamento e contencioso e atualização constante sobre a Reforma.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-fist-raised"></i> Fortaleza 2:</strong> Rede de contadores parceiros que encaminham PMEs e capacidade de traduzir temas complexos em linguagem de negócios.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 1:</strong> Equipe enxuta para atender projetos de recuperação de créditos que exigem análise volumosa de documentos.</div>
+                            <div class="diag-ex-item"><strong><i class="fas fa-bolt"></i> Fraqueza 2:</strong> Baixa produção de conteúdo próprio e presença digital ainda incipiente no nicho empresarial.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diag-acoes-ex-row">
+                    <div class="diag-acoes-ex-card acoes-ex-preservar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-shield-check"></i> Preservar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Manter os eventos educativos conjuntos com contadores parceiros — são a principal fonte de leads qualificados de PMEs com real demanda tributária. Realizar ao menos 1 evento por bimestre.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Preservar a atualização constante sobre a Reforma Tributária: assinar publicações especializadas, participar de grupos técnicos e ser o primeiro a comunicar mudanças para os clientes.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-iniciar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-circle-plus"></i> Iniciar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Iniciar programa "Diagnóstico Tributário PME": serviço pago à vista de diagnóstico de enquadramento e oportunidades de recuperação de créditos — porta de entrada para assessoria recorrente.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Iniciar produção de conteúdo no LinkedIn: 2 posts/semana sobre a Reforma Tributária em linguagem de negócios para CEOs e CFOs — hoje a presença digital é quase zero.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-aprimorar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-arrow-trend-up"></i> Aprimorar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Aprimorar relatório de assessoria recorrente: adicionar painel mensal com alertas de mudanças regulatórias da Reforma e impactos específicos para o cliente — aumentar valor percebido e justificar retenção.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Aprimorar processo de recuperação de créditos: contratar analista fiscal júnior para análise documental e reduzir o gargalo do sócio — hoje 60% do tempo do sócio vai para tarefas que poderiam ser delegadas.</div>
+                    </div>
+                    <div class="diag-acoes-ex-card acoes-ex-eliminar">
+                        <div class="diag-acoes-ex-header"><i class="fas fa-trash-can"></i> Eliminar</div>
+                        <div class="diag-ex-item"><strong>1:</strong> Eliminar a prestação de serviços operacionais de baixo valor (preenchimento de obrigações acessórias) que podem ser feitos por contadores — focar em consultoria e estratégia tributária de alto valor.</div>
+                        <div class="diag-ex-item"><strong>2:</strong> Eliminar contatos de prospecção sem qualificação prévia: criar formulário de diagnóstico rápido para filtrar empresas com porte e complexidade tributária compatíveis com o serviço oferecido.</div>
+                    </div>
+                </div>
+                <div class="diag-acoes-ex-plano">
+                    <div class="diag-acoes-ex-plano-header"><i class="fas fa-list-check"></i> Plano de Ação</div>
+                    <table class="diag-plano-table diag-plano-table--example">
+                        <thead><tr><th>Ação</th><th>Data</th><th>Responsável</th><th>Status</th></tr></thead>
+                        <tbody>
+                            <tr><td>Lançar programa "Diagnóstico Tributário PME" com proposta padrão</td><td>2025-08-30</td><td>Advogado(a) sócio(a)</td><td><span class="status-badge status-afazer">A FAZER</span></td></tr>
+                            <tr><td>Publicar primeiros 4 posts sobre Reforma Tributária no LinkedIn</td><td>2025-08-15</td><td>Advogado(a) sócio(a)</td><td><span class="status-badge status-fazendo">FAZENDO</span></td></tr>
+                            <tr><td>Contratar analista fiscal júnior para recuperação de créditos</td><td>2025-09-15</td><td>Sócios</td><td><span class="status-badge status-feito">FEITO</span></td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 

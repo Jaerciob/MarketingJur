@@ -639,6 +639,360 @@ document.getElementById('diag-example').addEventListener('change', e => loadDiag
 loadDiagData();
 
 
+// ─── CANVAS DE DIAGNÓSTICO E AÇÕES ───────────────────────────────────────────
+const DIAG_ACOES_KEY = 'mktjur_diagnostico_acoes';
+const PLANO_KEY      = 'mktjur_plano_acoes';
+
+// ── DIAG_ACOES_EXAMPLES ───────────────────────────────────────────────────────
+const DIAG_ACOES_EXAMPLES = {
+    trabalhista: {
+        mercado_oportunidade1: '6 milhões de PMEs sem assessoria trabalhista preventiva — mercado de R$ 500M/ano no Brasil totalmente subatendido localmente.',
+        mercado_oportunidade2: 'Crescimento de consultas preventivas pós-Reforma Trabalhista: teletrabalho, IA no RH e nova jurisprudência gerando demanda especializada crescente.',
+        mercado_ameaca1: 'LegalTechs automatizando cálculos de rescisão e triagem — reduzindo demanda por serviços básicos e pressionando honorários para baixo.',
+        mercado_ameaca2: 'Advogados generalistas com preços 40% menores competindo pelos clientes que ainda não percebem o valor da especialização certificada.',
+        mercado_insights: 'O mercado de PMEs sem assessoria preventiva é a grande oportunidade — mas exige comunicação de valor clara para competir com generalistas baratos.',
+        obj_visao5: 'Ser o escritório de referência nacional em compliance trabalhista para PMEs, com plataforma digital própria, equipe de 5 advogados e MRR de R$ 100.000/mês.',
+        obj_1ano: '• 15 clientes PMEs com contrato de assessoria recorrente (MRR R$ 13.500)\n• Ser palestrante em 2 eventos de RH da região\n• Site com blog ativo e 500 visitas/mês orgânicas',
+        obj_trimestre: '• Publicar 2 artigos/semana no LinkedIn sobre riscos trabalhistas para PMEs\n• Fechar 2 contratos de assessoria preventiva mensais\n• Atingir nota 4.8 no Google com 30 avaliações\n• Lançar e-book "Guia do Compliance Trabalhista para PMEs"',
+        forcas_forte1: 'Especialização certificada em Direito do Trabalho com 8 anos de experiência em contencioso e preventivo e rede de 8 contadores parceiros.',
+        forcas_forte2: 'Atendimento 100% online para todo o Brasil com nota 4.9 no Google e 45 avaliações — reputação consolidada e diferencial percebido pelo mercado.',
+        forcas_fraca1: 'Escritório solo sem equipe de apoio — capacidade limitada de atender mais clientes simultaneamente, criando gargalo de crescimento.',
+        forcas_fraca2: 'LinkedIn com apenas 450 seguidores e sem budget de marketing definido — baixa visibilidade digital e dependência de 2 grandes clientes (60% da receita).',
+        forcas_insights: 'A especialização é forte mas a visibilidade digital é o gargalo. Resolver o LinkedIn resolve o principal obstáculo de crescimento.',
+        acoes_preservar1: 'Manter o check-in mensal com todos os clientes de assessoria preventiva — essa prática tem zero churn e gera indicações espontâneas. Não abrir mão mesmo com crescimento de carteira.',
+        acoes_preservar2: 'Preservar a rede de 8 contadores parceiros: envio quinzenal de boletim técnico exclusivo e ligação de relacionamento uma vez por mês. É a principal fonte de clientes qualificados.',
+        acoes_iniciar1: 'Iniciar publicação sistemática no LinkedIn: 2 posts educativos/semana sobre riscos trabalhistas para PMEs. Meta: 1.000 seguidores em 90 dias e 3 leads qualificados/mês via rede.',
+        acoes_iniciar2: 'Iniciar uso de CRM (HubSpot gratuito): cadastrar todos os leads, registrar follow-ups e medir taxa de conversão. Hoje não há visibilidade sobre o pipeline.',
+        acoes_aprimorar1: 'Aprimorar proposta comercial: criar template PDF profissional com escopo detalhado, prazo e honorários — substituir o envio informal por WhatsApp e aumentar taxa de fechamento.',
+        acoes_aprimorar2: 'Aprimorar onboarding de clientes: criar checklist digital e contrato com assinatura eletrônica (DocuSign) para reduzir de 7 dias manuais para 1 dia automatizado.',
+        acoes_eliminar1: 'Eliminar reuniões de prospecção sem pré-qualificação: 2h/semana perdidas com empresas fora do perfil. Implementar formulário de triagem antes de qualquer agendamento.',
+        acoes_eliminar2: 'Eliminar clientes com ticket abaixo de R$ 500 que consomem o mesmo tempo que clientes maiores — comunicar reajuste ou encerrar com 30 dias de antecedência.',
+        obj_lp_bienal: '• Tornar-se referência nacional em Direito Trabalhista preventivo\n• Faturar R$ 600.000/ano com consultoria, cursos e contencioso\n• Ter 1 sócio e 1 colaborador contratados\n• Lançar plataforma de gestão trabalhista para PMEs',
+        obj_lp_anual: '• Tornar-se referência regional em Direito Trabalhista preventivo\n• Produzir e lançar e-book completo sobre compliance trabalhista\n• Expandir atuação para 2 novos estados via atendimento 100% online\n• Faturar R$ 300.000 no ano com mix de consultoria e contencioso',
+        obj_lp_t1: '• Atingir 8 leads qualificados/mês via LinkedIn\n• Publicar 1 artigo técnico por semana no blog\n• Fechar parceria formal com 2 escritórios de contabilidade\n• Implementar CRM para gestão de casos e follow-up',
+        obj_lp_t2: '• Consolidar carteira com 20 empresas em assessoria preventiva\n• Lançar curso online: "Prevenção de Passivos Trabalhistas"\n• Alcançar nota 4,8+ no Google Meu Negócio com 50 avaliações\n• Gerar R$ 18.000/mês de receita recorrente',
+        acoes_plano: [
+            { acao: 'Publicar 2 posts/semana no LinkedIn sobre riscos trabalhistas', data: '2025-08-15', responsavel: 'Advogado(a) sócio(a)', status: 'fazendo' },
+            { acao: 'Implementar CRM HubSpot gratuito e cadastrar pipeline de leads', data: '2025-08-30', responsavel: 'Advogado(a) sócio(a)', status: 'afazer' },
+            { acao: 'Criar proposta comercial em PDF e substituir envio por WhatsApp', data: '2025-09-15', responsavel: 'Advogado(a) sócio(a)', status: 'afazer' }
+        ]
+    },
+    familia: {
+        mercado_oportunidade1: 'Crescimento de divórcios (+18% pós-pandemia) e expansão do inventário extrajudicial — casos que exigem especialista humano e não podem ser automatizados.',
+        mercado_oportunidade2: 'Famílias recompostas, contratos de convivência e guarda compartilhada gerando nova demanda especializada sem concorrente com atendimento integrado na cidade.',
+        mercado_ameaca1: 'Plataformas de divórcio online por R$ 800 para casos simples — erodindo percepção de valor e pressionando os honorários de toda a categoria para baixo.',
+        mercado_ameaca2: 'Crescimento de novos advogados de família na região com presença digital forte e preços inicialmente abaixo do mercado para ganhar carteira de clientes.',
+        mercado_insights: 'A oportunidade está nos casos que exigem especialização humana (guarda, famílias recompostas) — não compete diretamente com as plataformas baratas de casos simples.',
+        obj_visao5: 'Ser a referência estadual em advocacia familiar humanizada, com plataforma de mediação digital, equipe de 3 advogados e faturamento de R$ 400.000/ano.',
+        obj_1ano: '• 10 casos novos/mês com ticket médio de R$ 5.000\n• Nota 4.9 no Google com 60 avaliações\n• 5.000 seguidores engajados no Instagram\n• Lançar programa de mediação pré-judicial com psicólogo parceiro',
+        obj_trimestre: '• Lançar e-book "Guia do Divórcio sem Trauma" e captar 200 e-mails\n• Fechar parceria formal com 3 psicólogos da cidade\n• Publicar 3 posts/semana no Instagram com conteúdo acolhedor\n• Criar pacote de inventário extrajudicial com preço fixo',
+        forcas_forte1: 'Certificação em mediação familiar + parceria exclusiva com psicóloga — único escritório da cidade com atendimento jurídico e emocional integrado.',
+        forcas_forte2: 'Instagram com 3.200 seguidores engajados e nota 4.9 no Google com 30 avaliações verificadas — forte reputação local consolidada.',
+        forcas_fraca1: 'Ticket médio baixo (R$ 3.500 vs média de R$ 5.000) e sem serviço recorrente — fluxo de caixa instável e totalmente dependente de novos casos.',
+        forcas_fraca2: 'Sem blog ou site com SEO ativo — depende exclusivamente do Instagram e indicações, sem captação orgânica via Google.',
+        forcas_insights: 'A parceria com psicóloga é o diferencial mais difícil de copiar — vale aprofundar essa proposta de valor em toda a comunicação.',
+        acoes_preservar1: 'Preservar a parceria exclusiva com a psicóloga parceira — este diferencial é único na cidade e é citado em 80% das avaliações positivas. Formalizar e ampliar a colaboração.',
+        acoes_preservar2: 'Manter a cadência de 3 posts/semana no Instagram com conteúdo acolhedor — é o principal canal de captação orgânica com custo zero.',
+        acoes_iniciar1: 'Iniciar blog com SEO: publicar 2 artigos/mês sobre "advogado divórcio [cidade]" e "inventário extrajudicial" para capturar buscas no Google.',
+        acoes_iniciar2: 'Iniciar pacote de inventário extrajudicial com preço fixo apresentado em propostas individuais — hoje o serviço existe mas não é comunicado estruturadamente.',
+        acoes_aprimorar1: 'Aprimorar atendimento inicial: criar roteiro de acolhimento por telefone para reduzir o tempo da primeira conversa de 45 min para 20 min sem perder a qualidade humanizada.',
+        acoes_aprimorar2: 'Aprimorar comunicação de honorários: criar proposta visual com etapas claras do processo para elevar o ticket médio de R$ 3.500 para R$ 5.000 sem perder conversão.',
+        acoes_eliminar1: 'Eliminar atendimentos de triagem não qualificados: criar formulário de pré-atendimento para filtrar casos fora do perfil ideal antes de agendar consulta.',
+        acoes_eliminar2: 'Eliminar a gestão de redes sociais feita na madrugada — causa esgotamento. Contratar freelancer de conteúdo por R$ 600/mês para assumir a produção dos posts.',
+        obj_lp_bienal: '• Ser a referência em advocacia familiar humanizada no estado\n• Faturar R$ 400.000/ano com atendimento online nacional\n• Lançar plataforma de mediação digital com parceiros\n• Ter equipe com 1 advogado associado e 1 assistente',
+        obj_lp_anual: '• Tornar-se referência em advocacia familiar humanizada na região\n• Lançar programa de mediação pré-judicial com psicólogo parceiro\n• Expandir atendimento online para todo o Brasil com pacote digital\n• Faturar R$ 200.000 no ano com foco em casos consensuais e inventários',
+        obj_lp_t1: '• Atingir 6 leads qualificados/mês via Instagram e indicações\n• Publicar 3 Reels educativos por semana com 500+ visualizações\n• Fechar parceria ativa com 3 psicólogos e 2 mediadores\n• Lançar e-book "Guia do Divórcio sem Trauma" e capturar 200 e-mails',
+        obj_lp_t2: '• Consolidar 15 casos ativos com ticket médio de R$ 4.500\n• Atingir 1.000 seguidores engajados no Instagram\n• Alcançar nota 4,9+ no Google com 30 avaliações verificadas\n• Gerar R$ 13.500/mês de receita e reduzir custo por lead para R$ 175',
+        acoes_plano: [
+            { acao: 'Publicar 2 artigos de SEO/mês sobre divórcio e inventário', data: '2025-08-20', responsavel: 'Advogada + Redator', status: 'afazer' },
+            { acao: 'Contratar freelancer de conteúdo para Instagram (R$ 600/mês)', data: '2025-08-10', responsavel: 'Advogada sócia', status: 'fazendo' },
+            { acao: 'Criar proposta visual de honorários com etapas do processo', data: '2025-09-01', responsavel: 'Advogada sócia', status: 'feito' }
+        ]
+    },
+    empresarial: {
+        mercado_oportunidade1: '15 milhões de PMEs no Brasil sem assessoria jurídica recorrente — mercado subatendido que busca previsibilidade, preço fixo e linguagem de negócios.',
+        mercado_oportunidade2: 'Reforma Tributária + regulação de IA e LGPD criando demanda massiva por especialistas — maior oportunidade para advogados empresariais nos últimos 50 anos.',
+        mercado_ameaca1: 'Big 4 (consultorias internacionais) oferecendo serviços jurídicos integrados e LegalTechs para contratos simples e due diligence automatizada.',
+        mercado_ameaca2: 'Boutiques jurídicas especializadas crescendo com modelo de assinatura similar — compressão de preços e dificuldade crescente de diferenciação.',
+        mercado_insights: 'A Reforma Tributária é uma janela de 7 anos de demanda recorrente — quem se posicionar como referência agora tem vantagem de longo prazo.',
+        obj_visao5: 'Ser o escritório de referência nacional para startups e PMEs, com "Legal as a Service" em plataforma própria, 8 advogados e MRR de R$ 150.000/mês.',
+        obj_1ano: '• 20 clientes de assinatura mensal (MRR R$ 50.000)\n• LinkedIn com 8.000 seguidores qualificados e 5% de engajamento\n• 2 parcerias formais com aceleradoras de startups\n• Plataforma digital de acesso para clientes lançada',
+        obj_trimestre: '• Webinar educativo sobre Reforma Tributária para PMEs (meta: 200 participantes)\n• Fechar 3 novos contratos de assinatura mensal\n• Publicar guia "10 Riscos Jurídicos para Startups"\n• Atingir 5.000 seguidores qualificados no LinkedIn',
+        forcas_forte1: 'Expertise em contratos B2B, M&A e LGPD + 35 clientes recorrentes com MRR consolidado e modelo de assinatura com preço fixo único na região.',
+        forcas_forte2: 'LinkedIn com 4.500 seguidores qualificados e 5 anos de experiência no ecossistema de startups — autoridade reconhecida e referência no nicho.',
+        forcas_fraca1: '3 clientes representam 45% da receita — alto risco de concentração que pode comprometer o caixa em caso de cancelamento de um grande contrato.',
+        forcas_fraca2: 'Onboarding ainda manual e demorado (7 dias úteis) — experiência abaixo das expectativas de startups que valorizam velocidade e automação de processos.',
+        forcas_insights: 'Concentração de receita é o maior risco operacional — resolver isso é prioridade antes de qualquer crescimento.',
+        acoes_preservar1: 'Preservar o modelo de assinatura com preço fixo e reunião trimestral incluída — é o principal diferencial competitivo e responsável pela retenção dos 35 clientes recorrentes.',
+        acoes_preservar2: 'Manter a produção de conteúdo educativo no LinkedIn: 2 posts/semana sobre riscos jurídicos para startups. É a principal fonte de leads qualificados sem custo de mídia.',
+        acoes_iniciar1: 'Iniciar programa de diversificação de carteira: meta de 50 clientes em 12 meses para reduzir concentração dos 3 maiores de 45% para menos de 20% da receita.',
+        acoes_iniciar2: 'Iniciar webinars mensais educativos sobre a Reforma Tributária para PMEs — posicionar como a referência do nicho e gerar leads qualificados de alto valor.',
+        acoes_aprimorar1: 'Aprimorar onboarding: implementar assinatura eletrônica + portal do cliente para reduzir de 7 dias para 1 dia — startups esperam velocidade e automação.',
+        acoes_aprimorar2: 'Aprimorar relatório mensal: adicionar dashboard visual com indicadores jurídicos do cliente para elevar percepção de valor e justificar o ticket do pacote.',
+        acoes_eliminar1: 'Eliminar a prática de aceitar clientes fora do perfil ideal que consomem mais tempo do que geram receita. Criar critério de qualificação mínima antes de aceitar novos contratos.',
+        acoes_eliminar2: 'Eliminar reuniões internas sem pauta definida — consomem 4h/semana sem decisão. Adotar formato assíncrono via Loom para atualizações e reservar reuniões apenas para decisões.',
+        obj_lp_bienal: '• Tornar-se o escritório de referência para startups e PMEs no país\n• Atingir R$ 60.000/mês em receita recorrente com 24 clientes de pacote\n• Lançar "Legal as a Service" com plataforma própria\n• Contratar 2 advogados associados e 1 gerente de operações',
+        obj_lp_anual: '• Tornar-se o advogado empresarial de referência para startups e PMEs da região\n• Atingir R$ 30.000/mês em receita recorrente com 12 clientes de pacote\n• Lançar programa "Startup Legal Kit" com contratos e compliance incluídos\n• Faturar R$ 360.000 no ano com 70% de receita previsível via assinaturas',
+        obj_lp_t1: '• Fechar 2 contratos de assessoria jurídica recorrente (R$ 2.500/mês)\n• Publicar guia: "10 Riscos Jurídicos para Startups" e gerar 150 leads\n• Participar de 2 eventos do ecossistema de startups como palestrante\n• Implementar onboarding digital com contrato e assinatura eletrônica',
+        obj_lp_t2: '• Atingir 8 clientes em pacote mensal recorrente (R$ 20.000 MRR)\n• Consolidar presença no LinkedIn com 2.000 seguidores e 5% de engajamento\n• Fechar parcerias com 3 contadores e 2 aceleradoras como fonte de indicação\n• Publicar 2 artigos técnicos aprofundados demonstrando expertise (sem expor casos reais)',
+        acoes_plano: [
+            { acao: 'Implementar onboarding digital com assinatura eletrônica', data: '2025-08-25', responsavel: 'Sócio + TI', status: 'fazendo' },
+            { acao: 'Realizar primeiro webinar sobre Reforma Tributária para PMEs', data: '2025-09-10', responsavel: 'Advogado sócio', status: 'afazer' },
+            { acao: 'Criar critério de qualificação de clientes e implementar triagem', data: '2025-08-15', responsavel: 'Sócios', status: 'feito' }
+        ]
+    },
+    previdenciario: {
+        mercado_oportunidade1: 'Envelhecimento populacional e mais de 30 milhões de beneficiários do INSS — demanda crescente por aposentadorias, revisões e planejamento previdenciário.',
+        mercado_oportunidade2: 'Complexidade após a Reforma da Previdência e alto índice de indeferimentos de BPC/LOAS e auxílios por incapacidade geram procura por especialista.',
+        mercado_ameaca1: 'Escritórios "de massa" com atendimento padronizado disputando o segurado por volume e desvalorizando o trabalho técnico especializado.',
+        mercado_ameaca2: 'Digitalização do INSS (Meu INSS) exigindo atualização constante e segurados protocolando pedidos simples sozinhos, reduzindo demanda por casos básicos.',
+        mercado_insights: 'O público previdenciário valoriza atendimento próximo e linguagem simples — diferencial que escritórios de massa não conseguem replicar.',
+        obj_visao5: 'Ser referência regional em Direito Previdenciário com equipe de 4 advogados, atendimento híbrido e forte produção de conteúdo educativo sobre benefícios do INSS.',
+        obj_1ano: '• 20 novos requerimentos/mês, rede de 10 parceiros entre contadores e sindicatos\n• Canal no YouTube com vídeos explicativos sobre aposentadorias\n• Nota 4.8 no Google com 40 avaliações',
+        obj_trimestre: '• Publicar 2 artigos/semana sobre regras de aposentadoria\n• Realizar 1 palestra educativa em sindicato\n• Estruturar checklist de planejamento previdenciário\n• Lançar e-book "Guia da Aposentadoria após a Reforma"',
+        forcas_forte1: 'Especialização em Direito Previdenciário com 7 anos de experiência em concessão, revisão e incapacidade, e domínio do sistema Meu INSS.',
+        forcas_forte2: 'Rede de contadores e sindicatos rurais que encaminham segurados e atendimento acolhedor reconhecido por um público que valoriza clareza e proximidade.',
+        forcas_fraca1: 'Processos de longa duração e receita concentrada em honorários de êxito — fluxo de caixa irregular ao longo do ano.',
+        forcas_fraca2: 'Baixa presença digital e ausência de material educativo estruturado para orientar segurados antes da procura.',
+        forcas_insights: 'A dependência de honorários de êxito é o principal risco financeiro — criar linha de planejamento pago à vista é a prioridade estratégica.',
+        acoes_preservar1: 'Manter a análise detalhada do CNIS antes de qualquer protocolo — é o principal diferencial que evita indeferimentos e gera confiança do segurado. Não abrir mão por volume.',
+        acoes_preservar2: 'Preservar a parceria com sindicatos rurais — é a fonte mais qualificada de segurados com real necessidade. Manter reunião mensal de relacionamento.',
+        acoes_iniciar1: 'Iniciar linha de planejamento previdenciário pago à vista (honorários fixos): serviço independente de perícia que estabiliza a receita no curto prazo.',
+        acoes_iniciar2: 'Iniciar canal no YouTube com vídeos educativos semanais sobre regras de aposentadoria pós-Reforma — alcançar o público 50+ que pesquisa no YouTube antes de procurar advogado.',
+        acoes_aprimorar1: 'Aprimorar comunicação durante o processo: criar atualização quinzenal por WhatsApp para o segurado com status simplificado — hoje o cliente fica sem notícias por semanas.',
+        acoes_aprimorar2: 'Aprimorar diagnóstico inicial de CNIS: criar relatório visual com simulação de cenários de aposentadoria para o segurado entender as opções antes de decidir.',
+        acoes_eliminar1: 'Eliminar casos de BPC/LOAS sem diagnóstico mínimo prévio — geram retrabalho com indeferimentos previsíveis. Exigir laudo médico básico antes de aceitar o caso.',
+        acoes_eliminar2: 'Eliminar deslocamentos presenciais desnecessários: hoje 40% das consultas iniciais são presenciais sem necessidade. Migrar triagem e diagnóstico para online.',
+        obj_lp_bienal: '• Tornar-se referência regional em planejamento previdenciário\n• Faturar R$ 500.000/ano com concessões, revisões e planejamento\n• Ter 1 advogado associado e 1 analista de cálculos\n• Lançar programa de análise preventiva de CNIS para sindicatos',
+        obj_lp_anual: '• Consolidar autoridade em planejamento previdenciário na região\n• Produzir e lançar e-book completo sobre aposentadoria pós-Reforma\n• Expandir atendimento online para 3 novos municípios\n• Faturar R$ 250.000 no ano com mix de concessões e revisões',
+        obj_lp_t1: '• Atingir 10 leads qualificados/mês via redes e indicações\n• Publicar 1 artigo técnico por semana no blog\n• Fechar parceria formal com 2 sindicatos rurais\n• Implementar CRM e software de cálculo integrado',
+        obj_lp_t2: '• Consolidar carteira com 30 processos ativos\n• Lançar palestra educativa "Aposentadoria após a Reforma"\n• Alcançar nota 4,8+ no Google Meu Negócio com 40 avaliações\n• Estruturar linha de revisões de benefícios já concedidos',
+        acoes_plano: [
+            { acao: 'Criar serviço de planejamento previdenciário com honorários fixos', data: '2025-08-20', responsavel: 'Advogado(a) especialista', status: 'afazer' },
+            { acao: 'Gravar e publicar primeiros 4 vídeos sobre aposentadoria no YouTube', data: '2025-09-01', responsavel: 'Advogado(a) + Editor', status: 'fazendo' },
+            { acao: 'Implementar atualização quinzenal via WhatsApp para clientes ativos', data: '2025-08-15', responsavel: 'Assistente + Advogado(a)', status: 'feito' }
+        ]
+    },
+    consumidor: {
+        mercado_oportunidade1: 'A Lei do Superendividamento ampliou os direitos de repactuação — milhões de brasileiros endividados formam um mercado de alto volume e demanda constante.',
+        mercado_oportunidade2: 'Crescimento do e-commerce e dos serviços digitais multiplicando conflitos de consumo com ticket menor, porém recorrentes.',
+        mercado_ameaca1: 'Plataformas de resolução de conflitos resolvendo casos simples sem advogado, reduzindo a demanda por casos de baixa complexidade.',
+        mercado_ameaca2: 'Escritórios de massa e "fábricas de ações" competindo por preço e volume, pressionando honorários e a percepção de qualidade da categoria.',
+        mercado_insights: 'Focar nos casos que exigem advogado (danos morais, superendividamento, contratos) é mais estratégico do que competir por volume no mercado básico.',
+        obj_visao5: 'Ser referência em Direito do Consumidor na região, com operação eficiente para alto volume, equipe de 5 pessoas e forte conteúdo educativo sobre direitos do consumidor.',
+        obj_1ano: '• 40 casos novos/mês com processo padronizado\n• Base de conteúdo com 40 artigos educativos\n• Canal de esclarecimento sobre superendividamento\n• Nota 4.8 no Google com 60 avaliações',
+        obj_trimestre: '• Publicar 3 conteúdos/semana sobre direitos do consumidor\n• Estruturar fluxo de triagem digital\n• Realizar 1 palestra educativa sobre superendividamento\n• Lançar linha de atendimento para superendividamento',
+        forcas_forte1: 'Experiência de 6 anos em demandas contra bancos, telecom e planos de saúde e processos internos preparados para alto volume.',
+        forcas_forte2: 'Presença digital consolidada com conteúdo educativo e boa reputação em avaliações verificadas.',
+        forcas_fraca1: 'Ticket médio menor por caso — rentabilidade depende de escala e eficiência operacional.',
+        forcas_fraca2: 'Dependência de honorários de êxito e alto custo de triagem manual de novos casos.',
+        forcas_insights: 'A eficiência operacional é o ativo mais importante — cada processo padronizado é um diferencial competitivo que escritórios novos não têm.',
+        acoes_preservar1: 'Preservar os processos padronizados de peças jurídicas repetitivas — são a base da operação de alto volume com qualidade. Documentar e proteger contra rotatividade da equipe.',
+        acoes_preservar2: 'Manter a produção de conteúdo educativo nas redes sociais: 3 posts/semana sobre direitos do consumidor — principal fonte de leads com menor custo por aquisição.',
+        acoes_iniciar1: 'Iniciar linha dedicada de repactuação de dívidas (superendividamento): criar fluxo específico de triagem e peças para este tipo de caso que cresce com a Lei 14.181/2021.',
+        acoes_iniciar2: 'Iniciar estratégia de SEO: publicar 2 artigos/mês sobre temas de alto volume de busca para gerar leads orgânicos e reduzir dependência de mídia paga.',
+        acoes_aprimorar1: 'Aprimorar triagem de casos: criar formulário digital de pré-análise para reduzir triagem manual de 30 min para 5 min por caso e escalar o volume sem aumentar custo.',
+        acoes_aprimorar2: 'Aprimorar comunicação com clientes: criar painel no WhatsApp Business para atualizar todos os clientes sobre andamento dos processos sem custo de tempo individual.',
+        acoes_eliminar1: 'Eliminar casos com valor de causa abaixo de R$ 2.000 que consomem tanto recurso quanto casos maiores — revisar critério de aceitação com piso de valor mínimo.',
+        acoes_eliminar2: 'Eliminar o processo manual de acompanhamento de prazos em planilha — migrar para sistema jurídico com alertas automáticos para eliminar risco de perda de prazo.',
+        obj_lp_bienal: '• Tornar-se referência regional em Direito do Consumidor\n• Faturar R$ 480.000/ano com operação de alto volume\n• Ter equipe de 2 advogados e 1 assistente de triagem\n• Lançar plataforma de triagem digital de casos',
+        obj_lp_anual: '• Consolidar operação de alto volume com processos padronizados\n• Produzir e lançar e-book sobre superendividamento\n• Expandir atendimento online para todo o Brasil\n• Faturar R$ 240.000 no ano com ticket menor e volume alto',
+        obj_lp_t1: '• Atingir 25 leads qualificados/mês via redes e busca\n• Publicar 3 Reels educativos por semana\n• Estruturar fluxo de triagem e onboarding padronizado\n• Implementar software de gestão de alto volume',
+        obj_lp_t2: '• Consolidar carteira com 80 processos ativos\n• Lançar linha de atendimento para superendividamento\n• Alcançar nota 4,8+ no Google Meu Negócio com 60 avaliações\n• Reduzir custo por lead para R$ 45',
+        acoes_plano: [
+            { acao: 'Criar formulário digital de triagem e pré-análise de casos', data: '2025-08-18', responsavel: 'Advogado(a) + Dev', status: 'fazendo' },
+            { acao: 'Estruturar linha de repactuação de dívidas com fluxo próprio', data: '2025-09-05', responsavel: 'Advogado(a) sócio(a)', status: 'afazer' },
+            { acao: 'Migrar controle de prazos de planilha para sistema jurídico', data: '2025-08-10', responsavel: 'Equipe jurídica', status: 'feito' }
+        ]
+    },
+    tributario: {
+        mercado_oportunidade1: 'A Reforma Tributária (IBS, CBS e IS) é a maior mudança em 50 anos — a transição de 7 anos cria demanda recorrente por reestruturação e consultoria contínua para PMEs.',
+        mercado_oportunidade2: 'Teses de recuperação de créditos tributários (PIS/COFINS, ICMS) com alto potencial de honorários de êxito e mercado de PMEs ainda pouco explorado.',
+        mercado_ameaca1: 'Escritórios contábeis oferecendo serviços jurídicos de forma irregular e disputando a percepção do empresário sobre quem deve cuidar da estratégia tributária.',
+        mercado_ameaca2: 'Instabilidade regulatória durante a transição pode alterar regras já planejadas, exigindo revisões constantes e gerando insegurança nos clientes.',
+        mercado_insights: 'A Reforma Tributária é uma janela única — quem se comunicar primeiro como referência tem vantagem de longo prazo sobre quem esperar o cenário se estabilizar.',
+        obj_visao5: 'Ser referência regional em planejamento tributário para PMEs, com equipe de 4 advogados, analista fiscal e programa de assessoria contínua da Reforma.',
+        obj_1ano: '• 6 clientes em assessoria recorrente (MRR R$ 18.000)\n• Ser palestrante em 2 eventos empresariais da região\n• LinkedIn com 2.000 seguidores qualificados\n• 4 projetos de recuperação de créditos concluídos',
+        obj_trimestre: '• Publicar 2 artigos/semana sobre planejamento e Reforma Tributária\n• Fechar 2 projetos de recuperação de créditos ou planejamento\n• Realizar 1 webinar educativo sobre a Reforma Tributária\n• Lançar guia "Recuperação de Créditos para PMEs"',
+        forcas_forte1: 'Especialização em Direito Tributário com domínio da Reforma e das teses de recuperação de créditos, com pareceres formais e documentação rigorosa.',
+        forcas_forte2: 'Rede de contadores parceiros e linguagem de negócios que traduz o tributário em ROI e segurança fiscal para o empresário.',
+        forcas_fraca1: 'Ciclo de vendas longo (projetos exigem diagnóstico e confiança) e concentração de receita em poucos projetos de alto valor.',
+        forcas_fraca2: 'Presença digital ainda em construção e ausência de material educativo estruturado sobre a Reforma Tributária.',
+        forcas_insights: 'A combinação de linguagem de negócios + expertise técnica é rara no mercado tributário — é o diferencial central a ser amplificado.',
+        acoes_preservar1: 'Manter os eventos educativos conjuntos com contadores parceiros — são a principal fonte de leads qualificados de PMEs com real demanda tributária. Realizar ao menos 1 evento por bimestre.',
+        acoes_preservar2: 'Preservar a atualização constante sobre a Reforma Tributária: assinar publicações especializadas, participar de grupos técnicos e ser o primeiro a comunicar mudanças para os clientes.',
+        acoes_iniciar1: 'Iniciar programa "Diagnóstico Tributário PME": serviço pago à vista de diagnóstico de enquadramento e oportunidades de recuperação de créditos — porta de entrada para assessoria recorrente.',
+        acoes_iniciar2: 'Iniciar produção de conteúdo no LinkedIn: 2 posts/semana sobre a Reforma Tributária em linguagem de negócios para CEOs e CFOs — hoje a presença digital é quase zero.',
+        acoes_aprimorar1: 'Aprimorar relatório de assessoria recorrente: adicionar painel mensal com alertas de mudanças regulatórias da Reforma e impactos específicos para o cliente — aumentar valor percebido.',
+        acoes_aprimorar2: 'Aprimorar processo de recuperação de créditos: contratar analista fiscal júnior para análise documental e reduzir o gargalo do sócio que hoje ocupa 60% do tempo em tarefas delegáveis.',
+        acoes_eliminar1: 'Eliminar a prestação de serviços operacionais de baixo valor (obrigações acessórias) que podem ser feitos por contadores — focar em consultoria e estratégia tributária de alto valor.',
+        acoes_eliminar2: 'Eliminar contatos de prospecção sem qualificação prévia: criar formulário de diagnóstico rápido para filtrar empresas com porte e complexidade tributária compatíveis com o serviço.',
+        obj_lp_bienal: '• Tornar-se referência regional em planejamento tributário para PMEs\n• Atingir R$ 60.000/mês em receita entre projetos e recorrência\n• Contratar 2 advogados associados e 1 analista fiscal\n• Lançar programa de assessoria contínua da Reforma Tributária',
+        obj_lp_anual: '• Consolidar autoridade em Reforma Tributária e recuperação de créditos\n• Atingir R$ 30.000/mês em receita com projetos e assessoria\n• Lançar programa "Diagnóstico Tributário PME"\n• Faturar R$ 360.000 no ano com 60% de receita recorrente',
+        obj_lp_t1: '• Fechar 2 projetos de recuperação de créditos ou planejamento\n• Publicar guia "Recuperação de Créditos para PMEs" e gerar 150 leads\n• Realizar 1 webinar educativo sobre a Reforma Tributária\n• Implementar CRM e software de análise tributária',
+        obj_lp_t2: '• Atingir 6 clientes em assessoria recorrente (R$ 18.000 MRR)\n• Consolidar presença no LinkedIn com 2.000 seguidores qualificados\n• Fechar parcerias com 3 contadores e 2 associações comerciais\n• Publicar 2 artigos técnicos sobre a transição da Reforma (sem expor clientes)',
+        acoes_plano: [
+            { acao: 'Lançar programa "Diagnóstico Tributário PME" com proposta padrão', data: '2025-08-30', responsavel: 'Advogado(a) sócio(a)', status: 'afazer' },
+            { acao: 'Publicar primeiros 4 posts sobre Reforma Tributária no LinkedIn', data: '2025-08-15', responsavel: 'Advogado(a) sócio(a)', status: 'fazendo' },
+            { acao: 'Contratar analista fiscal júnior para recuperação de créditos', data: '2025-09-15', responsavel: 'Sócios', status: 'feito' }
+        ]
+    }
+};
+
+// ── Plano de Ação ─────────────────────────────────────────────────────────────
+let planoAcoes = [];
+let planoNextId = 1;
+
+function savePlano() {
+    localStorage.setItem(PLANO_KEY, JSON.stringify({ acoes: planoAcoes, nextId: planoNextId }));
+}
+
+function loadPlano() {
+    try {
+        const raw = localStorage.getItem(PLANO_KEY);
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        planoAcoes = data.acoes || [];
+        planoNextId = data.nextId || (planoAcoes.length + 1);
+    } catch(e) { planoAcoes = []; planoNextId = 1; }
+    renderPlano();
+}
+
+function renderPlano() {
+    const tbody = document.getElementById('plano-acoes-tbody');
+    const empty = document.getElementById('diag-plano-empty');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    if (planoAcoes.length === 0) {
+        if (empty) empty.style.display = '';
+        return;
+    }
+    if (empty) empty.style.display = 'none';
+    planoAcoes.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.dataset.id = item.id;
+        const statusClass = item.status === 'fazendo' ? 'status-fazendo' : (item.status === 'feito' ? 'status-feito' : 'status-afazer');
+        tr.innerHTML = `
+            <td class="col-acao"><input type="text" value="${escHtml(item.acao)}" placeholder="Descreva a ação..." oninput="updateAcaoField(${item.id},'acao',this.value)"></td>
+            <td class="col-data"><input type="date" value="${escHtml(item.data)}" oninput="updateAcaoField(${item.id},'data',this.value)"></td>
+            <td class="col-resp"><input type="text" value="${escHtml(item.responsavel)}" placeholder="Responsável..." oninput="updateAcaoField(${item.id},'responsavel',this.value)"></td>
+            <td class="col-status">
+                <select class="${statusClass}" onchange="updateAcaoStatus(${item.id},this)">
+                    <option value="afazer"${item.status==='afazer'?' selected':''}>A FAZER</option>
+                    <option value="fazendo"${item.status==='fazendo'?' selected':''}>FAZENDO</option>
+                    <option value="feito"${item.status==='feito'?' selected':''}>FEITO</option>
+                </select>
+            </td>
+            <td class="col-del"><button class="btn-del-acao" onclick="removeAcao(${item.id})" title="Remover"><i class="fas fa-times"></i></button></td>`;
+        tbody.appendChild(tr);
+    });
+}
+
+function escHtml(str) {
+    return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function addAcao() {
+    planoAcoes.push({ id: planoNextId++, acao: '', data: '', responsavel: '', status: 'afazer' });
+    savePlano();
+    renderPlano();
+    // Focus the new row's first input
+    const tbody = document.getElementById('plano-acoes-tbody');
+    if (tbody && tbody.lastElementChild) {
+        const inp = tbody.lastElementChild.querySelector('input[type="text"]');
+        if (inp) inp.focus();
+    }
+}
+
+function removeAcao(id) {
+    planoAcoes = planoAcoes.filter(a => a.id !== id);
+    savePlano();
+    renderPlano();
+}
+
+function updateAcaoField(id, field, value) {
+    const item = planoAcoes.find(a => a.id === id);
+    if (item) { item[field] = value; savePlano(); }
+}
+
+function updateAcaoStatus(id, selectEl) {
+    const item = planoAcoes.find(a => a.id === id);
+    if (item) {
+        item.status = selectEl.value;
+        selectEl.className = 'status-' + item.status;
+        savePlano();
+    }
+}
+
+// ── Save / Load / Clear ───────────────────────────────────────────────────────
+function saveDiagAcoes() {
+    const data = {};
+    document.querySelectorAll('#diagnostico-acoes-panel [data-diag-acoes]').forEach(el => {
+        data[el.dataset.diagAcoes] = el.value;
+    });
+    localStorage.setItem(DIAG_ACOES_KEY, JSON.stringify(data));
+    savePlano();
+    showToast('Diagnóstico e Ações salvo!');
+}
+
+function loadDiagAcoes() {
+    try {
+        const data = JSON.parse(localStorage.getItem(DIAG_ACOES_KEY) || '{}');
+        document.querySelectorAll('#diagnostico-acoes-panel [data-diag-acoes]').forEach(el => {
+            if (data[el.dataset.diagAcoes] !== undefined) el.value = data[el.dataset.diagAcoes];
+        });
+    } catch(e) {}
+    loadPlano();
+}
+
+function clearDiagAcoes() {
+    if (!confirm('Limpar todos os campos do Diagnóstico e Ações, incluindo o Plano de Ação?')) return;
+    document.querySelectorAll('#diagnostico-acoes-panel [data-diag-acoes]').forEach(el => el.value = '');
+    localStorage.removeItem(DIAG_ACOES_KEY);
+    planoAcoes = [];
+    planoNextId = 1;
+    savePlano();
+    renderPlano();
+    showToast('Diagnóstico e Ações limpo.', 'fa-trash');
+}
+
+function loadDiagAcoesExample(key) {
+    if (!key) return;
+    const ex = DIAG_ACOES_EXAMPLES[key];
+    if (!ex) return;
+    Object.entries(ex).forEach(([field, val]) => {
+        if (field === 'acoes_plano') return;
+        const el = document.querySelector(`#diagnostico-acoes-panel [data-diag-acoes="${field}"]`);
+        if (el) el.value = val;
+    });
+    // Load plano
+    if (ex.acoes_plano) {
+        planoAcoes = ex.acoes_plano.map((item, i) => ({ id: i + 1, ...item }));
+        planoNextId = planoAcoes.length + 1;
+        renderPlano();
+    }
+    showToast('Exemplo carregado!', 'fa-magic');
+}
+
+// Examples tabs — scoped to #diagnostico-acoes-panel
+document.querySelectorAll('#diag-acoes-ex-tabs .diag-ex-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('#diag-acoes-ex-tabs .diag-ex-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('#diagnostico-acoes-panel .diag-ex-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.acoesEx).classList.add('active');
+    });
+});
+
+document.getElementById('btn-save-diag-acoes').addEventListener('click', saveDiagAcoes);
+document.getElementById('btn-clear-diag-acoes').addEventListener('click', clearDiagAcoes);
+document.getElementById('btn-print-diag-acoes').addEventListener('click', () => window.print());
+document.getElementById('diag-acoes-example').addEventListener('change', e => loadDiagAcoesExample(e.target.value));
+document.getElementById('btn-add-acao').addEventListener('click', addAcao);
+
+loadDiagAcoes();
+
+
 // ─── KANBAN ──────────────────────────────────────────────────────────────────
 const KANBAN_KEY = 'mktjur_kanban';
 
