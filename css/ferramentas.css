@@ -1275,11 +1275,13 @@ body {
     color: var(--gray-700);
 }
 .diag-plano-table tr:last-child td { border-bottom: none; }
-.diag-plano-table .col-acao { width: 45%; }
-.diag-plano-table .col-data { width: 12%; min-width: 110px; }
-.diag-plano-table .col-resp { width: 22%; }
-.diag-plano-table .col-status { width: 13%; min-width: 130px; }
-.diag-plano-table .col-del { width: 4%; min-width: 36px; }
+.diag-plano-table .col-acao { width: 15%; }
+.diag-plano-table .col-descricao { width: 26%; }
+.diag-plano-table .col-resp { width: 13%; }
+.diag-plano-table .col-data { width: 10%; min-width: 100px; }
+.diag-plano-table .col-indicador { width: 18%; }
+.diag-plano-table .col-status { width: 15%; min-width: 130px; }
+.diag-plano-table .col-del { width: 3%; min-width: 36px; }
 
 .diag-plano-table input[type="text"],
 .diag-plano-table input[type="date"] {

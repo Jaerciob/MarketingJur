@@ -714,9 +714,9 @@ const DIAG_ACOES_EXAMPLES = {
         obj_lp_t1: '• Atingir 8 leads qualificados/mês via LinkedIn\n• Publicar 1 artigo técnico por semana no blog\n• Fechar parceria formal com 2 escritórios de contabilidade\n• Implementar CRM para gestão de casos e follow-up',
         obj_lp_t2: '• Consolidar carteira com 20 empresas em assessoria preventiva\n• Lançar curso online: "Prevenção de Passivos Trabalhistas"\n• Alcançar nota 4,8+ no Google Meu Negócio com 50 avaliações\n• Gerar R$ 18.000/mês de receita recorrente',
         acoes_plano: [
-            { acao: 'Publicar 2 posts/semana no LinkedIn sobre riscos trabalhistas', data: '2025-08-15', responsavel: 'Advogado(a) sócio(a)', status: 'fazendo' },
-            { acao: 'Implementar CRM HubSpot gratuito e cadastrar pipeline de leads', data: '2025-08-30', responsavel: 'Advogado(a) sócio(a)', status: 'afazer' },
-            { acao: 'Criar proposta comercial em PDF e substituir envio por WhatsApp', data: '2025-09-15', responsavel: 'Advogado(a) sócio(a)', status: 'afazer' }
+            { acao: 'Definir posicionamento do escritório', descricao: 'Definir proposta de valor, público-alvo, diferenciais competitivos e identidade visual para garantir uma comunicação consistente.', responsavel: 'Sócio', data: '21 de agosto', indicador: 'Definições concluídas', status: 'feito' },
+            { acao: 'Estruturar a presença digital', descricao: 'Desenvolver e publicar o site institucional com blog e otimização para buscas por advogado trabalhista.', responsavel: 'Agência / Desenvolvedor', data: '20 de novembro', indicador: 'Site publicado', status: 'fazendo' },
+            { acao: 'Gerar autoridade', descricao: 'Produzir 12 artigos educativos sobre riscos trabalhistas para PMEs publicados no blog e LinkedIn.', responsavel: 'Estagiário', data: '02 de janeiro', indicador: '12 artigos publicados', status: 'afazer' }
         ]
     },
     familia: {
@@ -746,9 +746,9 @@ const DIAG_ACOES_EXAMPLES = {
         obj_lp_t1: '• Atingir 6 leads qualificados/mês via Instagram e indicações\n• Publicar 3 Reels educativos por semana com 500+ visualizações\n• Fechar parceria ativa com 3 psicólogos e 2 mediadores\n• Lançar e-book "Guia do Divórcio sem Trauma" e capturar 200 e-mails',
         obj_lp_t2: '• Consolidar 15 casos ativos com ticket médio de R$ 4.500\n• Atingir 1.000 seguidores engajados no Instagram\n• Alcançar nota 4,9+ no Google com 30 avaliações verificadas\n• Gerar R$ 13.500/mês de receita e reduzir custo por lead para R$ 175',
         acoes_plano: [
-            { acao: 'Publicar 2 artigos de SEO/mês sobre divórcio e inventário', data: '2025-08-20', responsavel: 'Advogada + Redator', status: 'afazer' },
-            { acao: 'Contratar freelancer de conteúdo para Instagram (R$ 600/mês)', data: '2025-08-10', responsavel: 'Advogada sócia', status: 'fazendo' },
-            { acao: 'Criar proposta visual de honorários com etapas do processo', data: '2025-09-01', responsavel: 'Advogada sócia', status: 'feito' }
+            { acao: 'Definir posicionamento do escritório', descricao: 'Definir proposta de valor, público-alvo, diferenciais competitivos e identidade visual para garantir uma comunicação consistente.', responsavel: 'Sócia', data: '21 de agosto', indicador: 'Definições concluídas', status: 'feito' },
+            { acao: 'Estruturar a presença digital', descricao: 'Desenvolver e publicar o site institucional com blog de conteúdo sobre divórcio e inventário.', responsavel: 'Agência / Desenvolvedor', data: '20 de novembro', indicador: 'Site publicado', status: 'fazendo' },
+            { acao: 'Gerar autoridade', descricao: 'Produzir 12 artigos educativos sobre divórcio, guarda e inventário para o blog e Instagram.', responsavel: 'Estagiário', data: '02 de janeiro', indicador: '12 artigos publicados', status: 'afazer' }
         ]
     },
     empresarial: {
@@ -778,9 +778,9 @@ const DIAG_ACOES_EXAMPLES = {
         obj_lp_t1: '• Fechar 2 contratos de assessoria jurídica recorrente (R$ 2.500/mês)\n• Publicar guia: "10 Riscos Jurídicos para Startups" e gerar 150 leads\n• Participar de 2 eventos do ecossistema de startups como palestrante\n• Implementar onboarding digital com contrato e assinatura eletrônica',
         obj_lp_t2: '• Atingir 8 clientes em pacote mensal recorrente (R$ 20.000 MRR)\n• Consolidar presença no LinkedIn com 2.000 seguidores e 5% de engajamento\n• Fechar parcerias com 3 contadores e 2 aceleradoras como fonte de indicação\n• Publicar 2 artigos técnicos aprofundados demonstrando expertise (sem expor casos reais)',
         acoes_plano: [
-            { acao: 'Implementar onboarding digital com assinatura eletrônica', data: '2025-08-25', responsavel: 'Sócio + TI', status: 'fazendo' },
-            { acao: 'Realizar primeiro webinar sobre Reforma Tributária para PMEs', data: '2025-09-10', responsavel: 'Advogado sócio', status: 'afazer' },
-            { acao: 'Criar critério de qualificação de clientes e implementar triagem', data: '2025-08-15', responsavel: 'Sócios', status: 'feito' }
+            { acao: 'Definir posicionamento do escritório', descricao: 'Definir proposta de valor, público-alvo, diferenciais competitivos e identidade visual para garantir uma comunicação consistente.', responsavel: 'Sócio', data: '21 de agosto', indicador: 'Definições concluídas', status: 'feito' },
+            { acao: 'Estruturar a presença digital', descricao: 'Desenvolver e publicar o site institucional com blog jurídico voltado a PMEs e startups.', responsavel: 'Agência / Desenvolvedor', data: '20 de novembro', indicador: 'Site publicado', status: 'fazendo' },
+            { acao: 'Gerar autoridade', descricao: 'Produzir 12 artigos sobre LGPD, Reforma Tributária e contratos para o blog e LinkedIn.', responsavel: 'Estagiário', data: '02 de janeiro', indicador: '12 artigos publicados', status: 'afazer' }
         ]
     },
     previdenciario: {
@@ -810,9 +810,9 @@ const DIAG_ACOES_EXAMPLES = {
         obj_lp_t1: '• Atingir 10 leads qualificados/mês via redes e indicações\n• Publicar 1 artigo técnico por semana no blog\n• Fechar parceria formal com 2 sindicatos rurais\n• Implementar CRM e software de cálculo integrado',
         obj_lp_t2: '• Consolidar carteira com 30 processos ativos\n• Lançar palestra educativa "Aposentadoria após a Reforma"\n• Alcançar nota 4,8+ no Google Meu Negócio com 40 avaliações\n• Estruturar linha de revisões de benefícios já concedidos',
         acoes_plano: [
-            { acao: 'Criar serviço de planejamento previdenciário com honorários fixos', data: '2025-08-20', responsavel: 'Advogado(a) especialista', status: 'afazer' },
-            { acao: 'Gravar e publicar primeiros 4 vídeos sobre aposentadoria no YouTube', data: '2025-09-01', responsavel: 'Advogado(a) + Editor', status: 'fazendo' },
-            { acao: 'Implementar atualização quinzenal via WhatsApp para clientes ativos', data: '2025-08-15', responsavel: 'Assistente + Advogado(a)', status: 'feito' }
+            { acao: 'Definir posicionamento do escritório', descricao: 'Definir proposta de valor, público-alvo, diferenciais competitivos e identidade visual para garantir uma comunicação consistente.', responsavel: 'Sócio', data: '21 de agosto', indicador: 'Definições concluídas', status: 'feito' },
+            { acao: 'Estruturar a presença digital', descricao: 'Desenvolver e publicar o site institucional com conteúdo educativo sobre aposentadorias e benefícios do INSS.', responsavel: 'Agência / Desenvolvedor', data: '20 de novembro', indicador: 'Site publicado', status: 'fazendo' },
+            { acao: 'Gerar autoridade', descricao: 'Produzir 12 artigos sobre aposentadoria, BPC/LOAS e revisão de benefícios para o blog e YouTube.', responsavel: 'Estagiário', data: '02 de janeiro', indicador: '12 artigos publicados', status: 'afazer' }
         ]
     },
     consumidor: {
@@ -842,9 +842,9 @@ const DIAG_ACOES_EXAMPLES = {
         obj_lp_t1: '• Atingir 25 leads qualificados/mês via redes e busca\n• Publicar 3 Reels educativos por semana\n• Estruturar fluxo de triagem e onboarding padronizado\n• Implementar software de gestão de alto volume',
         obj_lp_t2: '• Consolidar carteira com 80 processos ativos\n• Lançar linha de atendimento para superendividamento\n• Alcançar nota 4,8+ no Google Meu Negócio com 60 avaliações\n• Reduzir custo por lead para R$ 45',
         acoes_plano: [
-            { acao: 'Criar formulário digital de triagem e pré-análise de casos', data: '2025-08-18', responsavel: 'Advogado(a) + Dev', status: 'fazendo' },
-            { acao: 'Estruturar linha de repactuação de dívidas com fluxo próprio', data: '2025-09-05', responsavel: 'Advogado(a) sócio(a)', status: 'afazer' },
-            { acao: 'Migrar controle de prazos de planilha para sistema jurídico', data: '2025-08-10', responsavel: 'Equipe jurídica', status: 'feito' }
+            { acao: 'Definir posicionamento do escritório', descricao: 'Definir proposta de valor, público-alvo, diferenciais competitivos e identidade visual para garantir uma comunicação consistente.', responsavel: 'Sócio', data: '21 de agosto', indicador: 'Definições concluídas', status: 'feito' },
+            { acao: 'Estruturar a presença digital', descricao: 'Desenvolver e publicar o site institucional com conteúdo sobre direitos do consumidor e superendividamento.', responsavel: 'Agência / Desenvolvedor', data: '20 de novembro', indicador: 'Site publicado', status: 'fazendo' },
+            { acao: 'Gerar autoridade', descricao: 'Produzir 12 artigos educativos sobre direitos do consumidor, bancos e planos de saúde para o blog.', responsavel: 'Estagiário', data: '02 de janeiro', indicador: '12 artigos publicados', status: 'afazer' }
         ]
     },
     tributario: {
@@ -874,9 +874,9 @@ const DIAG_ACOES_EXAMPLES = {
         obj_lp_t1: '• Fechar 2 projetos de recuperação de créditos ou planejamento\n• Publicar guia "Recuperação de Créditos para PMEs" e gerar 150 leads\n• Realizar 1 webinar educativo sobre a Reforma Tributária\n• Implementar CRM e software de análise tributária',
         obj_lp_t2: '• Atingir 6 clientes em assessoria recorrente (R$ 18.000 MRR)\n• Consolidar presença no LinkedIn com 2.000 seguidores qualificados\n• Fechar parcerias com 3 contadores e 2 associações comerciais\n• Publicar 2 artigos técnicos sobre a transição da Reforma (sem expor clientes)',
         acoes_plano: [
-            { acao: 'Lançar programa "Diagnóstico Tributário PME" com proposta padrão', data: '2025-08-30', responsavel: 'Advogado(a) sócio(a)', status: 'afazer' },
-            { acao: 'Publicar primeiros 4 posts sobre Reforma Tributária no LinkedIn', data: '2025-08-15', responsavel: 'Advogado(a) sócio(a)', status: 'fazendo' },
-            { acao: 'Contratar analista fiscal júnior para recuperação de créditos', data: '2025-09-15', responsavel: 'Sócios', status: 'feito' }
+            { acao: 'Definir posicionamento do escritório', descricao: 'Definir proposta de valor, público-alvo, diferenciais competitivos e identidade visual para garantir uma comunicação consistente.', responsavel: 'Sócio', data: '21 de agosto', indicador: 'Definições concluídas', status: 'feito' },
+            { acao: 'Estruturar a presença digital', descricao: 'Desenvolver e publicar o site institucional com conteúdo sobre planejamento tributário e Reforma para PMEs.', responsavel: 'Agência / Desenvolvedor', data: '20 de novembro', indicador: 'Site publicado', status: 'fazendo' },
+            { acao: 'Gerar autoridade', descricao: 'Produzir 12 artigos educativos sobre Reforma Tributária, recuperação de créditos e planejamento fiscal.', responsavel: 'Estagiário', data: '02 de janeiro', indicador: '12 artigos publicados', status: 'afazer' }
         ]
     }
 };
@@ -915,12 +915,14 @@ function renderPlano() {
         tr.dataset.id = item.id;
         const statusClass = item.status === 'fazendo' ? 'status-fazendo' : (item.status === 'feito' ? 'status-feito' : 'status-afazer');
         tr.innerHTML = `
-            <td class="col-acao"><input type="text" value="${escHtml(item.acao)}" placeholder="Descreva a ação..." oninput="updateAcaoField(${item.id},'acao',this.value)"></td>
-            <td class="col-data"><input type="date" value="${escHtml(item.data)}" oninput="updateAcaoField(${item.id},'data',this.value)"></td>
+            <td class="col-acao"><input type="text" value="${escHtml(item.acao)}" placeholder="Nome da ação..." oninput="updateAcaoField(${item.id},'acao',this.value)"></td>
+            <td class="col-descricao"><input type="text" value="${escHtml(item.descricao||'')}" placeholder="Descreva a ação..." oninput="updateAcaoField(${item.id},'descricao',this.value)"></td>
             <td class="col-resp"><input type="text" value="${escHtml(item.responsavel)}" placeholder="Responsável..." oninput="updateAcaoField(${item.id},'responsavel',this.value)"></td>
+            <td class="col-data"><input type="text" value="${escHtml(item.data)}" placeholder="Ex.: 15 de agosto" oninput="updateAcaoField(${item.id},'data',this.value)"></td>
+            <td class="col-indicador"><input type="text" value="${escHtml(item.indicador||'')}" placeholder="Como medir o sucesso..." oninput="updateAcaoField(${item.id},'indicador',this.value)"></td>
             <td class="col-status">
                 <select class="${statusClass}" onchange="updateAcaoStatus(${item.id},this)">
-                    <option value="afazer"${item.status==='afazer'?' selected':''}>A FAZER</option>
+                    <option value="afazer"${item.status==='afazer'?' selected':''}>NÃO INICIADO</option>
                     <option value="fazendo"${item.status==='fazendo'?' selected':''}>FAZENDO</option>
                     <option value="feito"${item.status==='feito'?' selected':''}>FEITO</option>
                 </select>
@@ -935,7 +937,7 @@ function escHtml(str) {
 }
 
 function addAcao() {
-    planoAcoes.push({ id: planoNextId++, acao: '', data: '', responsavel: '', status: 'afazer' });
+    planoAcoes.push({ id: planoNextId++, acao: '', descricao: '', responsavel: '', data: '', indicador: '', status: 'afazer' });
     savePlano();
     renderPlano();
     // Focus the new row's first input
