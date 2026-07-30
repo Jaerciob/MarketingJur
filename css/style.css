@@ -2650,7 +2650,7 @@ a:hover {
     gap: 0.4rem;
 }
 
-.step-tools li {
+.step-tools ul li {
     position: relative;
     padding-left: 1.1rem;
     font-size: 0.85rem;
@@ -2658,7 +2658,7 @@ a:hover {
     line-height: 1.4;
 }
 
-.step-tools li::before {
+.step-tools ul li::before {
     content: "\f00c";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
