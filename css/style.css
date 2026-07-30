@@ -2728,6 +2728,22 @@ a:hover {
     font-size: 0.7rem;
 }
 
+.results-intro {
+    max-width: 820px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+    color: var(--gray-600);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.step-desc {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    line-height: 1.65;
+    margin: 0.5rem 0 1rem;
+}
+
 .results-closing-quote {
     max-width: 760px;
     margin: var(--spacing-3xl) auto 0;
