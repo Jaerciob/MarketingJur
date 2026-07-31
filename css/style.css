@@ -2531,6 +2531,38 @@ a:hover {
     border-top-color: var(--primary-color);
 }
 
+.step-tag--bonus {
+    background: linear-gradient(135deg, #d97706, #f59e0b);
+    color: #fff;
+    border: none;
+}
+
+.step-card--bonus {
+    margin-top: var(--spacing-xl);
+    border-top-color: #d97706;
+    background: linear-gradient(135deg, #fffbeb 0%, var(--gray-50) 100%);
+}
+
+.step-card--bonus:hover {
+    border-top-color: #b45309;
+}
+
+.step-card--bonus-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.step-card--bonus-body .step-tools {
+    margin-top: 0;
+}
+
+.step-number--bonus {
+    background: linear-gradient(135deg, #d97706, #f59e0b);
+    font-size: 1rem;
+}
+
 .step-tag {
     align-self: flex-start;
     background: var(--secondary-color);
