@@ -1,0 +1,3 @@
+ALTER TABLE submissions
+  ADD COLUMN IF NOT EXISTS selected_courses TEXT[] NOT NULL DEFAULT '{}'::text[],
+  ADD COLUMN IF NOT EXISTS source VARCHAR(120);
