@@ -1054,6 +1054,7 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="js/analytics.js"></script>
     <script src="js/main.js"></script>
 
     <!-- Modal Logic -->
@@ -1303,7 +1304,17 @@
                 resetForm();
                 lastTrigger = button;
                 var selectedCourse = button.getAttribute('data-course');
+                var action = button.classList.contains('step-access-btn--tools')
+                    ? 'tools'
+                    : button.classList.contains('course-btn')
+                        ? 'individual_course'
+                        : 'content';
                 sourceInput.value = button.getAttribute('data-source') || '';
+
+                window.marketingJurAnalytics.trackEvent('course_interest_opened', {
+                    course: selectedCourse || 'unknown',
+                    action: action
+                });
 
                 if (selectedCourse === 'all') {
                     allCheckbox.checked = true;
@@ -1395,11 +1406,17 @@
                 });
 
                 if (selectedCourses.length === 0) {
+                    window.marketingJurAnalytics.trackEvent('course_interest_validation_error', {
+                        reason: 'no_course_selected'
+                    });
                     showError('Selecione ao menos um curso para continuar.');
                     return;
                 }
 
                 if (!form.checkValidity()) {
+                    window.marketingJurAnalytics.trackEvent('course_interest_validation_error', {
+                        reason: 'required_fields'
+                    });
                     form.reportValidity();
                     return;
                 }
@@ -1430,11 +1447,18 @@
                         throw new Error(response.result.error || 'Ocorreu um erro. Tente novamente.');
                     }
 
+                    window.marketingJurAnalytics.trackEvent('course_interest_submitted', {
+                        course_selection: selectedCourses.join(','),
+                        course_count: selectedCourses.length
+                    });
                     successName.textContent = data.nome.split(/\s+/)[0];
                     form.hidden = true;
                     successBox.hidden = false;
                 })
                 .catch(function (error) {
+                    window.marketingJurAnalytics.trackEvent('course_interest_submission_error', {
+                        reason: 'api_error'
+                    });
                     showError(error.message || 'Erro de conexão. Tente novamente.');
                     submitButton.disabled = false;
                     submitButton.textContent = defaultSubmitText;
