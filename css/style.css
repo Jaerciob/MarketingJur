@@ -3036,6 +3036,164 @@ a:hover {
     color: var(--secondary-color);
 }
 
+/* Método MAPA - Visão Geral (5 Passos) */
+.mapa-overview {
+    margin: 0 auto var(--spacing-3xl);
+    max-width: 1100px;
+    background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 100%);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-2xl);
+    scroll-margin-top: 90px;
+}
+
+.mapa-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.mapa-compass-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: var(--white);
+    font-size: 1rem;
+    transition: var(--transition-normal);
+}
+
+.mapa-compass-link:hover {
+    transform: rotate(45deg);
+    color: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
+.mapa-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.mapa-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-sm);
+    color: var(--gray-700);
+}
+
+.mapa-step:hover {
+    color: var(--primary-color);
+}
+
+.mapa-step:hover .mapa-step-number {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.mapa-step-number {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: var(--transition-normal);
+}
+
+.mapa-step-number--1 { background: #2563eb; }
+.mapa-step-number--2 { background: #9333ea; }
+.mapa-step-number--3 { background: #2563eb; }
+.mapa-step-number--4 { background: #f59e0b; }
+.mapa-step-number--5 { background: #db2777; }
+
+.mapa-step-text {
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+/* Método MAPA em Detalhes */
+.mapa-detalhes-section {
+    padding: var(--spacing-4xl) 0;
+    background: var(--gray-50);
+    scroll-margin-top: 90px;
+}
+
+.mapa-detalhes-text {
+    max-width: 860px;
+    margin: 0 auto var(--spacing-2xl);
+    text-align: center;
+    color: var(--gray-600);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.mapa-table-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    overflow-x: auto;
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.mapa-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.mapa-table th,
+.mapa-table td {
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: left;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.mapa-table th {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.mapa-table td {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+}
+
+.mapa-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.mapa-table-letter {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .mapa-steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .mapa-steps {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     .steps-grid {
         grid-template-columns: 1fr;

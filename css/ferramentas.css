@@ -1667,6 +1667,60 @@ body {
 .diag-ex-content { display: none; padding: 20px; }
 .diag-ex-content.active { display: block; }
 
+.diag-office-profile {
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid #d7e3ec;
+    border-radius: var(--radius);
+    background: #f7fbfe;
+}
+.diag-office-profile-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--primary-color);
+}
+.diag-office-profile-heading > i {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+.diag-office-profile-heading h3 {
+    margin: 0;
+    font-size: 0.95rem;
+}
+.diag-office-profile-heading p {
+    margin: 2px 0 0;
+    color: var(--gray-500);
+    font-size: 0.76rem;
+}
+.diag-office-profile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+.diag-office-profile-field {
+    padding: 9px 10px;
+    border: 1px solid #e1ebf2;
+    border-radius: 6px;
+    background: var(--white);
+}
+.diag-office-profile-field span {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--gray-500);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.diag-office-profile-field p {
+    margin: 0;
+    color: var(--gray-700);
+    font-size: 0.78rem;
+    line-height: 1.45;
+}
+
 /* Example row 1: 3 cols */
 .diag-ex-row1 {
     display: grid;
@@ -1764,6 +1818,7 @@ body {
     .diag-row1 { grid-template-columns: 1fr; }
     .diag-ex-row1 { grid-template-columns: 1fr; }
     .diag-row2 { grid-template-columns: 1fr; }
+    .diag-office-profile-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 640px) {
@@ -1771,6 +1826,7 @@ body {
     .diag-mercado-grid { grid-template-columns: 1fr; }
     .diag-ex-grid2 { grid-template-columns: 1fr; }
     .diag-ex-cruzada-row { grid-template-columns: 1fr; }
+    .diag-office-profile-grid { grid-template-columns: 1fr; }
 }
 
 /* ===================================

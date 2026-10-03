@@ -29,12 +29,6 @@
 <!-- Tabs -->
 <nav class="tools-tabs">
     <div class="tabs-inner">
-        <button class="tab-btn group-btn active" data-group="prompts" data-direct="prompts-panel">
-            <i class="fas fa-wand-magic-sparkles"></i> Biblioteca de Prompts
-        </button>
-        <button class="tab-btn group-btn" data-group="kanban" data-direct="kanban-panel">
-            <i class="fas fa-columns"></i> Plano de Trabalho
-        </button>
         <button class="tab-btn group-btn" data-group="mercado">
             <i class="fas fa-compass"></i> Mercado e Objetivos
         </button>
@@ -44,8 +38,8 @@
         <button class="tab-btn group-btn" data-group="execucao">
             <i class="fas fa-rocket"></i> Execução
         </button>
-        <button class="tab-btn group-btn" data-group="gestao" data-direct="gestao-panel">
-            <i class="fas fa-chart-line"></i> Gestão
+        <button class="tab-btn group-btn active" data-group="prompts" data-direct="prompts-panel">
+            <i class="fas fa-wand-magic-sparkles"></i> Biblioteca de Prompts
         </button>
         <button class="tab-btn group-btn" data-group="aprofundamento">
             <i class="fas fa-microscope"></i> Aprofundamento
@@ -77,6 +71,12 @@
             </button>
         </div>
         <div class="subnav-group" id="subnav-aprofundamento">
+            <button class="subtab-btn" data-panel="kanban-panel">
+                <i class="fas fa-columns"></i> Plano de Trabalho
+            </button>
+            <button class="subtab-btn" data-panel="gestao-panel">
+                <i class="fas fa-chart-line"></i> Gestão
+            </button>
             <button class="subtab-btn active" data-panel="pestel-panel">
                 <i class="fas fa-globe"></i> Análise PESTEL
             </button>
@@ -730,18 +730,7 @@
         <!-- Actions Bar -->
         <div class="canvas-actions">
             <div class="canvas-actions-left">
-                <div class="canvas-example-select">
-                    <label>Exemplos práticos:</label>
-                    <select id="diag-acoes-example">
-                        <option value="">— Selecione um exemplo —</option>
-                        <option value="trabalhista">Direito Trabalhista</option>
-                        <option value="familia">Direito de Família</option>
-                        <option value="empresarial">Direito Empresarial</option>
-                        <option value="previdenciario">Direito Previdenciário</option>
-                        <option value="consumidor">Direito do Consumidor</option>
-                        <option value="tributario">Direito Tributário</option>
-                    </select>
-                </div>
+                <button class="btn-print" id="btn-go-diag-acoes-examples" type="button"><i class="fas fa-graduation-cap"></i> Exemplos Práticos</button>
                 <button class="btn-clear" id="btn-clear-diag-acoes"><i class="fas fa-eraser"></i> Limpar</button>
                 <button class="btn-print" id="btn-print-diag-acoes"><i class="fas fa-print"></i> Imprimir</button>
             </div>
@@ -1015,7 +1004,7 @@
         </div>
 
         <!-- ── Exemplos Práticos ── -->
-        <div class="diag-examples-block">
+        <div class="diag-examples-block" id="diag-acoes-examples-block">
             <div class="diag-examples-header">
                 <i class="fas fa-graduation-cap"></i>
                 <span>Exemplos Práticos Preenchidos</span>

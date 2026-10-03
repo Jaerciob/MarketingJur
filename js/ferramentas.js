@@ -881,6 +881,90 @@ const DIAG_ACOES_EXAMPLES = {
     }
 };
 
+const DIAG_OFFICE_PROFILES = {
+    trabalhista: {
+        areas: 'Direito do Trabalho, compliance trabalhista e consultoria preventiva',
+        tamanho: 'Escritório solo, com plano de expansão para 5 advogados',
+        alcance: 'Atendimento 100% online em todo o Brasil',
+        clientes: 'PMEs que precisam reduzir riscos trabalhistas e estruturar o RH',
+        diferenciais: 'Especialização certificada, 8 anos de experiência, atendimento online e rede de 8 contadores parceiros',
+        objetivo: 'Tornar-se referência nacional em compliance trabalhista para PMEs e alcançar MRR de R$ 100.000/mês'
+    },
+    familia: {
+        areas: 'Direito de Família, mediação familiar e inventário extrajudicial',
+        tamanho: 'Boutique enxuta, com plano de formar equipe de 3 advogados',
+        alcance: 'Atendimento regional com expansão online para todo o Brasil',
+        clientes: 'Famílias em divórcios, inventários, guarda e situações familiares complexas',
+        diferenciais: 'Atendimento humanizado, certificação em mediação e parceria exclusiva com psicóloga',
+        objetivo: 'Ser referência estadual em advocacia familiar humanizada e faturar R$ 400.000/ano'
+    },
+    empresarial: {
+        areas: 'Direito Empresarial, contratos B2B, M&A e LGPD',
+        tamanho: 'Boutique com 8 advogados e modelo de assinatura jurídica',
+        alcance: 'Atendimento nacional, com foco no ecossistema de startups e PMEs',
+        clientes: 'Startups e PMEs que buscam previsibilidade, velocidade e segurança jurídica',
+        diferenciais: '35 clientes recorrentes, preço fixo, experiência no ecossistema de startups e autoridade no LinkedIn',
+        objetivo: 'Ser referência nacional em Legal as a Service e alcançar MRR de R$ 150.000/mês'
+    },
+    previdenciario: {
+        areas: 'Direito Previdenciário, aposentadorias, revisões e benefícios por incapacidade',
+        tamanho: 'Escritório em crescimento, com plano de equipe de 4 advogados e analista de cálculos',
+        alcance: 'Atendimento regional híbrido com expansão online para novos municípios',
+        clientes: 'Segurados do INSS, trabalhadores rurais e pessoas que precisam planejar a aposentadoria',
+        diferenciais: '7 anos de experiência, domínio do Meu INSS, análise detalhada do CNIS e atendimento acolhedor',
+        objetivo: 'Tornar-se referência regional em planejamento previdenciário e faturar R$ 500.000/ano'
+    },
+    consumidor: {
+        areas: 'Direito do Consumidor, bancos, telecomunicações, planos de saúde e superendividamento',
+        tamanho: 'Operação preparada para alto volume, com 2 advogados e assistente de triagem',
+        alcance: 'Atendimento online em todo o Brasil',
+        clientes: 'Consumidores com conflitos contra bancos, empresas de telecom, e-commerce e planos de saúde',
+        diferenciais: '6 anos de experiência, processos padronizados, operação eficiente e conteúdo educativo',
+        objetivo: 'Ser referência regional em Direito do Consumidor com operação escalável e faturar R$ 480.000/ano'
+    },
+    tributario: {
+        areas: 'Direito Tributário, planejamento, Reforma Tributária e recuperação de créditos',
+        tamanho: 'Boutique com 4 advogados, analista fiscal e programa de assessoria contínua',
+        alcance: 'Atendimento regional para PMEs, com expansão digital',
+        clientes: 'PMEs que precisam de planejamento tributário, recuperação de créditos e adaptação regulatória',
+        diferenciais: 'Expertise na Reforma Tributária, documentação rigorosa, rede de contadores e linguagem de negócios',
+        objetivo: 'Ser referência regional em planejamento tributário para PMEs e atingir R$ 60.000/mês'
+    }
+};
+
+function renderDiagOfficeProfile(key, content) {
+    const profile = DIAG_OFFICE_PROFILES[key];
+    if (!profile || !content || content.querySelector('.diag-office-profile')) return;
+
+    const fields = [
+        ['areas', 'Áreas de atuação'],
+        ['tamanho', 'Tamanho'],
+        ['alcance', 'Localização / alcance'],
+        ['clientes', 'Perfil dos clientes'],
+        ['diferenciais', 'Diferenciais competitivos'],
+        ['objetivo', 'Objetivo estratégico atual']
+    ];
+    const profileCard = document.createElement('section');
+    profileCard.className = 'diag-office-profile';
+    profileCard.innerHTML = `
+        <div class="diag-office-profile-heading">
+            <i class="fas fa-building"></i>
+            <div>
+                <h3>Perfil de Escritório</h3>
+                <p>Contexto do exemplo para orientar a leitura do diagnóstico.</p>
+            </div>
+        </div>
+        <div class="diag-office-profile-grid">
+            ${fields.map(([field, label]) => `
+                <div class="diag-office-profile-field">
+                    <span>${label}</span>
+                    <p>${escHtml(profile[field])}</p>
+                </div>
+            `).join('')}
+        </div>`;
+    content.prepend(profileCard);
+}
+
 // ── Plano de Ação ─────────────────────────────────────────────────────────────
 let planoAcoes = [];
 let planoNextId = 1;
@@ -1024,14 +1108,22 @@ document.querySelectorAll('#diag-acoes-ex-tabs .diag-ex-tab').forEach(tab => {
         document.querySelectorAll('#diag-acoes-ex-tabs .diag-ex-tab').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('#diagnostico-acoes-panel .diag-ex-content').forEach(c => c.classList.remove('active'));
         tab.classList.add('active');
-        document.getElementById(tab.dataset.acoesEx).classList.add('active');
+        const content = document.getElementById(tab.dataset.acoesEx);
+        content.classList.add('active');
+        renderDiagOfficeProfile(tab.dataset.acoesEx.replace('diag-acoes-ex-', ''), content);
     });
+});
+
+document.querySelectorAll('#diagnostico-acoes-panel .diag-ex-content').forEach(content => {
+    renderDiagOfficeProfile(content.id.replace('diag-acoes-ex-', ''), content);
 });
 
 document.getElementById('btn-save-diag-acoes').addEventListener('click', saveDiagAcoes);
 document.getElementById('btn-clear-diag-acoes').addEventListener('click', clearDiagAcoes);
 document.getElementById('btn-print-diag-acoes').addEventListener('click', () => window.print());
-document.getElementById('diag-acoes-example').addEventListener('change', e => loadDiagAcoesExample(e.target.value));
+document.getElementById('btn-go-diag-acoes-examples').addEventListener('click', () => {
+    document.getElementById('diag-acoes-examples-block').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 document.getElementById('btn-add-acao').addEventListener('click', addAcao);
 
 loadDiagAcoes();
