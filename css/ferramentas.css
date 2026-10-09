@@ -298,6 +298,29 @@ body {
 .prompt-profile-fields textarea:focus,
 .generated-prompt:focus { outline: none; border-color: var(--accent-blue); }
 
+.prompt-profile-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+.btn-prompt-save {
+    background: var(--primary-color);
+    border: 0;
+    border-radius: 6px;
+    color: var(--white);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font: 600 0.82rem var(--font-primary);
+    padding: 9px 12px;
+}
+.btn-prompt-save:hover { opacity: 0.9; }
+.prompt-profile-status { color: var(--gray-500); font-size: 0.76rem; }
+.prompt-profile-status.error { color: #b42318; }
+
 .prompt-template-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
 .prompt-template-btn {
     border: 1px solid var(--gray-300);

@@ -155,13 +155,26 @@ function generatePrompt() {
     output.value = promptTemplates[activePromptTemplate].replace('{{perfil}}', getPromptProfile());
 }
 
+function setPromptProfileStatus(message, isError = false) {
+    const status = document.getElementById('prompt-profile-status');
+    status.textContent = message;
+    status.classList.toggle('error', isError);
+}
+
 function savePromptProfile() {
     const data = {};
     document.querySelectorAll('[data-prompt-profile]').forEach(field => {
         data[field.dataset.promptProfile] = field.value;
     });
-    localStorage.setItem(PROMPT_PROFILE_KEY, JSON.stringify(data));
+    try {
+        localStorage.setItem(PROMPT_PROFILE_KEY, JSON.stringify(data));
+        setPromptProfileStatus('Perfil salvo neste navegador.');
+    } catch (error) {
+        setPromptProfileStatus('Não foi possível salvar o perfil neste navegador.', true);
+        return false;
+    }
     generatePrompt();
+    return true;
 }
 
 function loadPromptProfile() {
@@ -170,11 +183,16 @@ function loadPromptProfile() {
         document.querySelectorAll('[data-prompt-profile]').forEach(field => {
             field.value = data[field.dataset.promptProfile] || '';
         });
-    } catch (error) {}
+    } catch (error) {
+        setPromptProfileStatus('Não foi possível carregar o perfil salvo neste navegador.', true);
+    }
     generatePrompt();
 }
 
 document.querySelectorAll('[data-prompt-profile]').forEach(field => field.addEventListener('input', savePromptProfile));
+document.getElementById('btn-save-prompt-profile').addEventListener('click', () => {
+    if (savePromptProfile()) showToast('Perfil do escritório salvo com sucesso.', 'fa-save');
+});
 document.querySelectorAll('.prompt-template-btn').forEach(button => {
     button.addEventListener('click', () => {
         activePromptTemplate = button.dataset.promptTemplate;

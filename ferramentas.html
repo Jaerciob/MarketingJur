@@ -29,6 +29,9 @@
 <!-- Tabs -->
 <nav class="tools-tabs">
     <div class="tabs-inner">
+        <button class="tab-btn group-btn active" data-group="prompts" data-direct="prompts-panel">
+            <i class="fas fa-wand-magic-sparkles"></i> Biblioteca de Prompts
+        </button>
         <button class="tab-btn group-btn" data-group="mercado">
             <i class="fas fa-compass"></i> Mercado e Objetivos
         </button>
@@ -37,9 +40,6 @@
         </button>
         <button class="tab-btn group-btn" data-group="execucao">
             <i class="fas fa-rocket"></i> Execução
-        </button>
-        <button class="tab-btn group-btn active" data-group="prompts" data-direct="prompts-panel">
-            <i class="fas fa-wand-magic-sparkles"></i> Biblioteca de Prompts
         </button>
         <button class="tab-btn group-btn" data-group="aprofundamento">
             <i class="fas fa-microscope"></i> Aprofundamento
@@ -128,6 +128,10 @@
                     <label>Objetivo estratégico atual
                         <textarea data-prompt-profile="objetivo" rows="3" placeholder="Ex.: Aumentar o faturamento em 20% e atrair clientes de maior porte"></textarea>
                     </label>
+                </div>
+                <div class="prompt-profile-actions">
+                    <button id="btn-save-prompt-profile" class="btn-prompt-save" type="button"><i class="fas fa-save"></i> Salvar perfil</button>
+                    <span id="prompt-profile-status" class="prompt-profile-status" role="status" aria-live="polite">As informações ficam salvas neste navegador.</span>
                 </div>
             </section>
 
