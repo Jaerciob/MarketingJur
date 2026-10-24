@@ -35,6 +35,9 @@
         <button class="tab-btn group-btn" data-group="mercado">
             <i class="fas fa-compass"></i> Mercado e Objetivos
         </button>
+        <button class="tab-btn group-btn" data-group="questionario-marca" data-direct="questionario-marca-panel">
+            <i class="fas fa-fingerprint"></i> Questionário de Marca
+        </button>
         <button class="tab-btn group-btn" data-group="branding">
             <i class="fas fa-paint-brush"></i> Branding e Marketing
         </button>
@@ -1459,6 +1462,127 @@
                     <i class="fas fa-redo"></i> Novo diagnóstico
                 </button>
                 <button class="pf-btn-primary" id="pf-btn-print" onclick="window.print()">
+                    <i class="fas fa-print"></i> Imprimir / Exportar PDF
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FERRAMENTA: QUESTIONÁRIO DE MARCA
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="questionario-marca-panel" class="tool-panel">
+    <div class="tool-container">
+
+        <!-- ── TELA 1: INTRODUÇÃO + IDENTIFICAÇÃO ─────────────────── -->
+        <div id="qm-screen-intro" class="qm-screen">
+            <div class="qm-intro-card">
+                <span class="qm-pill"><i class="fas fa-clock"></i> Leva de 10 a 15 minutos</span>
+                <h2 class="qm-title">Questionário de Marca<br>Diagnóstico de Branding do Escritório</h2>
+                <p class="qm-intro-text">
+                    Responda <strong>21 perguntas estratégicas</strong> sobre identidade, posicionamento, comunicação
+                    e experiência do cliente e receba automaticamente seu <strong>arquétipo de marca</strong>,
+                    uma <strong>paleta de cores recomendada</strong> e um plano de <strong>recomendações personalizadas</strong>
+                    para fortalecer o branding do seu escritório.
+                </p>
+
+                <div class="qm-stats-grid">
+                    <div class="qm-stat-card">
+                        <i class="fas fa-list-check"></i>
+                        <strong>21 Questões</strong>
+                        <span>Estratégicas e objetivas</span>
+                    </div>
+                    <div class="qm-stat-card">
+                        <i class="fas fa-chart-line"></i>
+                        <strong>Relatório Completo</strong>
+                        <span>Gráfico radar + recomendações</span>
+                    </div>
+                    <div class="qm-stat-card">
+                        <i class="fas fa-palette"></i>
+                        <strong>Arquétipo de Marca</strong>
+                        <span>Com paleta de cores sugerida</span>
+                    </div>
+                </div>
+
+                <div class="qm-checklist-grid">
+                    <div class="qm-checklist-item"><i class="fas fa-circle-check"></i> Análise de identidade da marca</div>
+                    <div class="qm-checklist-item"><i class="fas fa-circle-check"></i> Avaliação de posicionamento</div>
+                    <div class="qm-checklist-item"><i class="fas fa-circle-check"></i> Estratégias de comunicação</div>
+                    <div class="qm-checklist-item"><i class="fas fa-circle-check"></i> Experiência do cliente</div>
+                    <div class="qm-checklist-item"><i class="fas fa-circle-check"></i> Identificação de arquétipo</div>
+                    <div class="qm-checklist-item"><i class="fas fa-circle-check"></i> Paleta de cores personalizada</div>
+                </div>
+
+                <form id="qm-form-identificacao" class="qm-form-id">
+                    <div class="qm-form-grid">
+                        <div class="qm-field">
+                            <label for="qm-input-nome">Nome do escritório *</label>
+                            <input type="text" id="qm-input-nome" placeholder="Ex.: Silva &amp; Associados Advocacia" required>
+                        </div>
+                        <div class="qm-field">
+                            <label for="qm-input-porte">Porte do escritório *</label>
+                            <select id="qm-input-porte" required>
+                                <option value="">Selecione...</option>
+                                <option value="solo">Profissional autônomo</option>
+                                <option value="small">2 a 5 colaboradores</option>
+                                <option value="medium">6 a 20 colaboradores</option>
+                                <option value="large">Mais de 20 colaboradores</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="qm-field">
+                        <label for="qm-input-especialidade">Principais áreas de atuação *</label>
+                        <input type="text" id="qm-input-especialidade" placeholder="Ex.: Trabalhista, Família, Empresarial" required>
+                    </div>
+                    <div class="qm-field">
+                        <label for="qm-input-publico">Público-alvo principal *</label>
+                        <input type="text" id="qm-input-publico" placeholder="Ex.: PMEs, pessoas físicas, grandes empresas" required>
+                    </div>
+                    <div class="qm-field">
+                        <label for="qm-input-anos">Anos de atuação *</label>
+                        <select id="qm-input-anos" required>
+                            <option value="">Selecione...</option>
+                            <option value="0-2">0 a 2 anos</option>
+                            <option value="3-5">3 a 5 anos</option>
+                            <option value="6-10">6 a 10 anos</option>
+                            <option value="11-20">11 a 20 anos</option>
+                            <option value="20+">Mais de 20 anos</option>
+                        </select>
+                    </div>
+                    <div class="qm-field">
+                        <label for="qm-input-missao">Missão ou propósito do escritório *</label>
+                        <textarea id="qm-input-missao" rows="3" placeholder="Ex.: Oferecer soluções jurídicas inovadoras, garantindo segurança e excelência no atendimento aos nossos clientes..." required></textarea>
+                    </div>
+                    <button type="submit" class="qm-btn-primary">
+                        Iniciar diagnóstico <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ── TELA 2: QUESTIONÁRIO ───────────────────────────────── -->
+        <div id="qm-screen-quiz" class="qm-screen qm-hidden">
+            <div class="qm-quiz-header">
+                <div class="qm-progress-wrap">
+                    <div class="qm-progress-label">
+                        Questão <span id="qm-progress-count">0</span> de <span id="qm-progress-total">0</span>
+                    </div>
+                    <div class="qm-progress-bar"><div class="qm-progress-fill" id="qm-progress-fill"></div></div>
+                </div>
+            </div>
+            <div id="qm-quiz-container"></div>
+        </div>
+
+        <!-- ── TELA 3: RESULTADOS ─────────────────────────────────── -->
+        <div id="qm-screen-results" class="qm-screen qm-hidden">
+            <div id="qm-results-container"></div>
+            <div class="qm-results-actions">
+                <button class="qm-btn-outline" id="qm-btn-novo">
+                    <i class="fas fa-redo"></i> Novo diagnóstico
+                </button>
+                <button class="qm-btn-primary" id="qm-btn-print" onclick="window.print()">
                     <i class="fas fa-print"></i> Imprimir / Exportar PDF
                 </button>
             </div>

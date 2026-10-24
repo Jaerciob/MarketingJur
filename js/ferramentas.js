@@ -3200,3 +3200,643 @@ function pfNovoDiagnostico() {
     const totalEl = document.getElementById('pf-progress-total');
     if (totalEl) totalEl.textContent = total;
 })();
+
+// ─── QUESTIONÁRIO DE MARCA ────────────────────────────────────────────────────
+
+const QM_QUESTOES = [
+    // Identidade da Marca (5 perguntas)
+    {
+        secao: 'Identidade da Marca',
+        pergunta: 'Qual é o propósito principal da sua marca?',
+        opcoes: [
+            { texto: 'Resolver problemas com excelência técnica', valor: 'technical' },
+            { texto: 'Proteger e defender os direitos dos clientes', valor: 'protective' },
+            { texto: 'Inovar no mercado com soluções criativas', valor: 'innovative' },
+            { texto: 'Construir relacionamentos duradouros com clientes', valor: 'relational' }
+        ]
+    },
+    {
+        secao: 'Identidade da Marca',
+        pergunta: 'Como você definiria a personalidade do seu escritório?',
+        opcoes: [
+            { texto: 'Conservador e tradicional', valor: 'conservative' },
+            { texto: 'Moderno e inovador', valor: 'modern' },
+            { texto: 'Acessível e próximo', valor: 'accessible' },
+            { texto: 'Autoritativo e respeitado', valor: 'authoritative' }
+        ]
+    },
+    {
+        secao: 'Identidade da Marca',
+        pergunta: 'Qual valor você mais preza em seu trabalho?',
+        opcoes: [
+            { texto: 'Integridade e ética', valor: 'integrity' },
+            { texto: 'Eficiência e resultados', valor: 'efficiency' },
+            { texto: 'Transparência e comunicação', valor: 'transparency' },
+            { texto: 'Tradição e experiência', valor: 'tradition' }
+        ]
+    },
+    {
+        secao: 'Identidade da Marca',
+        pergunta: 'Como seus clientes descrevem o seu escritório?',
+        opcoes: [
+            { texto: 'Confiável e seguro', valor: 'trustworthy' },
+            { texto: 'Competente e especializado', valor: 'competent' },
+            { texto: 'Humano e compreensivo', valor: 'humane' },
+            { texto: 'Prestigioso e reconhecido', valor: 'prestigious' }
+        ]
+    },
+    {
+        secao: 'Identidade da Marca',
+        pergunta: 'Qual aspecto diferencia seu escritório dos concorrentes?',
+        opcoes: [
+            { texto: 'Expertise técnica superior', valor: 'expertise' },
+            { texto: 'Atendimento personalizado', valor: 'personalized' },
+            { texto: 'Preços competitivos', valor: 'competitive' },
+            { texto: 'Tradição e reputação', valor: 'reputation' }
+        ]
+    },
+    // Posicionamento (5 perguntas)
+    {
+        secao: 'Posicionamento',
+        pergunta: 'Como você se posiciona no mercado?',
+        opcoes: [
+            { texto: 'Especialista de nicho', valor: 'specialist' },
+            { texto: 'Generalista confiável', valor: 'generalist' },
+            { texto: 'Inovador disruptivo', valor: 'disruptor' },
+            { texto: 'Líder tradicional', valor: 'leader' }
+        ]
+    },
+    {
+        secao: 'Posicionamento',
+        pergunta: 'Qual é seu público-alvo prioritário?',
+        opcoes: [
+            { texto: 'Grandes corporações', valor: 'corporate' },
+            { texto: 'Pequenas e médias empresas', valor: 'sme' },
+            { texto: 'Pessoas físicas', valor: 'individuals' },
+            { texto: 'Mix equilibrado', valor: 'mixed' }
+        ]
+    },
+    {
+        secao: 'Posicionamento',
+        pergunta: 'Como você precifica seus serviços?',
+        opcoes: [
+            { texto: 'Premium - valor pela especialização', valor: 'premium' },
+            { texto: 'Competitivo - equilíbrio custo-benefício', valor: 'competitive' },
+            { texto: 'Acessível - democratização do acesso', valor: 'accessible' },
+            { texto: 'Variável conforme complexidade', valor: 'variable' }
+        ]
+    },
+    {
+        secao: 'Posicionamento',
+        pergunta: 'Qual é sua principal vantagem competitiva?',
+        opcoes: [
+            { texto: 'Conhecimento técnico aprofundado', valor: 'knowledge' },
+            { texto: 'Rede de relacionamentos', valor: 'network' },
+            { texto: 'Agilidade e eficiência', valor: 'agility' },
+            { texto: 'Inovação em processos', valor: 'innovation' }
+        ]
+    },
+    {
+        secao: 'Posicionamento',
+        pergunta: 'Como você vê o crescimento do seu escritório?',
+        opcoes: [
+            { texto: 'Expansão geográfica', valor: 'geographic' },
+            { texto: 'Aprofundamento em nichos', valor: 'specialization' },
+            { texto: 'Diversificação de áreas', valor: 'diversification' },
+            { texto: 'Crescimento orgânico controlado', valor: 'organic' }
+        ]
+    },
+    // Comunicação (6 perguntas)
+    {
+        secao: 'Comunicação',
+        pergunta: 'Como é o tom de voz da sua comunicação?',
+        opcoes: [
+            { texto: 'Formal e técnico', valor: 'formal' },
+            { texto: 'Profissional mas acessível', valor: 'professional' },
+            { texto: 'Casual e próximo', valor: 'casual' },
+            { texto: 'Autoritativo e respeitoso', valor: 'authoritative' }
+        ]
+    },
+    {
+        secao: 'Comunicação',
+        pergunta: 'Quais canais você mais utiliza para se comunicar?',
+        opcoes: [
+            { texto: 'Website e e-mail profissional', valor: 'traditional' },
+            { texto: 'Redes sociais e blog', valor: 'digital' },
+            { texto: 'Eventos e networking presencial', valor: 'events' },
+            { texto: 'Mix de canais digitais e presenciais', valor: 'mixed' }
+        ]
+    },
+    {
+        secao: 'Comunicação',
+        pergunta: 'Como você aborda o marketing?',
+        opcoes: [
+            { texto: 'Marketing de conteúdo educativo', valor: 'content' },
+            { texto: 'Networking e indicações', valor: 'networking' },
+            { texto: 'Presença digital forte', valor: 'digital' },
+            { texto: 'Approach conservador e discreto', valor: 'conservative' }
+        ]
+    },
+    {
+        secao: 'Comunicação',
+        pergunta: 'Qual é sua frequência de comunicação com clientes?',
+        opcoes: [
+            { texto: 'Contato constante e proativo', valor: 'constant' },
+            { texto: 'Updates regulares sobre casos', valor: 'regular' },
+            { texto: 'Comunicação sob demanda', valor: 'ondemand' },
+            { texto: 'Comunicação formal e estruturada', valor: 'structured' }
+        ]
+    },
+    {
+        secao: 'Comunicação',
+        pergunta: 'Como você educa seu mercado?',
+        opcoes: [
+            { texto: 'Artigos e conteúdo especializado', valor: 'articles' },
+            { texto: 'Palestras e workshops', valor: 'speaking' },
+            { texto: 'Redes sociais e posts educativos', valor: 'social' },
+            { texto: 'Consultoria e orientação direta', valor: 'consulting' }
+        ]
+    },
+    {
+        secao: 'Comunicação',
+        pergunta: 'Quais são os principais canais digitais que você utiliza para atrair clientes?',
+        opcoes: [
+            { texto: 'Google Ads e SEO', valor: 'google_seo' },
+            { texto: 'LinkedIn e redes profissionais', valor: 'linkedin_professional' },
+            { texto: 'Instagram e Facebook', valor: 'social_media' },
+            { texto: 'Outros canais digitais', valor: 'other_digital' }
+        ]
+    },
+    // Experiência do Cliente (5 perguntas)
+    {
+        secao: 'Experiência do Cliente',
+        pergunta: 'Como é o primeiro contato do cliente com o seu escritório?',
+        opcoes: [
+            { texto: 'Recepção presencial acolhedora', valor: 'welcoming' },
+            { texto: 'Site profissional e formulários online', valor: 'digital' },
+            { texto: 'Consulta inicial estruturada', valor: 'structured' },
+            { texto: 'Atendimento personalizado imediato', valor: 'immediate' }
+        ]
+    },
+    {
+        secao: 'Experiência do Cliente',
+        pergunta: 'Como você acompanha a satisfação dos clientes?',
+        opcoes: [
+            { texto: 'Pesquisas de satisfação regulares', valor: 'surveys' },
+            { texto: 'Feedback informal durante atendimento', valor: 'informal' },
+            { texto: 'Métricas de retenção e indicação', valor: 'metrics' },
+            { texto: 'Reuniões de follow-up estruturadas', valor: 'followup' }
+        ]
+    },
+    {
+        secao: 'Experiência do Cliente',
+        pergunta: 'Qual é seu tempo médio de resposta?',
+        opcoes: [
+            { texto: 'Até 2 horas', valor: 'fast' },
+            { texto: 'Até 24 horas', valor: 'quick' },
+            { texto: 'Até 48 horas', valor: 'standard' },
+            { texto: 'Conforme urgência do caso', valor: 'variable' }
+        ]
+    },
+    {
+        secao: 'Experiência do Cliente',
+        pergunta: 'Como você entrega valor além do seu serviço principal?',
+        opcoes: [
+            { texto: 'Consultoria estratégica de negócios', valor: 'strategic' },
+            { texto: 'Educação e orientação preventiva', valor: 'educational' },
+            { texto: 'Rede de contatos e parcerias', valor: 'network' },
+            { texto: 'Suporte emocional e tranquilidade', valor: 'emotional' }
+        ]
+    },
+    {
+        secao: 'Experiência do Cliente',
+        pergunta: 'Como seus clientes preferem receber informações?',
+        opcoes: [
+            { texto: 'Relatórios formais detalhados', valor: 'formal' },
+            { texto: 'Comunicação digital ágil', valor: 'digital' },
+            { texto: 'Reuniões presenciais regulares', valor: 'meetings' },
+            { texto: 'Mix personalizado por cliente', valor: 'customized' }
+        ]
+    }
+];
+
+const QM_CATEGORIAS = {
+    identidade: [0, 1, 2, 3, 4],
+    posicionamento: [5, 6, 7, 8, 9],
+    comunicacao: [10, 11, 12, 13, 14, 15],
+    experiencia: [16, 17, 18, 19, 20]
+};
+
+const QM_PONTUACAO_REGRAS = {
+    technical: 20, protective: 18, innovative: 17, relational: 19, modern: 18, authoritative: 17,
+    integrity: 20, efficiency: 18, transparency: 19, trustworthy: 20, competent: 19, humane: 17,
+    prestigious: 16, expertise: 20, personalized: 19, reputation: 17, specialist: 19, leader: 18,
+    premium: 17, knowledge: 20, innovation: 18, specialization: 19, professional: 19, content: 19,
+    constant: 20, articles: 18, welcoming: 18, surveys: 19, fast: 20, strategic: 19, customized: 18,
+    accessible: 16, tradition: 15, competitive: 15, generalist: 14, mixed: 15, variable: 14,
+    agility: 17, organic: 15, traditional: 13, networking: 15, regular: 16, speaking: 16,
+    structured: 16, informal: 14, quick: 17, educational: 17, meetings: 15,
+    events: 12, conservative: 11, ondemand: 13, consulting: 14, immediate: 15, metrics: 15,
+    standard: 14, emotional: 16, digital: 15, network: 14, formal: 13,
+    google_seo: 19, linkedin_professional: 18, social_media: 16, other_digital: 15
+};
+
+const QM_ARQUETIPOS = {
+    protetor: {
+        name: 'O Protetor',
+        icon: 'fas fa-shield-alt',
+        description: 'Seu escritório demonstra características do arquétipo "O Protetor" - focado em segurança, confiabilidade e proteção dos interesses dos clientes. Essa marca transmite estabilidade e competência técnica.',
+        characteristics: ['Confiável', 'Seguro', 'Estável', 'Protetor', 'Tradicional'],
+        examples: ['Porto Seguro', 'Volvo', 'Unicef'],
+        colors: { primary: ['#1E3A8A', '#3B82F6', '#60A5FA'], secondary: ['#374151', '#6B7280'] },
+        psychology: 'Cores que transmitem confiança, estabilidade e proteção. O azul evoca segurança e profissionalismo, ideais para marcas que querem ser vistas como um porto seguro.'
+    },
+    especialista: {
+        name: 'O Especialista',
+        icon: 'fas fa-graduation-cap',
+        description: 'Seu escritório reflete o arquétipo "O Especialista" - reconhecido pela expertise técnica superior e conhecimento aprofundado. Clientes buscam sua autoridade no assunto.',
+        characteristics: ['Conhecedor', 'Técnico', 'Autoridade', 'Especializado', 'Competente'],
+        examples: ['Google', 'McKinsey', 'MIT'],
+        colors: { primary: ['#1F2937', '#374151', '#4B5563'], secondary: ['#F59E0B', '#EAB308'] },
+        psychology: 'Combinação de cinzas sóbrios com toques de destaque (como dourado ou amarelo) para transmitir expertise, inteligência e prestígio.'
+    },
+    conselheiro: {
+        name: 'O Conselheiro',
+        icon: 'fas fa-user-tie',
+        description: 'Seu escritório incorpora o arquétipo "O Conselheiro" - focado em orientação, sabedoria e construção de relacionamentos duradouros com base na confiança mútua.',
+        characteristics: ['Sábio', 'Orientador', 'Confiável', 'Experiente', 'Consultivo'],
+        examples: ['Itaú Personnalité', 'Salesforce', 'Starbucks'],
+        colors: { primary: ['#065F46', '#047857', '#059669'], secondary: ['#92400E', '#B45309'] },
+        psychology: 'Tons sóbrios e elegantes como verde escuro, marrom ou vinho transmitem sabedoria, confiança e uma abordagem consultiva e próxima.'
+    },
+    inovador: {
+        name: 'O Inovador',
+        icon: 'fas fa-lightbulb',
+        description: 'Seu escritório representa o arquétipo "O Inovador" - pioneiro em soluções criativas e novas abordagens no seu mercado.',
+        characteristics: ['Criativo', 'Inovador', 'Visionário', 'Moderno', 'Disruptivo'],
+        examples: ['Apple', 'Tesla', 'Nubank'],
+        colors: { primary: ['#7C3AED', '#8B5CF6', '#A78BFA'], secondary: ['#EC4899', '#F472B6'] },
+        psychology: 'Cores vibrantes e inesperadas como roxo, rosa ou tons neon transmitem criatividade, originalidade e uma visão de futuro.'
+    },
+    construtor: {
+        name: 'O Construtor',
+        icon: 'fas fa-hammer',
+        description: 'Seu escritório demonstra o arquétipo "O Construtor" - focado em resultados práticos, execução eficiente e construção de soluções sólidas e duradouras.',
+        characteristics: ['Prático', 'Eficiente', 'Realizador', 'Objetivo', 'Construtor'],
+        examples: ['Gerdau', 'Caterpillar', 'Microsoft'],
+        colors: { primary: ['#DC2626', '#EF4444', '#F87171'], secondary: ['#92400E', '#A16207'] },
+        psychology: 'Cores fortes e sólidas como vermelho, laranja e tons de cinza transmitem ação, força, praticidade e a capacidade de construir e realizar.'
+    }
+};
+
+const QM_FAIXAS_GERAL = [
+    { min: 85, max: 100, label: 'Excelente', texto: 'Sua marca apresenta maturidade excepcional nas quatro dimensões avaliadas. Seu escritório está entre os mais bem posicionados do mercado.' },
+    { min: 70, max: 84, label: 'Forte', texto: 'Sua marca tem fundamentos sólidos. Pequenos ajustes nas dimensões mais fracas podem alavancar significativamente os resultados.' },
+    { min: 55, max: 69, label: 'Estável', texto: 'Sua marca tem uma base funcional. Priorize as dimensões com menor pontuação para dar um salto de qualidade no branding do escritório.' },
+    { min: 40, max: 54, label: 'Atenção', texto: 'Existem fragilidades importantes de branding que limitam o reconhecimento e a captação de clientes. Foque nas recomendações para evoluir rapidamente.' },
+    { min: 0, max: 39, label: 'Crítico', texto: 'A marca do escritório precisa de atenção estratégica urgente. As recomendações abaixo são o ponto de partida para a transformação.' }
+];
+
+let qmRespostas = {};
+let qmFirmInfo = {};
+let qmQuestaoAtual = 0;
+let qmRadarChart = null;
+
+function qmCalcularPontuacoes(respostas) {
+    const pontuacoes = { identidade: 0, posicionamento: 0, comunicacao: 0, experiencia: 0 };
+    Object.entries(QM_CATEGORIAS).forEach(([categoria, indices]) => {
+        let soma = 0;
+        indices.forEach(i => {
+            const resposta = respostas[i];
+            if (resposta && QM_PONTUACAO_REGRAS[resposta] !== undefined) soma += QM_PONTUACAO_REGRAS[resposta];
+            else if (resposta) soma += 12;
+        });
+        const maximo = indices.length * 20;
+        pontuacoes[categoria] = Math.round(Math.min(100, Math.max(0, (soma / maximo) * 100)));
+    });
+    return pontuacoes;
+}
+
+function qmDeterminarArquetipo(respostas) {
+    const valores = Object.values(respostas);
+    const car = { protetor: 0, especialista: 0, conselheiro: 0, inovador: 0, construtor: 0 };
+
+    if (valores.includes('protective') || valores.includes('trustworthy') || valores.includes('traditional')) car.protetor += 2;
+    if (valores.includes('conservative') || valores.includes('formal')) car.protetor += 1;
+
+    if (valores.includes('technical') || valores.includes('expertise') || valores.includes('specialist')) car.especialista += 2;
+    if (valores.includes('competent') || valores.includes('knowledge')) car.especialista += 1;
+
+    if (valores.includes('relational') || valores.includes('humane') || valores.includes('transparency')) car.conselheiro += 2;
+    if (valores.includes('accessible') || valores.includes('professional')) car.conselheiro += 1;
+
+    if (valores.includes('innovative') || valores.includes('modern') || valores.includes('innovation')) car.inovador += 2;
+    if (valores.includes('disruptor') || valores.includes('digital')) car.inovador += 1;
+
+    if (valores.includes('efficiency') || valores.includes('agility') || valores.includes('strategic')) car.construtor += 2;
+    if (valores.includes('premium') || valores.includes('fast')) car.construtor += 1;
+
+    let dominante = 'protetor';
+    let maior = -1;
+    Object.entries(car).forEach(([chave, valor]) => {
+        if (valor > maior) { maior = valor; dominante = chave; }
+    });
+    return QM_ARQUETIPOS[dominante];
+}
+
+function qmGerarRecomendacoes(pontuacoes, firmInfo) {
+    const recs = [];
+
+    if (pontuacoes.identidade < 70) {
+        recs.push({ title: 'Fortaleça sua Identidade de Marca', description: `Para ${firmInfo.nome || 'o seu escritório'}, é crucial desenvolver uma identidade mais clara. Considere criar um brand book que defina missão, visão, valores e personalidade. Isso ajudará a diferenciá-lo no mercado de ${firmInfo.especialidade || 'atuação'}.`, priority: 'alta', category: 'Identidade' });
+    } else if (pontuacoes.identidade < 85) {
+        recs.push({ title: 'Refine sua Identidade Visual', description: 'Sua identidade está no caminho certo, mas pode ser aprimorada. Considere uma atualização visual que reflita melhor seus valores e atraia seu público-alvo.', priority: 'media', category: 'Identidade' });
+    }
+
+    if (pontuacoes.posicionamento < 70) {
+        recs.push({ title: 'Defina seu Posicionamento Único', description: `Para escritórios que atendem ${firmInfo.publico || 'o público-alvo definido'}, é essencial ter um posicionamento claro. Desenvolva uma proposta de valor única que destaque seus diferenciais competitivos em ${firmInfo.especialidade || 'sua área de atuação'}.`, priority: 'alta', category: 'Posicionamento' });
+    } else if (pontuacoes.posicionamento < 85) {
+        recs.push({ title: 'Comunique Melhor seu Posicionamento', description: 'Seu posicionamento existe, mas precisa ser comunicado de forma mais clara e consistente em todos os pontos de contato com clientes.', priority: 'media', category: 'Posicionamento' });
+    }
+
+    if (pontuacoes.comunicacao < 70) {
+        recs.push({ title: 'Desenvolva uma Estratégia de Comunicação', description: 'Implemente um plano de comunicação integrado, incluindo presença digital, marketing de conteúdo e relacionamento com clientes. Considere criar conteúdo educativo sobre seus temas de especialidade.', priority: 'alta', category: 'Comunicação' });
+    } else if (pontuacoes.comunicacao < 85) {
+        recs.push({ title: 'Aprimore sua Presença Digital', description: 'Sua comunicação é boa, mas pode ser potencializada. Invista em SEO, marketing de conteúdo e presença nas redes sociais profissionais, sempre em conformidade com as regras da OAB.', priority: 'media', category: 'Comunicação' });
+    }
+
+    if (pontuacoes.experiencia < 70) {
+        recs.push({ title: 'Melhore a Experiência do Cliente', description: 'Implemente processos para melhorar o atendimento, reduzir o tempo de resposta e aumentar a satisfação dos clientes. Considere pesquisas regulares de satisfação.', priority: 'alta', category: 'Experiência' });
+    } else if (pontuacoes.experiencia < 85) {
+        recs.push({ title: 'Padronize a Experiência do Cliente', description: 'Crie protocolos para garantir consistência na experiência do cliente em todos os pontos de contato com o escritório.', priority: 'media', category: 'Experiência' });
+    }
+
+    if (firmInfo.porte === 'solo') {
+        recs.push({ title: 'Maximize sua Presença Pessoal', description: 'Como profissional autônomo, sua marca pessoal é fundamental. Invista em networking, presença digital e posicionamento como especialista em sua área.', priority: 'media', category: 'Crescimento' });
+    } else if (firmInfo.porte === 'large') {
+        recs.push({ title: 'Mantenha Consistência da Marca', description: 'Com uma equipe grande, é crucial manter consistência na comunicação e experiência da marca em todos os colaboradores e departamentos.', priority: 'media', category: 'Gestão' });
+    }
+
+    const nomesCategorias = { identidade: 'Identidade de Marca', posicionamento: 'Posicionamento', comunicacao: 'Comunicação', experiencia: 'Experiência do Cliente' };
+    const melhorCategoria = Object.entries(pontuacoes).reduce((a, b) => pontuacoes[a[0]] > pontuacoes[b[0]] ? a : b)[0];
+    recs.push({
+        title: `Continue Investindo em ${nomesCategorias[melhorCategoria]}`,
+        description: `Sua ${nomesCategorias[melhorCategoria].toLowerCase()} é um ponto forte com ${pontuacoes[melhorCategoria]} pontos. Continue aprimorando esta área para manter sua vantagem competitiva.`,
+        priority: 'baixa',
+        category: 'Fortalezas'
+    });
+
+    return recs;
+}
+
+function qmClassificarGeral(score) {
+    for (const f of QM_FAIXAS_GERAL) {
+        if (score >= f.min && score <= f.max) return f;
+    }
+    return QM_FAIXAS_GERAL[QM_FAIXAS_GERAL.length - 1];
+}
+
+function qmAtualizarProgresso() {
+    const total = QM_QUESTOES.length;
+    const atual = qmQuestaoAtual + 1;
+    const pct = (atual / total) * 100;
+    const fill = document.getElementById('qm-progress-fill');
+    const count = document.getElementById('qm-progress-count');
+    const totalEl = document.getElementById('qm-progress-total');
+    if (fill) fill.style.width = pct + '%';
+    if (count) count.textContent = atual;
+    if (totalEl) totalEl.textContent = total;
+}
+
+function qmRenderQuestao() {
+    const container = document.getElementById('qm-quiz-container');
+    if (!container) return;
+    const q = QM_QUESTOES[qmQuestaoAtual];
+    const respostaAtual = qmRespostas[qmQuestaoAtual];
+    const letras = ['A', 'B', 'C', 'D'];
+
+    const html = `
+    <div class="qm-question-card">
+        <span class="qm-question-section">${q.secao}</span>
+        <h3 class="qm-question-text">${q.pergunta}</h3>
+        <div class="qm-options">
+            ${q.opcoes.map((op, i) => `
+            <div class="qm-option ${respostaAtual === op.valor ? 'selected' : ''}" onclick="qmSelecionarOpcao('${op.valor}')">
+                <span class="qm-option-letter">${letras[i]}</span>
+                <span class="qm-option-text">${op.texto}</span>
+            </div>`).join('')}
+        </div>
+    </div>
+    <div class="qm-nav-row">
+        <button class="qm-btn-nav prev" onclick="qmAnterior()" ${qmQuestaoAtual === 0 ? 'style="visibility:hidden"' : ''}>
+            <i class="fas fa-arrow-left"></i> Anterior
+        </button>
+        <button class="qm-btn-nav next" id="qm-btn-proxima" onclick="qmProxima()" ${!respostaAtual ? 'disabled' : ''}>
+            ${qmQuestaoAtual === QM_QUESTOES.length - 1 ? 'Ver resultado' : 'Próxima'} <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>`;
+
+    container.innerHTML = html;
+    qmAtualizarProgresso();
+}
+
+function qmSelecionarOpcao(valor) {
+    qmRespostas[qmQuestaoAtual] = valor;
+    qmRenderQuestao();
+}
+
+function qmProxima() {
+    if (qmRespostas[qmQuestaoAtual] === undefined) return;
+    if (qmQuestaoAtual < QM_QUESTOES.length - 1) {
+        qmQuestaoAtual++;
+        qmRenderQuestao();
+        document.getElementById('questionario-marca-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        qmFinalizar();
+    }
+}
+
+function qmAnterior() {
+    if (qmQuestaoAtual > 0) {
+        qmQuestaoAtual--;
+        qmRenderQuestao();
+    }
+}
+
+function qmFinalizar() {
+    qmRenderResultados();
+    qmShowScreen('results');
+    document.getElementById('questionario-marca-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function qmRenderResultados() {
+    const container = document.getElementById('qm-results-container');
+    if (!container) return;
+
+    const pontuacoes = qmCalcularPontuacoes(qmRespostas);
+    const arquetipo = qmDeterminarArquetipo(qmRespostas);
+    const paleta = { primary: arquetipo.colors.primary, secondary: arquetipo.colors.secondary, psychology: arquetipo.psychology };
+    const recomendacoes = qmGerarRecomendacoes(pontuacoes, qmFirmInfo);
+    const geral = Math.round((pontuacoes.identidade + pontuacoes.posicionamento + pontuacoes.comunicacao + pontuacoes.experiencia) / 4);
+    const classGeral = qmClassificarGeral(geral);
+
+    let html = `
+    <div class="qm-result-header">
+        <h2><i class="fas fa-trophy" style="margin-right:8px;opacity:.85"></i>Seu Diagnóstico de Marca está pronto!</h2>
+        <div class="qm-result-meta">
+            ${qmFirmInfo.nome ? `<strong>${qmFirmInfo.nome}</strong> · ` : ''}${new Date().toLocaleDateString('pt-BR')}
+        </div>
+        <div class="qm-score-row">
+            <div class="qm-score-circle">
+                <span class="qm-score-num">${geral}</span>
+                <span class="qm-score-of">/ 100</span>
+            </div>
+            <div class="qm-score-info">
+                <div class="qm-score-badge">${classGeral.label}</div>
+                <p>${classGeral.texto}</p>
+            </div>
+        </div>
+    </div>`;
+
+    html += `
+    <div class="qm-chart-section">
+        <div class="qm-chart-wrap"><canvas id="qm-radar-canvas" width="400" height="400"></canvas></div>
+    </div>`;
+
+    html += `
+    <div class="qm-score-grid">
+        <div class="qm-score-card"><i class="fas fa-fingerprint" style="color:#2563eb"></i><strong>Identidade</strong><div class="qm-score-value" style="color:#2563eb">${pontuacoes.identidade}</div><div class="qm-score-label">pontos</div></div>
+        <div class="qm-score-card"><i class="fas fa-crosshairs" style="color:#ea580c"></i><strong>Posicionamento</strong><div class="qm-score-value" style="color:#ea580c">${pontuacoes.posicionamento}</div><div class="qm-score-label">pontos</div></div>
+        <div class="qm-score-card"><i class="fas fa-comments" style="color:#059669"></i><strong>Comunicação</strong><div class="qm-score-value" style="color:#059669">${pontuacoes.comunicacao}</div><div class="qm-score-label">pontos</div></div>
+        <div class="qm-score-card"><i class="fas fa-star" style="color:#d4af37"></i><strong>Experiência</strong><div class="qm-score-value" style="color:#d4af37">${pontuacoes.experiencia}</div><div class="qm-score-label">pontos</div></div>
+    </div>`;
+
+    html += `
+    <div class="qm-archetype-section">
+        <div class="qm-section-title" style="justify-content:center"><i class="fas fa-user-tag" style="color:var(--primary-light)"></i> Seu Arquétipo de Marca</div>
+        <div class="qm-archetype-card">
+            <i class="${arquetipo.icon} qm-archetype-icon"></i>
+            <h4>${arquetipo.name}</h4>
+            <p>${arquetipo.description}</p>
+            <div class="qm-archetype-chips">${arquetipo.characteristics.map(c => `<span class="qm-archetype-chip">${c}</span>`).join('')}</div>
+            <div class="qm-archetype-examples"><strong>Exemplos de marcas:</strong> ${arquetipo.examples.join(', ')}</div>
+        </div>
+    </div>`;
+
+    html += `
+    <div class="qm-palette-section">
+        <div class="qm-section-title" style="justify-content:center"><i class="fas fa-palette" style="color:var(--primary-light)"></i> Paleta de Cores Recomendada</div>
+        <p class="qm-palette-psychology">${paleta.psychology}</p>
+        <div class="qm-palette-label">Cores Primárias</div>
+        <div class="qm-palette-swatches">${paleta.primary.map(c => `<div class="qm-swatch"><div class="qm-swatch-color" style="background:${c}" title="${c}"></div><span>${c}</span></div>`).join('')}</div>
+        <div class="qm-palette-label">Cores Secundárias</div>
+        <div class="qm-palette-swatches">${paleta.secondary.map(c => `<div class="qm-swatch"><div class="qm-swatch-color qm-swatch-sm" style="background:${c}" title="${c}"></div><span>${c}</span></div>`).join('')}</div>
+    </div>`;
+
+    html += `
+    <div class="qm-recommendations-section">
+        <div class="qm-section-title"><i class="fas fa-lightbulb" style="color:var(--primary-light)"></i> Recomendações Personalizadas</div>
+        ${recomendacoes.map(r => `
+        <div class="qm-rec-card">
+            <i class="fas fa-lightbulb"></i>
+            <div>
+                <h4>${r.title}</h4>
+                <p>${r.description}</p>
+                <div class="qm-rec-meta">
+                    <span class="qm-rec-priority ${r.priority}">Prioridade: ${r.priority === 'alta' ? 'Alta' : r.priority === 'media' ? 'Média' : 'Baixa'}</span>
+                    <span class="qm-rec-category">Categoria: ${r.category}</span>
+                </div>
+            </div>
+        </div>`).join('')}
+    </div>`;
+
+    container.innerHTML = html;
+    setTimeout(() => qmRenderRadar(pontuacoes), 80);
+}
+
+function qmRenderRadar(pontuacoes) {
+    const canvas = document.getElementById('qm-radar-canvas');
+    if (!canvas || typeof Chart === 'undefined') return;
+    if (qmRadarChart) { qmRadarChart.destroy(); qmRadarChart = null; }
+    qmRadarChart = new Chart(canvas, {
+        type: 'radar',
+        data: {
+            labels: ['Identidade da Marca', 'Posicionamento', 'Comunicação', 'Experiência do Cliente'],
+            datasets: [{
+                label: 'Seu Escritório',
+                data: [pontuacoes.identidade, pontuacoes.posicionamento, pontuacoes.comunicacao, pontuacoes.experiencia],
+                backgroundColor: 'rgba(26, 54, 93, 0.15)',
+                borderColor: 'rgba(26, 54, 93, 0.9)',
+                pointBackgroundColor: 'rgba(212, 175, 55, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(26, 54, 93, 1)',
+                borderWidth: 2,
+                pointRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                r: {
+                    min: 0, max: 100,
+                    ticks: { stepSize: 20, font: { size: 11 }, color: '#64748b', backdropColor: 'transparent' },
+                    pointLabels: { font: { size: 11, family: 'Inter' }, color: '#1a365d' },
+                    grid: { color: 'rgba(26,54,93,0.1)' },
+                    angleLines: { color: 'rgba(26,54,93,0.1)' }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { label: ctx => ` ${ctx.raw} / 100` } }
+            }
+        }
+    });
+}
+
+function qmShowScreen(name) {
+    ['intro', 'quiz', 'results'].forEach(s => {
+        const el = document.getElementById(`qm-screen-${s}`);
+        if (el) el.classList.toggle('qm-hidden', s !== name);
+    });
+}
+
+function qmIniciar(e) {
+    e.preventDefault();
+    qmFirmInfo = {
+        nome: document.getElementById('qm-input-nome').value.trim(),
+        porte: document.getElementById('qm-input-porte').value,
+        especialidade: document.getElementById('qm-input-especialidade').value.trim(),
+        publico: document.getElementById('qm-input-publico').value.trim(),
+        anos: document.getElementById('qm-input-anos').value,
+        missao: document.getElementById('qm-input-missao').value.trim()
+    };
+    qmQuestaoAtual = 0;
+    qmRespostas = {};
+    qmRenderQuestao();
+    qmShowScreen('quiz');
+    document.getElementById('questionario-marca-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function qmNovoDiagnostico() {
+    qmRespostas = {};
+    qmFirmInfo = {};
+    qmQuestaoAtual = 0;
+    if (qmRadarChart) { qmRadarChart.destroy(); qmRadarChart = null; }
+    const form = document.getElementById('qm-form-identificacao');
+    if (form) form.reset();
+    const resultsContainer = document.getElementById('qm-results-container');
+    if (resultsContainer) resultsContainer.innerHTML = '';
+    qmShowScreen('intro');
+    document.getElementById('questionario-marca-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Init
+(function qmInit() {
+    const form = document.getElementById('qm-form-identificacao');
+    if (form) form.addEventListener('submit', qmIniciar);
+    const btnNovo = document.getElementById('qm-btn-novo');
+    if (btnNovo) btnNovo.addEventListener('click', qmNovoDiagnostico);
+    const totalEl = document.getElementById('qm-progress-total');
+    if (totalEl) totalEl.textContent = QM_QUESTOES.length;
+})();
